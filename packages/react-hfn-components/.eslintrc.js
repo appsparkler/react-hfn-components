@@ -5,6 +5,7 @@ module.exports = {
     'plugin:react/recommended'
   ],
   rules: {
-    'semi': [2, "never"]
+    semi: [2, "never"],
+    'require-jsdoc': 0
   }
 }
