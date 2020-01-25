@@ -9,6 +9,9 @@ module.exports = {
     }),
   ],
   resolve: {
+    modules: [
+      resolve('node_modules'),
+    ],
     alias: {
       '@components': resolve('src/components'),
     },

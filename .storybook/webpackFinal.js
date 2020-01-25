@@ -7,7 +7,11 @@ module.exports = async(config) => {
       alias: {
         ...config.resolve.alias,
         ...customWebpackConfig.resolve.alias
-      }
+      },
+      modules: [
+        ...config.resolve.modules,
+        ...customWebpackConfig.resolve.modules
+      ]
     },
   }
 }

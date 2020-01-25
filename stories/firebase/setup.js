@@ -1,5 +1,5 @@
-mport firebase from 'firebase/app';
-import 'firebase/storage';
+import firebase from 'firebase/app'
+import 'firebase/storage'
 
 const {
   apiKey,
@@ -9,20 +9,20 @@ const {
   storageBucket,
   messagingSenderId,
   appId,
-} = process.env;
-
+} = process.env
 
 const firebaseConfig = {
-  apiKey, authDomain, databaseURL, projectId, storageBucket, messagingSenderId, appId,
-};
+  apiKey, authDomain, databaseURL,
+  projectId, storageBucket,
+  messagingSenderId, appId,
+}
 
+const FirebaseApp = firebase.initializeApp(firebaseConfig)
 
-const FirebaseApp = firebase.initializeApp(firebaseConfig);
-
-export default FirebaseApp;
+export default FirebaseApp
 
 export const putFile = (ref, file) => (FirebaseApp
     .storage()
     .ref(ref)
     .put(file)
-);
+)
