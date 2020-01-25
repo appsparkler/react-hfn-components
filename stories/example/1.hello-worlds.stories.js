@@ -1,8 +1,8 @@
 import React from 'react'
-import HelloWorld from '../../src/components/HelloWorld'
+import HelloWorld from '@components/HelloWorld'
 
 export default {
-  title: 'Hello World',
+  title: 'Hello Worlds',
 }
 
 export const helloWorldDefault = () =>(<HelloWorld />)
