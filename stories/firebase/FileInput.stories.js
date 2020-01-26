@@ -8,6 +8,7 @@ export default {
 
 export const defaultFileInput = () => {
   const [filesToUpload, setFilesToUpload] = React.useState([])
+  const inputRef = React.useRef()
   const config = {
     FirebaseApp,
     multiple: true,
@@ -16,11 +17,15 @@ export const defaultFileInput = () => {
   }
   return (
     <form>
-      <FileInput config={config} />
-      <input type="file" multiple />
+      <FileInput config={config} ref={inputRef} />
+      <button
+        type="button"
+        onClick={ () => console.log(inputRef.current.focus()) }>
+        Focus the Input Field
+      </button>
       {
         filesToUpload.map((file, idx) => (
-          <div key="a">{file.name}, {file.size}</div>
+          <div key="a">{file.name}, Size: {file.size}bytes</div>
         ))
       }
     </form>

@@ -1,14 +1,15 @@
 import React from 'react'
 
-export default function({config={}}) {
+export default React.forwardRef(function({config={}}, ref) {
   return (
     <input
       type="file"
+      ref={ref}
       onInput={ setFilesToUpload.bind(null, config) }
       {...config}
     />
   )
-}
+})
 
 function setFilesToUpload(config, evt) {
   try {
