@@ -9,8 +9,9 @@
   ],
   "scripts": {
     "start": "start-storybook",
-    "build:umd:minified": "webpack --env.mode production --env.minimize --config webpack.config.dist.js",
-    "build:umd:unminified": "webpack --env.mode production --config webpack.config.dist.js"
+    "build:umd": "yarn build:umd:minified; yarn build:umd:unminified",
+    "build:umd:minified": "webpack -p --config webpack.config.dist.js",
+    "build:umd:unminified": "webpack --mode development --devtool eval-cheap-module-source-map --config webpack.config.dist.js"
   },
   "peerDependencies": {},
   "devDependencies": {

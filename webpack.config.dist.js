@@ -1,14 +1,9 @@
 const {resolve} = require('path')
-console.log('building...')
-module.exports = ({mode, minimize}) => ({
-  mode,
+module.exports = {
   entry: './src/index',
-  optimization: {
-    minimize,
-  },
   output: {
     path: resolve('dist'),
-    filename: `react-hfn-components${minimize ? '.min' : ''}.js`,
+    filename: `react-hfn-components${process.env.NODE_ENV === 'production' ? '.min' : ''}.js`,
     library: 'ReactHFNComponents',
     libraryTarget: 'umd',
   },
@@ -20,7 +15,7 @@ module.exports = ({mode, minimize}) => ({
           loader: require.resolve('babel-loader'),
           options: {
             cacheDirectory: true,
-            envName: mode,
+            envName: process.env.NODE_ENV,
           },
         },
       },
@@ -34,4 +29,4 @@ module.exports = ({mode, minimize}) => ({
       amd: 'react',
     },
   },
-})
+}
