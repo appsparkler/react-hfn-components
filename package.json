@@ -2,7 +2,7 @@
   "name": "react-hfn-components",
   "version": "1.0.0",
   "license": "MIT",
-  "main": "./dist/react.min.js",
+  "main": "./dist/react-hfn-components.min.js",
   "module": "./src/index.js",
   "directories": [
     "src"
