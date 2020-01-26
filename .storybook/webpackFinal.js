@@ -1,4 +1,4 @@
-module.exports = async(config) => {
+module.exports = (config) => {
   const customWebpackConfig = require('../webpack.config.storybook')
   return {
     ...config,

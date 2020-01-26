@@ -1,5 +1,12 @@
 module.exports = {
   parser: 'babel-eslint',
+  parserOptions: {
+    ecmaVersion: 8,
+    // sourceType: 'module',
+    ecmaFeatures: {
+      jsx: true
+    }
+  },
   extends: [
     'google',
     'plugin:react/recommended'
