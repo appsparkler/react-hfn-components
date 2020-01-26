@@ -1,27 +1,40 @@
 import React from 'react'
 
-export default React.forwardRef(function({config={}}, ref) {
+const DEFAULT_CONFIG = {
+  maxBytes: 5000,
+}
+
+export default React.forwardRef(function({config=DEFAULT_CONFIG}, ref) {
   return (
     <input
       type="file"
       ref={ref}
+      className={ config.classNames }
       onInput={ setFilesToUpload.bind(null, config) }
-      {...config}
+      onChange={ () => console.log('changed...')}
+      multiple={config.multiple}
     />
   )
 })
 
-function setFilesToUpload(config, evt) {
+function setFilesToUpload({
+  maxByteExceededCallback,
+  maxBytes,
+  setFilesToUpload,
+}, evt) {
   try {
-    const fileInput = evt.target
-    const filesReadyForUpload = []
-    for (let i = 0; i < fileInput.files.length; i++) {
-      filesReadyForUpload.push(evt.target.files[i])
+    const {target} = evt
+    const filesToUpload = [...target.files]
+    const totalBytes = filesToUpload.reduce((r, file) => r + file.size, 0)
+    if (totalBytes > maxBytes) {
+      maxByteExceededCallback.call(null, arguments)
+      target.value = null
+      setFilesToUpload([])
+    } else {
+      setFilesToUpload([
+        ...target.files,
+      ])
     }
-    config.setFilesToUpload([
-      ...config.filesToUpload,
-      ...evt.target.files,
-    ])
   } catch (err) {
     console.error(err)
   }

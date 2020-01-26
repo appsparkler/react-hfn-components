@@ -8,12 +8,17 @@ export default {
 
 export const defaultFileInput = () => {
   const [filesToUpload, setFilesToUpload] = React.useState([])
+  const [classNames, setClassNames] = React.useState('')
   const inputRef = React.useRef()
   const config = {
+    classNames,
+    setClassNames,
     FirebaseApp,
     multiple: true,
     filesToUpload,
     setFilesToUpload,
+    maxBytes: 1200 * 1024,
+    maxByteExceededCallback: (...args) => alert('oops,max bytes exceeded!'),
   }
   return (
     <form>
@@ -25,7 +30,7 @@ export const defaultFileInput = () => {
       </button>
       {
         filesToUpload.map((file, idx) => (
-          <div key="a">{file.name}, Size: {file.size}bytes</div>
+          <div key={file.name}>{file.name}, Size: {file.size}bytes</div>
         ))
       }
     </form>
