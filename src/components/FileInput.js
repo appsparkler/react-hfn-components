@@ -38,7 +38,7 @@ function handleChange() {
 //   }
 // }
 
-function setFilesToUpload(config, ref, evt) {
+export function setFilesToUpload(config, ref, evt) {
   try {
     if (config.filesToUpload && config.setFilesToUpload) {
       config.setFilesToUpload([
@@ -50,7 +50,7 @@ function setFilesToUpload(config, ref, evt) {
   }
 }
 
-function handleInput(config, ref, evt) {
+export function handleInput(config, ref, evt) {
   try {
     setFilesToUpload(config, ref, evt)
     // console.log('handling input')
