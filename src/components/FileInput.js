@@ -1,19 +1,20 @@
 import React from 'react'
 
+
 export default React.forwardRef(function({config}, ref) {
   return (
     <input
       type="file"
       ref={ ref }
       className={ (config && config.classNames) || ''}
-      onInput={ config.onInput || handleInput.bind(null, config, ref) }
-      onChange={ config.onChange || handleChange }
+      onInput={ config.onInput || defaultHandleInput.bind(null, config, ref) }
+      onChange={ config.onChange || defaultHandleChange }
       multiple={ config.multiple || false }
     />
   )
 })
 
-function handleChange() {}
+function defaultHandleChange() {}
 
 // function uploadFiles({}) {
 //   // const {files} = this
@@ -40,7 +41,7 @@ export function setFilesToUpload(config, ref, evt) {
   // }
 }
 
-export function handleInput(config, ref, evt) {
+export function defaultHandleInput(config, ref, evt) {
   setFilesToUpload(config, ref, evt)
   // console.log('handling input')
   // const state = {
