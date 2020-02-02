@@ -12,7 +12,8 @@
     "start": "webpack-dev-server --config webpack.config.studio.js",
     "build:umd": "yarn build:umd:minified; yarn build:umd:unminified",
     "build:umd:minified": "webpack -p --config webpack.config.dist.js",
-    "build:umd:unminified": "webpack --mode development --devtool eval-cheap-module-source-map --config webpack.config.dist.js"
+    "build:umd:unminified": "webpack --mode development --devtool eval-cheap-module-source-map --config webpack.config.dist.js",
+    "test": "jest test"
   },
   "peerDependencies": {},
   "devDependencies": {

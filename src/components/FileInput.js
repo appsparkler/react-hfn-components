@@ -1,16 +1,11 @@
 import React from 'react'
-// import {resolve} from 'path'
 
-const DEFAULT_CONFIG = {
-  maxBytes: 5000,
-}
-
-export default React.forwardRef(function({config=DEFAULT_CONFIG}, ref) {
+export default React.forwardRef(function({config}, ref) {
   return (
     <input
       type="file"
       ref={ ref }
-      className={ config.classNames || '' }
+      className={ (config && config.classNames) || ''}
       onInput={ config.onInput || handleInput.bind(null, config, ref) }
       onChange={ config.onChange || handleChange }
       multiple={ config.multiple || false }
@@ -37,11 +32,12 @@ function handleChange() {}
 // }
 
 export function setFilesToUpload(config, ref, evt) {
-  if (config.filesToUpload && config.setFilesToUpload) {
-    config.setFilesToUpload([
-      ...evt.target.files,
-    ])
-  }
+  config.setFilesToUpload([
+    ...evt.target.files,
+  ])
+  // if (config.filesToUpload && config.setFilesToUpload) {
+  //
+  // }
 }
 
 export function handleInput(config, ref, evt) {
