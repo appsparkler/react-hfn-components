@@ -1,7 +1,14 @@
 import React from 'react'
+import FirebaseUtils from '../singletons/firebase-storage-api'
 
+function checkStorageOnFirebaseUtils() {
+  if (!FirebaseUtils.storage) {
+    throw new Error('Please set storage on Firebase Utils')
+  }
+}
 
 export default React.forwardRef(function({config}, ref) {
+  checkStorageOnFirebaseUtils()
   return (
     <input
       type="file"
