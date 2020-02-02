@@ -15,13 +15,12 @@ export default React.forwardRef(function({config}, ref) {
       ref={ ref }
       className={ (config && config.classNames) || ''}
       onInput={ config.onInput || defaultHandleInput.bind(null, config, ref) }
-      onChange={ config.onChange || defaultHandleChange }
       multiple={ config.multiple || false }
     />
   )
 })
 
-function defaultHandleChange() {}
+// function defaultHandleChange() {}
 
 // function uploadFiles({}) {
 //   // const {files} = this
