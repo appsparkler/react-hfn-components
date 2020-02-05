@@ -1,15 +1,12 @@
 import React from 'react'
-import FileInput from '../components/FileInput'
-import FirebaseApp from './firebase-app'
+import {FileInput} from '@appsparkler/react-hfn-components'
 
 export default () => {
-  const firebaseStorage = FirebaseApp.storage()
   const [filesToUpload, setFilesToUpload] = React.useState([])
   const fileInputRef = React.useRef()
   const config = {
     filesToUpload,
     setFilesToUpload,
-    firebaseStorage,
     multiple: true,
     path: '/INABXK200',
   }

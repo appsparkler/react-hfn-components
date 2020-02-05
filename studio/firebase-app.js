@@ -1,5 +1,7 @@
 import firebase from 'firebase/app'
 import 'firebase/storage'
+import {FirebaseUtils} from '@appsparkler/react-hfn-components'
+
 const {
   apiKey,
   authDomain,
@@ -17,6 +19,8 @@ const firebaseConfig = {
 }
 
 const FirebaseApp = firebase.initializeApp(firebaseConfig)
+
+FirebaseUtils.storage = FirebaseApp.storage()
 
 export default FirebaseApp
 

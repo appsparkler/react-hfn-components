@@ -6,7 +6,7 @@ const dotenv = require('dotenv')
 
 module.exports = {
   mode: 'development',
-  entry: './src/studio/index.js',
+  entry: './studio/index.js',
   devtool: 'inline-source-map',
   module: {
     rules: [
@@ -15,8 +15,18 @@ module.exports = {
         loader: 'babel-loader',
         include: [
           resolve('src'),
+          resolve('studio'),
         ],
       },
+    ],
+  },
+  resolve: {
+    alias: {
+      '@appsparkler/react-hfn-components': resolve('src'),
+    },
+    modules: [
+      resolve('node_modules'),
+      resolve('./'),
     ],
   },
   plugins: [
@@ -24,7 +34,7 @@ module.exports = {
       'process.env': JSON.stringify(dotenv.config().parsed),
     }),
     new HTMLPlugin({
-      template: resolve('src/studio/index.ejs'),
+      template: resolve('studio/index.ejs'),
     }),
   ],
   devServer: {
