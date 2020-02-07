@@ -52,6 +52,7 @@ export function setFilesToUpload(config, ref, evt) {
 function isPayLoadWithinLimit(config, ref, evt) {
   config.setMaxFilesExceeded(false)
   config.setMaxBytesExceeded(false)
+  config.setFilesToUpload([])
   const result = false
 
   const allowedMaxBytes = config.maxBytes || (5 * 1024 * 1024)

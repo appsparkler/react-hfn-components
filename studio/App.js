@@ -11,9 +11,6 @@ function handleSubmit(fileInputRef, config, evt) {
 export default () => {
   const {config, fileInputRef} = useFileInputConfig({
     multiple: true,
-    path: '/INABXK200',
-    maxBytes: 100000,
-    maxFiles: 5,
   })
   const {filesToUpload} = config
   return (

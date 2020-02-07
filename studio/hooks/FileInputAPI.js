@@ -1,7 +1,18 @@
 import React from 'react'
 
-export default (config) => {
-  const [filesToUpload, setFilesToUpload] = React.useState()
+const DEFAULT_CONFIG = {
+  multiple: false,
+  path: '/react-hfn-components',
+  maxBytes: 5000,
+  maxFiles: 5,
+}
+
+export default (userConfig) => {
+  const config = {
+    ...DEFAULT_CONFIG,
+    ...userConfig,
+  }
+  const [filesToUpload, setFilesToUpload] = React.useState([])
   const [maxBytesExceeded, setMaxBytesExceeded] = React.useState(false)
   const [maxFilesExceeded, setMaxFilesExceeded] = React.useState(false)
   const fileInputRef = React.useRef()
