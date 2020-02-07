@@ -1,6 +1,12 @@
 import React from 'react'
 import {FileInput} from '@appsparkler/react-hfn-components'
 
+function handleSubmit(fileInputRef, config, evt) {
+  evt.preventDefault()
+  evt.stopPropagation()
+  console.log(fileInputRef.current.files)
+}
+
 export default () => {
   const [filesToUpload, setFilesToUpload] = React.useState([])
   const fileInputRef = React.useRef()
@@ -12,7 +18,10 @@ export default () => {
   }
   return (
     <>
-      <FileInput config={config} ref={fileInputRef} />
+      <form onSubmit={handleSubmit.bind(null, fileInputRef, config)}>
+        <FileInput config={config} ref={fileInputRef} />
+        <button type="submit">Submit</button>
+      </form>
       <div>
         {filesToUpload.map((file, idx) => {
           return (
