@@ -39,6 +39,8 @@ export default React.forwardRef(function({config}, ref) {
 // }
 
 export function setFilesToUpload(config, ref, evt) {
+  config.setMaxBytesExceeded(false)
+  config.setMaxFilesExceeded(false)
   config.setFilesToUpload([
     ...evt.target.files,
   ])
@@ -47,8 +49,40 @@ export function setFilesToUpload(config, ref, evt) {
   // }
 }
 
+function isPayLoadWithinLimit(config, ref, evt) {
+  config.setMaxFilesExceeded(false)
+  config.setMaxBytesExceeded(false)
+  const result = false
+
+  const allowedMaxBytes = config.maxBytes || (5 * 1024 * 1024)
+  const payLoadInBytes = [...ref.current.files].reduce((r, file) => r + file.size, 0)
+
+  const allowedNumberOfFiles = config.maxFiles || 5
+  const numberOfFilesOnPayload = ref.current.files.length
+
+  if (numberOfFilesOnPayload > allowedNumberOfFiles) {
+    config.setMaxFilesExceeded(true)
+    resetField(...arguments)
+    return false
+  }
+
+  if (payLoadInBytes > allowedMaxBytes) {
+    config.setMaxBytesExceeded(true)
+    resetField(...arguments)
+    return false
+  }
+
+  return true
+}
+
+function resetField(config, ref, evt) {
+  ref.current.type = ''
+  ref.current.type = 'file'
+}
+
 export function defaultHandleInput(config, ref, evt) {
-  setFilesToUpload(config, ref, evt)
+  const payloadWithinLimit = isPayLoadWithinLimit(...arguments)
+  if (payloadWithinLimit) setFilesToUpload(config, ref, evt)
   // console.log('handling input')
   // const state = {
   //   files: evt.target.files,
