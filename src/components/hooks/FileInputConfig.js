@@ -12,6 +12,12 @@ export default (userConfig) => {
     ...DEFAULT_CONFIG,
     ...userConfig,
   }
+  if (!userConfig.uploadDetails || !userConfig.setUploadDetails) {
+    [
+      config.uploadDetails,
+      config.setUploadDetails,
+    ] = React.useState([])
+  }
   const [filesToUpload, setFilesToUpload] = React.useState([])
   const [maxBytesExceeded, setMaxBytesExceeded] = React.useState(false)
   const [maxFilesExceeded, setMaxFilesExceeded] = React.useState(false)
@@ -22,7 +28,6 @@ export default (userConfig) => {
       filesToUpload, setFilesToUpload,
       maxBytesExceeded, setMaxBytesExceeded,
       maxFilesExceeded, setMaxFilesExceeded,
-      // uploadDetails, setUploadDetails,
     },
     fileInputRef,
   }
