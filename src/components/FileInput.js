@@ -33,7 +33,6 @@ const FileInput = ({FileInputConfig}, ref) => {
 //   try {
 //     const puts = []
 //     for (let i = 0; i < files.length; i += 1) {
-//       console.log(path, path)
 //       const file = files[i]
 //       const filePath = resolve(path, file.name)
 //       const ref = firebaseStorage.ref(filePath)
@@ -89,36 +88,38 @@ function resetField(config, ref, evt) {
   ref.current.type = 'file'
 }
 
-function uploadEachFile(config, ref, evt, file, idx, files) {
-  const {uploadDetails, setUploadDetails} = config
+function uploadEachFile(config, ref, evt, uploadDetail, idx, uploadDetails) {
+  const {file} = uploadDetail
   const filePath = path.resolve(config.path, file.name)
   const docRef = FirebaseUtils.app.storage().ref(filePath)
-  const uploadDetail = {
-    progress: 0,
-    file: file,
-  }
   const fileUploadTask = docRef
       .put(file)
-  setUploadDetails([
-    ...uploadDetails,
-    uploadDetail,
-  ])
-  fileUploadTask.on('state_changed', (snapshot) => {
-    uploadDetail.progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-    console.log(uploadDetail.file.name, uploadDetail.progress)
+  fileUploadTask.on('state_changed', ({bytesTransferred, totalBytes}) => {
+    const progress = (bytesTransferred / totalBytes) * 100
+    uploadDetail.progress = progress
   })
 }
 
 function uploadFiles(config, ref, evt) {
+  const {setUploadDetails} = config
   const files = [...ref.current.files]
-  files.forEach(uploadEachFile.bind(null, ...arguments))
+  // const fileUploadTask = docRef
+  //     .put([...ref.current.files])
+  const newUploadDetails = files.map((file) => {
+    const filePath = path.resolve(config.path, file.name)
+    return {
+      file,
+      uploadTask: FirebaseUtils.app.storage().ref(filePath).put(file),
+    }
+  })
+  setUploadDetails(newUploadDetails)
+  // newUploadDetails.forEach(uploadEachFile.bind(null, ...arguments))
 }
 
 export function defaultHandleInput(config, ref, evt) {
   const payloadIsWithinLimit = isPayLoadWithinLimit(...arguments)
   if (payloadIsWithinLimit) setFilesToUpload(...arguments)
   if (payloadIsWithinLimit) uploadFiles(...arguments)
-  // console.log('handling input')
   // const state = {
   //   files: evt.target.files,
   //   maxBytes: config.maxBytes || 5000,
@@ -127,13 +128,11 @@ export function defaultHandleInput(config, ref, evt) {
   // // const saveFiles
   // const puts = []
   // for (let i = 0; i < files.length; i += 1) {
-  //   console.log(path, path)
   //   const file = files[i]
   //   const filePath = resolve(path, file.name)
   //   const ref = firebaseStorage.ref(filePath)
   //   puts.push(ref.put(file))
   // }
-  // console.log(evt.target.files, storage)
   // const {target} = evt
   // const filesToUpload = [...target.files]
   // const totalBytes = filesToUpload.reduce((r, file) => r + file.size, 0)

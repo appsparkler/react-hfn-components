@@ -22,6 +22,7 @@ export default (userConfig) => {
       filesToUpload, setFilesToUpload,
       maxBytesExceeded, setMaxBytesExceeded,
       maxFilesExceeded, setMaxFilesExceeded,
+      // uploadDetails, setUploadDetails,
     },
     fileInputRef,
   }
