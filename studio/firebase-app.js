@@ -20,7 +20,7 @@ const firebaseConfig = {
 
 const FirebaseApp = firebase.initializeApp(firebaseConfig)
 
-FirebaseUtils.storage = FirebaseApp.storage()
+FirebaseUtils.app = FirebaseApp
 
 export default FirebaseApp
 

@@ -1,8 +1,8 @@
 export default {
-  get storage() {
-    return this.firebaseStorage
+  get app() {
+    return this._firebaseApp
   },
-  set storage(firebaseStorage) {
-    this.firebaseStorage = firebaseStorage
+  set app(firebaseApp) {
+    this._firebaseApp = firebaseApp
   },
 }

@@ -1,3 +1,6 @@
 {
-  "multiple": true
+  "multiple": true,
+  "maxBytes": 100000000,
+  "maxFiles": 100,
+  "path": "/id-proofs"
 }

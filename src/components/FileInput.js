@@ -1,15 +1,16 @@
 import React from 'react'
 import FirebaseUtils from '../singletons/firebase-storage-api'
+import path from 'path'
 import useFileInputConfig from './hooks/FileInputConfig'
 
-function checkStorageOnFirebaseUtils() {
-  if (!FirebaseUtils.storage) {
-    throw new Error('Please set storage on Firebase Utils')
+function checkAppOnFirebaseUtils() {
+  if (!FirebaseUtils.app) {
+    throw new Error('Please set the Firebase App on app')
   }
 }
 
 const FileInput = ({FileInputConfig}, ref) => {
-  checkStorageOnFirebaseUtils()
+  checkAppOnFirebaseUtils()
   const {config, fileInputRef} = useFileInputConfig(FileInputConfig)
   if (!ref) {
     ref = fileInputRef
@@ -24,8 +25,6 @@ const FileInput = ({FileInputConfig}, ref) => {
     />
   )
 }
-
-export default React.forwardRef(FileInput)
 
 // function defaultHandleChange() {}
 
@@ -90,14 +89,35 @@ function resetField(config, ref, evt) {
   ref.current.type = 'file'
 }
 
-function uploadFiles(config, ref, evt) {
+function uploadEachFile(config, ref, evt, file, idx, files) {
+  const {uploadDetails, setUploadDetails} = config
+  const filePath = path.resolve(config.path, file.name)
+  const docRef = FirebaseUtils.app.storage().ref(filePath)
+  const uploadDetail = {
+    progress: 0,
+    file: file,
+  }
+  const fileUploadTask = docRef
+      .put(file)
+  setUploadDetails([
+    ...uploadDetails,
+    uploadDetail,
+  ])
+  fileUploadTask.on('state_changed', (snapshot) => {
+    uploadDetail.progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+    console.log(uploadDetail.file.name, uploadDetail.progress)
+  })
+}
 
+function uploadFiles(config, ref, evt) {
+  const files = [...ref.current.files]
+  files.forEach(uploadEachFile.bind(null, ...arguments))
 }
 
 export function defaultHandleInput(config, ref, evt) {
-  const payloadWithinLimit = isPayLoadWithinLimit(...arguments)
-  if (payloadWithinLimit) setFilesToUpload(...arguments)
-  if (isPayLoadWithinLimit) uploadFiles(...arguments)
+  const payloadIsWithinLimit = isPayLoadWithinLimit(...arguments)
+  if (payloadIsWithinLimit) setFilesToUpload(...arguments)
+  if (payloadIsWithinLimit) uploadFiles(...arguments)
   // console.log('handling input')
   // const state = {
   //   files: evt.target.files,
@@ -127,3 +147,5 @@ export function defaultHandleInput(config, ref, evt) {
   //   ])
   // }
 }
+
+export default React.forwardRef(FileInput)
