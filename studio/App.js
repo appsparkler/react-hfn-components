@@ -1,13 +1,13 @@
 import React from 'react'
 import {FileInput} from '@appsparkler/react-hfn-components'
-import useFileInputConfig from './hooks/FileInputAPI'
 import FileInputConfig from './etc/FileInputConfig'
 
 export default () => {
   return (
     <>
+      <h2>File Input Studio...</h2>
       <FileInput
-        config={FileInputConfig}
+        FileInputConfig={FileInputConfig}
       />
     </>
   )

@@ -8,8 +8,12 @@ function checkStorageOnFirebaseUtils() {
   }
 }
 
-const FileInput = ({config}, ref) => {
+const FileInput = ({FileInputConfig}, ref) => {
   checkStorageOnFirebaseUtils()
+  const {config, fileInputRef} = useFileInputConfig(FileInputConfig)
+  if (!ref) {
+    ref = fileInputRef
+  }
   return (
     <input
       type="file"
@@ -67,12 +71,14 @@ function isPayLoadWithinLimit(config, ref, evt) {
   if (numberOfFilesOnPayload > allowedNumberOfFiles) {
     config.setMaxFilesExceeded(true)
     resetField(...arguments)
+    console.info('file limit exceeded')
     return false
   }
 
   if (payLoadInBytes > allowedMaxBytes) {
     config.setMaxBytesExceeded(true)
     resetField(...arguments)
+    console.info('bytes exceeded')
     return false
   }
 
