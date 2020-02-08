@@ -26,6 +26,7 @@ export default ({uploadDetails}) => {
         {
           uploadDetails.map((uploadDetail) => (
             <UploadDetailRow
+              key={uploadDetail.id}
               uploadDetail={uploadDetail}
             />))
         }

@@ -1,7 +1,7 @@
 import React from 'react'
 import {FirebaseApp} from '../singletons/firebase-storage-api'
 import path from 'path'
-// import useFileInputConfig from './hooks/FileInputConfig'
+import uuid from 'uuid/v1'
 
 function checkFirebaseApp() {
   if (!FirebaseApp) {
@@ -11,10 +11,7 @@ function checkFirebaseApp() {
 
 const FileInput = ({config}, ref) => {
   checkFirebaseApp()
-  // return (
-  //   <h1>Ready for the awesome FileInput?</h1>
-  // )
-  // const {config} = FileInputConfig
+
   if (!ref) {
     ref = config.fileInputRef
   }
@@ -29,32 +26,12 @@ const FileInput = ({config}, ref) => {
   )
 }
 
-// function defaultHandleChange() {}
-
-// function uploadFiles({}) {
-//   // const {files} = this
-//   try {
-//     const puts = []
-//     for (let i = 0; i < files.length; i += 1) {
-//       const file = files[i]
-//       const filePath = resolve(path, file.name)
-//       const ref = firebaseStorage.ref(filePath)
-//       puts.push(ref.put(file))
-//     }
-//   } catch (e) {
-//
-//   }
-// }
-
 export function setFilesToUpload(config, ref, evt) {
   config.setMaxBytesExceeded(false)
   config.setMaxFilesExceeded(false)
   config.setFilesToUpload([
     ...evt.target.files,
   ])
-  // if (config.filesToUpload && config.setFilesToUpload) {
-  //
-  // }
 }
 
 function isPayLoadWithinLimit(config, ref, evt) {
@@ -106,48 +83,21 @@ function uploadEachFile(config, ref, evt, uploadDetail, idx, uploadDetails) {
 function uploadFiles(config, ref, evt) {
   const {setUploadDetails} = config
   const files = [...ref.current.files]
-  // const fileUploadTask = docRef
-  //     .put([...ref.current.files])
   const newUploadDetails = files.map((file) => {
     const filePath = path.resolve(config.path, file.name)
     return {
+      id: uuid(),
       file,
       uploadTask: FirebaseApp.storage().ref(filePath).put(file),
     }
   })
   setUploadDetails(newUploadDetails)
-  // newUploadDetails.forEach(uploadEachFile.bind(null, ...arguments))
 }
 
 export function defaultHandleInput(config, ref, evt) {
   const payloadIsWithinLimit = isPayLoadWithinLimit(...arguments)
   if (payloadIsWithinLimit) setFilesToUpload(...arguments)
   if (payloadIsWithinLimit) uploadFiles(...arguments)
-  // const state = {
-  //   files: evt.target.files,
-  //   maxBytes: config.maxBytes || 5000,
-  // }
-  // uploadFiles(config, evt)
-  // // const saveFiles
-  // const puts = []
-  // for (let i = 0; i < files.length; i += 1) {
-  //   const file = files[i]
-  //   const filePath = resolve(path, file.name)
-  //   const ref = firebaseStorage.ref(filePath)
-  //   puts.push(ref.put(file))
-  // }
-  // const {target} = evt
-  // const filesToUpload = [...target.files]
-  // const totalBytes = filesToUpload.reduce((r, file) => r + file.size, 0)
-  // if (totalBytes > maxBytes) {
-  //   maxByteExceededCallback.call(null, arguments)
-  //   target.value = null
-  //   setFilesToUpload([])
-  // } else {
-  //   setFilesToUpload([
-  //     ...target.files,
-  //   ])
-  // }
 }
 
 export default React.forwardRef(FileInput)
