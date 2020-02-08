@@ -7,7 +7,7 @@ const DEFAULT_CONFIG = {
   maxFiles: 5,
 }
 
-export default (userConfig) => {
+export default (userConfig={}) => {
   const config = {
     ...DEFAULT_CONFIG,
     ...userConfig,

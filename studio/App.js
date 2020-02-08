@@ -14,7 +14,8 @@ export default () => {
       <FileInput
         FileInputConfig={FileInputConfig}
       />
-      {/**/} <FileUploadDetails uploadDetails={FileInputConfig.uploadDetails} />
+      {/**/}
+      <FileUploadDetails uploadDetails={FileInputConfig.uploadDetails} />
       {FileInputConfig.uploadDetails.length}
     </>
   )

@@ -1,11 +1,13 @@
 {
   "name": "@appsparkler/react-hfn-components",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "license": "MIT",
   "main": "./dist/react-hfn-components.js",
-  "module": "./src/index.js",
   "directories": [
-    "src"
+    "dist"
+  ],
+  "files": [
+    "dist"
   ],
   "scripts": {
     "storybook": "start-storybook",
