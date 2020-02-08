@@ -1,7 +1,6 @@
 import React from 'react'
-import FileUploadDetails from './components/FileUploadDetails'
 import FileInputConfig from './etc/FileInputConfig'
-import {useFileInputConfig, FileInput} from '@appsparkler/react-hfn-components'
+import {useFileInputConfig, FileInput, FileUploadDetails} from '@appsparkler/react-hfn-components'
 
 export default () => {
   const config = useFileInputConfig(FileInputConfig)
