@@ -1,5 +1,6 @@
 import React from 'react'
 import FirebaseUtils from '../singletons/firebase-storage-api'
+import useFileInputConfig from './hooks/FileInputConfig'
 
 function checkStorageOnFirebaseUtils() {
   if (!FirebaseUtils.storage) {

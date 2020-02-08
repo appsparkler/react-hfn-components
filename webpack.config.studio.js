@@ -24,6 +24,7 @@ module.exports = {
     alias: {
       '@appsparkler/react-hfn-components': resolve('src'),
     },
+    extensions: ['.sass', '.js', '.jsx', '.json'],
     modules: [
       resolve('node_modules'),
       resolve('./'),
