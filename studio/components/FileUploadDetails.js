@@ -12,7 +12,6 @@ const UploadDetailRow = ({uploadDetail}) => {
   </tr>)
 }
 
-
 export default ({uploadDetails}) => {
   return (
     <table>
