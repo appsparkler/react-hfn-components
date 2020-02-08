@@ -20,6 +20,7 @@ export default ({uploadDetails}) => {
           <th>File Name</th>
           <th>File Size</th>
           <th>Progress</th>
+          <th>Progress Bar</th>
         </tr>
       </thead>
       <tbody>
