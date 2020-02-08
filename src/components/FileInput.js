@@ -9,24 +9,20 @@ function checkFirebaseApp() {
   }
 }
 
-const FileInput = ({config}, ref) => {
+const FileInput = ({config}) => {
   checkFirebaseApp()
-
-  if (!ref) {
-    ref = config.fileInputRef
-  }
   return (
     <input
       type="file"
-      ref={ ref }
+      ref={ config.ref }
       className={ (config.classNames) || ''}
-      onInput={ config.onInput || defaultHandleInput.bind(null, config, ref) }
+      onInput={ config.onInput || defaultHandleInput.bind(null, config) }
       multiple={ config.multiple || false }
     />
   )
 }
 
-export function setFilesToUpload(config, ref, evt) {
+export function setFilesToUpload(config, evt) {
   config.setMaxBytesExceeded(false)
   config.setMaxFilesExceeded(false)
   config.setFilesToUpload([
@@ -34,28 +30,36 @@ export function setFilesToUpload(config, ref, evt) {
   ])
 }
 
-function isPayLoadWithinLimit(config, ref, evt) {
-  config.setMaxFilesExceeded(false)
-  config.setMaxBytesExceeded(false)
+function isPayLoadWithinLimit(config, evt) {
+  const {
+    resetField,
+    ref,
+    setMaxFilesExceeded,
+    setMaxBytesExceeded,
+    maxBytes,
+    maxFiles,
+  } = config
+  setMaxFilesExceeded(false)
+  setMaxBytesExceeded(false)
   config.setFilesToUpload([])
   const result = false
 
-  const allowedMaxBytes = config.maxBytes || (5 * 1024 * 1024)
+  const allowedMaxBytes = maxBytes || (5 * 1024 * 1024)
   const payLoadInBytes = [...ref.current.files].reduce((r, file) => r + file.size, 0)
 
-  const allowedNumberOfFiles = config.maxFiles || 5
+  const allowedNumberOfFiles = maxFiles || 5
   const numberOfFilesOnPayload = ref.current.files.length
 
   if (numberOfFilesOnPayload > allowedNumberOfFiles) {
-    config.setMaxFilesExceeded(true)
+    setMaxFilesExceeded(true)
     resetField(...arguments)
     console.info('file limit exceeded')
     return false
   }
 
   if (payLoadInBytes > allowedMaxBytes) {
-    config.setMaxBytesExceeded(true)
-    resetField(...arguments)
+    setMaxBytesExceeded(true)
+    resetField()
     console.info('bytes exceeded')
     return false
   }
@@ -63,12 +67,7 @@ function isPayLoadWithinLimit(config, ref, evt) {
   return true
 }
 
-function resetField(config, ref, evt) {
-  ref.current.type = ''
-  ref.current.type = 'file'
-}
-
-function uploadEachFile(config, ref, evt, uploadDetail, idx, uploadDetails) {
+function uploadEachFile(config, evt, uploadDetail, idx, uploadDetails) {
   const {file} = uploadDetail
   const filePath = path.resolve(config.path, file.name)
   const docRef = FirebaseApp.storage().ref(filePath)
@@ -80,8 +79,8 @@ function uploadEachFile(config, ref, evt, uploadDetail, idx, uploadDetails) {
   })
 }
 
-function uploadFiles(config, ref, evt) {
-  const {setUploadDetails} = config
+function uploadFiles(config, evt) {
+  const {setUploadDetails, ref} = config
   const files = [...ref.current.files]
   const newUploadDetails = files.map((file) => {
     const filePath = path.resolve(config.path, file.name)
@@ -94,10 +93,10 @@ function uploadFiles(config, ref, evt) {
   setUploadDetails(newUploadDetails)
 }
 
-export function defaultHandleInput(config, ref, evt) {
+export function defaultHandleInput(config, evt) {
   const payloadIsWithinLimit = isPayLoadWithinLimit(...arguments)
   if (payloadIsWithinLimit) setFilesToUpload(...arguments)
   if (payloadIsWithinLimit) uploadFiles(...arguments)
 }
 
-export default React.forwardRef(FileInput)
+export default FileInput

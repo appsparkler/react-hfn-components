@@ -6,6 +6,10 @@ const DEFAULT_CONFIG = {
   maxBytes: 5000,
   maxFiles: 5,
 }
+function resetField(ref) {
+  ref.current.type = ''
+  ref.current.type = 'file'
+}
 
 const useFileInputConfig = (userConfig) => {
   const config = {
@@ -16,14 +20,15 @@ const useFileInputConfig = (userConfig) => {
   const [filesToUpload, setFilesToUpload] = React.useState([])
   const [maxBytesExceeded, setMaxBytesExceeded] = React.useState(false)
   const [maxFilesExceeded, setMaxFilesExceeded] = React.useState(false)
-  const fileInputRef = React.useRef()
+  const ref = React.useRef()
   return {
     ...config,
     filesToUpload, setFilesToUpload,
     maxBytesExceeded, setMaxBytesExceeded,
     maxFilesExceeded, setMaxFilesExceeded,
     uploadDetails, setUploadDetails,
-    fileInputRef,
+    ref,
+    resetField: resetField.bind(null, ref),
   }
 }
 
