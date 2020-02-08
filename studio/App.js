@@ -4,17 +4,18 @@ import FileUploadDetails from './components/FileUploadDetails'
 import FileInputConfig from './etc/FileInputConfig'
 
 export default () => {
-  // const [uploadDetails, setUploadDetails] = React.useState([])
-  // FileInputConfig.uploadDetails = uploadDetails
-  // FileInputConfig.setUploadDetails = setUploadDetails
+  [
+    FileInputConfig.uploadDetails,
+    FileInputConfig.setUploadDetails,
+  ] = React.useState([])
   return (
     <>
       <h2>File Input Studio...</h2>
       <FileInput
         FileInputConfig={FileInputConfig}
       />
-      {/* <FileUploadDetails uploadDetails={uploadDetails} />
-      {uploadDetails.length}*/}
+      {/**/} <FileUploadDetails uploadDetails={FileInputConfig.uploadDetails} />
+      {FileInputConfig.uploadDetails.length}
     </>
   )
 }
