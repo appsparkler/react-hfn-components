@@ -1,22 +1,18 @@
 import React from 'react'
-import {FileInput} from '@appsparkler/react-hfn-components'
 import FileUploadDetails from './components/FileUploadDetails'
 import FileInputConfig from './etc/FileInputConfig'
+import {useFileInputConfig, FileInput} from '@appsparkler/react-hfn-components'
 
 export default () => {
-  [
-    FileInputConfig.uploadDetails,
-    FileInputConfig.setUploadDetails,
-  ] = React.useState([])
+  const config = useFileInputConfig(FileInputConfig)
+  const {uploadDetails} = config
   return (
     <>
-      <h2>File Input Studio...</h2>
+      <h1>Testing in progress...</h1>
       <FileInput
-        FileInputConfig={FileInputConfig}
+        config={config}
       />
-      {/**/}
-      <FileUploadDetails uploadDetails={FileInputConfig.uploadDetails} />
-      {FileInputConfig.uploadDetails.length}
+      <FileUploadDetails uploadDetails={uploadDetails} />
     </>
   )
 }

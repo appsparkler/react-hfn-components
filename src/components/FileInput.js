@@ -1,7 +1,7 @@
 import React from 'react'
 import {FirebaseApp} from '../singletons/firebase-storage-api'
 import path from 'path'
-import useFileInputConfig from './hooks/FileInputConfig'
+// import useFileInputConfig from './hooks/FileInputConfig'
 
 function checkFirebaseApp() {
   if (!FirebaseApp) {
@@ -9,17 +9,20 @@ function checkFirebaseApp() {
   }
 }
 
-const FileInput = ({FileInputConfig}, ref) => {
+const FileInput = ({config}, ref) => {
   checkFirebaseApp()
-  const {config, fileInputRef} = useFileInputConfig(FileInputConfig)
+  // return (
+  //   <h1>Ready for the awesome FileInput?</h1>
+  // )
+  // const {config} = FileInputConfig
   if (!ref) {
-    ref = fileInputRef
+    ref = config.fileInputRef
   }
   return (
     <input
       type="file"
       ref={ ref }
-      className={ (config && config.classNames) || ''}
+      className={ (config.classNames) || ''}
       onInput={ config.onInput || defaultHandleInput.bind(null, config, ref) }
       multiple={ config.multiple || false }
     />
