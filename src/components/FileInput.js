@@ -90,9 +90,14 @@ function resetField(config, ref, evt) {
   ref.current.type = 'file'
 }
 
+function uploadFiles(config, ref, evt) {
+
+}
+
 export function defaultHandleInput(config, ref, evt) {
   const payloadWithinLimit = isPayLoadWithinLimit(...arguments)
-  if (payloadWithinLimit) setFilesToUpload(config, ref, evt)
+  if (payloadWithinLimit) setFilesToUpload(...arguments)
+  if (isPayLoadWithinLimit) uploadFiles(...arguments)
   // console.log('handling input')
   // const state = {
   //   files: evt.target.files,
