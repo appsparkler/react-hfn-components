@@ -1,16 +1,16 @@
 import React from 'react'
-import FirebaseUtils from '../singletons/firebase-storage-api'
+import {FirebaseApp} from '../singletons/firebase-storage-api'
 import path from 'path'
 import useFileInputConfig from './hooks/FileInputConfig'
 
-function checkAppOnFirebaseUtils() {
-  if (!FirebaseUtils.app) {
-    throw new Error('Please set the Firebase App on app')
+function checkFirebaseApp() {
+  if (!FirebaseApp) {
+    throw new Error('Please set the Firebase with setFirebase')
   }
 }
 
 const FileInput = ({FileInputConfig}, ref) => {
-  checkAppOnFirebaseUtils()
+  checkFirebaseApp()
   const {config, fileInputRef} = useFileInputConfig(FileInputConfig)
   if (!ref) {
     ref = fileInputRef
@@ -91,7 +91,7 @@ function resetField(config, ref, evt) {
 function uploadEachFile(config, ref, evt, uploadDetail, idx, uploadDetails) {
   const {file} = uploadDetail
   const filePath = path.resolve(config.path, file.name)
-  const docRef = FirebaseUtils.app.storage().ref(filePath)
+  const docRef = FirebaseApp.storage().ref(filePath)
   const fileUploadTask = docRef
       .put(file)
   fileUploadTask.on('state_changed', ({bytesTransferred, totalBytes}) => {
@@ -109,7 +109,7 @@ function uploadFiles(config, ref, evt) {
     const filePath = path.resolve(config.path, file.name)
     return {
       file,
-      uploadTask: FirebaseUtils.app.storage().ref(filePath).put(file),
+      uploadTask: FirebaseApp.storage().ref(filePath).put(file),
     }
   })
   setUploadDetails(newUploadDetails)

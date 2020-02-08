@@ -1,6 +1,6 @@
 import firebase from 'firebase/app'
 import 'firebase/storage'
-import {FirebaseUtils} from '@appsparkler/react-hfn-components'
+import {setFirebaseApp} from '@appsparkler/react-hfn-components'
 
 const {
   apiKey,
@@ -20,12 +20,6 @@ const firebaseConfig = {
 
 const FirebaseApp = firebase.initializeApp(firebaseConfig)
 
-FirebaseUtils.app = FirebaseApp
+setFirebaseApp(FirebaseApp)
 
 export default FirebaseApp
-
-export const putFile = (ref, file) => (FirebaseApp
-    .storage()
-    .ref(ref)
-    .put(file)
-)
