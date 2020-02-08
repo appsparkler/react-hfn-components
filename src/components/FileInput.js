@@ -8,7 +8,7 @@ function checkStorageOnFirebaseUtils() {
   }
 }
 
-export default React.forwardRef(function({config}, ref) {
+const FileInput = ({config}, ref) => {
   checkStorageOnFirebaseUtils()
   return (
     <input
@@ -19,7 +19,9 @@ export default React.forwardRef(function({config}, ref) {
       multiple={ config.multiple || false }
     />
   )
-})
+}
+
+export default React.forwardRef(FileInput)
 
 // function defaultHandleChange() {}
 
