@@ -1,5 +1,7 @@
 export let FirebaseApp = null
 
-export default (app) => {
+const setFirebaseApp = (app) => {
   FirebaseApp = app
 }
+
+export default setFirebaseApp

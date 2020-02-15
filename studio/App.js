@@ -1,17 +1,15 @@
 import React from 'react'
-import FileInputConfig from './etc/FileInputConfig'
-import {useFileInputConfig, FileInput, FileUploadDetails} from '@appsparkler/react-hfn-components'
+import {FileInputV2} from '@appsparkler/react-hfn-components'
 
 export default () => {
-  const config = useFileInputConfig(FileInputConfig)
-  const {uploadDetails} = config
-  return (
-    <>
-      <h1>Testing in progress...</h1>
-      <FileInput
-        config={config}
-      />
-      <FileUploadDetails uploadDetails={uploadDetails} />
-    </>
-  )
+  const keydx = 'xyz'
+  const params = {
+    type: 'file',
+    multiple: true,
+    path: '/abhyasiDaya/INAAAB998',
+    maxBytes: 50000,
+    maxFiles: 5,
+    className: 'my-special-input-field',
+  }
+  return <FileInputV2 key={keydx} {...params} />
 }

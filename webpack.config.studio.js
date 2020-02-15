@@ -23,6 +23,12 @@ module.exports = {
   resolve: {
     alias: {
       '@appsparkler/react-hfn-components': resolve('src'),
+      '@react-hfn-components': resolve('src/components'),
+      '@react-hfn-hooks': resolve('src/hooks'),
+      '@react-hfn-contexts': resolve('src/contexts'),
+      '@react-hfn-hooks': resolve('src/hooks'),
+      '@react-hfn-contexts': resolve('src/contexts'),
+      '@react-hfn-singletons': resolve('src/singletons'),
     },
     extensions: ['.sass', '.js', '.jsx', '.json'],
     modules: [

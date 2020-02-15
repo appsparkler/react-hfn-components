@@ -1,9 +1,12 @@
 import React from 'react'
+
 const UploadDetailRow = ({uploadDetail}) => {
   const [progress, setProgress] = React.useState(0)
-  uploadDetail.uploadTask.on('state_changed', ({bytesTransferred, totalBytes}) => {
-    setProgress((bytesTransferred/totalBytes) * 100)
-  })
+  uploadDetail.uploadTask.on(
+      'state_changed',
+      ({bytesTransferred, totalBytes}) => {
+        setProgress((bytesTransferred/totalBytes) * 100)
+      })
   return (<tr>
     <td>{uploadDetail.file.name}</td>
     <td>{uploadDetail.file.size} bytes</td>

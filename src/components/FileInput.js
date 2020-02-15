@@ -1,5 +1,5 @@
 import React from 'react'
-import {FirebaseApp} from '../singletons/firebase-storage-api'
+import {FirebaseApp} from '@react-hfn-singletons/firebase-storage-api'
 import path from 'path'
 import uuid from 'uuid/v1'
 
@@ -42,10 +42,11 @@ function isPayLoadWithinLimit(config, evt) {
   setMaxFilesExceeded(false)
   setMaxBytesExceeded(false)
   config.setFilesToUpload([])
-  const result = false
 
   const allowedMaxBytes = maxBytes || (5 * 1024 * 1024)
-  const payLoadInBytes = [...ref.current.files].reduce((r, file) => r + file.size, 0)
+  const payLoadInBytes = [
+    ...ref.current.files,
+  ].reduce((r, file) => r + file.size, 0)
 
   const allowedNumberOfFiles = maxFiles || 5
   const numberOfFilesOnPayload = ref.current.files.length
@@ -65,18 +66,6 @@ function isPayLoadWithinLimit(config, evt) {
   }
 
   return true
-}
-
-function uploadEachFile(config, evt, uploadDetail, idx, uploadDetails) {
-  const {file} = uploadDetail
-  const filePath = path.resolve(config.path, file.name)
-  const docRef = FirebaseApp.storage().ref(filePath)
-  const fileUploadTask = docRef
-      .put(file)
-  fileUploadTask.on('state_changed', ({bytesTransferred, totalBytes}) => {
-    const progress = (bytesTransferred / totalBytes) * 100
-    uploadDetail.progress = progress
-  })
 }
 
 function uploadFiles(config, evt) {
