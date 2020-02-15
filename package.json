@@ -2,7 +2,7 @@
   "name": "@appsparkler/react-hfn-components",
   "version": "0.0.6",
   "license": "MIT",
-  "main": "./dist/react-hfn-components.js",
+  "main": "./dist/react-hfn-components.min.js",
   "directories": [
     "dist"
   ],
@@ -12,9 +12,7 @@
   "scripts": {
     "storybook": "start-storybook",
     "start": "webpack-dev-server --config webpack.config.studio.js",
-    "build": "yarn build:umd:minified; yarn build:umd:unminified",
-    "build:umd:minified": "webpack -p --config webpack.config.dist.js",
-    "build:umd:unminified": "webpack --mode development --devtool eval-cheap-module-source-map --config webpack.config.dist.js",
+    "build": "webpack -p --config webpack.config.dist.js",
     "test": "jest test",
     "build:publish": "yarn build:umd:minified; yarn publish"
   },

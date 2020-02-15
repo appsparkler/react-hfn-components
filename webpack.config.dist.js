@@ -1,11 +1,13 @@
 const {resolve} = require('path')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const {CleanWebpackPlugin} = require('clean-webpack-plugin')
+process.env.NODE_ENV = 'production'
 module.exports = {
   entry: './src/index',
+  mode: 'production',
   output: {
     path: resolve('dist'),
-    filename: `react-hfn-components${process.env.NODE_ENV === 'production' ? '.min' : ''}.js`,
+    filename: `react-hfn-components.min.js`,
     library: 'ReactHFNComponents',
     libraryTarget: 'umd',
   },
@@ -24,7 +26,6 @@ module.exports = {
         include: [resolve('src'), resolve('studio')],
         use: [
           MiniCssExtractPlugin.loader,
-          'style-loader',
           'css-loader',
           'sass-loader',
         ],
@@ -49,7 +50,9 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin(),
-    new MiniCssExtractPlugin(),
+    new MiniCssExtractPlugin({
+      filename: 'styles.css',
+    }),
   ],
   externals: {
     react: {
