@@ -1,4 +1,5 @@
 import React from 'react'
+import uuid from 'uuid/v1'
 
 function resetInputFiled({props, states}, evt) {
   const {setFileType} = states
@@ -22,18 +23,16 @@ function validateFileSize({props, states}, evt) {
 
 function upload({props, states}, evt) {
   const {files} = evt.target
-  const file2Upload = [...files]
-  file2Upload.forEach((file) => {
-    const {storageRef} = props
-    const fileUploadTask = storageRef
-        .child(file.name)
-        .put(file)
-    // fileUploadTask.on('status_changes', (snapshot) => {
-    //   console.log(snapshot)
-    // }, (err)=> {
-    //   console.log(err)
-    // })
-  })
+  const {storageRef} = props
+  const {setUploadDetails} = states
+  const files2Upload = [...files]
+  setUploadDetails(
+      files2Upload.map((file) => ({
+        key: uuid(),
+        uploadTask: storageRef.child(file.name).put(file),
+        file,
+      })),
+  )
 }
 
 function uploadFiles({props, states}, evt) {
@@ -62,8 +61,10 @@ export default function useFileInput({props}) {
   // States
   const [validationError, setValidationError] = React.useState('')
   const [fileType, setFileType] = React.useState(props.type)
+  const [uploadDetails, setUploadDetails] = React.useState([])
   const states = {
     validationError, setValidationError,
+    uploadDetails, setUploadDetails,
     setFileType,
   }
 
@@ -80,5 +81,6 @@ export default function useFileInput({props}) {
     uploadFiles: uploadFiles.bind(null, {props, states}),
     validationError,
     maxBytes: props.maxBytes,
+    uploadDetails,
   }
 }

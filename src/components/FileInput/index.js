@@ -1,4 +1,5 @@
 import React from 'react'
+import ProgressBar from '@react-hfn-components/ProgressBars'
 import useFileInput from '@react-hfn-hooks/useFileInput'
 
 export default (props) => {
@@ -7,6 +8,7 @@ export default (props) => {
     uploadFiles,
     validationError,
     maxBytes,
+    uploadDetails,
   } = useFileInput({props})
   return (
     <div className="React-HFN-FileInput">
@@ -15,7 +17,11 @@ export default (props) => {
         onInput={uploadFiles}
       />
       <br/>
-      <progress value="75" min="0" max="100"></progress>
+      {
+        uploadDetails.map((uploadDetail) => (
+          <ProgressBar key={uploadDetail.key} uploadDetail={uploadDetail}/>
+        ))
+      }
       <p className="info">
         File size limit: {(maxBytes/(1024 * 1024))} MB
       </p>
