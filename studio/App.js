@@ -1,5 +1,7 @@
 import React from 'react'
-import {FileInputV2} from '@appsparkler/react-hfn-components'
+import {FileInputV2, setFirebaseApp} from '@appsparkler/react-hfn-components'
+import FirebaseApp from './firebase-app'
+setFirebaseApp(FirebaseApp)
 
 export default () => {
   const keydx = 'xyz'
@@ -18,5 +20,6 @@ export default () => {
     maxFiles: 5,
     allowedFileTypes: ['png', 'jpg', 'pdf'],
   }
+
   return (<FileInputV2 key={keydx} {...params} />)
 }
