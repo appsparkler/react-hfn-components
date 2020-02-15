@@ -4,6 +4,7 @@ import {FileInputV2} from '@appsparkler/react-hfn-components'
 export default () => {
   const keydx = 'xyz'
   const params = {
+
     // input-attributes
     type: 'file',
     multiple: true,
