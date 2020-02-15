@@ -1,4 +1,5 @@
 import React from 'react'
+import FileUploadDetails from '@react-hfn-components/FileUploadDetails'
 
 export default (props) => {
   const {inputAttrs} = useFileInput({props})
@@ -7,6 +8,7 @@ export default (props) => {
       <input
         {...inputAttrs}
       />
+      <FileUploadDetails uploadDetails={[]} />
     </div>
   )
 }
