@@ -1,9 +1,9 @@
 import React from 'react'
 import {FirebaseApp} from '@react-hfn-singletons/firebase-storage-api'
 
-function resetInputFiled(evt) {
-  evt.target.value = ''
-  evt.target.value = 'file'
+function resetInputFiled({props, states}, evt) {
+  const {setFileType} = states
+  setFileType('')
 }
 
 function validateNumberOfFiles({props, states}, evt) {
@@ -13,17 +13,17 @@ function validateNumberOfFiles({props, states}, evt) {
   const numberOfFiles = (files && files.length) || 0
   if (numberOfFiles >= maxFiles) {
     setValidationError(maxFilesError)
-    resetInputFiled(evt)
+    resetInputFiled({props, states}, evt)
+    return false
+  } else {
+    setValidationError('')
+    return true
   }
 }
 
 
 function uploadFiles({props, states}, evt) {
   validateNumberOfFiles({props, states}, evt)
-  // if(totalFiles && (totalFiles < ))
-  // validate # of files
-  // validate bytes
-  // validate
 }
 
 
@@ -47,18 +47,28 @@ const DEFAULT_PROPS = {
   allowedFileTypes: ['png', 'jpg', 'pdf'],
 }
 
+function fileTypeDidChange({states}) {
+  const {setFileType} = states
+  setFileType('file')
+}
+
 export default function useFileInput({props}) {
   ensureFirebaseApp()
   props = Object.assign(DEFAULT_PROPS, props)
 
   // States
   const [validationError, setValidationError] = React.useState('')
+  const [fileType, setFileType] = React.useState(props.type)
   const states = {
     validationError, setValidationError,
+    setFileType,
   }
 
+  // Effects
+  React.useEffect(fileTypeDidChange.bind(null, {states}), [fileType])
+
   const inputAttrs = {
-    type: props.type,
+    type: fileType,
     multiple: props.multiple,
     className: props.className,
     name: props.name,

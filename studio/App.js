@@ -2,6 +2,7 @@ import React from 'react'
 import {FileInput, setFirebaseApp} from '@appsparkler/react-hfn-components'
 import FirebaseApp from './firebase-app'
 setFirebaseApp(FirebaseApp)
+import './styles.sass'
 
 export default () => {
   const keydx = 'xyz'
