@@ -1,10 +1,12 @@
 import React from 'react'
 import FileUploadDetails from '@react-hfn-components/FileUploadDetails'
-import {FirebaseApp} from '@react-hfn-singletons/firebase-storage-api'
+import useFileInput from '@react-hfn-hooks/useFileInput'
 
 export default (props) => {
-  const {inputAttrs, uploadFiles, ensureFirebaseApp} = useFileInput({props})
-  ensureFirebaseApp()
+  const {
+    inputAttrs,
+    uploadFiles,
+  } = useFileInput({props})
   return (
     <div className="React-HFN-FileInput">
       <input
@@ -14,27 +16,4 @@ export default (props) => {
       <FileUploadDetails uploadDetails={[]} />
     </div>
   )
-}
-
-function uploadFiles() {
-
-}
-
-function ensureFirebaseApp() {
-  if (!FirebaseApp) {
-    throw new Error('Please set the Firebase App with setFirebase')
-  }
-}
-
-function useFileInput({props}) {
-  const inputAttrs = {
-    type: (props && props.type) || 'file',
-    multiple: (props && props.multiple) || false,
-    className: `${props && props.className} input-file`,
-  }
-  return {
-    inputAttrs,
-    uploadFiles,
-    ensureFirebaseApp,
-  }
 }
