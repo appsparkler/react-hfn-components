@@ -7,6 +7,7 @@ export default (props) => {
     inputAttrs,
     uploadFiles,
     validationError,
+    maxFiles,
   } = useFileInput({props})
   return (
     <div className="React-HFN-FileInput">
@@ -17,6 +18,7 @@ export default (props) => {
         {...inputAttrs}
         onInput={uploadFiles}
       />
+      <p>Maximum Files Allowed: {maxFiles}</p>
       <FileUploadDetails uploadDetails={[]} />
     </div>
   )

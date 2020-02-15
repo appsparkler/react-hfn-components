@@ -77,5 +77,6 @@ export default function useFileInput({props}) {
     inputAttrs,
     uploadFiles: uploadFiles.bind(null, {props, states}),
     validationError,
+    maxFiles: props.maxFiles,
   }
 }
