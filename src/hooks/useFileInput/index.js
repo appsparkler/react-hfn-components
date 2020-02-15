@@ -1,7 +1,9 @@
 import {FirebaseApp} from '@react-hfn-singletons/firebase-storage-api'
 
 function uploadFiles() {
-
+  // validate # of files
+  // validate bytes
+  // validate
 }
 
 function ensureFirebaseApp() {
@@ -16,6 +18,7 @@ export default function useFileInput({props}) {
     type: (props && props.type) || 'file',
     multiple: (props && props.multiple) || false,
     className: `${props && props.className} input-file`,
+    name: (props && props.name) || 'files',
   }
   return {
     inputAttrs,
