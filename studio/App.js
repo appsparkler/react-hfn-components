@@ -9,9 +9,14 @@ export default () => {
   const storageRef = FirebaseApp.storage().ref('id-proofs')
   const keydx = 'xyz'
   const params = {
+    // label: 'Id Proofs',
     // input-attributes
     className: 'my-special-input-field',
-
+    onUpload: (...args) => {
+      console.log(args)
+    },
+    required: true,
+    readOnly: true,
     // Other upload information
     storageRef,
 

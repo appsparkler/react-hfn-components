@@ -9,13 +9,17 @@ export default (props) => {
     validationError,
     maxBytes,
     uploadDetails,
+    label,
   } = useFileInput({props})
   return (
     <div className="React-HFN-FileInput">
-      <input
-        {...inputAttrs}
-        onInput={uploadFiles}
-      />
+      <label >
+        {label} <br />
+        <input
+          {...inputAttrs}
+          onInput={uploadFiles}
+        />
+      </label>
       <br/>
       {
         uploadDetails.map((uploadDetail) => (

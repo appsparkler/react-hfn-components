@@ -23,7 +23,7 @@ function validateFileSize({props, states}, evt) {
 
 function upload({props, states}, evt) {
   const {files} = evt.target
-  const {storageRef} = props
+  const {storageRef, onUpload} = props
   const {setUploadDetails} = states
   const files2Upload = [...files]
   setUploadDetails(
@@ -33,6 +33,7 @@ function upload({props, states}, evt) {
         file,
       })),
   )
+  onUpload && onUpload({props, states}, evt)
 }
 
 function uploadFiles({props, states}, evt) {
@@ -44,7 +45,9 @@ const DEFAULT_PROPS = {
   // Input attributes
   type: 'file',
   name: 'file',
-
+  required: true,
+  disabled: false,
+  readOnly: false,
   //
   maxBytes: 5 * 1024 * 1024, // 5 MB (TODO: add server side validation)
   maxBytesError: 'File exceeds upload limit',
@@ -75,6 +78,9 @@ export default function useFileInput({props}) {
     type: fileType,
     className: props.className,
     name: props.name,
+    required: props.required,
+    disabled: props.disabled,
+    readOnly: props.readOnly,
   }
   return {
     inputAttrs,
@@ -82,5 +88,6 @@ export default function useFileInput({props}) {
     validationError,
     maxBytes: props.maxBytes,
     uploadDetails,
+    label: props.label,
   }
 }
