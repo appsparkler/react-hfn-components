@@ -18,7 +18,7 @@ export default (props) => {
         {...inputAttrs}
         onInput={uploadFiles}
       />
-      <p>Maximum Files Allowed: {maxFiles}</p>
+      <p className="info">File Limit: {maxFiles} file(s)</p>
       <FileUploadDetails uploadDetails={[]} />
     </div>
   )
