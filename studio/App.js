@@ -7,9 +7,11 @@ export default () => {
     type: 'file',
     multiple: true,
     path: '/abhyasiDaya/INAAAB998',
+    className: 'my-special-input-field',
+
     maxBytes: 50000,
     maxFiles: 5,
-    className: 'my-special-input-field',
+    allowedFileTypes: ['png', 'jpg', 'pdf'],
   }
-  return <FileInputV2 key={keydx} {...params} />
+  return (<FileInputV2 key={keydx} {...params} />)
 }
