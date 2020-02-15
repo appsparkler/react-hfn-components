@@ -1,5 +1,5 @@
 import React from 'react'
-import ProgressBar from '@react-hfn-components/ProgressBars'
+import ProgressBar from '@react-hfn-components/ProgressBar'
 import useFileInput from '@react-hfn-hooks/useFileInput'
 
 export default (props) => {

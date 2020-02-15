@@ -1,5 +1,4 @@
 import React from 'react'
-import './styles.sass'
 
 export default ({uploadDetail}) => {
   const [progress, setProgress] = React.useState(0)
