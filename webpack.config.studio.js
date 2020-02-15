@@ -18,6 +18,16 @@ module.exports = {
           resolve('studio'),
         ],
       },
+      {
+        test: /\.(scss|sass)$/,
+        include: [resolve('src'), resolve('studio')],
+        use: [
+          'style-loader',
+          'css-loader',
+          // 'postcss-loader',
+          'sass-loader',
+        ],
+      },
     ],
   },
   resolve: {

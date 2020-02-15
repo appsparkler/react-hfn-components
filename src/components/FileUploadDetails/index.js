@@ -1,4 +1,5 @@
 import React from 'react'
+import './styles.sass'
 
 const UploadDetailRow = ({uploadDetail}) => {
   const [progress, setProgress] = React.useState(0)
@@ -17,24 +18,26 @@ const UploadDetailRow = ({uploadDetail}) => {
 
 export default ({uploadDetails}) => {
   return (
-    <table>
-      <thead>
-        <tr>
-          <th>File Name</th>
-          <th>File Size</th>
-          <th>Progress</th>
-          <th>Progress Bar</th>
-        </tr>
-      </thead>
-      <tbody>
-        {
-          uploadDetails.map((uploadDetail) => (
-            <UploadDetailRow
-              key={uploadDetail.id}
-              uploadDetail={uploadDetail}
-            />))
-        }
-      </tbody>
-    </table>
+    <div className="file-upload-details">
+      <table>
+        <thead>
+          <tr>
+            <th>File Name</th>
+            <th>File Size</th>
+            <th>Progress</th>
+            <th>Progress Bar</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            uploadDetails.map((uploadDetail) => (
+              <UploadDetailRow
+                key={uploadDetail.id}
+                uploadDetail={uploadDetail}
+              />))
+          }
+        </tbody>
+      </table>
+    </div>
   )
 }
