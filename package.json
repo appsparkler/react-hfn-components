@@ -1,6 +1,6 @@
 {
   "name": "@appsparkler/react-hfn-components",
-  "version": "0.0.7-alpha",
+  "version": "0.0.7-alpha-1",
   "license": "MIT",
   "main": "./dist/react-hfn-components.min.js",
   "directories": [
@@ -14,7 +14,7 @@
     "start": "webpack-dev-server --config webpack.config.studio.js",
     "build": "webpack -p --config webpack.config.dist.js",
     "test": "jest test",
-    "build:publish": "yarn build:umd:minified; yarn publish"
+    "build:publish": "yarn build; yarn publish"
   },
   "peerDependencies": {},
   "devDependencies": {
