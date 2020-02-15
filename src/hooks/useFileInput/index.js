@@ -1,5 +1,4 @@
 import React from 'react'
-import {FirebaseApp} from '@react-hfn-singletons/firebase-storage-api'
 
 function resetInputFiled({props, states}, evt) {
   const {setFileType} = states
@@ -19,30 +18,27 @@ function validateFileSize({props, states}, evt) {
     setValidationError('')
     return true
   }
-  // const {maxFiles, maxFilesError} = props
-  // const {setValidationError} = states
-  // const {files} = evt.target
-  // const numberOfFiles = (files && files.length) || 0
-  // if (numberOfFiles >= maxFiles) {
-  //   setValidationError(maxFilesError)
-  //   resetInputFiled({props, states}, evt)
-  //   return false
-  // } else {
-  //   setValidationError('')
-  //   return true
-  // }
 }
 
+function upload({props, states}, evt) {
+  const {files} = evt.target
+  const file2Upload = [...files]
+  file2Upload.forEach((file) => {
+    const {storageRef} = props
+    const fileUploadTask = storageRef
+        .child(file.name)
+        .put(file)
+    // fileUploadTask.on('status_changes', (snapshot) => {
+    //   console.log(snapshot)
+    // }, (err)=> {
+    //   console.log(err)
+    // })
+  })
+}
 
 function uploadFiles({props, states}, evt) {
-  validateFileSize({props, states}, evt)
-}
-
-
-function ensureFirebaseApp() {
-  if (!FirebaseApp) {
-    throw new Error('Please set the Firebase App with setFirebase')
-  }
+  const withinFileLimit = validateFileSize({props, states}, evt)
+  if (withinFileLimit) upload({props, states}, evt)
 }
 
 const DEFAULT_PROPS = {
@@ -61,7 +57,6 @@ function fileTypeDidChange({states}) {
 }
 
 export default function useFileInput({props}) {
-  ensureFirebaseApp()
   props = Object.assign(DEFAULT_PROPS, props)
 
   // States

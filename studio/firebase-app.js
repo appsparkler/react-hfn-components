@@ -1,6 +1,5 @@
 import firebase from 'firebase/app'
 import 'firebase/storage'
-import {setFirebaseApp} from '@appsparkler/react-hfn-components'
 
 const {
   apiKey,
@@ -19,7 +18,5 @@ const firebaseConfig = {
 }
 
 const FirebaseApp = firebase.initializeApp(firebaseConfig)
-
-setFirebaseApp(FirebaseApp)
 
 export default FirebaseApp
