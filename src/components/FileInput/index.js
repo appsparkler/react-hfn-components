@@ -1,5 +1,4 @@
 import React from 'react'
-import FileUploadDetails from '@react-hfn-components/FileUploadDetails'
 import useFileInput from '@react-hfn-hooks/useFileInput'
 
 export default (props) => {
@@ -7,19 +6,22 @@ export default (props) => {
     inputAttrs,
     uploadFiles,
     validationError,
-    maxFiles,
+    maxBytes,
   } = useFileInput({props})
   return (
     <div className="React-HFN-FileInput">
-      <p className="validation-error">
-        {validationError}
-      </p>
       <input
         {...inputAttrs}
         onInput={uploadFiles}
       />
-      <p className="info">File Limit: {maxFiles} file(s)</p>
-      <FileUploadDetails uploadDetails={[]} />
+      <br/>
+      <progress value="75" min="0" max="100"></progress>
+      <p className="info">
+        File size limit: {(maxBytes/(1024 * 1024))} MB
+      </p>
+      <p className="validation-error">
+        {validationError}
+      </p>
     </div>
   )
 }

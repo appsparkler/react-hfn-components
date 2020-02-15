@@ -7,19 +7,15 @@ import './styles.sass'
 export default () => {
   const keydx = 'xyz'
   const params = {
-
     // input-attributes
-    // type: 'file',
-    multiple: true,
     className: 'my-special-input-field',
 
     // Other upload information
     path: '/abhyasiDaya/INAAAB998',
 
     // Validations
-    maxBytes: 50000,
-    maxFiles: 5,
-    allowedFileTypes: ['png', 'jpg', 'pdf'],
+    maxBytes: 5 * 1024 * 1024,
+    maxBytesError: 'file exceeds size-limit. please re-try.',
   }
 
   return (<FileInput key={keydx} {...params} />)

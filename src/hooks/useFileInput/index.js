@@ -6,24 +6,36 @@ function resetInputFiled({props, states}, evt) {
   setFileType('')
 }
 
-function validateNumberOfFiles({props, states}, evt) {
-  const {maxFiles, maxFilesError} = props
+function validateFileSize({props, states}, evt) {
+  const {maxBytes, maxBytesError} = props
   const {setValidationError} = states
   const {files} = evt.target
-  const numberOfFiles = (files && files.length) || 0
-  if (numberOfFiles >= maxFiles) {
-    setValidationError(maxFilesError)
+  const payloadSize = [...files].reduce((r, file) => r+file.size, 0)
+  if (payloadSize > maxBytes) {
+    setValidationError(maxBytesError)
     resetInputFiled({props, states}, evt)
     return false
   } else {
     setValidationError('')
     return true
   }
+  // const {maxFiles, maxFilesError} = props
+  // const {setValidationError} = states
+  // const {files} = evt.target
+  // const numberOfFiles = (files && files.length) || 0
+  // if (numberOfFiles >= maxFiles) {
+  //   setValidationError(maxFilesError)
+  //   resetInputFiled({props, states}, evt)
+  //   return false
+  // } else {
+  //   setValidationError('')
+  //   return true
+  // }
 }
 
 
 function uploadFiles({props, states}, evt) {
-  validateNumberOfFiles({props, states}, evt)
+  validateFileSize({props, states}, evt)
 }
 
 
@@ -36,15 +48,11 @@ function ensureFirebaseApp() {
 const DEFAULT_PROPS = {
   // Input attributes
   type: 'file',
-  multiple: false,
-  name: 'files',
+  name: 'file',
 
   //
-  filePath: 'react-hfn-components',
-  maxFiles: 5, // (TODO: add server side validation)
-  maxFilesError: 'max files exceeded. please re-try.',
   maxBytes: 5 * 1024 * 1024, // 5 MB (TODO: add server side validation)
-  allowedFileTypes: ['png', 'jpg', 'pdf'],
+  maxBytesError: 'File exceeds upload limit',
 }
 
 function fileTypeDidChange({states}) {
@@ -69,7 +77,6 @@ export default function useFileInput({props}) {
 
   const inputAttrs = {
     type: fileType,
-    multiple: props.multiple,
     className: props.className,
     name: props.name,
   }
@@ -77,6 +84,6 @@ export default function useFileInput({props}) {
     inputAttrs,
     uploadFiles: uploadFiles.bind(null, {props, states}),
     validationError,
-    maxFiles: props.maxFiles,
+    maxBytes: props.maxBytes,
   }
 }
