@@ -11,8 +11,8 @@ export default (props) => {
   } = useFirebaseFileInput({props})
   return (
     <div className="React-HFN-FirebaseFileInput">
-      {readOnly && !file && <p>No files stored</p>}
-      {readOnly && <FileLink file={file}/>}
+      {/* readOnly && !file && <p>No files stored</p>}
+      {readOnly && <FileLink file={file}/>*/}
       {!readOnly && <CompositeFileInput {...compositeFileInputProps} />}
     </div>
   )

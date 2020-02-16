@@ -1,9 +1,11 @@
 import React from 'react'
 import {FirebaseFileInput} from '@appsparkler/react-hfn-components'
-// import FirebaseApp from './firebase-app'
+import FirebaseApp from './firebase-app'
 import './styles.sass'
 
 export default () => {
+  const storageRef = FirebaseApp.storage().ref('id-proofs/abc')
+
   const readOnlyParams = {
     label: 'Id Proofs',
     readOnly: true,
@@ -26,12 +28,20 @@ export default () => {
       contentType: 'content/jpg',
       bytes: 19393,
     },
+    required: true,
+    readOnly: true,
+    // Other upload information
+    storageRef,
+
+    // Validations
+    maxBytes: 5 * 1024 * 1024,
+    maxBytesError: 'file exceeds size-limit. please re-try.',
   }
 
   return (
     <>
-      <h3>Read Only Version</h3>
-      <FirebaseFileInput {...readOnlyParams} />
+      {/*  <h3>Read Only Version</h3>
+      <FirebaseFileInput {...readOnlyParams} />*/}
 
       <h3>Editable Version</h3>
       <FirebaseFileInput {...editableVersionParams} />
