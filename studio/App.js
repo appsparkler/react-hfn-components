@@ -4,8 +4,37 @@ import {FirebaseFileInput} from '@appsparkler/react-hfn-components'
 import './styles.sass'
 
 export default () => {
-  const x = ''
-  return (<FirebaseFileInput />)
+  const readOnlyParams = {
+    label: 'Id Proofs',
+    readOnly: true,
+    file: {
+      downloadURL: 'https://placehold.it/120x120',
+      fileName: 'passport.jpg',
+      filePath: '/id-proofs/INA33939',
+      contentType: 'content/jpg',
+      bytes: 19393,
+    },
+  }
+
+  const editableVersionParams = {
+    label: 'Id Proofs',
+    readOnly: false,
+    file: {
+      downloadURL: 'https://placehold.it/120x120',
+      fileName: 'passport.jpg',
+      filePath: '/id-proofs/INA33939',
+      contentType: 'content/jpg',
+      bytes: 19393,
+    },
+  }
+  return (
+    <>
+      <h3>Read Only Version</h3>
+      <FirebaseFileInput {...readOnlyParams} />
+
+      <h3>Editable Version</h3>
+      <FirebaseFileInput {...editableVersionParams} />
+    </>)
 }
 
 // export default () => {
