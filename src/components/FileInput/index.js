@@ -2,7 +2,14 @@ import React from 'react'
 import useFileInput from './useFileInput'
 
 function FileInput(props) {
-  const {handleInput, validationError, maxBytes, type} = useFileInput({props})
+  const {
+    handleInput,
+    validationError,
+    maxBytes,
+    type,
+    uploadedFile,
+    uploadDetail,
+  } = useFileInput({props})
   return (
     <div>
       <label >
@@ -15,6 +22,7 @@ function FileInput(props) {
           onInput={handleInput}
         />
       </label>
+      <pre>{uploadedFile && JSON.stringify(uploadedFile)}</pre>
       <p className="info">
         Max file size: {(maxBytes/(1024 * 1024)).toFixed(2)} MB
       </p>
