@@ -10,7 +10,6 @@ function validateFileSize({props, states}, evt) {
   const {maxBytes, maxBytesError} = props
   const {setValidationError} = states
   const file = evt.target.files.item(0)
-  // const file = files.get
   const fileSize = file.size
   if (fileSize > maxBytes) {
     setValidationError(maxBytesError)
@@ -46,18 +45,6 @@ async function upload({props, states}, evt) {
     contentType: snapshot.metadata.contentType,
     downloadUrl,
   })
-  // const payload = await Promise
-  // const {setUploadDetails} = states
-  // const files2Upload = [...files]
-  // const uploadDetails = files2Upload.map((file) => ({
-  //   key: uuid(),
-  //   uploadTask: storageRef.put(file),
-  //   file,
-  // }))
-  // setUploadDetails(uploadDetail)
-  // const payload =
-  //   await Promise.all(uploadDetails.map(mapUploadDetailsToPayload))
-  // props && props.onUpload && props.onUpload(payload)
 }
 
 async function handleInput({props, states}, evt) {
