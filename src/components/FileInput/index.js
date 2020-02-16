@@ -2,13 +2,13 @@ import React from 'react'
 import useFileInput from './useFileInput'
 
 function FileInput(props) {
-  const {handleInput, validationError, maxBytes} = useFileInput({props})
+  const {handleInput, validationError, maxBytes, type} = useFileInput({props})
   return (
     <div>
       <label >
         <br />
         <input
-          type="file"
+          type={type}
           disabled={props.disabled || false}
           name={props.name || 'file'}
           required={props.required || false}
