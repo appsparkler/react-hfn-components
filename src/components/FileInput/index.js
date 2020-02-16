@@ -26,10 +26,13 @@ function FileInput(props) {
       </label>
       {
         uploadDetail && (
-          <ProgressBar key={uploadDetail.key} uploadDetail={uploadDetail}/>
+          <ProgressBar
+            key={uploadDetail.key}
+            uploadDetail={uploadDetail}
+          />
         )
       }
-      <pre>{uploadedFile && JSON.stringify(uploadedFile)}</pre>
+      <pre>{ uploadedFile && JSON.stringify(uploadedFile) }</pre>
       <p className="info">
         Max file size: {(maxBytes/(1024 * 1024)).toFixed(2)} MB
       </p>
