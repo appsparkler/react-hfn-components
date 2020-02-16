@@ -7,6 +7,7 @@ function CompositeFileInput(props) {
   const {file} = props
   return (
     <div>
+      {!file && 'file'}
       {file && <FileLinkWithDeleteButton {...props} />}
       {!file && <FileInput {...props} /> }
       <br />
