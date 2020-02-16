@@ -14,6 +14,7 @@ function FileInput(props) {
   return (
     <div>
       <label >
+        { props && props.label }
         <br />
         <input
           type={type}
