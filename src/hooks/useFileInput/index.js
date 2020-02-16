@@ -21,18 +21,34 @@ function validateFileSize({props, states}, evt) {
   }
 }
 
-function upload({props, states}, evt) {
+async function mapUploadDetailsToPayload(uploadDetail) {
+  const snapshot = await Promise.resolve(uploadDetail.uploadTask)
+  const downloadUrl = await Promise.resolve(snapshot.ref.getDownloadURL())
+  debugger
+  const payload = {
+    fileName: snapshot.ref.name,
+    bytes: snapshot.totalBytes,
+    fullPath: snapshot.metadata.fullPath,
+    contentType: snapshot.metadata.contentType,
+    downloadUrl,
+  }
+  return payload
+}
+
+async function upload({props, states}, evt) {
   const {files} = evt.target
   const {storageRef} = props
   const {setUploadDetails} = states
   const files2Upload = [...files]
-  setUploadDetails(
-      files2Upload.map((file) => ({
-        key: uuid(),
-        uploadTask: storageRef.put(file),
-        file,
-      })),
-  )
+  const uploadDetails = files2Upload.map((file) => ({
+    key: uuid(),
+    uploadTask: storageRef.put(file),
+    file,
+  }))
+  setUploadDetails(uploadDetails)
+  const payload =
+    await Promise.all(uploadDetails.map(mapUploadDetailsToPayload))
+  props && props.onUpload && props.onUpload(payload)
 }
 
 function uploadFiles({props, states}, evt) {
