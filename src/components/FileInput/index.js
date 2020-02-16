@@ -10,6 +10,8 @@ function FileInput(props) {
         <input
           type="file"
           disabled={props.disabled || false}
+          name={props.name || 'file'}
+          required={props.required || false}
           onInput={handleInput}
         />
       </label>
