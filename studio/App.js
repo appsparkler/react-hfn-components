@@ -20,6 +20,7 @@ export default () => {
 
   const editableVersionParams = {
     label: 'Id Proofs',
+    // disabled: true,
     readOnly: false,
     // file: {
     //   downloadURL: 'https://placehold.it/120x120',
