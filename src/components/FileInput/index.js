@@ -2,7 +2,7 @@ import React from 'react'
 import useFileInput from './useFileInput'
 
 function FileInput(props) {
-  const {handleInput} = useFileInput({props})
+  const {handleInput, validationError, maxBytes} = useFileInput({props})
   return (
     <div>
       <label >
@@ -15,6 +15,10 @@ function FileInput(props) {
           onInput={handleInput}
         />
       </label>
+      <p className="info">
+        Max file size: {(maxBytes/(1024 * 1024)).toFixed(2)} MB
+      </p>
+      <p className="validation-error">{validationError}</p>
     </div>
   )
 }
