@@ -21,13 +21,13 @@ export default () => {
   const editableVersionParams = {
     label: 'Id Proofs',
     readOnly: false,
-    file: {
-      downloadURL: 'https://placehold.it/120x120',
-      fileName: 'passport.jpg',
-      filePath: '/id-proofs/INA33939',
-      contentType: 'content/jpg',
-      bytes: 19393,
-    },
+    // file: {
+    //   downloadURL: 'https://placehold.it/120x120',
+    //   fileName: 'passport.jpg',
+    //   filePath: '/id-proofs/INA33939',
+    //   contentType: 'content/jpg',
+    //   bytes: 19393,
+    // },
     required: true,
     // Other upload information
     storageRef,
