@@ -29,7 +29,6 @@ export default () => {
       bytes: 19393,
     },
     required: true,
-    readOnly: true,
     // Other upload information
     storageRef,
 
