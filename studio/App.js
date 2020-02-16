@@ -34,7 +34,8 @@ export default () => {
 
       <h3>Editable Version</h3>
       <FirebaseFileInput {...editableVersionParams} />
-    </>)
+    </>
+  )
 }
 
 // export default () => {
