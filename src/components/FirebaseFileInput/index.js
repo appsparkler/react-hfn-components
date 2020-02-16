@@ -1,5 +1,5 @@
 import React from 'react'
-import useFirebaseFileInput from '@react-hfn-hooks/useFirebaseFileInput'
+import useFirebaseFileInput from './useFirebaseFileInput'
 // import FileLink from '@react-hfn-components/FileLink'
 import CompositeFileInput from '@react-hfn-components/CompositeFileInput'
 
