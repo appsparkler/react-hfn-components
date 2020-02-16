@@ -2,13 +2,22 @@ import React from 'react'
 import FileLinkWithDeleteButton
   from '@react-hfn-components/FileLinkWithDeleteButton'
 import FileInput from '@react-hfn-components/FileInput'
+import useCompositeFileInput from './useCompositeFileInput'
 
 function CompositeFileInput(props) {
-  const {file} = props
+  const {sharedState} = useCompositeFileInput()
+  const {file} = sharedState
   return (
     <div>
-      {file && <FileLinkWithDeleteButton {...props} />}
-      {!file && <FileInput {...props} /> }
+      {file &&
+        <FileLinkWithDeleteButton
+          {...props}
+          sharedState={sharedState}
+        />}
+      {!file && <FileInput
+        {...props}
+        sharedState={sharedState}
+      /> }
       <br />
     </div>
   )
