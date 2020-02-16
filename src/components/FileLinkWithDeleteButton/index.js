@@ -1,5 +1,7 @@
 import React from 'react'
-import FileLink from './FileLink'
+import FileLink from '@react-hfn-components/FileLink'
+import useFileLinkWithDeleteButton
+  from '@react-hfn-hooks/useFileLinkWithDeleteButton'
 
 function FileLinkWithDeleteButton(props) {
   const {deleteFile, file} = useFileLinkWithDeleteButton({props})
