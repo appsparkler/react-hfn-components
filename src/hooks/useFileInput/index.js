@@ -23,7 +23,7 @@ function validateFileSize({props, states}, evt) {
 
 function upload({props, states}, evt) {
   const {files} = evt.target
-  const {storageRef, onUpload} = props
+  const {storageRef} = props
   const {setUploadDetails} = states
   const files2Upload = [...files]
   setUploadDetails(
@@ -33,7 +33,6 @@ function upload({props, states}, evt) {
         file,
       })),
   )
-  onUpload && onUpload({props, states}, evt)
 }
 
 function uploadFiles({props, states}, evt) {
@@ -58,6 +57,11 @@ function fileTypeDidChange({states}) {
   setFileType('file')
 }
 
+function uploadDetailsDidChange({props, states}) {
+  const {onUpload} = props
+  onUpload && onUpload({props, states})
+}
+
 export default function useFileInput({props}) {
   props = Object.assign(DEFAULT_PROPS, props)
 
@@ -73,6 +77,9 @@ export default function useFileInput({props}) {
 
   // Effects
   React.useEffect(fileTypeDidChange.bind(null, {states}), [fileType])
+  React.useEffect(
+      uploadDetailsDidChange.bind(null, {props, states}), [uploadDetails],
+  )
 
   const inputAttrs = {
     type: fileType,
