@@ -27,6 +27,7 @@ export default () => {
       bytes: 19393,
     },
   }
+
   return (
     <>
       <h3>Read Only Version</h3>
@@ -34,7 +35,8 @@ export default () => {
 
       <h3>Editable Version</h3>
       <FirebaseFileInput {...editableVersionParams} />
-    </>)
+    </>
+  )
 }
 
 // export default () => {
