@@ -5,7 +5,7 @@ import FirebaseApp from './firebase-app'
 import './styles.sass'
 
 export default () => {
-  const storageRef = FirebaseApp.storage().ref('id-proofs')
+  const storageRef = FirebaseApp.storage().ref('id-proofs/abc')
   const keydx = 'xyz'
   const params = {
     label: 'Id Proofs',

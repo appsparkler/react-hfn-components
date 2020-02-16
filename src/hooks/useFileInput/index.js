@@ -29,7 +29,7 @@ function upload({props, states}, evt) {
   setUploadDetails(
       files2Upload.map((file) => ({
         key: uuid(),
-        uploadTask: storageRef.child(file.name).put(file),
+        uploadTask: storageRef.put(file),
         file,
       })),
   )
