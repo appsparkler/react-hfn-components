@@ -1,5 +1,6 @@
 import React from 'react'
 import useFileInput from './useFileInput'
+import ProgressBar from '@react-hfn-components/ProgressBar'
 
 function FileInput(props) {
   const {
@@ -22,6 +23,11 @@ function FileInput(props) {
           onInput={handleInput}
         />
       </label>
+      {
+        uploadDetail && (
+          <ProgressBar key={uploadDetail.key} uploadDetail={uploadDetail}/>
+        )
+      }
       <pre>{uploadedFile && JSON.stringify(uploadedFile)}</pre>
       <p className="info">
         Max file size: {(maxBytes/(1024 * 1024)).toFixed(2)} MB
