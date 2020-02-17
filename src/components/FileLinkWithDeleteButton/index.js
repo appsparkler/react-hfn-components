@@ -11,9 +11,12 @@ function FileLinkWithDeleteButton(props) {
       <br />
       {isDeleting && (<p>Deleting...</p>)}
       <br />
-      <button onClick={deleteFile}>
-        Delete File
-      </button>
+      {
+        !isDeleting && (
+          <button onClick={deleteFile}>
+            Delete File
+          </button>)
+      }
       {/* */}
     </div>
   )
