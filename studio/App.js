@@ -14,7 +14,9 @@ export default () => {
   })
 
   const readOnlyParams = {
+    readOnly: true,
     file,
+    storageRef,
   }
 
   const editableVersionParams = {
