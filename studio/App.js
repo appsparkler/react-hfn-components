@@ -17,7 +17,6 @@ export default () => {
     label: 'Id Proofs',
     readOnly: true,
     file,
-    setFile,
     noFilesMessage: 'no files yet..',
     maxBytesMessage: 'max bytes : ',
   }
@@ -26,10 +25,11 @@ export default () => {
     label: 'Id Proofs',
     // disabled: true,
     readOnly: false,
+    required: true,
+
+    // file-related params
     file,
     setFile,
-    required: true,
-    // Other upload information
     storageRef,
 
     // Validations
