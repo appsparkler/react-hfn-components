@@ -30,6 +30,11 @@ export default () => {
     setFile,
     storageRef,
 
+    // methods
+    onUpload: (uploadedFile) => {
+      console.log(uploadedFile)
+    },
+
     // Validations
     maxBytes: .01 * 1024 * 1024,
     maxBytesError: 'file exceeds size-limit. please re-try.',
