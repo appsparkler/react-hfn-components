@@ -8,7 +8,7 @@ function CompositeFileInput(props) {
   const {sharedState} = useCompositeFileInput({props})
   const {file} = sharedState
   return (
-    <div>
+    <div className="CompositeFileInput">
       {file &&
         <FileLinkWithDeleteButton
           {...props}

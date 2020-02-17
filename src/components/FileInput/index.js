@@ -13,7 +13,7 @@ function FileInput(props) {
     isUploading,
   } = useFileInput({props})
   return (
-    <div>
+    <div className="FileInput">
       {isUploading && <p>Uploading...</p>}
       {!isUploading && (
         <label >
