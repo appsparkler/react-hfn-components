@@ -5,19 +5,6 @@ import './styles.sass'
 
 export default () => {
   const storageRef = FirebaseApp.storage().ref('id-proofs/abc')
-
-  const readOnlyParams = {
-    label: 'Id Proofs',
-    readOnly: true,
-    file: {
-      downloadURL: 'https://placehold.it/120x120',
-      fileName: 'passport.jpg',
-      filePath: '/id-proofs/INA33939',
-      contentType: 'content/jpg',
-      bytes: 19393,
-    },
-  }
-
   const [file, setFile] = React.useState({
     fileName: 'abc',
     bytes: 426,
@@ -25,6 +12,15 @@ export default () => {
     contentType: 'text/javascript',
     downloadUrl: 'https://firebasestorage.googleapis.com/v0/b/hfnforms-1de6a.appspot.com/o/id-proofs%2Fabc?alt=media&token=a2da51f1-b991-4e11-9d07-9e38bf89ed2b',
   })
+
+  const readOnlyParams = {
+    label: 'Id Proofs',
+    readOnly: true,
+    file,
+    setFile,
+    noFilesMessage: 'no files yet..',
+  }
+
   const editableVersionParams = {
     label: 'Id Proofs',
     // disabled: true,
@@ -42,11 +38,12 @@ export default () => {
 
   return (
     <>
-      {/*  <h3>Read Only Version</h3>
-      <FirebaseFileInput {...readOnlyParams} />*/}
+      <h3>Read Only Version</h3>
+      <FirebaseFileInput {...readOnlyParams} />
 
       <h3>Editable Version</h3>
       <FirebaseFileInput {...editableVersionParams} />
+
     </>
   )
 }

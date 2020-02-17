@@ -1,15 +1,25 @@
 import React from 'react'
 // import useFirebaseFileInput from './useFirebaseFileInput'
-// import FileLink from '@react-hfn-components/FileLink'
+import FileLink from '@react-hfn-components/FileLink'
 import CompositeFileInput from '@react-hfn-components/CompositeFileInput'
 
 export default (props) => {
-  const {readOnly} = props
+  const {readOnly, file} = props
   return (
     <div className="React-HFN-FirebaseFileInput">
-      {/* readOnly && !file && <p>No files stored</p>}
-      {readOnly && <FileLink file={file}/> */}
+      {/* readOnly && file && <FileLink {...props}/> */}
+      {readOnly && <ReadOnlyFileInput {...props} /> }
       {!readOnly && <CompositeFileInput {...props} />}
+    </div>
+  )
+}
+
+function ReadOnlyFileInput(props) {
+  const {file} = props
+  return (
+    <div>
+      {!file && <p>{(props && props.noFilesMessage) || 'No File Uploaded'}</p>}
+      {file && <FileLink {...props} />}
     </div>
   )
 }
