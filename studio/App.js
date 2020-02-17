@@ -14,11 +14,7 @@ export default () => {
   })
 
   const readOnlyParams = {
-    label: 'Id Proofs',
-    readOnly: true,
     file,
-    noFilesMessage: 'no files yet..',
-    maxBytesMessage: 'max bytes : ',
   }
 
   const editableVersionParams = {
@@ -50,28 +46,3 @@ export default () => {
     </>
   )
 }
-
-// export default () => {
-//   const storageRef = FirebaseApp.storage().ref('id-proofs/abc')
-//   const keydx = 'xyz'
-//   const params = {
-//     label: 'Id Proofs',
-//     // input-attributes
-//     className: 'my-special-input-field',
-//     onUpload: (files) => {
-//       if (files && files.length) {
-//         debugger
-//       }
-//     },
-//     required: true,
-//     readOnly: true,
-//     // Other upload information
-//     storageRef,
-//
-//     // Validations
-//     maxBytes: 5 * 1024 * 1024,
-//     maxBytesError: 'file exceeds size-limit. please re-try.',
-//   }
-//
-//   return (<FileInput key={keydx} {...params} />)
-// }
