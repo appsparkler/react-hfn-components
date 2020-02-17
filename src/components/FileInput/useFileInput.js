@@ -27,7 +27,7 @@ function fileTypeDidChange({states}) {
 }
 
 async function upload({props, states}, evt) {
-  const {setFile, setUploadDetail} = states
+  const {setFile, setUploadDetail, setIsUploading} = states
   const file = evt.target.files.item(0)
   const {storageRef} = props
   const uploadDetail = {
@@ -35,9 +35,11 @@ async function upload({props, states}, evt) {
     file,
     uploadTask: storageRef.put(file),
   }
+  setIsUploading(true)
   setUploadDetail(uploadDetail)
   const snapshot = await Promise.resolve(uploadDetail.uploadTask)
   const downloadUrl = await Promise.resolve(snapshot.ref.getDownloadURL())
+  setIsUploading(false)
   setFile({
     fileName: snapshot.ref.name,
     bytes: snapshot.totalBytes,
@@ -64,10 +66,11 @@ export default function useFileInput({props}) {
   // const [uploadedFile, setUploadedFile] = React.useState(null)
   const {file, setFile} = props.sharedState
   const [uploadDetail, setUploadDetail] = React.useState(null)
+  const [isUploading, setIsUploading] = React.useState(false)
   const states = {
     validationError, setValidationError,
     type, setType,
-    // uploadedFile, setUploadedFile,
+    isUploading, setIsUploading,
     file, setFile,
     uploadDetail, setUploadDetail,
   }
@@ -82,5 +85,6 @@ export default function useFileInput({props}) {
     maxBytes: props.maxBytes,
     uploadDetail,
     file,
+    isUploading,
   }
 }

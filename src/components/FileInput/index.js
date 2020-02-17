@@ -10,20 +10,25 @@ function FileInput(props) {
     type,
     file,
     uploadDetail,
+    isUploading,
   } = useFileInput({props})
   return (
     <div>
-      <label >
-        { props && props.label }
-        <br />
-        <input
-          type={type}
-          disabled={props.disabled || false}
-          name={props.name || 'file'}
-          required={props.required || false}
-          onInput={handleInput}
-        />
-      </label>
+      {isUploading && <p>Uploading...</p>}
+      {!isUploading && (
+        <label >
+          { props && props.label }
+          <br />
+
+          <input
+            type={type}
+            disabled={props.disabled || false}
+            name={props.name || 'file'}
+            required={props.required || false}
+            onInput={handleInput}
+          />
+        </label>
+      )}
       {
         uploadDetail && (
           <ProgressBar
