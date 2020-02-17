@@ -19,6 +19,7 @@ export default () => {
     file,
     setFile,
     noFilesMessage: 'no files yet..',
+    maxBytesMessage: 'max bytes : ',
   }
 
   const editableVersionParams = {
@@ -34,10 +35,12 @@ export default () => {
     // Validations
     maxBytes: .01 * 1024 * 1024,
     maxBytesError: 'file exceeds size-limit. please re-try.',
+    maxBytesInfoMessage: 'max bytes : ',
   }
 
   return (
     <>
+
       <h3>Read Only Version</h3>
       <FirebaseFileInput {...readOnlyParams} />
 
