@@ -18,17 +18,19 @@ export default () => {
     },
   }
 
+  const [file, setFile] = React.useState({
+    fileName: 'abc',
+    bytes: 426,
+    fullPath: 'id-proofs/abc',
+    contentType: 'text/javascript',
+    downloadUrl: 'https://firebasestorage.googleapis.com/v0/b/hfnforms-1de6a.appspot.com/o/id-proofs%2Fabc?alt=media&token=a2da51f1-b991-4e11-9d07-9e38bf89ed2b',
+  })
   const editableVersionParams = {
     label: 'Id Proofs',
     // disabled: true,
     readOnly: false,
-    // file: {
-    //   downloadURL: 'https://placehold.it/120x120',
-    //   fileName: 'passport.jpg',
-    //   filePath: '/id-proofs/INA33939',
-    //   contentType: 'content/jpg',
-    //   bytes: 19393,
-    // },
+    file,
+    setFile,
     required: true,
     // Other upload information
     storageRef,

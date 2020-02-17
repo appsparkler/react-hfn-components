@@ -1,7 +1,5 @@
-import React from 'react'
-
-export default function() {
-  const [file, setFile] = React.useState(null)
+export default function({props}) {
+  const {file, setFile} = props
   const sharedState = {
     file, setFile,
   }

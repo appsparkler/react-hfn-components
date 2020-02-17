@@ -5,7 +5,7 @@ import FileInput from '@react-hfn-components/FileInput'
 import useCompositeFileInput from './useCompositeFileInput'
 
 function CompositeFileInput(props) {
-  const {sharedState} = useCompositeFileInput()
+  const {sharedState} = useCompositeFileInput({props})
   const {file} = sharedState
   return (
     <div>
