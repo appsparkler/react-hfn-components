@@ -43,9 +43,8 @@ export default () => {
 
   return (
     <>
-
       <h3>Read Only Version</h3>
-      <FirebaseFileInput {...readOnlyParams} />
+      {/*<FirebaseFileInput {...readOnlyParams} />*/}
 
       <h3>Editable Version</h3>
       <FirebaseFileInput {...editableVersionParams} />
