@@ -36,7 +36,7 @@ export default () => {
     },
 
     // Validations
-    maxBytes: .01 * 1024 * 1024,
+    maxBytes: 1 * 1024 * 1024,
     maxBytesError: 'file exceeds size-limit. please re-try.',
     maxBytesInfoMessage: 'max bytes : ',
   }

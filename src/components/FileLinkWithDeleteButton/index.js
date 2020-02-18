@@ -4,20 +4,20 @@ import useFileLinkWithDeleteButton
   from './useFileLinkWithDeleteButton'
 
 function FileLinkWithDeleteButton(props) {
-  const {deleteFile, file, isDeleting} = useFileLinkWithDeleteButton({props})
+  const {deleteFile, file, isDeleting, isVerifying} = useFileLinkWithDeleteButton({props})
   return (
     <div className="FileLinkWithDeleteButton">
-      <FileLink file={file} sharedState={props.sharedState} />
-      <br />
-      {isDeleting && (<p>Deleting...</p>)}
-      <br />
-      {
-        !isDeleting && (
-          <button onClick={deleteFile}>
-            Delete File
-          </button>)
-      }
-      {/* */}
+      {isVerifying && 'is Verifying...'}
+      {!isVerifying && (
+          <>
+            <FileLink file={file} sharedState={props.sharedState} />
+            {isDeleting && <p>Deleting...</p>}
+            {!isDeleting && (
+              <button onClick={deleteFile}>
+                Delete File
+              </button>)}
+          </>
+      )}
     </div>
   )
 }
