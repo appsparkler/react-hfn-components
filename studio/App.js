@@ -16,6 +16,7 @@ export default () => {
   const readOnlyParams = {
     readOnly: true,
     file,
+    setFile,
     storageRef,
   }
 

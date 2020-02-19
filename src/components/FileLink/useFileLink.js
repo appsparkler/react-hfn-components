@@ -15,8 +15,8 @@ function verifyFile({props}) {
       })
 }
 
-function componentDidMount({props, setIsVerifying}) {
-  verifyFile({props, setIsVerifying})
+function componentDidMount({props}) {
+  verifyFile({props})
 }
 
 export default ({props}) => {
