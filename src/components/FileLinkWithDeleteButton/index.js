@@ -4,7 +4,12 @@ import useFileLinkWithDeleteButton
   from './useFileLinkWithDeleteButton'
 
 function FileLinkWithDeleteButton(props) {
-  const {deleteFile, file, isDeleting, isVerifying} = useFileLinkWithDeleteButton({props})
+  const {
+    deleteFile,
+    file,
+    isDeleting,
+    isVerifying,
+  } = useFileLinkWithDeleteButton({props})
   return (
     <div className="FileLinkWithDeleteButton">
       {isVerifying && 'is Verifying...'}
