@@ -2,9 +2,11 @@ import React from 'react'
 import ReadOnlyFileInput from '@react-hfn-components/ReadOnlyFileInput'
 import CompositeFileInput from '@react-hfn-components/CompositeFileInput'
 import './styles.sass'
+import useFirebaseFileInput from './useFirebaseFileInput'
 
 export default (props) => {
-  const {readOnly} = props
+  const compositeProps = useFirebaseFileInput({props})
+  const {readOnly} = compositeProps
   // return (
   //   <div>
   //     <div className="File-UnAvailable-State">
@@ -55,8 +57,8 @@ export default (props) => {
   // )
   return (
     <div className="React-HFN-FirebaseFileInput">
-      {readOnly && <ReadOnlyFileInput {...props} /> }
-      {!readOnly && <CompositeFileInput {...props} />}
+      {readOnly && <ReadOnlyFileInput {...compositeProps} /> }
+      {!readOnly && <CompositeFileInput {...compositeProps} />}
     </div>
   )
 }
