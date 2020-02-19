@@ -6,7 +6,11 @@ function FileLink(props) {
   return (
     <div className="FileLink">
       {
-        isVerifying && 'Is Verifying...'
+        isVerifying && (
+          <span>
+            {props.isVerifyingMessage || 'is Verifying'}
+          </span>
+        )
       }
       {
         !isVerifying && file && (
