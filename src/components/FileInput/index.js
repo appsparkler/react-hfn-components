@@ -8,7 +8,6 @@ function FileInput(props) {
     validationError,
     maxBytes,
     type,
-    file,
     uploadDetail,
     isUploading,
   } = useFileInput({props})
@@ -37,7 +36,6 @@ function FileInput(props) {
           />
         )
       }
-      <pre>{ file && JSON.stringify(file) }</pre>
       <p className="info">
         {(props && props.maxBytesInfoMessage) || 'Max file size: '}
         {(maxBytes/(1024 * 1024)).toFixed(2)} MB

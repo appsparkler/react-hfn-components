@@ -2,10 +2,10 @@ import React from 'react'
 import FileLink from '@react-hfn-components/FileLink'
 import useFileLinkWithDeleteButton
   from './useFileLinkWithDeleteButton'
+import FileInput from '@react-hfn-components/FileInput'
 
 function FileLinkWithDeleteButton(props) {
   const {
-    deleteFile,
     isDeleting,
   } = useFileLinkWithDeleteButton({props})
   return (
@@ -14,10 +14,9 @@ function FileLinkWithDeleteButton(props) {
 
       {isDeleting && <p>Deleting...</p>}
 
-      {!isDeleting && (
-        <button onClick={deleteFile}>
-                Delete File
-        </button>)}
+      {!isDeleting &&
+        <FileInput {...props} />
+      }
     </div>
   )
 }
