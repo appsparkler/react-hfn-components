@@ -22,6 +22,6 @@ function componentDidMount({props, setIsVerifying}) {
 export default ({props}) => {
   React.useEffect(componentDidMount.bind(null, {props}), [])
   return {
-    isVerifying,
+    ...props,
   }
 }

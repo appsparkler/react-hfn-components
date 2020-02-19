@@ -1,12 +1,12 @@
 import React from 'react'
+import useFileLink from './useFileLink'
 
 function FileLink(props) {
-  const {file} = props
-  const {downloadUrl, fileName} = file
+  const {file} = useFileLink({props})
   return (
     <div className="FileLink">
-      <a href={downloadUrl} target="__blank">
-        {fileName}
+      <a href={file && file.downloadUrl} target="__blank">
+        {file && file.fileName}
       </a>
     </div>
   )

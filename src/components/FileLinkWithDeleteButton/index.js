@@ -6,12 +6,11 @@ import useFileLinkWithDeleteButton
 function FileLinkWithDeleteButton(props) {
   const {
     deleteFile,
-    file,
     isDeleting,
   } = useFileLinkWithDeleteButton({props})
   return (
     <div className="FileLinkWithDeleteButton">
-      <FileLink file={file} sharedState={props.sharedState} />
+      <FileLink {...props} />
 
       {isDeleting && <p>Deleting...</p>}
 
