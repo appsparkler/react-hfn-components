@@ -31,7 +31,7 @@ function FileInput(props) {
         </label>
       )}
       {
-        uploadDetail && (
+        uploadDetail && isUploading && (
           <ProgressBar
             key={uploadDetail.key}
             uploadDetail={uploadDetail}
