@@ -6,17 +6,14 @@ import FileInput from '@react-hfn-components/FileInput'
 
 function FileLinkWithDeleteButton(props) {
   const {
-    isDeleting,
   } = useFileLinkWithDeleteButton({props})
   return (
     <div className="FileLinkWithDeleteButton">
-      <FileLink {...props} />
-
-      {isDeleting && <p>Deleting...</p>}
-
-      {!isDeleting &&
-        <FileInput {...props} />
-      }
+      <FileInput {...props} />
+      <div>
+        <FileLink {...props} />
+        {<p>Is Editing...</p>}
+      </div>
     </div>
   )
 }

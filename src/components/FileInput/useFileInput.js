@@ -66,9 +66,11 @@ export default function useFileInput({props}) {
   props = Object.assign(DEFAULT_PROPS, props)
   const [validationError, setValidationError] = React.useState('')
   const [type, setType] = React.useState(props.file)
-  const {file, setFile} = props
+  const {
+    file, setFile,
+    isUploading, setIsUploading,
+  } = props
   const [uploadDetail, setUploadDetail] = React.useState(null)
-  const [isUploading, setIsUploading] = React.useState(false)
   const states = {
     validationError, setValidationError,
     type, setType,

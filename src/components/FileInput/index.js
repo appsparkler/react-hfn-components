@@ -14,7 +14,7 @@ function FileInput(props) {
   } = useFileInput({props})
   return (
     <div className={ `FileInput ${file && 'edit-file'}`}>
-      {isUploading && <p>Uploading...</p>}
+      {isUploading && <p className="uploading-text">Uploading...</p>}
       {!isUploading && (
         <label >
           <span className="label-text">{ props && props.label }</span>
