@@ -17,7 +17,8 @@ function FileInput(props) {
       {isUploading && <p>Uploading...</p>}
       {!isUploading && (
         <label >
-          { props && props.label }
+          <span className="label-text">{ props && props.label }</span>
+          <span className="required-asterix">{ props?.required && '*'}</span>
           <br />
 
           <input
