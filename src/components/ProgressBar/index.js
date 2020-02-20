@@ -9,7 +9,7 @@ export default ({uploadDetail}) => {
         if (totalBytes !== 0) setProgress(progress)
       },
       (err) => {
-        console.log(err)
+        console.error(err)
       },
       () => {
         setProgress(100)
