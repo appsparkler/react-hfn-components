@@ -5,7 +5,17 @@ export default ({uploadDetail}) => {
   uploadDetail.uploadTask.on(
       'state_changed',
       ({bytesTransferred, totalBytes}) => {
-        setProgress((bytesTransferred/totalBytes) * 100)
+        let progress = (bytesTransferred/totalBytes) * 100
+        if (totalBytes === 0) {
+          progress = 100
+        }
+        setProgress(progress)
+      },
+      (err) => {
+        console.log(err)
+      },
+      () => {
+        setProgress(100)
       },
   )
   return (
