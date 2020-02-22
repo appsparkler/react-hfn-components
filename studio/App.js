@@ -10,6 +10,7 @@ export default () => {
   }
   const params = {
     croppieConfig,
+    maxBytes: 1 * 1000 * 1000,
   }
   return (<FirebasePhotoInput {...params} />)
 }
