@@ -30,7 +30,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        include: [resolve('src'), resolve('studio')],
+        include: [resolve('src'), resolve('node_modules')],
         use: [
           'style-loader',
           'css-loader',
@@ -61,12 +61,12 @@ module.exports = {
       'process.env': JSON.stringify(dotenv.config().parsed),
     }),
     new HTMLPlugin({
-      template: resolve('studio/index.ejs')
+      template: resolve('studio/index.ejs'),
     }),
   ],
   devServer: {
     stats: 'minimal',
     hot: true,
-    writeToDisk: true
+    writeToDisk: true,
   },
 }
