@@ -19,7 +19,7 @@ const FirebasePhotoInput = (props) => {
 
       <div className="state">
         <h2>Current Photo</h2>
-        <img src="http://via.placeholder.com/120x120" />
+        <img src="https://www.fillmurray.com/120/120" />
       </div>
 
       <div className="state">
