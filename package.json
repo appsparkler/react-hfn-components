@@ -53,6 +53,7 @@
   },
   "dependencies": {
     "bootstrap": "^4.4.1",
+    "bundlesize": "^0.18.0",
     "sass": "^1.25.0",
     "uuid": "^3.4.0"
   }

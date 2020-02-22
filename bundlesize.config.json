@@ -1,0 +1,12 @@
+{
+  "files": [
+    {
+      "path": "./dist/react-hfn-components.min.js",
+      "maxSize": "6.5 kB"
+    },
+    {
+      "path": "./dist/styles.css",
+      "maxSize": "2 kB"
+    }
+  ]
+}

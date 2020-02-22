@@ -67,5 +67,6 @@ module.exports = {
   devServer: {
     stats: 'minimal',
     hot: true,
+    writeToDisk: true
   },
 }
