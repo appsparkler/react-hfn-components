@@ -3,11 +3,11 @@ import Croppie from 'croppie'
 import 'croppie/croppie.css'
 
 function componentDidMount({props, croppieRef, setCroppie}) {
-  const {selectedFile} = props
+  const {selectedFile, croppieConfig} = props
+  debugger
   const config = {
     url: selectedFile,
-    viewport: {width: 100, height: 100},
-    boundary: {width: 100, height: 100},
+    ...croppieConfig,
   }
   const croppie = new Croppie(croppieRef.current, config)
   setCroppie(croppie)

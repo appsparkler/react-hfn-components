@@ -4,7 +4,7 @@ import FileInput from './FileInput'
 import useFirebasePhotoInput from './useFirebasePhotoInput'
 import './styles.sass'
 
-const FirebasePhotoInput = ({props}) => {
+const FirebasePhotoInput = (props) => {
   const superProps = useFirebasePhotoInput({props})
   const {selectedFile} = superProps
   return (
@@ -14,8 +14,6 @@ const FirebasePhotoInput = ({props}) => {
         <h2>No File Uploaded State</h2>
         <FileInput {...superProps} />
       </div>
-
-      {/*  <pre>selectedFile: {selectedFile}</pre>*/}
 
       <div className="state">
         <h2>Current Photo</h2>

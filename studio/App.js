@@ -4,7 +4,14 @@ import FirebaseApp from './firebase-app'
 import './styles.sass'
 
 export default () => {
-  return (<FirebasePhotoInput />)
+  const croppieConfig = {
+    viewport: {width: 300, height: 300},
+    boundary: {width: 300, height: 300},
+  }
+  const params = {
+    croppieConfig,
+  }
+  return (<FirebasePhotoInput {...params} />)
 }
 //
 // export default () => {
