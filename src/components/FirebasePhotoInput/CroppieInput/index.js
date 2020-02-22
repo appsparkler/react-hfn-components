@@ -4,7 +4,6 @@ import 'croppie/croppie.css'
 
 function componentDidMount({props, croppieRef, setCroppie}) {
   const {selectedFile, croppieConfig} = props
-  debugger
   const config = {
     url: selectedFile,
     ...croppieConfig,
