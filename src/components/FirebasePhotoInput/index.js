@@ -19,12 +19,12 @@ const FirebasePhotoInput = ({props}) => {
 
       <div className="state">
         <h2>Current Photo</h2>
-        <img src={ selectedFile } />
+        <img src="http://via.placeholder.com/120x120" />
       </div>
 
       <div className="state">
         <h2>Croppie</h2>
-        <CroppieInput />
+        {selectedFile && <CroppieInput {...superProps}/>}
       </div>
 
     </div>
