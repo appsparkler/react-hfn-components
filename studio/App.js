@@ -5,7 +5,7 @@ import './styles.sass'
 
 export default () => {
   const croppieConfig = {
-    viewport: {width: 300, height: 300},
+    viewport: {width: 200, height: 200},
     boundary: {width: 300, height: 300},
   }
   const params = {
@@ -13,6 +13,8 @@ export default () => {
   }
   return (<FirebasePhotoInput {...params} />)
 }
+
+
 //
 // export default () => {
 //   const storageRef = FirebaseApp.storage().ref('id-proofs/abc')

@@ -1,18 +1,16 @@
 import React from 'react'
 
 export default ({props}) => {
-  debugger
   const [selectedFile, setSelectedFile] = React.useState(null)
-  // const [croppie, setCroppie] = React.useState(null)
-  // const croppieRef = React.createRef()
-  // const imgPreviewRef = React.createRef()
-
+  const [croppie, setCroppie] = React.useState(null)
   const photoPreviewRef = React.useRef()
   const croppieRef = React.useRef()
   return {
     ...props,
+    // REFS
     photoPreviewRef, croppieRef,
     // STATES
     selectedFile, setSelectedFile,
+    croppie, setCroppie,
   }
 }

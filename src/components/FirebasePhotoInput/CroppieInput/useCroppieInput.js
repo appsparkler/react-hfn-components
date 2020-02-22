@@ -1,7 +1,7 @@
 import React from 'react'
 import Croppie from 'croppie'
 
-function componentDidMount(props) {
+function componentDidMount({props}) {
   const {
     selectedFile,
     croppieConfig,
@@ -14,7 +14,6 @@ function componentDidMount(props) {
   }
   const croppie = new Croppie(croppieRef.current, config)
   setCroppie(croppie)
-  // croppieRef.current.addEventListener('update', handleCroppieChange.bind(null, {props}))
 }
 
 async function handleCroppieUpdates({props}, evt) {
@@ -25,7 +24,7 @@ async function handleCroppieUpdates({props}, evt) {
   }
 }
 
-function croppieDidChange(props) {
+function croppieDidChange({props}) {
   const {croppie} = props
   if (croppie?.element) {
     croppie.element.addEventListener(
@@ -35,20 +34,9 @@ function croppieDidChange(props) {
   }
 }
 export default ({props}) => {
-  const [croppie, setCroppie] = React.useState(null)
-  // const photoPreviewRef = React.useRef()
-  // const croppieRef = React.useRef()
+  React.useEffect(componentDidMount.bind(null, {props}), [])
 
-  React.useEffect(componentDidMount.bind(null, {
-    selectedFile: props.selectedFile,
-    croppieConfig: props.croppieConfig,
-    croppieRef: props.croppieRef,
-    setCroppie,
-  }), [])
-
-  React.useEffect(croppieDidChange.bind(null, {
-    croppie, photoPreviewRef: props.photoPreviewRef,
-  }), [croppie])
+  React.useEffect(croppieDidChange.bind(null, {props}), [props.croppie])
 
   return {
     photoPreviewRef: props.photoPreviewRef,
