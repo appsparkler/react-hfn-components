@@ -28,6 +28,16 @@ module.exports = {
           'sass-loader',
         ],
       },
+      {
+        test: /\.css$/,
+        include: [resolve('src'), resolve('studio')],
+        use: [
+          'style-loader',
+          'css-loader',
+          // 'postcss-loader',
+          // 'sass-loader',
+        ],
+      },
     ],
   },
   resolve: {
@@ -51,11 +61,12 @@ module.exports = {
       'process.env': JSON.stringify(dotenv.config().parsed),
     }),
     new HTMLPlugin({
-      template: resolve('studio/index.ejs'),
+      template: resolve('studio/index.ejs')
     }),
   ],
   devServer: {
     stats: 'minimal',
     hot: true,
+    writeToDisk: true
   },
 }

@@ -1,5 +1,4 @@
 import React from 'react'
-import uuid from 'uuid/v1'
 
 function resetInputFiled({props, states}) {
   const {setType} = states
@@ -32,7 +31,6 @@ async function upload({props, states}, evt) {
   const file = evt.target.files.item(0)
   const {storageRef} = props
   const uploadDetail = {
-    key: uuid(),
     file,
     uploadTask: storageRef.put(file),
   }
