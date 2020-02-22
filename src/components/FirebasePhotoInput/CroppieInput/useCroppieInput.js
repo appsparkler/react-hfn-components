@@ -36,22 +36,22 @@ function croppieDidChange(props) {
 }
 export default ({props}) => {
   const [croppie, setCroppie] = React.useState(null)
-  const photoPreviewRef = React.useRef()
-  const croppieRef = React.useRef()
+  // const photoPreviewRef = React.useRef()
+  // const croppieRef = React.useRef()
 
   React.useEffect(componentDidMount.bind(null, {
     selectedFile: props.selectedFile,
     croppieConfig: props.croppieConfig,
-    croppieRef,
+    croppieRef: props.croppieRef,
     setCroppie,
   }), [])
 
   React.useEffect(croppieDidChange.bind(null, {
-    croppie, photoPreviewRef,
+    croppie, photoPreviewRef: props.photoPreviewRef,
   }), [croppie])
 
   return {
-    photoPreviewRef,
-    croppieRef,
+    photoPreviewRef: props.photoPreviewRef,
+    croppieRef: props.croppieRef,
   }
 }
