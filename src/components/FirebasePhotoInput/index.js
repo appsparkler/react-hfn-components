@@ -15,8 +15,6 @@ const FirebasePhotoInput = (props) => {
         <FileInput {...superProps} />
       </div>
 
-      <pre>{selectedFile}</pre>
-
       <div className="state">
         <h2>Current Photo</h2>
         <img src="https://www.fillmurray.com/120/120" />
