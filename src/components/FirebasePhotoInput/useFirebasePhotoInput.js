@@ -7,8 +7,10 @@ export default ({props}) => {
   const croppieRef = React.useRef()
   return {
     ...props,
+
     // REFS
     photoPreviewRef, croppieRef,
+
     // STATES
     selectedFile, setSelectedFile,
     croppie, setCroppie,
