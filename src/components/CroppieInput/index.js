@@ -28,7 +28,11 @@ const CroppieInput = () => {
         <div ref={croppieRef}></div>
       </div>
       <img src="" ref={imgRef} />
-      <button onClick={handleClick.bind(null, {croppie, imgRef})}>Crop</button>
+      <button
+        onClick={handleClick.bind(null, {croppie, imgRef})}
+      >
+        Accept Picture
+      </button>
     </div>
   )
 }
