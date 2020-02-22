@@ -1,7 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import useFileInput from './useFileInput'
 
-const FileInput = () => {
+const FileInput = ({props}) => {
+  const {handleChange} = useFileInput({props})
   return (
     <div className="FileInput">
       <label>
