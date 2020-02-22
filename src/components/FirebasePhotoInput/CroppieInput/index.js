@@ -18,7 +18,10 @@ const CroppieInput = (props) => {
         >
         </div>
       </div>
-      <img ref={photoPreviewRef} />
+      <div>
+        <h2>Preview Image</h2>
+        <img ref={photoPreviewRef} />
+      </div>
     </div>
   )
 }
