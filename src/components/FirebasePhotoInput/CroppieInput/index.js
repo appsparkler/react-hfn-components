@@ -3,10 +3,11 @@ import useCroppieInput from './useCroppieInput'
 import 'croppie/croppie.css'
 
 const CroppieInput = (props) => {
+  const superProps = useCroppieInput({props})
   const {
     croppieRef,
     photoPreviewRef,
-  } = useCroppieInput({props})
+  } = superProps
   return (
     <div
       className="RFHN-Croppie"
@@ -18,10 +19,7 @@ const CroppieInput = (props) => {
         >
         </div>
       </div>
-      <div>
-        <h2>Preview Image</h2>
-        <img ref={photoPreviewRef} />
-      </div>
+      <PreviewImage {...superProps} />
     </div>
   )
 }
