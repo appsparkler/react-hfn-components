@@ -55,6 +55,7 @@
   },
   "dependencies": {
     "bundlesize": "^0.18.0",
+    "croppie": "^2.6.4",
     "uuid": "^3.4.0"
   }
 }
