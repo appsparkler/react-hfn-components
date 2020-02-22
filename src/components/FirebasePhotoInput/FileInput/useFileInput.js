@@ -1,24 +1,16 @@
 import React from 'react'
 
-// if (this.files && this.files[0]) {
-//   const myFile = this.files[0]
-//   const reader = new FileReader()
-//
-//   reader.addEventListener('load', function(e) {
-//     output.textContent = e.target.result
-//     debugger
-//   })
-//
-//   reader.readAsBinaryString(myFile)
-// }
-
 function handleFileLoaded({props}, evt) {
+  evt.preventDefault()
+  evt.stopPropagation()
   const result = evt.target.result
   const {setSelectedFile} = props
   setSelectedFile(result)
 }
 
 function handleChange({props}, evt) {
+  evt.preventDefault()
+  evt.stopPropagation()
   const {files} = evt.target
   const photo = files.item(0)
   const reader = new FileReader()
