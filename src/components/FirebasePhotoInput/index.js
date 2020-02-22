@@ -1,5 +1,6 @@
 import React from 'react'
-import CroppieInput from '@react-hfn-components/CroppieInput'
+import CroppieInput from './CroppieInput'
+import FileInput from './FileInput'
 import './styles.sass'
 
 const FirebasePhotoInput = () => {
@@ -8,14 +9,7 @@ const FirebasePhotoInput = () => {
 
       <div className="state">
         <h2>No File Uploaded State</h2>
-        <div className="FileInput">
-          <label>
-            <span className="label-text">Upload Photo</span>
-            <span className="required-asterix"> *</span>
-            <br />
-            <input type="file" />
-          </label>
-        </div>
+        <FileInput />
       </div>
 
       <div className="state">
