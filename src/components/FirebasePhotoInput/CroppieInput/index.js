@@ -1,4 +1,5 @@
 import React from 'react'
+import PreviewImage from './PreviewImage'
 import useCroppieInput from './useCroppieInput'
 import 'croppie/croppie.css'
 
