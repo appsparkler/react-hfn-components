@@ -6,6 +6,7 @@ import './styles.sass'
 
 const FirebasePhotoInput = ({props}) => {
   const superProps = useFirebasePhotoInput({props})
+  const {selectedFile} = superProps
   return (
     <div className="FirebasePhotoInput">
 
@@ -14,9 +15,11 @@ const FirebasePhotoInput = ({props}) => {
         <FileInput {...superProps} />
       </div>
 
+      {/*  <pre>selectedFile: {selectedFile}</pre>*/}
+
       <div className="state">
         <h2>Current Photo</h2>
-        <img src="http://via.placeholder.com/120x120" />
+        <img src={ selectedFile } />
       </div>
 
       <div className="state">
