@@ -12,6 +12,13 @@ const CurrentPhoto = (props) => {
           <img src={ props.downloadURL } />
         </>
       }
+      {!props.downloadURL &&
+          <pre>
+            No Photo Uploaded...
+            <br />
+            Upload a photo...
+          </pre>
+      }
     </div>
   )
 }

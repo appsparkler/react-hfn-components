@@ -4,7 +4,7 @@ import FirebaseApp from './firebase-app'
 import './styles.sass'
 
 export default () => {
-  const storageRef = FirebaseApp.storage().ref('abhyasi/profile/pic1')
+  const storageRef = FirebaseApp.storage().ref('abhyasi/profile/pic2')
   const croppieConfig = {
     viewport: {width: 200, height: 200},
     boundary: {width: 300, height: 300},
@@ -14,15 +14,6 @@ export default () => {
     maxBytes: 1 * 1000 * 1000,
     storageRef,
     onUpload: (payload) => console.log(payload),
-    file: {
-      contentType: 'application/octet-stream',
-      downloadURL: 'https://firebasestorage.googleapis.com/v0/b/hfnforms-1de6a.appspot.com/o/abhyasi%2Fprofile%2Fpic?alt=media&token=95862e93-9909-449c-9e9f-0c6a9e437ab1',
-      fileName: 'pic',
-      fullPath: 'abhyasi/profile/pic',
-      size: 58332,
-      timeCreated: '2020-02-23T06:32:17.924Z',
-      updated: '2020-02-23T06:32:17.924Z',
-    },
   }
   return (<FirebasePhotoInput {...params} />)
 }
