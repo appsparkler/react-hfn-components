@@ -11,7 +11,7 @@ export default () => {
   }
   const params = {
     croppieConfig,
-    maxBytes: 1 * 1000 * 1000,
+    maxBytes: 20 * 1000 * 1000,
     storageRef,
     onUpload: (payload) => console.log(payload),
   }

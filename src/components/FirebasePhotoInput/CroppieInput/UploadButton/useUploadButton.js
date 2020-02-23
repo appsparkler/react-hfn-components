@@ -11,9 +11,10 @@ function handleError() {
 }
 
 async function handleDone({props, task}) {
-  props.setProgress(100)
-  props.setIsUploading(false)
-  props.setUploaded(true)
+  setTimeout(() => {
+    props.setProgress(100)
+    props.setIsUploading(false)
+  }, 1000)
   await task
   const downloadURL = await task.snapshot.ref.getDownloadURL()
   const {
