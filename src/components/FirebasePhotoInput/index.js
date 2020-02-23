@@ -39,4 +39,8 @@ FirebasePhotoInput.defaultProps = {
   onUpload: () => null,
 }
 
+FirebasePhotoInput.propTypes = {
+  onUpload: PropTypes.function,
+}
+
 export default FirebasePhotoInput
