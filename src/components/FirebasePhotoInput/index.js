@@ -3,6 +3,7 @@ import CroppieInput from './CroppieInput'
 import FileInput from './FileInput'
 import PropTypes from 'prop-types'
 import useFirebasePhotoInput from './useFirebasePhotoInput'
+import CurrentPhoto from './CurrentPhoto'
 import './styles.sass'
 
 const FirebasePhotoInput = (props) => {
@@ -22,8 +23,7 @@ const FirebasePhotoInput = (props) => {
       </div>
 
       <div className="state">
-        <h2>Current Photo</h2>
-        <img src="https://www.fillmurray.com/120/120" />
+        <CurrentPhoto {...superProps} />
       </div>
 
       <div className="state">
@@ -47,6 +47,7 @@ FirebasePhotoInput.propTypes = {
   onUpload: PropTypes.func,
   croppieConfig: PropTypes.object,
   file: PropTypes.object,
+  storageRef: PropTypes.object.isRequired,
 }
 
 export default FirebasePhotoInput
