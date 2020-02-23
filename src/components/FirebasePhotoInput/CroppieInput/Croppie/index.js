@@ -5,6 +5,7 @@ const Croppie = (props) => {
 
   return (
     <div className="Croppie">
+      <h3>Crop photo:</h3>
       <div
         ref={croppieRef}
         className="the-croppie"
