@@ -26,6 +26,7 @@ function handleDone({props}) {
   props.setProgress(100)
   props.setIsUploading(false)
   props.setUploaded(true)
+  props.onUpload(true)
 }
 
 async function uploadPhoto({props}, evt) {

@@ -1,6 +1,7 @@
 import React from 'react'
 import CroppieInput from './CroppieInput'
 import FileInput from './FileInput'
+import PropTypes from 'prop-types'
 import useFirebasePhotoInput from './useFirebasePhotoInput'
 import './styles.sass'
 
@@ -32,6 +33,10 @@ const FirebasePhotoInput = (props) => {
 
     </div>
   )
+}
+
+FirebasePhotoInput.defaultProps = {
+  onUpload: () => null,
 }
 
 export default FirebasePhotoInput
