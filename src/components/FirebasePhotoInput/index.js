@@ -13,24 +13,30 @@ const FirebasePhotoInput = (props) => {
     <div className="FirebasePhotoInput">
 
       <div className="state">
-        <h2>No File Uploaded State</h2>
-        <FileInput {...superProps} />
-      </div>
-
-      <div className="state">
-        <h2>Exceeds MaxBytes</h2>
-        {superProps?.exceedsMaxBytes && <p>Exceeds max Bytes...</p>}
-      </div>
-
-      <div className="state">
         <CurrentPhoto {...superProps} />
-      </div>
-
-      <div className="state">
-        <h2>Croppie</h2>
+        <FileInput {...superProps} />
         {selectedFile && <CroppieInput {...superProps}/>}
       </div>
+      {/*
+            <div className="state">
+              <h2>No File Uploaded State</h2>
+              <FileInput {...superProps} />
+            </div>
 
+            <div className="state">
+              <h2>Exceeds MaxBytes</h2>
+              {superProps?.exceedsMaxBytes && <p>Exceeds max Bytes...</p>}
+            </div>
+
+            <div className="state">
+              <CurrentPhoto {...superProps} />
+            </div>
+
+            <div className="state">
+              <h2>Croppie</h2>
+              {selectedFile && <CroppieInput {...superProps}/>}
+            </div>
+      */}
     </div>
   )
 }
