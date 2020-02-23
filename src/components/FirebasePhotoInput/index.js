@@ -44,8 +44,8 @@ FirebasePhotoInput.defaultProps = {
 }
 
 FirebasePhotoInput.propTypes = {
-  onUpload: PropTypes.function,
-  croppieconfig: PropTypes.object,
+  onUpload: PropTypes.func,
+  croppieConfig: PropTypes.object,
 
 }
 

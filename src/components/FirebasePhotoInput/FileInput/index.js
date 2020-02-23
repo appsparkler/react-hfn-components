@@ -23,7 +23,7 @@ FileInput.propTypes = {
   name: PropTypes.string,
   label: PropTypes.string,
   value: PropTypes.object,
-  onUpload: PropTypes.object,
+  onUpload: PropTypes.func,
   storageRef: PropTypes.object,
   config: PropTypes.object,
   // required: PropTypes.boolean,
