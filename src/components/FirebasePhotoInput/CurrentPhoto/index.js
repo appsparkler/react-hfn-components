@@ -8,8 +8,12 @@ const CurrentPhoto = (props) => {
     <div className="CurrentPhoto">
       {props.downloadURL &&
         <>
-          <h3>Current Photo: </h3>
-          <img src={ props.downloadURL } />
+          <h5 className="text-muted">Current Photo: </h5>
+          <img
+            className="img-thumbnail"
+            height="100"
+            width="113"
+            src={ props.downloadURL } />
         </>
       }
       {!props.downloadURL &&

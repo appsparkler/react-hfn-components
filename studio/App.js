@@ -4,7 +4,7 @@ import FirebaseApp from './firebase-app'
 import './styles.sass'
 
 export default () => {
-  const storageRef = FirebaseApp.storage().ref('abhyasi/profile/pic2')
+  const storageRef = FirebaseApp.storage().ref('abhyasi/profile/pic3')
   const croppieConfig = {
     viewport: {width: 200, height: 200},
     boundary: {width: 300, height: 300},
@@ -15,7 +15,9 @@ export default () => {
     storageRef,
     onUpload: (payload) => console.log(payload),
   }
-  return (<FirebasePhotoInput {...params} />)
+  return (<div className="container">
+    <FirebasePhotoInput {...params} />
+  </div>)
 }
 
 

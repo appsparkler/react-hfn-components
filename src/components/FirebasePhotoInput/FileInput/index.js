@@ -6,15 +6,18 @@ const FileInput = (props) => {
   const {handleChange} = useFileInput({props})
   return (
     <div className="FileInput">
-      <label>
-        <span className="label-text">Upload Photo</span>
-        <span className="required-asterix"> *</span>
-        <br />
-        <input
-          type="file"
-          onChange={ handleChange }
-        />
-      </label>
+      <div className="form-group">
+        <label>
+          <span className="label-text">Upload Photo</span>
+          <span className="required-asterix"> *</span>
+          <br />
+          <input
+            type="file"
+            className="form-control"
+            onChange={ handleChange }
+          />
+        </label>
+      </div>
     </div>
   )
 }

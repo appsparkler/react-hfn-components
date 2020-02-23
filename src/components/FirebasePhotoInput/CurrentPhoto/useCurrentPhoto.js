@@ -5,7 +5,6 @@ async function setDownloadURLOnState({props}) {
     const downloadURL = await props.storageRef.getDownloadURL()
     props.setDownloadURL(downloadURL)
   } catch (e) {
-    debugger
   }
 }
 
