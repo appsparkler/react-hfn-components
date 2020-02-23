@@ -10,13 +10,13 @@ const FirebasePhotoInput = (props) => {
   const superProps = useFirebasePhotoInput({props})
   const {selectedFile} = superProps
   return (
-    <div className="FirebasePhotoInput">
-
-      <div className="state">
+    <div className="ReactHFN_FirebasePhotoInput">
+      <div className="CurrentPhotoAndFileInput">
         <CurrentPhoto {...superProps} />
         <FileInput {...superProps} />
-        {selectedFile && <CroppieInput {...superProps}/>}
       </div>
+      {selectedFile && <CroppieInput {...superProps}/>}
+
       {/*
             <div className="state">
               <h2>No File Uploaded State</h2>

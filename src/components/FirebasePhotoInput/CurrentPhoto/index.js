@@ -5,7 +5,7 @@ import useCurrentPhoto from './useCurrentPhoto'
 const CurrentPhoto = (props) => {
   useCurrentPhoto({props})
   return (
-    <div className="Current Photo">
+    <div className="CurrentPhoto">
       {props.downloadURL &&
         <>
           <h3>Current Photo: </h3>
