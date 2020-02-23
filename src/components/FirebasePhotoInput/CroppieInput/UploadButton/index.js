@@ -15,7 +15,8 @@ export default UploadButton
 function uploadPhoto({props}, evt) {
   evt.preventDefault()
   evt.stopPropagation()
-  debugger
+  const {storageRef, file2Upload} = props
+  storageRef.put(file2Upload).then(console.log)
 }
 
 function useUploadButtonProps({props}) {
