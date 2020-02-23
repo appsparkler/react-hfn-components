@@ -5,7 +5,9 @@ const UploadButton = (props) => {
   const {uploadPhoto} = useUploadButton({props})
   return (
     <span className="UploadButton">
-      <button onClick={uploadPhoto}>Upload Photo</button>
+      <button
+        className="btn btn-primary btn-lg btn-block"
+        onClick={uploadPhoto}>Upload Photo</button>
     </span>
   )
 }
