@@ -17,10 +17,11 @@ function selectedFileDidChange({props}) {
     }
     const newCroppie = new Croppie(croppieRef.current, config)
     setCroppie(newCroppie)
+  } else {
+    croppie.bind({
+      url: selectedFile,
+    })
   }
-  croppie?.bind({
-    url: selectedFile,
-  })
 }
 
 async function handleCroppieUpdates({props}, evt) {
@@ -50,10 +51,14 @@ function croppieDidChange({props}) {
 }
 
 export default ({props}) => {
-  // React.useEffect() TODO - on change in selected file - destroy existing croppie and set it to null
-  // TODO
-  React.useEffect(selectedFileDidChange.bind(null, {props}), [props.selectedFile])
-  React.useEffect(croppieDidChange.bind(null, {props}), [props.croppie])
+  React.useEffect(
+      selectedFileDidChange.bind(null, {props}),
+      [props.selectedFile],
+  )
+  React.useEffect(
+      croppieDidChange.bind(null, {props}),
+      [props.croppie],
+  )
   return {
     ...props,
     photoPreviewRef: props.photoPreviewRef,
