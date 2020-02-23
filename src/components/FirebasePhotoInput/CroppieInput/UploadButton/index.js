@@ -25,6 +25,7 @@ function handleError() {
 function handleDone({props}) {
   props.setProgress(100)
   props.setIsUploading(false)
+  props.setUploaded(true)
 }
 
 async function uploadPhoto({props}, evt) {

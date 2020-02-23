@@ -5,6 +5,7 @@ export default ({props}) => {
   const [croppie, setCroppie] = React.useState(null)
   const [exceedsMaxBytes, setExceedsMaxBytes] = React.useState(null)
   const [file2Upload, setFile2Upload] = React.useState(null)
+  const [uploaded, setUploaded] = React.useState(false)
   const [isUploading, setIsUploading] = React.useState(false)
   const [progress, setProgress] = React.useState(0)
   const photoPreviewRef = React.useRef()
@@ -16,6 +17,7 @@ export default ({props}) => {
     photoPreviewRef, croppieRef,
 
     // STATES
+    uploaded, setUploaded,
     progress, setProgress,
     isUploading, setIsUploading,
     selectedFile, setSelectedFile,
