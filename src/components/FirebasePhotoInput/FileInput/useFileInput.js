@@ -13,9 +13,11 @@ function handleChange({props}, evt) {
   evt.stopPropagation()
   const {files} = evt.target
   const photo = files.item(0)
-  const reader = new FileReader()
-  reader.addEventListener('load', handleFileLoaded.bind(null, {props}))
-  reader.readAsDataURL(photo)
+  if (photo) {
+    const reader = new FileReader()
+    reader.addEventListener('load', handleFileLoaded.bind(null, {props}))
+    reader.readAsDataURL(photo)
+  }
 }
 
 export default ({props}) => {
