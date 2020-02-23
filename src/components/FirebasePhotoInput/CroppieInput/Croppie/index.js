@@ -4,7 +4,7 @@ const Croppie = (props) => {
   const {croppieRef} = props
 
   return (
-    <div className="Croppie">
+    <div className="Croppie col-xs-8">
       <h3>Crop photo:</h3>
       <div
         ref={croppieRef}

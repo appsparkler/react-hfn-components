@@ -16,7 +16,7 @@ const FirebasePhotoInput = (props) => {
         <FileInput {...superProps} />
       </div>
       <div className="row">
-        <div className="col-xs-12 col-sm-7 col-lg-9">
+        <div className="col-xs-12">
           {selectedFile && <CroppieInput {...superProps}/>}
         </div>
       </div>

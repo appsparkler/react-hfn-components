@@ -10,7 +10,7 @@ const CroppieInput = (props) => {
   const superProps = useCroppieInput({props})
   return (
     <div
-      className="RFHN-Croppie"
+      className="RFHN-Croppie col-xs-12"
     >
       <Croppie {...superProps} />
       <div className="PreviewAndUpload">
