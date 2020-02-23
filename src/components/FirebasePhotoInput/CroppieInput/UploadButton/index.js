@@ -3,7 +3,7 @@ import React from 'react'
 const UploadButton = (props) => {
   const {uploadPhoto} = useUploadButtonProps({props})
   return (
-    <span>
+    <span className="UploadButton">
       <button onClick={uploadPhoto}>Upload Photo</button>
     </span>
   )
