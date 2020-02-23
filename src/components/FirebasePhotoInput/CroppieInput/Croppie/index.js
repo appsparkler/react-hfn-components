@@ -5,7 +5,7 @@ const Croppie = (props) => {
 
   return (
     <div className="Croppie col-xs-8">
-      <h3>Crop photo:</h3>
+      <h3 className="text-center text-muted">Crop photo</h3>
       <div
         ref={croppieRef}
         className="the-croppie"
