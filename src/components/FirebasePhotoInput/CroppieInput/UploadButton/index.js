@@ -4,11 +4,11 @@ import useUploadButton from './useUploadButton'
 const UploadButton = (props) => {
   const {uploadPhoto} = useUploadButton({props})
   return (
-    <span className="UploadButton">
+    <div className="UploadButton">
       <button
         className="btn btn-primary btn-lg btn-block"
         onClick={uploadPhoto}>Upload Photo</button>
-    </span>
+    </div>
   )
 }
 
