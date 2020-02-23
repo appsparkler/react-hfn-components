@@ -8,7 +8,7 @@ const CurrentPhoto = (props) => {
     <div className="Current Photo">
       {props.downloadURL &&
         <>
-          <h3>Current Photo</h3>
+          <h3>Current Photo: </h3>
           <img src={ props.downloadURL } />
         </>
       }

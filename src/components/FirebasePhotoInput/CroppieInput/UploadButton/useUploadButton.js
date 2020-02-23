@@ -35,6 +35,7 @@ async function handleDone({props, task}) {
     updated,
   }
   props.onUpload(payload)
+  props.setDownloadURL(downloadURL)
 }
 
 async function uploadPhoto({props}, evt) {

@@ -1,8 +1,12 @@
 import React from 'react'
 
 async function setDownloadURLOnState({props}) {
-  const downloadURL = await props.storageRef.getDownloadURL()
-  props.setDownloadURL(downloadURL)
+  try {
+    const downloadURL = await props.storageRef.getDownloadURL()
+    props.setDownloadURL(downloadURL)
+  } catch (e) {
+    debugger
+  }
 }
 
 function componentDidMount({props}) {
@@ -11,7 +15,5 @@ function componentDidMount({props}) {
 
 export default ({props}) => {
   React.useEffect(componentDidMount.bind(null, {props}), [])
-  return {
-
-  }
+  return {}
 }
