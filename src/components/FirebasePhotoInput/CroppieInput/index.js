@@ -2,6 +2,7 @@ import React from 'react'
 import PreviewImage from './PreviewImage'
 import UploadButton from './UploadButton'
 import Croppie from './Croppie'
+import ProgressBar from './ProgressBar'
 import useCroppieInput from './useCroppieInput'
 import 'croppie/croppie.css'
 
@@ -12,9 +13,12 @@ const CroppieInput = (props) => {
       className="RFHN-Croppie"
     >
       <Croppie {...superProps} />
+      <pre>{ props.isUploading.toString() }</pre>
       <PreviewImage {...superProps} />
       {!props.exceedMaxBytes && <UploadButton {...superProps} />}
-      {!props.exceedsMaxBytes && <p className="">Exceeds Max Bytes</p>}
+      {props.isUploading && <ProgressBar {...superProps} /> }
+      {props.exceedsMaxBytes && <p className="">Exceeds Max Bytes</p>}
+
     </div>
   )
 }
