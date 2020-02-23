@@ -46,6 +46,7 @@ const FirebasePhotoInput = (props) => {
 
 FirebasePhotoInput.defaultProps = {
   onUpload: () => null,
+  maxBytes: 3 * 1024 * 1024,
   croppieConfig: {
     viewport: {width: 200, height: 200},
     boundary: {width: 300, height: 300},

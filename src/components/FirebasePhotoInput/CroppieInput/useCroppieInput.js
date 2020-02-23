@@ -25,7 +25,7 @@ function selectedFileDidChange({props}) {
 }
 
 async function handleCroppieUpdates({props}, evt) {
-  const {croppie, photoPreviewRef, maxBytes=(5 * 1000 * 1000)} = props
+  const {croppie, photoPreviewRef, maxBytes} = props
   if (croppie) {
     const croppedImg = await croppie.result()
     photoPreviewRef.current.src = croppedImg
