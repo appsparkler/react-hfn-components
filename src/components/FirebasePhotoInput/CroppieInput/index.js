@@ -13,11 +13,13 @@ const CroppieInput = (props) => {
       className="RFHN-Croppie"
     >
       <Croppie {...superProps} />
-      <PreviewImage {...superProps} />
-      {!props.exceedMaxBytes && <UploadButton {...superProps} />}
-      {props.isUploading && <ProgressBar {...superProps} /> }
-      {props.exceedsMaxBytes && <p className="">Exceeds Max Bytes</p>}
-      {props.uploaded && <pre className="">Done...</pre>}
+      <div className="PreviewAndUpload">
+        <PreviewImage {...superProps} />
+        {!props.exceedMaxBytes && <UploadButton {...superProps} />}
+        {props.isUploading && <ProgressBar {...superProps} /> }
+        {props.exceedsMaxBytes && <p className="">Exceeds Max Bytes</p>}
+        {props.uploaded && <pre className="">Done...</pre>}
+      </div>
     </div>
   )
 }
