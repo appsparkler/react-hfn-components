@@ -17,11 +17,9 @@ const CurrentPhoto = (props) => {
         </>
       }
       {!props.downloadURL &&
-          <pre>
-            No Photo Uploaded...
-            <br />
-            Upload a photo...
-          </pre>
+        <div className="alert alert-warning">
+          <strong>No Pic Uploaded...</strong>
+        </div>
       }
     </div>
   )
