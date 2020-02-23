@@ -37,10 +37,16 @@ const FirebasePhotoInput = (props) => {
 
 FirebasePhotoInput.defaultProps = {
   onUpload: () => null,
+  croppieConfig: {
+    viewport: {width: 200, height: 200},
+    boundary: {width: 300, height: 300},
+  },
 }
 
 FirebasePhotoInput.propTypes = {
   onUpload: PropTypes.function,
+  croppieconfig: PropTypes.object,
+
 }
 
 export default FirebasePhotoInput
