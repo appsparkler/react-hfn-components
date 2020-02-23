@@ -14,7 +14,6 @@ async function handleDone({props, task}) {
   props.setProgress(100)
   props.setIsUploading(false)
   props.setUploaded(true)
-  props.onUpload(true)
   await task
   const downloadURL = await task.snapshot.ref.getDownloadURL()
   const {
@@ -41,8 +40,10 @@ async function handleDone({props, task}) {
 async function uploadPhoto({props}, evt) {
   evt.preventDefault()
   evt.stopPropagation()
-  const {storageRef, file2Upload} = props
+  props.setProgress(0)
   props.setIsUploading(true)
+  props.setUploaded(false)
+  const {storageRef, file2Upload} = props
   const task = storageRef.put(file2Upload)
   task.on(
       'state_changed',
