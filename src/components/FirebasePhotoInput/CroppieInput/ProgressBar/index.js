@@ -6,6 +6,19 @@ const ProgressBar = ({progress}) => (
     <progress min="0" max="100" value={progress} />
     <br />
     <pre>{progress?.toFixed(2)}%</pre>
+
+    <div className="progress">
+      <div
+        className="progress-bar"
+        role="progressbar"
+        aria-valuenow={progress}
+        aria-valuemin="0"
+        aria-valuemax="100"
+        style={{width: `${progress}%`}}
+      >
+        <span className="sr-only">{progress}% Complete</span>
+      </div>
+    </div>
   </div>
 )
 
