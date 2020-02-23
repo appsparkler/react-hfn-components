@@ -10,11 +10,31 @@ function handleError() {
 
 }
 
-function handleDone({props}) {
+async function handleDone({props, task}) {
   props.setProgress(100)
   props.setIsUploading(false)
   props.setUploaded(true)
   props.onUpload(true)
+  await task
+  const downloadURL = await task.snapshot.ref.getDownloadURL()
+  const {
+    fullPath,
+    contentType,
+    name,
+    size,
+    timeCreated,
+    updated,
+  } = task.snapshot.metadata
+  const payload = {
+    downloadURL,
+    fullPath,
+    contentType,
+    fileName: name,
+    size,
+    timeCreated,
+    updated,
+  }
+  props.onUpload(payload)
 }
 
 async function uploadPhoto({props}, evt) {
@@ -22,12 +42,12 @@ async function uploadPhoto({props}, evt) {
   evt.stopPropagation()
   const {storageRef, file2Upload} = props
   props.setIsUploading(true)
-  const snapshot = storageRef.put(file2Upload)
-  snapshot.on(
+  const task = storageRef.put(file2Upload)
+  task.on(
       'state_changed',
       handleStateChange.bind(null, {props}),
       handleError,
-      handleDone.bind(null, {props}),
+      handleDone.bind(null, {props, task}),
   )
 }
 
