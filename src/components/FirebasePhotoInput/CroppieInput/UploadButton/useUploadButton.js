@@ -14,6 +14,7 @@ async function handleDone({props, task}) {
   setTimeout(() => {
     props.setProgress(100)
     props.setIsUploading(false)
+    props.setUploaded(true)
   }, 1000)
   await task
   const downloadURL = await task.snapshot.ref.getDownloadURL()
