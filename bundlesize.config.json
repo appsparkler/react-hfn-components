@@ -2,7 +2,11 @@
   "files": [
     {
       "path": "./dist/react-hfn-components.min.js",
-      "maxSize": "6 kB"
+      "maxSize": "16 kB"
+    },
+    {
+      "path": "./dist/styles.css",
+      "maxSize": "2 kB"
     }
   ]
 }
