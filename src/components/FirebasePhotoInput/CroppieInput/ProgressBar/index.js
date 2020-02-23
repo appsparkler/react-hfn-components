@@ -3,8 +3,6 @@ import PropTypes from 'prop-types'
 
 const ProgressBar = ({progress}) => (
   <div className="ProgressBar">
-    <br />
-    <br />
     <div className="progress">
       <div
         className="progress-bar"
