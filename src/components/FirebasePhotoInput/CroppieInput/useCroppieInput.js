@@ -2,19 +2,25 @@ import React from 'react'
 import Croppie from 'croppie'
 import {dataURItoBlob} from './utils'
 
-function componentDidMount({props}) {
+function selectedFileDidChange({props}) {
   const {
     selectedFile,
     croppieConfig,
     croppieRef,
     setCroppie,
+    croppie,
   } = props
-  const config = {
-    url: selectedFile,
-    ...croppieConfig,
+  if (!croppie) {
+    const config = {
+      ...croppieConfig,
+      url: selectedFile,
+    }
+    const newCroppie = new Croppie(croppieRef.current, config)
+    setCroppie(newCroppie)
   }
-  const croppie = new Croppie(croppieRef.current, config)
-  setCroppie(croppie)
+  croppie?.bind({
+    url: selectedFile,
+  })
 }
 
 async function handleCroppieUpdates({props}, evt) {
@@ -44,9 +50,12 @@ function croppieDidChange({props}) {
 }
 
 export default ({props}) => {
-  React.useEffect(componentDidMount.bind(null, {props}), [])
+  // React.useEffect() TODO - on change in selected file - destroy existing croppie and set it to null
+  // TODO
+  React.useEffect(selectedFileDidChange.bind(null, {props}), [props.selectedFile])
   React.useEffect(croppieDidChange.bind(null, {props}), [props.croppie])
   return {
+    ...props,
     photoPreviewRef: props.photoPreviewRef,
     croppieRef: props.croppieRef,
   }

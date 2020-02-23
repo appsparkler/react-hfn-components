@@ -1,5 +1,6 @@
 import React from 'react'
 import PreviewImage from './PreviewImage'
+import UploadButton from './UploadButton'
 import useCroppieInput from './useCroppieInput'
 import 'croppie/croppie.css'
 
@@ -21,6 +22,7 @@ const CroppieInput = (props) => {
         </div>
       </div>
       <PreviewImage {...superProps} />
+      {!props.exceedMaxBytes && <UploadButton {...superProps} />}
     </div>
   )
 }
