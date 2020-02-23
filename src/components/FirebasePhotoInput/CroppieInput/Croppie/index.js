@@ -1,6 +1,5 @@
 import React from 'react'
 
-
 const Croppie = (props) => {
   const {croppieRef} = props
 
@@ -14,3 +13,5 @@ const Croppie = (props) => {
     </div>
   )
 }
+
+export default Croppie
