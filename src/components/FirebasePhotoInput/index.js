@@ -20,7 +20,6 @@ const FirebasePhotoInput = (props) => {
         {superProps?.exceedsMaxBytes && <p>Exceeds max Bytes...</p>}
       </div>
 
-
       <div className="state">
         <h2>Current Photo</h2>
         <img src="https://www.fillmurray.com/120/120" />
