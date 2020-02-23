@@ -12,8 +12,10 @@ const UploadButton = (props) => {
 export default UploadButton
 
 
-function handleStateChange(snapshot) {
-  console.log(`progress: ${(snapshot.bytesTransferred/snapshot.totalBytes)}`)
+function handleStateChange({props}, snapshot) {
+  if (snapshot.totalBytes) {
+    props.setProgress((snapshot.bytesTransferred/snapshot.totalBytes) * 100)
+  }
 }
 
 function handleError() {
@@ -21,6 +23,7 @@ function handleError() {
 }
 
 function handleDone({props}) {
+  props.setProgress(100)
   props.setIsUploading(false)
 }
 
@@ -32,7 +35,7 @@ async function uploadPhoto({props}, evt) {
   const snapshot = storageRef.put(file2Upload)
   snapshot.on(
       'state_changed',
-      handleStateChange,
+      handleStateChange.bind(null, {props}),
       handleError,
       handleDone.bind(null, {props}),
   )

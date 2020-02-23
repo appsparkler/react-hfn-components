@@ -18,7 +18,6 @@ const CroppieInput = (props) => {
       {!props.exceedMaxBytes && <UploadButton {...superProps} />}
       {props.isUploading && <ProgressBar {...superProps} /> }
       {props.exceedsMaxBytes && <p className="">Exceeds Max Bytes</p>}
-
     </div>
   )
 }
