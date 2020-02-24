@@ -2,6 +2,7 @@ import React from 'react'
 import useFileInput from './useFileInput'
 import ProgressBar from './ProgressBar'
 import HelpBlock from '@react-hfn-components/HelpBlock'
+import BSAlert from '@react-hfn-components/BSAlert'
 
 function FileInput(props) {
   const {
@@ -46,7 +47,7 @@ function FileInput(props) {
          ${(maxBytes/(1024 * 1024)).toFixed(2)} MB`
       }
       />
-      <p className="validation-error">{validationError}</p>
+      {validationError && <BSAlert type="danger" message={validationError} />}
     </div>
   )
 }
