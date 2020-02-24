@@ -1,6 +1,7 @@
 import React from 'react'
 import useFileInput from './useFileInput'
 import ProgressBar from './ProgressBar'
+import HelpBlock from '@react-hfn-components/HelpBlock'
 
 function FileInput(props) {
   const {
@@ -40,10 +41,11 @@ function FileInput(props) {
           />
         )
       }
-      <p className="help-block">
-        {(props && props.maxBytesInfoMessage) || 'Max file size: '}
-        {(maxBytes/(1024 * 1024)).toFixed(2)} MB
-      </p>
+      <HelpBlock msg={
+        `${(props && props.maxBytesInfoMessage) || 'Max file size: '}
+         ${(maxBytes/(1024 * 1024)).toFixed(2)} MB`
+      }
+      />
       <p className="validation-error">{validationError}</p>
     </div>
   )
