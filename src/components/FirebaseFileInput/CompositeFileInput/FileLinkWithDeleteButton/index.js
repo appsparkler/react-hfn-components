@@ -1,6 +1,6 @@
 import React from 'react'
-import FileLink from '@react-hfn-components/FileLink'
-import FileInput from '@react-hfn-components/FileInput'
+import FileLink from '../../ReadOnlyFileInput/FileLink'
+import FileInput from '../FileInput'
 
 function FileLinkWithDeleteButton(props) {
   const {file, isUploading} = props

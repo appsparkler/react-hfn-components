@@ -1,5 +1,5 @@
 import React from 'react'
-import FileLink from '@react-hfn-components/FileLink'
+import FileLink from './FileLink'
 
 function ReadOnlyFileInput(props) {
   const {file} = props

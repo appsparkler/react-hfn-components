@@ -1,6 +1,6 @@
 import React from 'react'
-import ReadOnlyFileInput from '@react-hfn-components/ReadOnlyFileInput'
-import CompositeFileInput from '@react-hfn-components/CompositeFileInput'
+import ReadOnlyFileInput from './ReadOnlyFileInput'
+import CompositeFileInput from './CompositeFileInput'
 import './styles.sass'
 import useFirebaseFileInput from './useFirebaseFileInput'
 

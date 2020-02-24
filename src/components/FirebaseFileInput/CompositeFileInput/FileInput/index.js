@@ -1,6 +1,6 @@
 import React from 'react'
 import useFileInput from './useFileInput'
-import ProgressBar from '@react-hfn-components/ProgressBar'
+import ProgressBar from './ProgressBar'
 
 function FileInput(props) {
   const {

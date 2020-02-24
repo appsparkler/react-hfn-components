@@ -1,7 +1,7 @@
 import React from 'react'
 import FileLinkWithDeleteButton
-  from '@react-hfn-components/FileLinkWithDeleteButton'
-import FileInput from '@react-hfn-components/FileInput'
+  from './FileLinkWithDeleteButton'
+import FileInput from './FileInput'
 import useCompositeFileInput from './useCompositeFileInput'
 
 function CompositeFileInput(props) {
