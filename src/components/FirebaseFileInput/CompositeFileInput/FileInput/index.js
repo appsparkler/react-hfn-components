@@ -15,7 +15,6 @@ function FileInput(props) {
   } = useFileInput({props})
   return (
     <div className={ `FileInput ${file && 'edit-file'}`}>
-      {isUploading && <p className="uploading-text">Uploading...</p>}
       {!isUploading && (
         <div className="form-group">
           <label>
@@ -41,6 +40,7 @@ function FileInput(props) {
           />
         )
       }
+      {isUploading && <HelpBlock msg={ file ? 'Editing...': 'Uploading...'} />}
       <HelpBlock msg={
         `${(props && props.maxBytesInfoMessage) || 'Max file size: '}
          ${(maxBytes/(1024 * 1024)).toFixed(2)} MB`
