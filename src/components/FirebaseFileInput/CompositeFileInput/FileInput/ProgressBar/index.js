@@ -16,11 +16,17 @@ export default ({uploadDetail}) => {
       },
   )
   return (
-    <div className="progress-bar">
-      <progress max="100" value={progress}>
-        {progress && progress.toFixed(2)}%
-      </progress>
-      <div className="info">{(progress || 0).toFixed(2)}%</div>
+    <div className="progress">
+      <div
+        className="progress-bar"
+        role="progressbar"
+        aria-valuenow={progress}
+        aria-valuemin="0"
+        aria-valuemax="100"
+        style={{width: `${progress}%`}}
+      >
+        <span className="sr-only">{progress}% Complete</span>
+      </div>
     </div>
   )
 }

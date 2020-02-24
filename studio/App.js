@@ -62,12 +62,15 @@ export default () => {
 
   return (
     <div className="container">
-      <h3>Read Only Version</h3>
-      <FirebaseFileInput {...readOnlyParams} />
+      <div className="row">
+        <div className="col-xs-12 col-sm-3">
+          <h3>Read Only Version</h3>
+          <FirebaseFileInput {...readOnlyParams} />
 
-      <h3>Editable Version</h3>
-      <FirebaseFileInput {...editableVersionParams} />
-
+          <h3>Editable Version</h3>
+          <FirebaseFileInput {...editableVersionParams} />
+        </div>
+      </div>
     </div>
   )
 }
