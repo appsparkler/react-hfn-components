@@ -16,19 +16,21 @@ function FileInput(props) {
     <div className={ `FileInput ${file && 'edit-file'}`}>
       {isUploading && <p className="uploading-text">Uploading...</p>}
       {!isUploading && (
-        <label >
-          <span className="label-text">{ props && props.label }</span>
-          <span className="required-asterix">{ props?.required && '*'}</span>
-          <br />
-
+        <div className="form-group">
+          <label>
+            <span className="label-text">{ props && props.label }</span>
+            <span className="required-asterix">{ props?.required && '*'}</span>
+          </label>
           <input
+            type="file"
             type={type}
             disabled={props.disabled || false}
             name={props.name || 'file'}
             required={props.required || false}
             onInput={handleInput}
           />
-        </label>
+
+        </div>
       )}
       {
         uploadDetail && isUploading && (
@@ -38,7 +40,7 @@ function FileInput(props) {
           />
         )
       }
-      <p className="info">
+      <p className="help-block">
         {(props && props.maxBytesInfoMessage) || 'Max file size: '}
         {(maxBytes/(1024 * 1024)).toFixed(2)} MB
       </p>
