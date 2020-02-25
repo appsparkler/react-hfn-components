@@ -1,4 +1,5 @@
 import React from 'react'
+import HelpBlock from '@react-hfn-components/HelpBlock'
 import useFileLink from './useFileLink'
 
 function FileLink(props) {
@@ -7,9 +8,7 @@ function FileLink(props) {
     <div className="FileLink">
       {
         isVerifying && (
-          <span>
-            {props.isVerifyingMessage || 'is Verifying'}
-          </span>
+          <HelpBlock msg={props.isVerifyingMessage || 'Verifying...'} />
         )
       }
       {
