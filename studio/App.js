@@ -21,15 +21,9 @@ import './styles.sass'
 // }
 
 
-export default () => {
+const StudioApp = () => {
   const storageRef = FirebaseApp.storage().ref('id-proofs/abc')
-  const [file, setFile] = React.useState({
-    fileName: 'abc',
-    bytes: 426,
-    fullPath: 'id-proofs/abc',
-    contentType: 'text/javascript',
-    downloadUrl: 'https://firebasestorage.googleapis.com/v0/b/hfnforms-1de6a.appspot.com/o/id-proofs%2Fabc?alt=media&token=a2da51f1-b991-4e11-9d07-9e38bf89ed2b',
-  })
+  const [file, setFile] = React.useState()
 
   const readOnlyParams = {
     readOnly: true,
@@ -38,8 +32,22 @@ export default () => {
     storageRef,
   }
 
+  const CustomFileInput = (props, ref) => (
+    <div><h1>Custom File Input</h1><input {...props} ref={ref} /></div>
+  )
+
+  const components = {
+    fileInput: React.forwardRef(CustomFileInput),
+  }
+
   const editableVersionParams = {
+    // OPTIONAL PARAMETERS
+    components,
+
+    // REQUIRED PARAMETERS
+
     label: 'Id Proofs',
+
     // disabled: true,
     readOnly: false,
     required: true,
@@ -70,9 +78,11 @@ export default () => {
 
           <h3>Editable Version</h3>
           <FirebaseFileInput {...editableVersionParams} />
-          
+
         </div>
       </div>
     </div>
   )
 }
+
+export default StudioApp

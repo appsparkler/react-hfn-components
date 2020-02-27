@@ -5,6 +5,7 @@ import HelpBlock from '@react-hfn-components/HelpBlock'
 import BSAlert from '@react-hfn-components/BSAlert'
 
 function FileInput(props) {
+  debugger
   const {
     handleInput,
     validationError,
@@ -22,14 +23,20 @@ function FileInput(props) {
             <span className="label-text">{ props && props.label }</span>
             <span className="required-asterix">{ props?.required && '*'}</span>
           </label>
-          <input
-            type="file"
-            type={type}
-            disabled={props.disabled || false}
-            name={props.name || 'file'}
-            required={props.required || false}
-            onInput={handleInput}
-          />
+          {props?.components?.fileInput && (
+            <props.components.fileInput
+              type={type}
+              disabled={props.disabled || false}
+              name={props.name || 'file'}
+              required={props.required || false}
+              onInput={handleInput}
+            />) || (<input
+              type={type}
+              disabled={props.disabled || false}
+              name={props.name || 'file'}
+              required={props.required || false}
+              onInput={handleInput}
+            />)}
 
         </div>
       )}

@@ -14,8 +14,6 @@ module.exports = {
   rules: {
     semi: [2, "never"],
     'require-jsdoc': 0,
-    'react/display-name': 0,
-    'react/prop-types': 0,
     'prefer-rest-params': [0, "never"]
   }
 }
