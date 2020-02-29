@@ -8,12 +8,14 @@ export const readOnlyParams = {
 const CustomFileInput = (
     {
       type, label, maxBytes, maxBytesError, progress, name, handleInput,
-      maxBytesExceeded, isUploading,
+      maxBytesExceeded, isUploading, file,
     }
     , ref) => {
   return (
     <div>
       <h1>Custom File Input</h1>
+      <h4>{!file && 'Upload File'}</h4>
+      <h4>{file && 'Edit File'}</h4>
       <label>{label}</label>
       <input
         type={type}
@@ -51,6 +53,7 @@ CustomFileInput.propTypes = {
   maxBytesError: PropTypes.string,
   maxBytesExceeded: PropTypes.bool,
 
+  file: PropTypes.object,
 }
 
 const components = {

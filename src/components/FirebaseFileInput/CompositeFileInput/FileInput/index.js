@@ -8,7 +8,7 @@ import useFileInput from './useFileInput'
 const FileInput = (props) => {
   const {
     components, type, name, label, maxBytes, maxBytesError, progress,
-    handleInput, maxBytesExceeded, isUploading,
+    handleInput, maxBytesExceeded, isUploading, file,
   } = useFileInput(props)
   return (
     <>
@@ -23,6 +23,7 @@ const FileInput = (props) => {
           handleInput={handleInput}
           maxBytesExceeded={maxBytesExceeded}
           isUploading={isUploading}
+          file={file}
         />
       )}
 

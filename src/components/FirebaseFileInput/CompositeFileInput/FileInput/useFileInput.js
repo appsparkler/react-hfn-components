@@ -104,8 +104,8 @@ export default (props) => {
   const [isUploading, setIsUploading] = React.useState(false)
   const [progress, setProgress] = React.useState(false)
   const [type, setType] = React.useState('file')
-  const [uploadError, setUploadError] = React.useState('file')
-  const [file, setFile] = React.useState('file')
+  const [uploadError, setUploadError] = React.useState(null)
+  const [file, setFile] = React.useState(null)
   const states = {
     maxBytesExceeded, setMaxBytesExceeded,
     type, setType,
@@ -121,6 +121,7 @@ export default (props) => {
     maxBytesExceeded,
     isUploading,
     type,
+    file,
     handleInput: handleInput.bind(null, {props, states}),
   }
 }
