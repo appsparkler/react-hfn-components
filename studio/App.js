@@ -5,7 +5,7 @@ import './styles.sass'
 import {readOnlyParams, editableVersionParams} from './config'
 
 const StudioApp = () => {
-  const storageRef = FirebaseApp.storage().ref('id-proofs/abc')
+  const storageRef = FirebaseApp.storage().ref('id-proofs/abc12')
   const [file, setFile] = React.useState()
   Object.assign(readOnlyParams, {
     storageRef, file, setFile,

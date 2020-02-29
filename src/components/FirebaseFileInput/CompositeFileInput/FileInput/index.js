@@ -16,6 +16,9 @@ const FileInput = (props) => {
     <>
       {components?.fileInput && (
         <>
+          <FirebaseFileLink
+            {...props}
+          />
           <components.fileInput
             type={type}
             name={name}
@@ -38,6 +41,7 @@ const FileInput = (props) => {
           <FirebaseFileLink
             {...props}
           />
+          <br />
           <label>{label}</label>
           <input
             type={type}

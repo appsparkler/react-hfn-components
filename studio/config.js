@@ -20,16 +20,24 @@ CustomFileLink.propTypes = {
 
 const CustomFileInput = (
     {
-      type, label, maxBytes, maxBytesError, progress, name, handleInput,
-      maxBytesExceeded, isUploading, uploaded, disabled, required,
+      type, label, disabled, required, name,
+      progress, isUploading, uploaded,
+      maxBytes, maxBytesError,
       isVerifying, file,
-    }
-    , ref) => {
+      handleInput,
+      maxBytesExceeded,
+    }, ref) => {
   return (
     <div>
       <h1>Custom File Input</h1>
       <h4>{!file && 'Upload File'}</h4>
       <h4>{file && 'Edit File'}</h4>
+
+      <h5>File Details:</h5>
+      {isVerifying && 'isVerifying...'}
+      {!file && !isVerifying && 'No File Uploaded...'}
+      {file && !isVerifying && <a href={file.downloadURL}>{file.fileName}</a>}
+      <br />
       <label>{label}</label>
       <input
         type={type}
@@ -68,8 +76,8 @@ CustomFileInput.propTypes = {
   disabled: PropTypes.bool,
 
   handleInput: PropTypes.func,
-  file: PropTypes.object,
 
+  file: PropTypes.object,
   isVerifying: PropTypes.bool,
 
   progress: PropTypes.number,
