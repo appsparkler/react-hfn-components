@@ -4,12 +4,16 @@ import BSAlert from '@react-hfn-components/BSAlert'
 import BSProgress from '@react-hfn-components/BSProgress'
 import PropTypes from 'prop-types'
 
-const FileInput = ({components, label, maxBytes, maxBytesError}) => {
+const FileInput = ({
+  components, type, name, label, maxBytes, maxBytesError,
+}) => {
   const progress=30
   return (
     <>
       {components?.fileInput && (
         <components.fileInput
+          type={type}
+          name={name}
           label={label}
           maxBytes={maxBytes}
           maxBytesError={maxBytesError}
@@ -20,7 +24,10 @@ const FileInput = ({components, label, maxBytes, maxBytesError}) => {
       {!components?.fileInput && (
         <div className="form-group">
           <label>{label}</label>
-          <input type="file" />
+          <input
+            type={type}
+            name={name}
+          />
           <br />
           <BSProgress
             type="info"
@@ -37,13 +44,19 @@ const FileInput = ({components, label, maxBytes, maxBytesError}) => {
 
 FileInput.propTypes = {
   components: PropTypes.object,
+
   label: PropTypes.string,
+  name: PropTypes.string,
+  type: PropTypes.string,
+
   maxBytes: PropTypes.number,
   maxBytesError: PropTypes.string,
 }
 
 FileInput.defaultProps = {
   maxBytes: 1 * 1024 * 1024, // 1MB
+  name: 'file',
+  type: 'file',
 }
 
 export default FileInput

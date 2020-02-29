@@ -5,11 +5,17 @@ export const readOnlyParams = {
   readOnly: true,
 }
 
-const CustomFileInput = ({label, maxBytes, maxBytesError, progress}, ref) => {
+const CustomFileInput = (
+    {type, label, maxBytes, maxBytesError, progress, name}
+    , ref) => {
   return (
     <div><h1>Custom File Input</h1>
       <label>{label}</label>
-      <input type="file" ref={ref} />
+      <input
+        type={type}
+        name={name}
+        ref={ref}
+      />
       <p className="help-block">Max Bytes: {maxBytes?.toFixed(2)}KB</p>
       <p className="alert alert-danger">{maxBytesError}</p>
       <span>{progress}%</span>
@@ -18,14 +24,18 @@ const CustomFileInput = ({label, maxBytes, maxBytesError, progress}, ref) => {
 }
 
 CustomFileInput.propTypes = {
+  type: PropTypes.string.isRequired,
   label: PropTypes.string,
+  name: PropTypes.string,
+
   maxBytes: PropTypes.number,
   maxBytesError: PropTypes.string,
   progress: PropTypes.number,
+
 }
 
 const components = {
-  // fileInput: React.forwardRef(CustomFileInput),
+  fileInput: React.forwardRef(CustomFileInput),
 }
 
 export const editableVersionParams = {
@@ -33,6 +43,7 @@ export const editableVersionParams = {
   // OPTIONAL PARAMETERS
   components,
   label: 'Id Proofs',
+  type: 'file', // default "file"
   // required: true,
   // disabled: true,
 
