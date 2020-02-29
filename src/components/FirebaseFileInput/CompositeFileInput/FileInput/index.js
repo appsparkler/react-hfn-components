@@ -32,11 +32,11 @@ const FileInput = (props) => {
 
       {!components?.fileInput && (
         <div className="form-group">
-          {!props.file && <FirebaseFileLink
+          <FirebaseFileLink
             storageRef={props.storageRef}
             file={props.file}
             setFile={props.setFile}
-          />}
+          />
           <label>{label}</label>
           <input
             type={type}

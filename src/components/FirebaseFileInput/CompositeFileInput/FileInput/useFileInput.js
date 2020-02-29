@@ -13,7 +13,7 @@ function handleError({props, states}, e) {
 }
 
 async function handleDone({props, states, uploadTask, file}) {
-  const downloadUrl = await Promise.resolve(
+  const downloadURL = await Promise.resolve(
       props.storageRef.getDownloadURL(),
   )
   states.setIsUploading(false)
@@ -23,13 +23,14 @@ async function handleDone({props, states, uploadTask, file}) {
     bytes: file.size,
     fullPath: metadata.fullPath,
     contentType: metadata.contentType,
-    downloadUrl,
+    downloadURL,
   }
   props.onUpload && props.onUpload(uploadedFile)
   states.setProgress(100)
   setTimeout(() => {
     states.setProgress(0)
     states.setUploaded(true)
+    props.setFile(uploadedFile)
   }, 800)
 }
 

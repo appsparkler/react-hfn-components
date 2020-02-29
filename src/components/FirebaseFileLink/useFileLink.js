@@ -4,9 +4,9 @@ async function verifyFile({
   props, setDownloadURL, setIsVerifying, setMetadata}) {
   try {
     setIsVerifying(true)
-    const downloadUrl = await props.storageRef.getDownloadURL()
+    const downloadURL = await props.storageRef.getDownloadURL()
     const metadata = await props.storageRef.getMetadata()
-    setDownloadURL(downloadUrl)
+    setDownloadURL(downloadURL)
     setMetadata(metadata)
     setIsVerifying(false)
     props.setFile({
@@ -14,7 +14,7 @@ async function verifyFile({
       bytes: metadata.size,
       fullPath: metadata.fullPath,
       contentType: metadata.contentType,
-      downloadUrl,
+      downloadURL,
     })
   } catch (e) {
     setIsVerifying(false)
@@ -22,18 +22,26 @@ async function verifyFile({
   }
 }
 
+function fileDidChange() {
+
+}
+
 function componentDidMount(inputs) {
   verifyFile({...inputs})
 }
 
-export default ({props}) => {
+export default (props) => {
   const [downloadURL, setDownloadURL] = React.useState(null)
   const [isVerifying, setIsVerifying] = React.useState(false)
   const [metadata, setMetadata] = React.useState(false)
   React.useEffect(componentDidMount.bind(null, {
     props, setDownloadURL, setIsVerifying, setMetadata,
   }), [])
+  React.useEffect(fileDidChange.bind(null, {
+    props, setDownloadURL, setIsVerifying, setMetadata,
+  }), [props.file])
   return {
+    ...props,
     downloadURL,
     isVerifying,
     metadata,

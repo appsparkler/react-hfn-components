@@ -4,13 +4,13 @@ import BSAlert from '@react-hfn-components/BSAlert'
 import useFileLink from './useFileLink'
 
 function FileLink(props) {
-  const {isVerifying, downloadURL, metadata} = useFileLink({props})
+  const {isVerifying, file} = useFileLink(props)
   return (
     <div className="FileLink">
       {isVerifying && <BSAlert type="info" msg={props.isVerifyingMessage} />}
-      {downloadURL && metadata?.customMetadata?.fileName && (
-        <a href={downloadURL}>
-          {metadata.customMetadata.fileName}
+      {file?.downloadURL && file?.fileName && (
+        <a href={file.downloadURL}>
+          {file.fileName}
         </a>
       )}
     </div>
@@ -20,6 +20,7 @@ function FileLink(props) {
 FileLink.propTypes = {
   isVerifyingMessage: PropTypes.string,
   storageRef: PropTypes.object.isRequired,
+  file: PropTypes.object,
 }
 
 FileLink.defaultProps = {
