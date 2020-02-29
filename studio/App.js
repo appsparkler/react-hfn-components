@@ -1,5 +1,5 @@
 import React from 'react'
-import {FirebaseFileInput/* , FirebasePhotoInput*/} from '@appsparkler/react-hfn-components'
+import {FirebaseFileInput} from '@appsparkler/react-hfn-components'
 import FirebaseApp from './firebase-app'
 import './styles.sass'
 
