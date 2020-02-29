@@ -4,13 +4,6 @@ import './styles.sass'
 import {readOnlyParams, editableVersionParams} from './config'
 
 const StudioApp = () => {
-  const [file, setFile] = React.useState()
-  Object.assign(readOnlyParams, {
-    file, setFile,
-  })
-  Object.assign(editableVersionParams, {
-    file, setFile,
-  })
   return (
     <div className="container">
       <div className="row">
