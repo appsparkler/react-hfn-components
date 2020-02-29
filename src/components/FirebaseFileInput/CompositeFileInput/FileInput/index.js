@@ -10,15 +10,12 @@ const FileInput = (props) => {
   const {
     components, type, name, label, maxBytes, maxBytesError, progress,
     handleInput, maxBytesExceeded, isUploading, file, disabled, required,
-    uploaded,
+    uploaded, isVerifying,
   } = useFileInput(props)
   return (
     <>
       {components?.fileInput && (
         <>
-          <FirebaseFileLink
-            {...props}
-          />
           <components.fileInput
             type={type}
             name={name}
@@ -29,8 +26,9 @@ const FileInput = (props) => {
             handleInput={handleInput}
             maxBytesExceeded={maxBytesExceeded}
             isUploading={isUploading}
-            file={file}
             uploaded={uploaded}
+            isVerifying={isVerifying}
+            file={file}
           />
         </>
       )}
@@ -38,9 +36,7 @@ const FileInput = (props) => {
       {!components?.fileInput && (
         <div className="form-group">
           <FirebaseFileLink
-            storageRef={props.storageRef}
-            file={props.file}
-            setFile={props.setFile}
+            {...props}
           />
           <label>{label}</label>
           <input
