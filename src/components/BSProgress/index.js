@@ -1,10 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const BSProgress = ({progress}) => (
-  <div className="progress">
+const BSProgress = ({progress, striped, type}) => (
+  <div className={`progress ${striped && 'progress-striped'}`}>
     <div
-      className="progress-bar"
+      className={`progress-bar ${type && 'progress-bar-' + type}`}
       role="progressbar"
       aria-valuenow={progress}
       aria-valuemin="0"
@@ -18,6 +18,8 @@ const BSProgress = ({progress}) => (
 
 BSProgress.propTypes = {
   progress: PropTypes.number.isRequired,
+  striped: PropTypes.bool,
+  type: PropTypes.string,
 }
 
 export default BSProgress

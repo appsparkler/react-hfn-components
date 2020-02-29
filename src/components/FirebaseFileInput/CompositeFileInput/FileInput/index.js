@@ -22,7 +22,11 @@ const FileInput = ({components, label, maxBytes, maxBytesError}) => {
           <label>{label}</label>
           <input type="file" />
           <br />
-          <BSProgress progress="30" />
+          <BSProgress
+            type="info"
+            striped="true"
+            progress="30"
+          />
           <HelpBlock msg={`${maxBytes.toFixed()}MB`} />
           <BSAlert type="danger" msg={`${maxBytesError}`} />
         </div>
