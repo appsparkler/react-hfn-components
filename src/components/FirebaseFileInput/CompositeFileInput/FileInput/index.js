@@ -10,6 +10,7 @@ const FileInput = (props) => {
   const {
     components, type, name, label, maxBytes, maxBytesError, progress,
     handleInput, maxBytesExceeded, isUploading, file, disabled, required,
+    uploaded,
   } = useFileInput(props)
   return (
     <>
@@ -25,6 +26,7 @@ const FileInput = (props) => {
           maxBytesExceeded={maxBytesExceeded}
           isUploading={isUploading}
           file={file}
+          uploaded={uploaded}
         />
       )}
 
@@ -40,13 +42,14 @@ const FileInput = (props) => {
             required={required}
           />
           <br />
-          {isUploading && (
+          {isUploading && !uploaded && (
             <BSProgress
               type="info"
               striped={true}
               progress={progress}
             />
           )}
+          {uploaded && <BSAlert type="info" msg="Uploaded..." />}
           <HelpBlock msg={`${maxBytes.toFixed()}MB`} />
           {maxBytesExceeded && (
             <BSAlert type="danger" msg={`${maxBytesError}`} />

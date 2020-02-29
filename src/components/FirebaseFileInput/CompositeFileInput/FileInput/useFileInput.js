@@ -28,7 +28,10 @@ async function handleDone({props, states, uploadTask, file}) {
   states.setFile(uploadedFile)
   props.onUpload && props.onUpload(uploadedFile)
   states.setProgress(100)
-  setTimeout(() => states.setProgress(0), 800)
+  setTimeout(() => {
+    states.setProgress(0)
+    states.setUploaded(true)
+  }, 800)
 }
 
 async function upload({props, states}, evt) {
@@ -78,6 +81,7 @@ async function handleInput({props, states}, evt) {
   states.setMaxBytesExceeded(false)
   states.setIsUploading(false)
   states.setFile(null)
+  states.setUploaded(false)
   const withinFileLimit = validateFileSize({props, states}, evt)
   if (withinFileLimit) await upload({props, states}, evt)
 }
@@ -89,6 +93,7 @@ export default (props) => {
   const [type, setType] = React.useState('file')
   const [uploadError, setUploadError] = React.useState(null)
   const [file, setFile] = React.useState(null)
+  const [uploaded, setUploaded] = React.useState(false)
   const states = {
     maxBytesExceeded, setMaxBytesExceeded,
     type, setType,
@@ -96,6 +101,7 @@ export default (props) => {
     progress, setProgress,
     uploadError, setUploadError,
     file, setFile,
+    uploaded, setUploaded,
   }
   React.useEffect(typeDidChange.bind(null, {props, states}), [type])
   return {
@@ -105,6 +111,7 @@ export default (props) => {
     isUploading,
     type,
     file,
+    uploaded,
     handleInput: handleInput.bind(null, {props, states}),
   }
 }
