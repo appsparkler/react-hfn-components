@@ -1,14 +1,10 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import FileInput from './FileInput'
 
-const CompositeFileInput = () => (
+const CompositeFileInput = (props) => (
   <div>
-    <FileInput />
+    <FileInput {...props} />
   </div>
 )
-
-CompositeFileInput.propTypes = {
-}
 
 export default CompositeFileInput

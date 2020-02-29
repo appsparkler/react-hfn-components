@@ -18,12 +18,15 @@ const StudioApp = () => {
       <div className="row">
         <div className="col-xs-12 col-sm-3">
 
-          <h3>Read Only Version</h3>
-          <FirebaseFileInput {...readOnlyParams} />
+          <div className="well well-md">
+            <h3>Read Only Version</h3>
+            <FirebaseFileInput {...readOnlyParams} />
+          </div>
 
-          <h3>Editable Version</h3>
-          <FirebaseFileInput {...editableVersionParams} />
-
+          <div className="well well-md">
+            <h3>Editable Version</h3>
+            <FirebaseFileInput {...editableVersionParams} />
+          </div>
         </div>
       </div>
     </div>

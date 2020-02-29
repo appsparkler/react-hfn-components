@@ -1,12 +1,22 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 export const readOnlyParams = {
   readOnly: true,
 }
 
-const CustomFileInput = (props, ref) => (
-  <div><h1>Custom File Input</h1><input {...props} ref={ref} /></div>
-)
+const CustomFileInput = (props, ref) => {
+  return (
+    <div><h1>Custom File Input</h1>
+      <label>{props.label}</label>
+      <input {...props} ref={ref} />
+    </div>
+  )
+}
+
+CustomFileInput.propTypes = {
+  label: PropTypes.string,
+}
 
 const components = {
   fileInput: React.forwardRef(CustomFileInput),

@@ -6,7 +6,7 @@ const FirebaseFileInput = (props) => {
   return (
     <div>
       {props.readOnly && <h2>ReadOnly Version</h2>}
-      {!props.readOnly && <CompositeFileInput/>}
+      {!props.readOnly && <CompositeFileInput {...props}/>}
     </div>
   )
 }
