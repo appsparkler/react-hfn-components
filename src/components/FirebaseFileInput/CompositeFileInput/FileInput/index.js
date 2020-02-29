@@ -21,9 +21,10 @@ const FileInput = ({components, label, maxBytes, maxBytesError}) => {
         <div className="form-group">
           <label>{label}</label>
           <input type="file" />
+          <br />
           <BSProgress progress="30" />
           <HelpBlock msg={`${maxBytes.toFixed()}MB`} />
-          <BSAlert msg={`${maxBytesError}`} />
+          <BSAlert type="danger" msg={`${maxBytesError}`} />
         </div>
       )}
     </>
