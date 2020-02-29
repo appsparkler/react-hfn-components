@@ -32,7 +32,11 @@ const FileInput = (props) => {
 
       {!components?.fileInput && (
         <div className="form-group">
-          {!isUploading && <FirebaseFileLink storageRef={props.storageRef} />}
+          {!props.file && <FirebaseFileLink
+            storageRef={props.storageRef}
+            file={props.file}
+            setFile={props.setFile}
+          />}
           <label>{label}</label>
           <input
             type={type}
@@ -72,7 +76,10 @@ FileInput.propTypes = {
   maxBytes: PropTypes.number,
   maxBytesError: PropTypes.string,
 
-  storageRef: PropTypes.object,
+  file: PropTypes.object,
+  setFile: PropTypes.func,
+
+  storageRef: PropTypes.object.isRequired,
 }
 
 FileInput.defaultProps = {

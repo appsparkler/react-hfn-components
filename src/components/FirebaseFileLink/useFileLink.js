@@ -9,6 +9,13 @@ async function verifyFile({
     setDownloadURL(downloadUrl)
     setMetadata(metadata)
     setIsVerifying(false)
+    props.setFile({
+      fileName: metadata.customMetadata.fileName,
+      bytes: metadata.size,
+      fullPath: metadata.fullPath,
+      contentType: metadata.contentType,
+      downloadUrl,
+    })
   } catch (e) {
     setIsVerifying(false)
     setDownloadURL(null)

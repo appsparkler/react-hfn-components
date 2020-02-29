@@ -1,10 +1,10 @@
 import React from 'react'
 
-export default ({props}) => {
-  const [isVerifying, setIsVerifying] = React.useState(true)
+export default (props) => {
+  const [file, setFile] = React.useState(null)
   return {
     ...props,
-    isVerifying,
-    setIsVerifying,
+    file,
+    setFile,
   }
 }
