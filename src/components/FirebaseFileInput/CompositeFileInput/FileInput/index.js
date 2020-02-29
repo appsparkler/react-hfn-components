@@ -31,6 +31,7 @@ const FileInput = (props) => {
             uploaded={uploaded}
             isVerifying={isVerifying}
             file={file}
+            required={required}
           />
         </>
       )}
