@@ -1,19 +1,16 @@
 import React from 'react'
 import {FirebaseFileInput} from '@appsparkler/react-hfn-components'
-import FirebaseApp from './firebase-app'
 import './styles.sass'
 import {readOnlyParams, editableVersionParams} from './config'
 
 const StudioApp = () => {
-  const storageRef = FirebaseApp.storage().ref('id-proofs/abc12')
   const [file, setFile] = React.useState()
   Object.assign(readOnlyParams, {
-    storageRef, file, setFile,
+    file, setFile,
   })
   Object.assign(editableVersionParams, {
-    storageRef, file, setFile,
+    file, setFile,
   })
-  console.log(storageRef)
   return (
     <div className="container">
       <div className="row">

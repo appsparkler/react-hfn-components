@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import FirebaseApp from './firebase-app'
 
+const storageRef = FirebaseApp.storage().ref('id-proofs/abc12')
 
 const CustomFileLink = ({
   isVerifying, file,
@@ -98,6 +100,7 @@ const components = {
 export const readOnlyParams = {
   readOnly: true,
   components,
+  storageRef,
 }
 
 export const editableVersionParams = {
@@ -107,10 +110,11 @@ export const editableVersionParams = {
   label: 'Id Proofs',
   type: 'file', // default "file"
   required: true, // default false
-  // disabled: true, // default false
+  disabled: false, // default false
 
   // REQUIRED PARAMETERS
   readOnly: false,
+  storageRef,
 
   // OPTIONAL methods
   onUpload: (uploadedFile) => {

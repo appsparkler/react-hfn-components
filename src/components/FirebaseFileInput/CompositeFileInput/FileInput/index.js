@@ -16,9 +16,14 @@ const FileInput = (props) => {
     <>
       {components?.fileInput && (
         <>
-          <FirebaseFileLink
-            {...props}
-          />
+          <div style={{
+            position: 'fixed',
+            left: -100000,
+          }}>
+            <FirebaseFileLink
+              {...props}
+            />
+          </div>
           <components.fileInput
             type={type}
             name={name}
