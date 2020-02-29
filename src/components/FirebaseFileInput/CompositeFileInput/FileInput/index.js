@@ -58,7 +58,7 @@ const FileInput = (props) => {
             />
           )}
           {uploaded && <BSAlert type="info" msg="Uploaded..." />}
-          <HelpBlock msg={`${maxBytes.toFixed()}MB`} />
+          <HelpBlock msg={`${maxBytes.toFixed()} kB`} />
           {maxBytesExceeded && (
             <BSAlert type="danger" msg={`${maxBytesError}`} />
           )}

@@ -93,7 +93,7 @@ CustomFileInput.propTypes = {
 }
 
 const components = {
-  fileInput: React.forwardRef(CustomFileInput),
+  // fileInput: React.forwardRef(CustomFileInput),
   fileLink: CustomFileLink,
 }
 
