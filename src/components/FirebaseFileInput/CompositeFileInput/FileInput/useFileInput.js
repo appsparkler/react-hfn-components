@@ -77,6 +77,7 @@ function validateFileSize({props, states}, evt) {
   const {maxBytes} = props
   const {setMaxBytesExceeded} = states
   const file = evt.target.files.item(0)
+  if (!file) return false
   if (file.size > maxBytes) {
     setMaxBytesExceeded(true)
     resetInputFiled({props, states})
@@ -91,6 +92,9 @@ async function handleInput({props, states}, evt) {
   evt.preventDefault()
   evt.stopPropagation()
   states.setProgress(null)
+  states.setMaxBytesExceeded(false)
+  states.setIsUploading(false)
+  states.setFile(null)
   const withinFileLimit = validateFileSize({props, states}, evt)
   if (withinFileLimit) await upload({props, states}, evt)
 }

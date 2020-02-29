@@ -7,6 +7,10 @@ module.exports = {
       jsx: true
     }
   },
+  env: {
+    browser: true,
+    es6: true
+  },
   extends: [
     'google',
     'plugin:react/recommended'
@@ -14,6 +18,7 @@ module.exports = {
   rules: {
     semi: [2, "never"],
     'require-jsdoc': 0,
-    'prefer-rest-params': [0, "never"]
+    'prefer-rest-params': [0, "never"],
+    'no-undef': 2
   }
 }

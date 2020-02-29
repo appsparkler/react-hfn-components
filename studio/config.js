@@ -12,7 +12,8 @@ const CustomFileInput = (
     }
     , ref) => {
   return (
-    <div><h1>Custom File Input</h1>
+    <div>
+      <h1>Custom File Input</h1>
       <label>{label}</label>
       <input
         type={type}
@@ -20,14 +21,18 @@ const CustomFileInput = (
         onInput={handleInput}
         ref={ref}
       />
-      <pre>
+      {/* <pre>
         MaxBytesExceeded: {JSON.stringify(maxBytesExceeded)}
         <br />
         isUploading: {JSON.stringify(isUploading)}
-      </pre>
+      </pre>*/}
+
       <p className="help-block">Max Bytes: {maxBytes?.toFixed(2)}KB</p>
-      <p className="alert alert-danger">{maxBytesError}</p>
-      <pre>progress: {progress && progress.toFixed(2)}%</pre>
+
+      {maxBytesExceeded && (
+        <p className="alert alert-danger">{maxBytesError}</p>
+      )}
+      {progress && <pre>progress: {progress && progress.toFixed(2)}%</pre>}
     </div>
   )
 }
