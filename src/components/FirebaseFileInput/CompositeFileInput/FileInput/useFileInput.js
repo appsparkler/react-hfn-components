@@ -96,7 +96,7 @@ function validateFileSize({props, states}, evt) {
 async function handleInput({props, states}, evt) {
   evt.preventDefault()
   evt.stopPropagation()
-  states.setProgress(null)
+  states.setProgress(0)
   states.setMaxBytesExceeded(false)
   states.setIsUploading(false)
   states.setFile(null)
@@ -107,7 +107,7 @@ async function handleInput({props, states}, evt) {
 export default (props) => {
   const [maxBytesExceeded, setMaxBytesExceeded] = React.useState(false)
   const [isUploading, setIsUploading] = React.useState(false)
-  const [progress, setProgress] = React.useState(false)
+  const [progress, setProgress] = React.useState(0)
   const [type, setType] = React.useState('file')
   const [uploadError, setUploadError] = React.useState(null)
   const [file, setFile] = React.useState(null)

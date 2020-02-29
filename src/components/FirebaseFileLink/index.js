@@ -4,21 +4,13 @@ import HelpBlock from '@react-hfn-components/HelpBlock'
 import useFileLink from './useFileLink'
 
 function FileLink(props) {
-  const {file, isVerifying} = useFileLink({props})
+  const {isVerifying} = useFileLink({props})
   return (
     <div className="FileLink">
-      {
-        isVerifying && (
-          <HelpBlock msg={props.isVerifyingMessage || 'Verifying...'} />
-        )
-      }
-      {
-        !isVerifying && file && (
-          <a href={file && file.downloadUrl} target="__blank">
-            {file && file.fileName}
-          </a>
-        )
-      }
+      <pre>
+        isVerifying: {JSON.stringify(isVerifying)}
+
+      </pre>
     </div>
   )
 }
@@ -28,4 +20,24 @@ FileLink.propTypes = {
   storageRef: PropTypes.object.isRequired,
 }
 
+FileLink.defaultProps = {
+  isVerifyingMessage: 'Verifying...',
+}
+
 export default FileLink
+
+
+/*
+{
+  isVerifying && (
+    <HelpBlock msg={props.isVerifyingMessage} />
+  )
+}
+{
+  !isVerifying && file && (
+    <a href={file && file.downloadUrl} target="__blank">
+      {file && file.fileName}
+    </a>
+  )
+}
+*/

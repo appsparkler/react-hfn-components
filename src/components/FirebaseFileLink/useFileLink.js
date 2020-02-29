@@ -1,27 +1,28 @@
 import React from 'react'
 
-function verifyFile({props}) {
-  const {
-    setFile,
-    setIsVerifying,
-    storageRef,
-  } = props
-  storageRef.getDownloadURL()
-      .catch((err)=> {
-        if (err.code === 'storage/object-not-found') setFile(null)
-      })
-      .finally(() => {
-        setIsVerifying(false)
-      })
+async function verifyFile({props, setDownloadURL, setIsVerifying}) {
+  try {
+    setIsVerifying(true)
+    const downloadUrl = await props.storageRef.getDownloadURL()
+    setDownloadURL(downloadUrl)
+  } catch (e) {
+    setIsVerifying(false)
+    setDownloadURL(null)
+  }
 }
 
-function componentDidMount({props}) {
-  verifyFile({props})
+function componentDidMount(inputs) {
+  verifyFile({...inputs})
 }
 
 export default ({props}) => {
-  React.useEffect(componentDidMount.bind(null, {props}), [])
+  const [downloadURL, setDownloadURL] = React.useState(null)
+  const [isVerifying, setIsVerifying] = React.useState(false)
+  React.useEffect(componentDidMount.bind(null, {
+    props, setDownloadURL, setIsVerifying,
+  }), [])
   return {
-    ...props,
+    downloadURL,
+    isVerifying,
   }
 }
