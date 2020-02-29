@@ -6,7 +6,7 @@ export const readOnlyParams = {
 }
 
 const CustomFileInput = (
-    {type, label, maxBytes, maxBytesError, progress, name}
+    {type, label, maxBytes, maxBytesError, progress, name, handleInput}
     , ref) => {
   return (
     <div><h1>Custom File Input</h1>
@@ -14,6 +14,7 @@ const CustomFileInput = (
       <input
         type={type}
         name={name}
+        onInput={handleInput}
         ref={ref}
       />
       <p className="help-block">Max Bytes: {maxBytes?.toFixed(2)}KB</p>
@@ -27,6 +28,7 @@ CustomFileInput.propTypes = {
   type: PropTypes.string.isRequired,
   label: PropTypes.string,
   name: PropTypes.string,
+  handleInput: PropTypes.func,
 
   maxBytes: PropTypes.number,
   maxBytesError: PropTypes.string,

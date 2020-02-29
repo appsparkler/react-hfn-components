@@ -8,6 +8,7 @@ import useFileInput from './useFileInput'
 const FileInput = (props) => {
   const {
     components, type, name, label, maxBytes, maxBytesError, progress,
+    handleInput,
   } = useFileInput(props)
   return (
     <>
@@ -19,6 +20,7 @@ const FileInput = (props) => {
           maxBytes={maxBytes}
           maxBytesError={maxBytesError}
           progress={progress}
+          handleInput={handleInput}
         />
       )}
 
@@ -28,6 +30,7 @@ const FileInput = (props) => {
           <input
             type={type}
             name={name}
+            onInput={handleInput}
           />
           <br />
           <BSProgress

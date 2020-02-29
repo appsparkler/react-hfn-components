@@ -4,5 +4,8 @@ export default (props) => {
   return {
     ...props,
     progress: 30,
+    handleInput: () => {
+      debugger
+    },
   }
 }
