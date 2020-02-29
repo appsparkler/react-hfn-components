@@ -54,7 +54,7 @@ function FileInput(props) {
          ${(maxBytes/(1024 * 1024)).toFixed(2)} MB`
       }
       />
-      {validationError && <BSAlert type="danger" message={validationError} />}
+      {validationError && <BSAlert type="danger" msg={validationError} />}
     </div>
   )
 }

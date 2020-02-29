@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const BSAlert = ({type, message}) => (
-  <div className={`alert alert-${type}`}>{message}</div>
+const BSAlert = ({type, msg}) => (
+  <div className={`alert alert-${type}`}>{msg}</div>
 )
 
 BSAlert.defaultProps = {
@@ -11,7 +11,7 @@ BSAlert.defaultProps = {
 
 BSAlert.propTypes = {
   type: PropTypes.string,
-  message: PropTypes.string.isRequired,
+  msg: PropTypes.string.isRequired,
 }
 
 export default BSAlert

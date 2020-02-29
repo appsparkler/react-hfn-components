@@ -1,5 +1,6 @@
 import React from 'react'
 import HelpBlock from '@react-hfn-components/HelpBlock'
+import BSAlert from '@react-hfn-components/BSAlert'
 import PropTypes from 'prop-types'
 
 const FileInput = ({components, label, maxBytes}) => (
@@ -16,6 +17,7 @@ const FileInput = ({components, label, maxBytes}) => (
         <label>{label}</label>
         <input type="file" />
         <HelpBlock msg={`${maxBytes.toFixed()}MB`} />
+        <BSAlert />
       </div>
     )}
   </>

@@ -20,9 +20,9 @@ const CroppieInput = (props) => {
         <br />
         {props.isUploading && <ProgressBar {...superProps} /> }
         {props.exceedsMaxBytes && (
-          <BSAlert type="danger" message="Exceeds Max Bytes" />
+          <BSAlert type="danger" msg="Exceeds Max Bytes" />
         )}
-        {props.uploaded && <BSAlert type="success" message="Done..." />}
+        {props.uploaded && <BSAlert type="success" msg="Done..." />}
       </div>
     </div>
   )
