@@ -8,7 +8,7 @@ export const readOnlyParams = {
 const CustomFileInput = (
     {
       type, label, maxBytes, maxBytesError, progress, name, handleInput,
-      maxBytesExceeded, isUploading, file,
+      maxBytesExceeded, isUploading, file, disabled, required,
     }
     , ref) => {
   return (
@@ -22,6 +22,8 @@ const CustomFileInput = (
         name={name}
         onInput={handleInput}
         ref={ref}
+        disabled={disabled}
+        required={required}
       />
 
       <p className="help-block">Max Bytes: {maxBytes?.toFixed(2)} kB</p>
@@ -44,6 +46,9 @@ CustomFileInput.propTypes = {
   type: PropTypes.string.isRequired,
   label: PropTypes.string,
   name: PropTypes.string,
+  required: PropTypes.bool,
+  disabled: PropTypes.bool,
+
   handleInput: PropTypes.func,
 
   progress: PropTypes.number,
@@ -66,8 +71,8 @@ export const editableVersionParams = {
   components,
   label: 'Id Proofs',
   type: 'file', // default "file"
-  // required: true,
-  // disabled: true,
+  required: true, // default false
+  disabled: true, // default false
 
   // REQUIRED PARAMETERS
   readOnly: false,

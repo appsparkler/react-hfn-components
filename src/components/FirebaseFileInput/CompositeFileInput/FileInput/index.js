@@ -9,7 +9,7 @@ import useFileInput from './useFileInput'
 const FileInput = (props) => {
   const {
     components, type, name, label, maxBytes, maxBytesError, progress,
-    handleInput, maxBytesExceeded, isUploading, file,
+    handleInput, maxBytesExceeded, isUploading, file, disabled, required,
   } = useFileInput(props)
   return (
     <>
@@ -36,6 +36,8 @@ const FileInput = (props) => {
             type={type}
             name={name}
             onInput={handleInput}
+            disabled={disabled}
+            required={required}
           />
           <br />
           {isUploading && (
@@ -61,6 +63,8 @@ FileInput.propTypes = {
   label: PropTypes.string,
   name: PropTypes.string,
   type: PropTypes.string,
+  disabled: PropTypes.bool,
+  required: PropTypes.bool,
 
   maxBytes: PropTypes.number,
   maxBytesError: PropTypes.string,
@@ -72,6 +76,8 @@ FileInput.defaultProps = {
   maxBytes: 1 * 1024 * 1024, // 1MB
   name: 'file',
   type: 'file',
+  disabled: false,
+  required: false,
 }
 
 export default FileInput
