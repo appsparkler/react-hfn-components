@@ -72,7 +72,7 @@ export const editableVersionParams = {
   label: 'Id Proofs',
   type: 'file', // default "file"
   required: true, // default false
-  disabled: true, // default false
+  // disabled: true, // default false
 
   // REQUIRED PARAMETERS
   readOnly: false,
