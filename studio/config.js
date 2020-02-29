@@ -5,13 +5,14 @@ export const readOnlyParams = {
   readOnly: true,
 }
 
-const CustomFileInput = ({label, maxBytes}, ref) => {
+const CustomFileInput = ({label, maxBytes, maxBytesError, progress}, ref) => {
   return (
     <div><h1>Custom File Input</h1>
       <label>{label}</label>
       <input type="file" ref={ref} />
-      <p className="help-block">Max : {maxBytes?.toFixed(2)}KB</p>
-      <p className="alert alert-danger">Max Bytes Exceeded</p>
+      <p className="help-block">Max Bytes: {maxBytes?.toFixed(2)}KB</p>
+      <p className="alert alert-danger">{maxBytesError}</p>
+      <span>{progress}%</span>
     </div>
   )
 }
@@ -19,6 +20,8 @@ const CustomFileInput = ({label, maxBytes}, ref) => {
 CustomFileInput.propTypes = {
   label: PropTypes.string,
   maxBytes: PropTypes.number,
+  maxBytesError: PropTypes.string,
+  progress: PropTypes.number,
 }
 
 const components = {
