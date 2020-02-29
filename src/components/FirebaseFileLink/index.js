@@ -1,16 +1,18 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import HelpBlock from '@react-hfn-components/HelpBlock'
+import BSAlert from '@react-hfn-components/BSAlert'
 import useFileLink from './useFileLink'
 
 function FileLink(props) {
-  const {isVerifying} = useFileLink({props})
+  const {isVerifying, downloadURL, metadata} = useFileLink({props})
   return (
     <div className="FileLink">
-      <pre>
-        isVerifying: {JSON.stringify(isVerifying)}
-
-      </pre>
+      {isVerifying && <BSAlert type="info" msg={props.isVerifyingMessage} />}
+      {downloadURL && metadata?.customMetadata?.fileName && (
+        <a href={downloadURL}>
+          {metadata.customMetadata.fileName}
+        </a>
+      )}
     </div>
   )
 }

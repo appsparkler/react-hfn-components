@@ -1,10 +1,14 @@
 import React from 'react'
 
-async function verifyFile({props, setDownloadURL, setIsVerifying}) {
+async function verifyFile({
+  props, setDownloadURL, setIsVerifying, setMetadata}) {
   try {
     setIsVerifying(true)
     const downloadUrl = await props.storageRef.getDownloadURL()
+    const metadata = await props.storageRef.getMetadata()
     setDownloadURL(downloadUrl)
+    setMetadata(metadata)
+    setIsVerifying(false)
   } catch (e) {
     setIsVerifying(false)
     setDownloadURL(null)
@@ -18,11 +22,13 @@ function componentDidMount(inputs) {
 export default ({props}) => {
   const [downloadURL, setDownloadURL] = React.useState(null)
   const [isVerifying, setIsVerifying] = React.useState(false)
+  const [metadata, setMetadata] = React.useState(false)
   React.useEffect(componentDidMount.bind(null, {
-    props, setDownloadURL, setIsVerifying,
+    props, setDownloadURL, setIsVerifying, setMetadata,
   }), [])
   return {
     downloadURL,
     isVerifying,
+    metadata,
   }
 }

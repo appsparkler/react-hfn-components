@@ -38,11 +38,13 @@ const FileInput = (props) => {
             onInput={handleInput}
           />
           <br />
-          <BSProgress
-            type="info"
-            striped={true}
-            progress={progress}
-          />
+          {progress !== 0 && (
+            <BSProgress
+              type="info"
+              striped={true}
+              progress={progress}
+            />
+          )}
           <HelpBlock msg={`${maxBytes.toFixed()}MB`} />
           {maxBytesExceeded && (
             <BSAlert type="danger" msg={`${maxBytesError}`} />
