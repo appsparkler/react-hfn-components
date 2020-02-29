@@ -13,6 +13,7 @@ const StudioApp = () => {
   Object.assign(editableVersionParams, {
     storageRef, file, setFile,
   })
+  console.log(storageRef)
   return (
     <div className="container">
       <div className="row">
@@ -20,12 +21,12 @@ const StudioApp = () => {
 
           <div className="well well-md">
             <h3>Read Only Version</h3>
-            <FirebaseFileInput {...readOnlyParams} />
+            {<FirebaseFileInput {...readOnlyParams} />}
           </div>
 
           <div className="well well-md">
             <h3>Editable Version</h3>
-            <FirebaseFileInput {...editableVersionParams} />
+            {<FirebaseFileInput {...editableVersionParams} />}
           </div>
         </div>
       </div>

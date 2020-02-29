@@ -13,16 +13,17 @@ function handleError({props, states}, e) {
 }
 
 async function handleDone({props, states, uploadTask, file}) {
-  const snapshot = uploadTask.snapshot
   const downloadUrl = await Promise.resolve(
       props.storageRef.getDownloadURL(),
   )
   states.setIsUploading(false)
+  const metadata = await props.storageRef.getMetadata()
+  debugger
   const uploadedFile = {
-    fileName: file.name,
+    fileName: metadata.customMetadata.fileName,
     bytes: file.size,
-    fullPath: snapshot.metadata.fullPath,
-    contentType: snapshot.metadata.contentType,
+    fullPath: metadata.fullPath,
+    contentType: metadata.contentType,
     downloadUrl,
   }
   states.setProgress(100)
@@ -32,7 +33,11 @@ async function handleDone({props, states, uploadTask, file}) {
 
 async function upload({props, states}, evt) {
   const file = evt.target.files.item(0)
-  const uploadTask = props.storageRef.put(file)
+  const uploadTask = props.storageRef.put(file, {
+    customMetadata: {
+      fileName: file.name,
+    },
+  })
   states.setIsUploading(true)
   uploadTask.on(
       'state_changed',

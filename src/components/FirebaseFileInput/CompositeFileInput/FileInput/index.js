@@ -2,6 +2,7 @@ import React from 'react'
 import HelpBlock from '@react-hfn-components/HelpBlock'
 import BSAlert from '@react-hfn-components/BSAlert'
 import BSProgress from '@react-hfn-components/BSProgress'
+import FirebaseFileLink from '@react-hfn-components/FirebaseFileLink'
 import PropTypes from 'prop-types'
 import useFileInput from './useFileInput'
 
@@ -29,6 +30,7 @@ const FileInput = (props) => {
 
       {!components?.fileInput && (
         <div className="form-group">
+          <FirebaseFileLink storageRef={props.storageRef} />
           <label>{label}</label>
           <input
             type={type}
@@ -60,6 +62,8 @@ FileInput.propTypes = {
 
   maxBytes: PropTypes.number,
   maxBytesError: PropTypes.string,
+
+  storageRef: PropTypes.object,
 }
 
 FileInput.defaultProps = {
