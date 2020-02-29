@@ -18,7 +18,6 @@ async function handleDone({props, states, uploadTask, file}) {
   )
   states.setIsUploading(false)
   const metadata = await props.storageRef.getMetadata()
-  debugger
   const uploadedFile = {
     fileName: metadata.customMetadata.fileName,
     bytes: file.size,
@@ -26,47 +25,27 @@ async function handleDone({props, states, uploadTask, file}) {
     contentType: metadata.contentType,
     downloadUrl,
   }
-  states.setProgress(100)
   states.setFile(uploadedFile)
   props.onUpload && props.onUpload(uploadedFile)
+  states.setProgress(100)
+  setTimeout(() => states.setProgress(0), 800)
 }
 
 async function upload({props, states}, evt) {
   const file = evt.target.files.item(0)
+  states.setIsUploading(true)
+  states.setProgress(20)
   const uploadTask = props.storageRef.put(file, {
     customMetadata: {
       fileName: file.name,
     },
   })
-  states.setIsUploading(true)
   uploadTask.on(
       'state_changed',
       handleChange.bind(null, {props, states}),
       handleError.bind(null, {props, states}),
       handleDone.bind(null, {props, states, uploadTask, file}),
   )
-
-  // const {onUpload} = props
-  // const {setFile, setUploadDetail, setIsUploading} = states
-  // const {storageRef} = props
-  // const uploadDetail = {
-  //   file,
-  //   uploadTask: storageRef.put(file),
-  // }
-  // setIsUploading(true)
-  // setUploadDetail(uploadDetail)
-  // const snapshot = await Promise.resolve(uploadDetail.uploadTask)
-  // const downloadUrl = await Promise.resolve(snapshot.ref.getDownloadURL())
-  // const uploadedFile = {
-  //   fileName: snapshot.ref.name,
-  //   bytes: snapshot.totalBytes,
-  //   fullPath: snapshot.metadata.fullPath,
-  //   contentType: snapshot.metadata.contentType,
-  //   downloadUrl,
-  // }
-  // setIsUploading(false)
-  // onUpload && onUpload(uploadedFile)
-  // setFile(uploadedFile)
 }
 
 function resetInputFiled({props, states}) {
@@ -96,7 +75,6 @@ function validateFileSize({props, states}, evt) {
 async function handleInput({props, states}, evt) {
   evt.preventDefault()
   evt.stopPropagation()
-  states.setProgress(0)
   states.setMaxBytesExceeded(false)
   states.setIsUploading(false)
   states.setFile(null)

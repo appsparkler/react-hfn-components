@@ -30,7 +30,7 @@ const FileInput = (props) => {
 
       {!components?.fileInput && (
         <div className="form-group">
-          <FirebaseFileLink storageRef={props.storageRef} />
+          {!isUploading && <FirebaseFileLink storageRef={props.storageRef} />}
           <label>{label}</label>
           <input
             type={type}
@@ -38,7 +38,7 @@ const FileInput = (props) => {
             onInput={handleInput}
           />
           <br />
-          {progress !== 0 && (
+          {isUploading && (
             <BSProgress
               type="info"
               striped={true}
