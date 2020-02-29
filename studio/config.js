@@ -6,7 +6,10 @@ export const readOnlyParams = {
 }
 
 const CustomFileInput = (
-    {type, label, maxBytes, maxBytesError, progress, name, handleInput}
+    {
+      type, label, maxBytes, maxBytesError, progress, name, handleInput,
+      maxBytesExceeded,
+    }
     , ref) => {
   return (
     <div><h1>Custom File Input</h1>
@@ -17,6 +20,7 @@ const CustomFileInput = (
         onInput={handleInput}
         ref={ref}
       />
+      <pre>MaxBytesExceeded: {JSON.stringify(maxBytesExceeded)}</pre>
       <p className="help-block">Max Bytes: {maxBytes?.toFixed(2)}KB</p>
       <p className="alert alert-danger">{maxBytesError}</p>
       <span>{progress}%</span>

@@ -8,7 +8,7 @@ import useFileInput from './useFileInput'
 const FileInput = (props) => {
   const {
     components, type, name, label, maxBytes, maxBytesError, progress,
-    handleInput,
+    handleInput, maxBytesExceeded,
   } = useFileInput(props)
   return (
     <>
@@ -21,6 +21,7 @@ const FileInput = (props) => {
           maxBytesError={maxBytesError}
           progress={progress}
           handleInput={handleInput}
+          maxBytesExceeded={maxBytesExceeded}
         />
       )}
 
@@ -39,7 +40,9 @@ const FileInput = (props) => {
             progress="30"
           />
           <HelpBlock msg={`${maxBytes.toFixed()}MB`} />
-          <BSAlert type="danger" msg={`${maxBytesError}`} />
+          {maxBytesExceeded && (
+            <BSAlert type="danger" msg={`${maxBytesError}`} />
+          )}
         </div>
       )}
     </>
