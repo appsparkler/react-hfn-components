@@ -27,7 +27,7 @@ const CustomFileInput = (
       </pre>
       <p className="help-block">Max Bytes: {maxBytes?.toFixed(2)}KB</p>
       <p className="alert alert-danger">{maxBytesError}</p>
-      <span>{progress}%</span>
+      <pre>progress: {progress && progress.toFixed(2)}%</pre>
     </div>
   )
 }
@@ -60,19 +60,16 @@ export const editableVersionParams = {
   // required: true,
   // disabled: true,
 
-
   // REQUIRED PARAMETERS
   readOnly: false,
 
-  // file-related params
-
-  // methods
+  // OPTIONAL methods
   onUpload: (uploadedFile) => {
     console.log(uploadedFile)
   },
 
   // Validations
-  maxBytes: 2 * 1024 * 1024, // default 1 * 1024 * 1024
+  maxBytes: .5 * 1024 * 1024, // default 1 * 1024 * 1024
   maxBytesError: 'file exceeds size-limit. please re-try.',
   maxBytesInfoMessage: 'max bytes : ',
 }
