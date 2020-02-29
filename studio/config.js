@@ -21,18 +21,19 @@ const CustomFileInput = (
         onInput={handleInput}
         ref={ref}
       />
-      {/* <pre>
-        MaxBytesExceeded: {JSON.stringify(maxBytesExceeded)}
-        <br />
-        isUploading: {JSON.stringify(isUploading)}
-      </pre>*/}
 
-      <p className="help-block">Max Bytes: {maxBytes?.toFixed(2)}KB</p>
+      <p className="help-block">Max Bytes: {maxBytes?.toFixed(2)} kB</p>
 
       {maxBytesExceeded && (
         <p className="alert alert-danger">{maxBytesError}</p>
       )}
-      {progress && <pre>progress: {progress && progress.toFixed(2)}%</pre>}
+      {progress && (
+        <>
+          <progress min="0" max="100" value={progress} />
+          <br />
+          {progress.toFixed(2)}%
+        </>
+      )}
     </div>
   )
 }
