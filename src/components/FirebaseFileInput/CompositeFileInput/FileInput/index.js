@@ -5,6 +5,7 @@ import BSProgress from '@react-hfn-components/BSProgress'
 import FirebaseFileLink from '@react-hfn-components/FirebaseFileLink'
 import PropTypes from 'prop-types'
 import useFileInput from './useFileInput'
+import useFileLink from '@react-hfn-components/FirebaseFileLink/useFileLink'
 
 const FileInput = (props) => {
   const {
@@ -12,18 +13,11 @@ const FileInput = (props) => {
     handleInput, maxBytesExceeded, isUploading, file, disabled, required,
     uploaded, isVerifying,
   } = useFileInput(props)
+  useFileLink(props)
   return (
     <>
       {components?.fileInput && (
         <>
-          <div style={{
-            position: 'fixed',
-            left: -100000,
-          }}>
-            <FirebaseFileLink
-              {...props}
-            />
-          </div>
           <components.fileInput
             type={type}
             name={name}
