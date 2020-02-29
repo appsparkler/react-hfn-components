@@ -18,9 +18,8 @@ async function verifyFile({props}) {
   }
 }
 
-function componentDidMount(inputs) {
-  debugger
-  verifyFile({...inputs})
+function componentDidMount({props}) {
+  verifyFile({props})
 }
 
 export default (props) => {
