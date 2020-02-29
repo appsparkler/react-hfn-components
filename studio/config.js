@@ -1,14 +1,28 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-export const readOnlyParams = {
-  readOnly: true,
+
+const CustomFileLink = ({
+  isVerifying, file,
+}, ref) => {
+  return (
+    <>
+      {isVerifying && 'isVerifying'}
+      {file && !isVerifying && <a href={file.downloadURL}>{file.fileName}</a>}
+    </>
+  )
+}
+
+CustomFileLink.propTypes = {
+  isVerifying: PropTypes.bool,
+  file: PropTypes.object,
 }
 
 const CustomFileInput = (
     {
       type, label, maxBytes, maxBytesError, progress, name, handleInput,
-      maxBytesExceeded, isUploading, file, disabled, required,
+      maxBytesExceeded, isUploading, uploaded, disabled, required,
+      isVerifying, file,
     }
     , ref) => {
   return (
@@ -28,16 +42,20 @@ const CustomFileInput = (
 
       <p className="help-block">Max Bytes: {maxBytes?.toFixed(2)} kB</p>
 
-      {maxBytesExceeded && (
-        <p className="alert alert-danger">{maxBytesError}</p>
-      )}
-      {progress && (
+      {(progress > 0) && !uploaded && (
         <>
           <progress min="0" max="100" value={progress} />
           <br />
           {progress.toFixed(2)}%
         </>
       )}
+
+      {uploaded && 'Uploaded...'}
+
+      {maxBytesExceeded && (
+        <p className="alert alert-danger">{maxBytesError}</p>
+      )}
+
     </div>
   )
 }
@@ -50,19 +68,28 @@ CustomFileInput.propTypes = {
   disabled: PropTypes.bool,
 
   handleInput: PropTypes.func,
+  file: PropTypes.object,
+
+  isVerifying: PropTypes.bool,
 
   progress: PropTypes.number,
   isUploading: PropTypes.bool,
+  uploaded: PropTypes.bool,
 
   maxBytes: PropTypes.number,
   maxBytesError: PropTypes.string,
   maxBytesExceeded: PropTypes.bool,
 
-  file: PropTypes.object,
 }
 
 const components = {
-  // fileInput: React.forwardRef(CustomFileInput),
+  fileInput: React.forwardRef(CustomFileInput),
+  fileLink: CustomFileLink,
+}
+
+export const readOnlyParams = {
+  readOnly: true,
+  components,
 }
 
 export const editableVersionParams = {

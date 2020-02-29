@@ -6,14 +6,22 @@ import useFileLink from './useFileLink'
 function FileLink(props) {
   const {isVerifying, file} = useFileLink(props)
   return (
-    <div className="FileLink">
-      {isVerifying && <BSAlert type="info" msg={props.isVerifyingMessage} />}
-      {file?.downloadURL && file?.fileName && (
-        <a href={file.downloadURL}>
-          {file.fileName}
-        </a>
+    <>
+      {props.components?.fileLink && (
+        <props.components.fileLink
+          isVerifying={isVerifying}
+          file={file}
+        />
       )}
-    </div>
+      {!props.components?.fileLink && <div className="FileLink">
+        {isVerifying && <BSAlert type="info" msg={props.isVerifyingMessage} />}
+        {file?.downloadURL && file?.fileName && (
+          <a href={file.downloadURL}>
+            {file.fileName}
+          </a>
+        )}
+      </div>}
+    </>
   )
 }
 
@@ -21,6 +29,7 @@ FileLink.propTypes = {
   isVerifyingMessage: PropTypes.string,
   storageRef: PropTypes.object.isRequired,
   file: PropTypes.object,
+  components: PropTypes.object,
 }
 
 FileLink.defaultProps = {

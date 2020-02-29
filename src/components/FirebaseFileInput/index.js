@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import FirebaseFileLink from '@react-hfn-components/FirebaseFileLink'
 import CompositeFileInput from './CompositeFileInput'
 import useFirebaseFileInput from './useFirebaseFileInput'
 
@@ -7,7 +8,7 @@ const FirebaseFileInput = (props) => {
   const upgradedProps = useFirebaseFileInput(props)
   return (
     <div>
-      {props.readOnly && <h2>ReadOnly Version</h2>}
+      {props.readOnly && <FirebaseFileLink {...upgradedProps} />}
       {!props.readOnly && <CompositeFileInput {...upgradedProps}/>}
     </div>
   )
