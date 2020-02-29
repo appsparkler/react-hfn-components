@@ -3,11 +3,12 @@ import HelpBlock from '@react-hfn-components/HelpBlock'
 import BSAlert from '@react-hfn-components/BSAlert'
 import BSProgress from '@react-hfn-components/BSProgress'
 import PropTypes from 'prop-types'
+import useFileInput from './useFileInput'
 
-const FileInput = ({
-  components, type, name, label, maxBytes, maxBytesError,
-}) => {
-  const progress=30
+const FileInput = (props) => {
+  const {
+    components, type, name, label, maxBytes, maxBytesError, progress,
+  } = useFileInput(props)
   return (
     <>
       {components?.fileInput && (
