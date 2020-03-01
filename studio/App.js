@@ -1,12 +1,15 @@
 import React from 'react'
 import config from './config'
 import {FirebasePhotoInput} from '@appsparkler/react-hfn-components'
+import ContextProvider from '@react-hfn-components/FirebasePhotoInput/context'
 import './styles.sass'
 
 const StudioApp = () => {
   return (
     <div>
-      <FirebasePhotoInput {...config} />
+      <ContextProvider {...config}>
+        <FirebasePhotoInput />
+      </ContextProvider>
     </div>
   )
 }
