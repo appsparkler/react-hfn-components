@@ -25,6 +25,17 @@ function handleChange({setSelectedFile}, evt) {
   }
 }
 
+async function setDownloadURLOnState({value}) {
+  try {
+    const downloadURL = await value.storageRef.getDownloadURL()
+    value.setDownloadURL(downloadURL)
+  } catch (e) {
+  }
+}
+
+function componentDidMount({value}) {
+  setDownloadURLOnState({value})
+}
 
 const ContextProvider = ({children, ...props}) => {
   const {croppieConfig} = props
@@ -58,6 +69,7 @@ const ContextProvider = ({children, ...props}) => {
     // methods
     handleChange: handleChange.bind(null, {setSelectedFile}),
   }
+  React.useEffect(componentDidMount.bind(null, {value}), [])
   return (
     <Context.Provider value={value}>
       {children}
