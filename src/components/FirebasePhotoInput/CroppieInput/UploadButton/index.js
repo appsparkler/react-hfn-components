@@ -1,8 +1,8 @@
 import React from 'react'
-import useUploadButton from './useUploadButton'
+import {Context} from '@react-hfn-components/FirebasePhotoInput/context'
 
-const UploadButton = (props) => {
-  const {uploadPhoto} = useUploadButton({props})
+const UploadButton = () => {
+  const {uploadPhoto} = React.useContext(Context)
   return (
     <div className="UploadButton">
       <button
