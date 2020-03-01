@@ -1,5 +1,3 @@
-import React from 'react'
-
 function handleStateChange({props}, snapshot) {
   if (snapshot.totalBytes) {
     props.setProgress((snapshot.bytesTransferred/snapshot.totalBytes) * 100)

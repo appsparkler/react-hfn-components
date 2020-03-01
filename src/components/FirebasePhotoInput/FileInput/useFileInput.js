@@ -1,5 +1,3 @@
-import React from 'react'
-
 function handleFileLoaded({props}, evt) {
   evt.preventDefault()
   evt.stopPropagation()
