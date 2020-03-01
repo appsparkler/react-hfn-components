@@ -8,7 +8,7 @@ import './styles.sass'
 
 const FirebasePhotoInput = (props) => {
   const superProps = useFirebasePhotoInput({props})
-  const {selectedFile} = superProps
+  const {selectedFile, exceedsMaxBytes} = superProps
   return (
     <div className="ReactHFN_FirebasePhotoInput">
       <div className="CurrentPhotoAndFileInput col-xs-12 col-sm-5 col-lg-3">
