@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import PreviewImage from './PreviewImage'
 import UploadButton from './UploadButton'
 import Croppie from './Croppie'
@@ -16,7 +17,7 @@ const CroppieInput = (props) => {
       <Croppie {...superProps} />
       <div className="PreviewAndUpload">
         <PreviewImage {...superProps} />
-        {!props.exceedMaxBytes && <UploadButton {...superProps} />}
+        {!props.exceedsMaxBytes && <UploadButton {...superProps} />}
         <br />
         {props.isUploading && <ProgressBar {...superProps} /> }
         {props.exceedsMaxBytes && (
@@ -26,6 +27,12 @@ const CroppieInput = (props) => {
       </div>
     </div>
   )
+}
+
+CroppieInput.propTypes = {
+  exceedsMaxBytes: PropTypes.bool,
+  isUploading: PropTypes.bool,
+  uploaded: PropTypes.bool,
 }
 
 export default CroppieInput
