@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import useFileInput from './useFileInput'
+import {Context} from '@react-hfn-components/FirebasePhotoInput/context'
 
 const FileInput = (props) => {
-  const {handleChange} = useFileInput({props})
+  const {handleChange} = React.useContext(Context)
   return (
     <div className="FileInput">
       <div className="form-group">
@@ -29,10 +29,6 @@ FileInput.propTypes = {
   onUpload: PropTypes.func,
   storageRef: PropTypes.object,
   config: PropTypes.object,
-  // required: PropTypes.boolean,
-  // disabled: PropTypes.boolean,
-  // readOnly: PropTypes.boolean,
-  // noLabel: PropTypes.boolean,
 }
 
 export default FileInput

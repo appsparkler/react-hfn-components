@@ -3,6 +3,29 @@ import PropTypes from 'prop-types'
 
 export const Context = React.createContext()
 
+function handleFileLoaded({setSelectedFile}, evt) {
+  evt.preventDefault()
+  evt.stopPropagation()
+  const result = evt.target.result
+  setSelectedFile(result)
+}
+
+function handleChange({setSelectedFile}, evt) {
+  evt.preventDefault()
+  evt.stopPropagation()
+  const {files} = evt.target
+  const photo = files.item(0)
+  if (photo) {
+    const reader = new FileReader()
+    reader.addEventListener(
+        'load',
+        handleFileLoaded.bind(null, {setSelectedFile}),
+    )
+    reader.readAsDataURL(photo)
+  }
+}
+
+
 const ContextProvider = ({children, ...props}) => {
   const {croppieConfig} = props
   const [selectedFile, setSelectedFile] = React.useState(null)
@@ -31,6 +54,9 @@ const ContextProvider = ({children, ...props}) => {
     croppie, setCroppie,
     exceedsMaxBytes, setExceedsMaxBytes,
     file2Upload, setFile2Upload,
+
+    // methods
+    handleChange: handleChange.bind(null, {setSelectedFile}),
   }
   return (
     <Context.Provider value={value}>
