@@ -1,25 +1,12 @@
 import React from 'react'
-import {FirebaseFileInput} from '@appsparkler/react-hfn-components'
+import config from './config'
+import {FirebasePhotoInput} from '@appsparkler/react-hfn-components'
 import './styles.sass'
-import {readOnlyParams, editableVersionParams} from './config'
 
 const StudioApp = () => {
   return (
-    <div className="container">
-      <div className="row">
-        <div className="col-xs-12 col-sm-3">
-
-          <div className="well well-md">
-            <h3>Read Only Version</h3>
-            {<FirebaseFileInput {...readOnlyParams} />}
-          </div>
-
-          <div className="well well-md">
-            <h3>Editable Version</h3>
-            {<FirebaseFileInput {...editableVersionParams} />}
-          </div>
-        </div>
-      </div>
+    <div>
+      <FirebasePhotoInput {...config} />
     </div>
   )
 }

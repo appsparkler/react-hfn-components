@@ -1,6 +1,7 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
-const Croppie = (props) => {
+const CroppieComponent = (props) => {
   const {croppieRef} = props
 
   return (
@@ -15,4 +16,8 @@ const Croppie = (props) => {
   )
 }
 
-export default Croppie
+CroppieComponent.propTypes = {
+  croppieRef: PropTypes.object,
+}
+
+export default CroppieComponent

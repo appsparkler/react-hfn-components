@@ -27,6 +27,7 @@ const CurrentPhoto = (props) => {
 
 CurrentPhoto.propTypes = {
   storageRef: PropTypes.object,
+  downloadURL: PropTypes.string,
 }
 
 export default CurrentPhoto
