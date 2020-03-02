@@ -22,20 +22,8 @@ const FirebasePhotoInput = () => {
   )
 }
 
-FirebasePhotoInput.defaultProps = {
-  // onUpload: () => null,
-  // maxBytes: 3 * 1024 * 1024,
-  // croppieConfig: {
-  //   viewport: {width: 200, height: 200},
-  //   boundary: {width: 300, height: 300},
-  // },
-}
+FirebasePhotoInput.defaultProps = {}
 
-FirebasePhotoInput.propTypes = {
-  // onUpload: PropTypes.func,
-  // croppieConfig: PropTypes.object,
-  // file: PropTypes.object,
-  // storageRef: PropTypes.object.isRequired,
-}
+FirebasePhotoInput.propTypes = {}
 
 export default FirebasePhotoInput
