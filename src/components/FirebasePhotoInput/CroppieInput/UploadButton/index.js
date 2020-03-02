@@ -1,8 +1,8 @@
 import React from 'react'
-import {Context} from '@react-hfn-components/FirebasePhotoInput/context'
+import PropTypes from 'prop-types'
 
-const UploadButton = () => {
-  const {uploadPhoto} = React.useContext(Context)
+const UploadButton = (props) => {
+  const {uploadPhoto} = props
   return (
     <div className="UploadButton">
       <button
@@ -10,6 +10,10 @@ const UploadButton = () => {
         onClick={uploadPhoto}>Upload Photo</button>
     </div>
   )
+}
+
+UploadButton.propTypes = {
+  uploadPhoto: PropTypes.func,
 }
 
 export default UploadButton

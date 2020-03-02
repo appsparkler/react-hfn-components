@@ -1,7 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import Croppie from 'croppie'
+import {dataURItoBlob} from './utils'
 
-export const Context = React.createContext()
+export const FirebasePhotoInputContext = React.createContext()
 
 function handleFileLoaded({setSelectedFile}, evt) {
   evt.preventDefault()
@@ -92,7 +94,55 @@ async function uploadPhoto({value: props}, evt) {
   )
 }
 
-const ContextProvider = ({children, ...props}) => {
+function selectedFileDidChange({value}) {
+  const {
+    selectedFile,
+    croppieConfig,
+    croppieRef,
+    setCroppie,
+    croppie,
+  } = value
+  if (selectedFile && !croppie) {
+    const config = {
+      ...croppieConfig,
+      url: selectedFile,
+    }
+    const newCroppie = new Croppie(croppieRef.current, config)
+    setCroppie(newCroppie)
+  } else if (selectedFile && croppie) {
+    croppie.bind({
+      url: selectedFile,
+    })
+  }
+}
+
+async function handleCroppieUpdates({value: props}, evt) {
+  const {croppie, photoPreviewRef, maxBytes} = props
+  if (croppie) {
+    const croppedImg = await croppie.result()
+    photoPreviewRef.current.src = croppedImg
+    const blob = dataURItoBlob(croppedImg)
+    const fileToUpload = new File([blob], 'photo')
+    if (croppedImg?.length > maxBytes) {
+      props.setExceedsMaxBytes(true)
+    } else {
+      props.setExceedsMaxBytes(false)
+      props.setFile2Upload(fileToUpload)
+    }
+  }
+}
+
+function croppieDidChange({value}) {
+  const {croppie} = value
+  if (croppie?.element) {
+    croppie.element.addEventListener(
+        'update',
+        handleCroppieUpdates.bind(null, {value}),
+    )
+  }
+}
+
+const FirebasePhotoInputContextProvider = ({children, ...props}) => {
   const {croppieConfig} = props
   const [selectedFile, setSelectedFile] = React.useState(null)
   const [croppie, setCroppie] = React.useState(null)
@@ -126,14 +176,22 @@ const ContextProvider = ({children, ...props}) => {
   }
   value.uploadPhoto = uploadPhoto.bind(null, {value})
   React.useEffect(componentDidMount.bind(null, {value}), [])
+  React.useEffect(
+      selectedFileDidChange.bind(null, {value}),
+      [selectedFile],
+  )
+  React.useEffect(
+      croppieDidChange.bind(null, {value}),
+      [croppie],
+  )
   return (
-    <Context.Provider value={value}>
+    <FirebasePhotoInputContext.Provider value={value}>
       {children}
-    </Context.Provider>
+    </FirebasePhotoInputContext.Provider>
   )
 }
 
-ContextProvider.propTypes = {
+FirebasePhotoInputContextProvider.propTypes = {
   children: PropTypes.oneOf([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
@@ -141,7 +199,7 @@ ContextProvider.propTypes = {
   croppieConfig: PropTypes.object,
 }
 
-ContextProvider.defaultProps = {
+FirebasePhotoInputContextProvider.defaultProps = {
   onUpload: () => null,
   maxBytes: 3 * 1024 * 1024,
   croppieConfig: {
@@ -150,4 +208,4 @@ ContextProvider.defaultProps = {
   },
 }
 
-export default ContextProvider
+export default FirebasePhotoInputContextProvider

@@ -1,9 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {Context} from '@react-hfn-components/FirebasePhotoInput/context'
+import {
+  FirebasePhotoInputContext,
+} from '@react-hfn-components/FirebasePhotoInput/context'
 
 const FileInput = (props) => {
-  const {handleChange} = React.useContext(Context)
+  const {handleChange} = React.useContext(FirebasePhotoInputContext)
   return (
     <div className="FileInput">
       <div className="form-group">
