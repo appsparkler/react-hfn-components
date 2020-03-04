@@ -1,11 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {
-  FirebasePhotoInputContext,
-} from '@react-hfn-components/FirebasePhotoInput/context'
 
 const FileInput = (props) => {
-  const {handleChange} = React.useContext(FirebasePhotoInputContext)
+  const {handleChange} = props
   return (
     <div className="FileInput">
       <div className="form-group">
@@ -25,12 +22,13 @@ const FileInput = (props) => {
 }
 
 FileInput.propTypes = {
-  name: PropTypes.string,
-  label: PropTypes.string,
-  value: PropTypes.object,
-  onUpload: PropTypes.func,
-  storageRef: PropTypes.object,
-  config: PropTypes.object,
+  handleChange: PropTypes.func,
+  // name: PropTypes.string,
+  // label: PropTypes.string,
+  // value: PropTypes.object,
+  // onUpload: PropTypes.func,
+  // storageRef: PropTypes.object,
+  // config: PropTypes.object,
 }
 
 export default FileInput
