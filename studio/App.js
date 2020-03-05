@@ -3,6 +3,7 @@ import config from './config'
 import FirebasePhotoInputContextProvider
   from '@react-hfn-components/FirebasePhotoInput/context'
 import CroppieCustomComponents from './custom-components'
+import 'croppie/croppie.css'
 import './styles.sass'
 
 const StudioApp = () => {

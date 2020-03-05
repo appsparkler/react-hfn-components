@@ -2,7 +2,8 @@ import React from 'react'
 import {
   FirebasePhotoInputContext,
 } from '@react-hfn-components/FirebasePhotoInput/context'
-import Croppie from './Croppie'
+// import Croppie from './Croppie'
+import CroppieInput from './CroppieInput'
 import CurrentPhoto from './CurrentPhoto'
 import FileInput from './FileInput'
 // import PreviewImage from './PreviewImage'
@@ -19,7 +20,7 @@ const CroppieCustomComponents = () => {
       </div>
       <div className="row">
         <div className="col-xs-12">
-          {context?.selectedFile && <Croppie {...context} />}
+          {context?.selectedFile && <CroppieInput {...context} />}
         </div>
       </div>
     </div>

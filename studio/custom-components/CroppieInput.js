@@ -12,14 +12,14 @@ const CroppieInput = (props) => {
     <Croppie {...props} />
     <div className="PreviewAndUpload">
       <PreviewImage {...props} />
-      {!props.exceedsMaxBytes && <UploadButton {...props} />}
+      {/* !props.exceedsMaxBytes && <UploadButton {...props} />*/}
       <br />
-      {props.isUploading && <ProgressBar {...props} /> }
-      {props.exceedsMaxBytes && (
+      {/* props.isUploading && <ProgressBar {...props} />*/}
+      {/* props.exceedsMaxBytes && (
         <div className="col-xs-12">
           <span>Exceeds Max Bytes</span>
         </div>
-      )}
+      )*/}
       {props.uploaded && <span>Done...</span>}
     </div>
   </div>)
