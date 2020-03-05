@@ -23,12 +23,6 @@ const FileInput = (props) => {
 
 FileInput.propTypes = {
   handleChange: PropTypes.func,
-  // name: PropTypes.string,
-  // label: PropTypes.string,
-  // value: PropTypes.object,
-  // onUpload: PropTypes.func,
-  // storageRef: PropTypes.object,
-  // config: PropTypes.object,
 }
 
 export default FileInput

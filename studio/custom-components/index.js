@@ -2,13 +2,9 @@ import React from 'react'
 import {
   FirebasePhotoInputContext,
 } from '@react-hfn-components/FirebasePhotoInput/context'
-// import Croppie from './Croppie'
 import CroppieInput from './CroppieInput'
 import CurrentPhoto from './CurrentPhoto'
 import FileInput from './FileInput'
-// import PreviewImage from './PreviewImage'
-// import UploadButton from './UploadButton'
-// import ProgressBar from './ProgressBar'
 
 const CroppieCustomComponents = () => {
   const context = React.useContext(FirebasePhotoInputContext)
