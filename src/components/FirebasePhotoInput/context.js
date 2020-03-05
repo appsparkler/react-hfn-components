@@ -209,3 +209,9 @@ FirebasePhotoInputContextProvider.defaultProps = {
 }
 
 export default FirebasePhotoInputContextProvider
+
+export const setupFirebasePhotoInput = (Component, config) => () => {
+  return ( <FirebasePhotoInputContextProvider {...config}>
+    {Component && <Component />}
+  </FirebasePhotoInputContextProvider>)
+}
