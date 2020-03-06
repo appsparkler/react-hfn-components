@@ -11,8 +11,11 @@
   ],
   "husky": {
     "hooks": {
-      "pre-commit": "bundlesize; eslint src;"
+      "pre-commit": "lint-staged; bundlesize; eslint src;"
     }
+  },
+  "lint-staged": {
+    "src/**/*.js": "eslint --fix"
   },
   "scripts": {
     "storybook": "start-storybook",
