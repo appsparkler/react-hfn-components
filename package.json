@@ -9,6 +9,11 @@
   "files": [
     "dist"
   ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "bundlesize; eslint src;"
+    }
+  },
   "scripts": {
     "storybook": "start-storybook",
     "start": "webpack-dev-server --config webpack.config.studio.js",

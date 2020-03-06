@@ -8,7 +8,7 @@ import './styles.sass'
 
 const FirebasePhotoInput = (props) => {
   const superProps = useFirebasePhotoInput({props})
-  const {selectedFile, exceedsMaxBytes} = superProps
+  const {selectedFile} = superProps
   return (
     <div className="ReactHFN_FirebasePhotoInput">
       <div className="CurrentPhotoAndFileInput col-xs-12 col-sm-5 col-lg-3">
@@ -20,26 +20,6 @@ const FirebasePhotoInput = (props) => {
           {selectedFile && <CroppieInput {...superProps}/>}
         </div>
       </div>
-      {/*
-            <div className="state">
-              <h2>No File Uploaded State</h2>
-              <FileInput {...superProps} />
-            </div>
-
-            <div className="state">
-              <h2>Exceeds MaxBytes</h2>
-              {superProps?.exceedsMaxBytes && <p>Exceeds max Bytes...</p>}
-            </div>
-
-            <div className="state">
-              <CurrentPhoto {...superProps} />
-            </div>
-
-            <div className="state">
-              <h2>Croppie</h2>
-              {selectedFile && <CroppieInput {...superProps}/>}
-            </div>
-      */}
     </div>
   )
 }
