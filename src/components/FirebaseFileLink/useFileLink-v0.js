@@ -1,12 +1,12 @@
 import React from 'react'
 
-async function verifyFile({props, hooks}) {
+async function verifyFile({props}) {
   try {
-    hooks.setIsVerifying(true)
+    props.setIsVerifying(true)
     const downloadURL = await props.storageRef.getDownloadURL()
     const metadata = await props.storageRef.getMetadata()
-    hooks.setIsVerifying(false)
-    hooks.setFile({
+    props.setIsVerifying(false)
+    props.setFile({
       fileName: metadata.customMetadata.fileName,
       bytes: metadata.size,
       fullPath: metadata.fullPath,
@@ -14,7 +14,7 @@ async function verifyFile({props, hooks}) {
       downloadURL,
     })
   } catch (e) {
-    hooks.setIsVerifying(false)
+    props.setIsVerifying(false)
   }
 }
 
@@ -23,15 +23,8 @@ function componentDidMount({props}) {
 }
 
 export default (props) => {
-  const [file, setFile] = React.useState(null)
-  const [isVerifying, setIsVerifying] = React.useState(false)
-  const hooks = {
-    file, setFile,
-    isVerifying, setIsVerifying,
-  }
-  React.useEffect(componentDidMount.bind(null, {props, hooks}), [])
+  React.useEffect(componentDidMount.bind(null, {props}), [])
   return {
     ...props,
-    ...hooks,
   }
 }
