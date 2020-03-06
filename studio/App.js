@@ -1,13 +1,32 @@
-// import React from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
+
 import config from './config'
 import {
-  connectFirebasePhotoInput,
-} from '@react-hfn-components/FirebasePhotoInput/context'
-import CroppieCustomComponents from './custom-components'
-import 'croppie/croppie.css'
+  connectFirebaseFileLink, FirebaseFileLinkContext,
+} from '@appsparkler/react-hfn-components'
 import './styles.sass'
 
-export default connectFirebasePhotoInput(
-    CroppieCustomComponents,
+export default connectFirebaseFileLink(
+    CustomFirebaseFileLink,
     config,
 )
+
+function CustomFirebaseFileLink() {
+  const {
+    file,
+    isVerifying,
+  } = React.useContext(FirebaseFileLinkContext)
+  return (
+    <div>
+      {isVerifying && 'Verifying...'}
+      {file && <div>
+        <a href={file.downloadURL}>{file.fileName}</a>
+      </div>}
+    </div>
+  )
+}
+
+CustomFirebaseFileLink.propTypes = {
+  file: PropTypes.object,
+}

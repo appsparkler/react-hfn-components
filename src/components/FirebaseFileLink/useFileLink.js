@@ -7,7 +7,7 @@ async function verifyFile({props, hooks}) {
     const metadata = await props.storageRef.getMetadata()
     hooks.setIsVerifying(false)
     hooks.setFile({
-      fileName: metadata.customMetadata.fileName,
+      fileName: metadata?.customMetadata?.fileName || 'file',
       bytes: metadata.size,
       fullPath: metadata.fullPath,
       contentType: metadata.contentType,
@@ -15,11 +15,12 @@ async function verifyFile({props, hooks}) {
     })
   } catch (e) {
     hooks.setIsVerifying(false)
+    console.error(e)
   }
 }
 
-function componentDidMount({props}) {
-  verifyFile({props})
+function componentDidMount({props, hooks}) {
+  verifyFile({props, hooks})
 }
 
 export default (props) => {
