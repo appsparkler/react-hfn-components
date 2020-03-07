@@ -1,37 +1,11 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-
-import config from './config'
-import {
-  connectFirebaseFileLink,
-} from '@appsparkler/react-hfn-components'
+import CustomFirebaseFileLink from './custom-components/FirebaseFileLink'
 import './styles.sass'
 
-export default connectFirebaseFileLink(
-    CustomFirebaseFileLink,
-    config,
-)
-
-function CustomFirebaseFileLink({file, isVerifying}) {
+const StudioApp = () => {
   return (
-    <div className="container">
-      {isVerifying && 'Verifying...'}
-      {
-        file && (
-          <a
-            href={file.downloadURL}
-            target="__blank"
-          >
-            {file.fileName}
-          </a>
-        )
-      }
-      {!file && !isVerifying && 'No File Found...'}
-    </div>
+    <CustomFirebaseFileLink />
   )
 }
 
-CustomFirebaseFileLink.propTypes = {
-  file: PropTypes.object,
-  isVerifying: PropTypes.bool,
-}
+export default StudioApp

@@ -1,4 +1,4 @@
-import FirebaseApp from './firebase-app'
+import FirebaseApp from '@react-hfn-studio/firebase-app'
 
 const storageRef = FirebaseApp.storage().ref('INAAAEX32/profilePics/')
 
