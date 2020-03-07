@@ -4,8 +4,9 @@ import useFirebaseFileInput from './useFirebaseFileInput'
 
 const FirebaseFileInputContext = React.createContext()
 
-const FirebaseFileInputContextProvider = ({children, ...props}) => {
-  const value = useFirebaseFileInput(props)
+const FirebaseFileInputContextProvider = ({children,
+  maxBytes, storageRef}) => {
+  const value = useFirebaseFileInput({maxBytes, storageRef})
   return (
     <FirebaseFileInputContext.Provider value={value}>
       {children}
@@ -15,6 +16,12 @@ const FirebaseFileInputContextProvider = ({children, ...props}) => {
 
 FirebaseFileInputContextProvider.propTypes = {
   children: PropTypes.any.isRequired,
+  storageRef: PropTypes.object.isRequired,
+  maxBytes: PropTypes.number,
+}
+
+FirebaseFileInputContextProvider.defaultProps = {
+  maxBytes: 5 * 1024 * 1024,
 }
 
 export const connectFirebaseFileInput = (Component, config) => () => {
@@ -22,9 +29,8 @@ export const connectFirebaseFileInput = (Component, config) => () => {
     const context = React.useContext(FirebaseFileInputContext)
     return (<Component {...context} />)
   }
-
   return (
-    <FirebaseFileInputContextProvider>
+    <FirebaseFileInputContextProvider {...config}>
       { Component ? <ComponentWithContext /> : (
         <pre>Please pass a custom component to the connector.</pre>
       )}

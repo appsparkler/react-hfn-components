@@ -76,6 +76,7 @@ function validateFileSize({props, states}, evt) {
 }
 
 async function handleInput({props, states}, evt) {
+  debugger
   evt.preventDefault()
   evt.stopPropagation()
   states.setMaxBytesExceeded(false)
@@ -106,7 +107,9 @@ export default (props) => {
   }
   React.useEffect(typeDidChange.bind(null, {props, states}), [type])
   return {
-    // ...props,
+    ...props, // props.maxBytes
+    maxBytesExceeded,
+
     // ...states,
     // file, setFile,
     // isVerifying, setIsVerifying,
@@ -117,10 +120,12 @@ export default (props) => {
     // isVerifying, file,
     // handleInput,
     // maxBytesExceeded,
-    maxBytesExceeded,
-    isUploading,
+    // maxBytesExceeded,
+    // isUploading,
+    // type,
+    // uploaded,
+
     type,
-    uploaded,
     handleInput: handleInput.bind(null, {props, states}),
   }
 }
