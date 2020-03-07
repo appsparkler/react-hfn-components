@@ -46,7 +46,7 @@ CustomFirebaseFileLink.propTypes = {
 }
 
 const CustomFirebaseFileInput = ({
-  file, isVerifying,
+  file, isVerifying, verifyFile,
 
   handleInput, type,
   maxBytes, maxBytesExceeded,
@@ -63,13 +63,18 @@ const CustomFirebaseFileInput = ({
               file={file}
               isVerifying={isVerifying}
             />}
+            {isUploading && 'Uploading new file...'}
+            <button onClick={verifyFile}>Verify File</button>
           </td>
           <td>
             <h3>Input Field</h3>
             {/* PASS label field as you like
             (it will not come from a variable)
             */}
-            <label>Upload Visa</label>
+            <label>
+              {!file && 'Upload Visa'}
+              {file && 'Edit Visa'}
+            </label>
             {/* PASS attributes such as required, disabled
             (they will not come as variables)
 

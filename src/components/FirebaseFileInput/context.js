@@ -9,10 +9,10 @@ const FirebaseFileInputContext = React.createContext()
 const FirebaseFileInputContextProvider = ({children,
   maxBytes, storageRef}) => {
   const value = useFirebaseFileInput({maxBytes, storageRef})
-  const {file, isVerifying} = useFirebaseFileLink({storageRef})
+  const {file, isVerifying, verifyFile} = useFirebaseFileLink({storageRef})
   return (
     <FirebaseFileInputContext.Provider
-      value={{...value, file, isVerifying}}
+      value={{...value, file, isVerifying, verifyFile}}
     >
       {children}
     </FirebaseFileInputContext.Provider>

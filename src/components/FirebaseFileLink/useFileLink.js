@@ -34,5 +34,6 @@ export default (props) => {
   return {
     ...props,
     ...hooks,
+    verifyFile: verifyFile.bind(null, {props, hooks}),
   }
 }
