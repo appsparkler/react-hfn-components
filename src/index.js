@@ -1,6 +1,6 @@
 
 /* Components*/
-export FirebaseFileInput from '@react-hfn-components/FirebaseFileInput' //eslint-disable-line
+export {connectFirebaseFileInput} from '@react-hfn-components/FirebaseFileInput/context' //eslint-disable-line
 export {
   connectFirebaseCroppie,
 } from '@react-hfn-components/FirebaseCroppie/context'

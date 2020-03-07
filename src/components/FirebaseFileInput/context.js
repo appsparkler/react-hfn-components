@@ -1,10 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import useFirebaseFileInput from './useFirebaseFileInput'
 
 const FirebaseFileInputContext = React.createContext()
 
-const FirebaseFileInputContextProvider = ({children}) => {
-  const value = {}
+const FirebaseFileInputContextProvider = ({children, ...props}) => {
+  const value = useFirebaseFileInput(props)
   return (
     <FirebaseFileInputContext.Provider value={value}>
       {children}
