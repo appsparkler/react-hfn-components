@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Croppie from 'croppie'
 import {dataURItoBlob} from './utils'
 
-export const FirebasePhotoInputContext = React.createContext()
+export const FirebaseCroppieContext = React.createContext()
 
 function handleFileLoaded({setSelectedFile}, evt) {
   evt.preventDefault()
@@ -142,8 +142,9 @@ function croppieDidChange({value}) {
   }
 }
 
-const FirebasePhotoInputContextProvider = ({children, ...props}) => {
+const FirebaseCroppieContextProvider = ({children, ...props}) => {
   const {croppieConfig} = props
+  // STATE
   const [selectedFile, setSelectedFile] = React.useState(null)
   const [croppie, setCroppie] = React.useState(null)
   const [exceedsMaxBytes, setExceedsMaxBytes] = React.useState(null)
@@ -152,6 +153,7 @@ const FirebasePhotoInputContextProvider = ({children, ...props}) => {
   const [isUploading, setIsUploading] = React.useState(false)
   const [downloadURL, setDownloadURL] = React.useState('')
   const [progress, setProgress] = React.useState(0)
+  // REF
   const photoPreviewRef = React.useRef()
   const croppieRef = React.useRef()
   const value = {
@@ -185,21 +187,19 @@ const FirebasePhotoInputContextProvider = ({children, ...props}) => {
       [croppie],
   )
   return (
-    <FirebasePhotoInputContext.Provider value={value}>
+    <FirebaseCroppieContext.Provider value={value}>
       {children}
-    </FirebasePhotoInputContext.Provider>
+    </FirebaseCroppieContext.Provider>
   )
 }
 
-FirebasePhotoInputContextProvider.propTypes = {
-  children: PropTypes.oneOf([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
-  ]),
-  croppieConfig: PropTypes.object,
+FirebaseCroppieContextProvider.propTypes = {
+  children: PropTypes.any.isRequired,
+  croppieConfig: PropTypes.object.isRequired,
+  storageRef: PropTypes.object.isRequired,
 }
 
-FirebasePhotoInputContextProvider.defaultProps = {
+FirebaseCroppieContextProvider.defaultProps = {
   onUpload: () => null,
   maxBytes: 3 * 1024 * 1024,
   croppieConfig: {
@@ -208,17 +208,17 @@ FirebasePhotoInputContextProvider.defaultProps = {
   },
 }
 
-export default FirebasePhotoInputContextProvider
+export default FirebaseCroppieContextProvider
 
-export const connectFirebasePhotoInput = (Component, config) => () => {
+export const connectFirebaseCroppie = (Component, config) => () => {
   const ComponentWithContext = () => {
-    const context = React.useContext(FirebasePhotoInputContext)
+    const context = React.useContext(FirebaseCroppieContext)
     return (<Component {...context} />)
   }
 
-  return ( <FirebasePhotoInputContextProvider {...config}>
+  return ( <FirebaseCroppieContextProvider {...config}>
     {Component ? <ComponentWithContext /> : (
       <pre>Please add a custom component</pre>
     )}
-  </FirebasePhotoInputContextProvider>)
+  </FirebaseCroppieContextProvider>)
 }

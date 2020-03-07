@@ -1,13 +1,12 @@
 import React from 'react'
 import FileInput from './FileInput'
-import {connectFirebasePhotoInput} from '@appsparkler/react-hfn-components'
+import {connectFirebaseCroppie} from '@appsparkler/react-hfn-components'
 import CroppieInput from './CroppieInput'
 import CurrentPhoto from './CurrentPhoto'
 import config from './config'
 import 'croppie/croppie.css'
 
 const CroppieCustomComponents = ({...context}) => {
-  // const context = React.useContext(FirebasePhotoInputContext)
   return (
     <div className="ReactHFN_FirebasePhotoInput">
       <div className="CurrentPhotoAndFileInput col-xs-12 col-sm-5 col-lg-3">
@@ -23,4 +22,4 @@ const CroppieCustomComponents = ({...context}) => {
   )
 }
 
-export default connectFirebasePhotoInput(CroppieCustomComponents, config)
+export default connectFirebaseCroppie(CroppieCustomComponents, config)
