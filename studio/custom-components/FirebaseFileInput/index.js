@@ -46,7 +46,7 @@ CustomFirebaseFileLink.propTypes = {
 }
 
 const CustomFirebaseFileInput = ({
-  file, isVerifying, verifyFile,
+  file, isVerifying,
 
   handleInput, type,
   maxBytes, maxBytesExceeded,
@@ -64,7 +64,6 @@ const CustomFirebaseFileInput = ({
               isVerifying={isVerifying}
             />}
             {isUploading && 'Uploading new file...'}
-            <button onClick={verifyFile}>Verify File</button>
           </td>
           <td>
             <h3>Input Field</h3>
@@ -128,6 +127,7 @@ CustomFirebaseFileInput.propTypes = {
   type: PropTypes.string.isRequired,
   file: PropTypes.object,
   isVerifying: PropTypes.bool,
+  verifyFile: PropTypes.func,
   maxBytes: PropTypes.number,
   maxBytesExceeded: PropTypes.bool,
   isUploading: PropTypes.bool,

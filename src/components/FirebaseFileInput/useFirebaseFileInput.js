@@ -1,4 +1,7 @@
 import React from 'react'
+import useFirebaseFileLink
+  from '@react-hfn-components/FirebaseFileLink/useFileLink'
+
 
 function handleChange({props, states}, snapshot) {
   const {setProgress} = states
@@ -12,7 +15,7 @@ function handleError({props, states}, e) {
   states.setIsUploading(false)
 }
 
-async function handleDone({props, states, uploadTask, file}) {
+async function handleDone({props, states, uploadTask, verifyFile, file}) {
   const downloadURL = await Promise.resolve(
       props.storageRef.getDownloadURL(),
   )
@@ -30,11 +33,10 @@ async function handleDone({props, states, uploadTask, file}) {
   setTimeout(() => {
     states.setProgress(0)
     states.setUploaded(true)
-    props.setFile(uploadedFile)
   }, 800)
 }
 
-async function upload({props, states}, evt) {
+async function upload({props, states, verifyFile}, evt) {
   const file = evt.target.files.item(0)
   states.setIsUploading(true)
   states.setProgress(20)
@@ -47,7 +49,7 @@ async function upload({props, states}, evt) {
       'state_changed',
       handleChange.bind(null, {props, states}),
       handleError.bind(null, {props, states}),
-      handleDone.bind(null, {props, states, uploadTask, file}),
+      handleDone.bind(null, {props, states, verifyFile, uploadTask, file}),
   )
 }
 
@@ -75,29 +77,26 @@ function validateFileSize({props, states}, evt) {
   }
 }
 
-async function handleInput({props, states}, evt) {
-  debugger
+async function handleInput({props, states, verifyFile}, evt) {
   evt.preventDefault()
   evt.stopPropagation()
   states.setMaxBytesExceeded(false)
   states.setIsUploading(false)
   states.setUploaded(false)
   const withinFileLimit = validateFileSize({props, states}, evt)
-  if (withinFileLimit) await upload({props, states}, evt)
+  if (withinFileLimit) await upload({props, states, verifyFile}, evt)
 }
 
 export default (props) => {
-  const [file, setFile] = React.useState(null)
-  const [isVerifying, setIsVerifying] = React.useState(false)
+  const {storageRef} = props
   const [maxBytesExceeded, setMaxBytesExceeded] = React.useState(false)
   const [isUploading, setIsUploading] = React.useState(false)
   const [progress, setProgress] = React.useState(0)
   const [type, setType] = React.useState('file')
   const [uploadError, setUploadError] = React.useState(null)
   const [uploaded, setUploaded] = React.useState(false)
+  const {file, isVerifying, verifyFile} = useFirebaseFileLink({storageRef})
   const states = {
-    file, setFile,
-    isVerifying, setIsVerifying,
     maxBytesExceeded, setMaxBytesExceeded,
     type, setType,
     isUploading, setIsUploading,
@@ -105,8 +104,10 @@ export default (props) => {
     uploadError, setUploadError,
     uploaded, setUploaded,
   }
-  React.useEffect(typeDidChange.bind(null, {props, states}), [type])
+  React.useEffect(typeDidChange.bind(null, {props, states, verifyFile}), [type])
   return {
+    // useFileLink
+    file, isVerifying, verifyFile,
     // ...props,
     maxBytes: props.maxBytes,
 
