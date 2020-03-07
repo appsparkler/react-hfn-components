@@ -5,5 +5,5 @@ export {
   connectFirebasePhotoInput,
 } from '@react-hfn-components/FirebasePhotoInput/context'
 export {
-  connectFirebaseFileLink, FirebaseFileLinkContext,
+  connectFirebaseFileLink,
 } from '@react-hfn-components/FirebaseFileLink/context'

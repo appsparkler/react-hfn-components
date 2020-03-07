@@ -4,8 +4,8 @@ import useFileLink from './useFileLink'
 
 export const FirebaseFileLinkContext = React.createContext()
 
-const FirebaseFileLinkContextProvider = ({children, ...props}) => {
-  const value = useFileLink(props)
+const FirebaseFileLinkContextProvider = ({children, storageRef}) => {
+  const value = useFileLink({storageRef})
   return (
     <FirebaseFileLinkContext.Provider value={value}>
       {children}
@@ -15,15 +15,22 @@ const FirebaseFileLinkContextProvider = ({children, ...props}) => {
 
 FirebaseFileLinkContextProvider.propTypes = {
   children: PropTypes.any.isRequired,
+  storageRef: PropTypes.object,
 }
 
 export const connectFirebaseFileLink = (CustomComponent, config) => () => {
+  const ComponentWithContext = () => {
+    const context = React.useContext(FirebaseFileLinkContext)
+    return (<CustomComponent {...context}/>)
+  }
   return (
     <FirebaseFileLinkContextProvider {...config}>
       {
         CustomComponent ?
-        (<CustomComponent />) :
-        'Please provide a custom component'
+        (<ComponentWithContext />) :
+        <pre>
+          please add a custom component
+        </pre>
       }
     </FirebaseFileLinkContextProvider>
   )
