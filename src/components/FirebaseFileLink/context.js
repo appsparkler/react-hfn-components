@@ -15,7 +15,7 @@ const FirebaseFileLinkContextProvider = ({children, storageRef}) => {
 
 FirebaseFileLinkContextProvider.propTypes = {
   children: PropTypes.any.isRequired,
-  storageRef: PropTypes.object,
+  storageRef: PropTypes.object.isRequired,
 }
 
 export const connectFirebaseFileLink = (CustomComponent, config) => () => {
@@ -27,10 +27,11 @@ export const connectFirebaseFileLink = (CustomComponent, config) => () => {
     <FirebaseFileLinkContextProvider {...config}>
       {
         CustomComponent ?
-        (<ComponentWithContext />) :
-        <pre>
-          please add a custom component
-        </pre>
+        (<ComponentWithContext />) : (
+          <pre>
+            please add a custom component
+          </pre>
+        )
       }
     </FirebaseFileLinkContextProvider>
   )
