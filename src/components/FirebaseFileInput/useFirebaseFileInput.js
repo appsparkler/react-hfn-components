@@ -2,7 +2,6 @@ import React from 'react'
 import useFirebaseFileLink
   from '@react-hfn-components/FirebaseFileLink/useFileLink'
 
-
 function handleChange({props, states}, snapshot) {
   const {setProgress} = states
   const {bytesTransferred, totalBytes} = snapshot
@@ -19,7 +18,6 @@ async function handleDone({props, states, uploadTask, verifyFile, file}) {
   const downloadURL = await Promise.resolve(
       props.storageRef.getDownloadURL(),
   )
-  states.setIsUploading(false)
   const metadata = await props.storageRef.getMetadata()
   const uploadedFile = {
     fileName: metadata.customMetadata.fileName,
@@ -30,7 +28,9 @@ async function handleDone({props, states, uploadTask, verifyFile, file}) {
   }
   props.onUpload && props.onUpload(uploadedFile)
   states.setProgress(100)
+  verifyFile()
   setTimeout(() => {
+    states.setIsUploading(false)
     states.setProgress(0)
     states.setUploaded(true)
   }, 800)
@@ -135,6 +135,6 @@ export default (props) => {
     // uploaded,
 
     type,
-    handleInput: handleInput.bind(null, {props, states}),
+    handleInput: handleInput.bind(null, {props, states, verifyFile}),
   }
 }

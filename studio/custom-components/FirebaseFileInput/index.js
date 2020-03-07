@@ -27,7 +27,7 @@ const CustomFirebaseFileLink = ({isVerifying, file}) => {
   return (<div className="container">
     {isVerifying && 'Verifying...'}
     {
-      file && (
+      !isVerifying && file && (
         <a
           href={file.downloadURL}
           target="__blank"
