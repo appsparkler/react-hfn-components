@@ -7,3 +7,6 @@ export {
 export {
   connectFirebaseFileLink,
 } from '@react-hfn-components/FirebaseFileLink/context'
+
+// CSS
+import 'croppie/croppie.css'
