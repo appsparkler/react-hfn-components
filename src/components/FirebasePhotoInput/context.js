@@ -211,7 +211,14 @@ FirebasePhotoInputContextProvider.defaultProps = {
 export default FirebasePhotoInputContextProvider
 
 export const connectFirebasePhotoInput = (Component, config) => () => {
+  const ComponentWithContext = () => {
+    const context = React.useContext(FirebasePhotoInputContext)
+    return (<Component {...context} />)
+  }
+
   return ( <FirebasePhotoInputContextProvider {...config}>
-    {Component && <Component />}
+    {Component ? <ComponentWithContext /> : (
+      <pre>Please add a custom component</pre>
+    )}
   </FirebasePhotoInputContextProvider>)
 }
