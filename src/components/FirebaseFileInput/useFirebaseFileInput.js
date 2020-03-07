@@ -107,8 +107,16 @@ export default (props) => {
   }
   React.useEffect(typeDidChange.bind(null, {props, states}), [type])
   return {
-    ...props, // props.maxBytes
+    // ...props,
+    maxBytes: props.maxBytes,
+
+    // props.maxBytes
     maxBytesExceeded,
+
+    // upload task
+    isUploading,
+    uploaded,
+    progress,
 
     // ...states,
     // file, setFile,
