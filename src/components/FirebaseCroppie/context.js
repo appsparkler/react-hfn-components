@@ -158,11 +158,10 @@ const FirebaseCroppieContextProvider = ({children, ...props}) => {
   const croppieRef = React.useRef()
   const value = {
     // PROPS
-    croppieConfig,
     ...props,
+    croppieConfig,
     // REFS
     photoPreviewRef, croppieRef,
-
     // STATES
     downloadURL, setDownloadURL,
     uploaded, setUploaded,
@@ -172,11 +171,7 @@ const FirebaseCroppieContextProvider = ({children, ...props}) => {
     croppie, setCroppie,
     exceedsMaxBytes, setExceedsMaxBytes,
     file2Upload, setFile2Upload,
-
-    // methods
-    handleChange: handleChange.bind(null, {setSelectedFile}),
   }
-  value.uploadPhoto = uploadPhoto.bind(null, {value})
   React.useEffect(componentDidMount.bind(null, {value}), [])
   React.useEffect(
       selectedFileDidChange.bind(null, {value}),
@@ -187,7 +182,15 @@ const FirebaseCroppieContextProvider = ({children, ...props}) => {
       [croppie],
   )
   return (
-    <FirebaseCroppieContext.Provider value={value}>
+    <FirebaseCroppieContext.Provider value={{
+      selectedFile, downloadURL,
+      croppieRef, photoPreviewRef,
+      exceedsMaxBytes,
+      isUploading, progress, uploaded,
+      // methods
+      handleChange: handleChange.bind(null, {setSelectedFile}),
+      uploadPhoto: uploadPhoto.bind(null, {value}),
+    }}>
       {children}
     </FirebaseCroppieContext.Provider>
   )
