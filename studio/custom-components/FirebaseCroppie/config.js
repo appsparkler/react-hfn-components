@@ -1,6 +1,6 @@
 import FirebaseApp from '@react-hfn-studio/firebase-app'
 
-const storageRef = FirebaseApp.storage().ref('INAAAEX32/profilePics/')
+const storageRef = FirebaseApp.storage().ref('INAAAEX32/profilePics1/')
 
 export default {
   maxBytes: 2 * 1024 * 1024,
