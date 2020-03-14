@@ -12,9 +12,10 @@ function handleFileLoaded({setSelectedFile}, evt) {
   setSelectedFile(result)
 }
 
-function handleChange({setSelectedFile, setFile}, evt) {
+function handleChange({setSelectedFile, setFile, setUploaded}, evt) {
   evt.preventDefault()
   evt.stopPropagation()
+  setUploaded(false)
   const {files} = evt.target
   const file = files.item(0)
   if (file) {
@@ -194,7 +195,11 @@ const FirebaseCroppieContextProvider = ({children, ...props}) => {
       exceedsMaxBytes,
       isUploading, progress, uploaded,
       // methods
-      handleChange: handleChange.bind(null, {setSelectedFile, setFile}),
+      handleChange: handleChange.bind(null, {
+        setSelectedFile,
+        setFile,
+        setUploaded,
+      }),
       uploadPhoto: uploadPhoto.bind(null, {value}),
     }}>
       {children}
