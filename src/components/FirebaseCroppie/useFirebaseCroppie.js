@@ -2,14 +2,20 @@ import React from 'react'
 import Croppie from 'croppie'
 import {dataURItoBlob} from './utils'
 
-function handleFileLoaded({setSelectedFile}, evt) {
+function handleFileLoaded({
+  setSelectedFile,
+}, evt) {
   evt.preventDefault()
   evt.stopPropagation()
   const result = evt.target.result
   setSelectedFile(result)
 }
 
-function handleChange({setSelectedFile, setFile, setUploaded}, evt) {
+function handleChange({
+  setSelectedFile,
+  setFile,
+  setUploaded,
+}, evt) {
   evt.preventDefault()
   evt.stopPropagation()
   setUploaded(false)
