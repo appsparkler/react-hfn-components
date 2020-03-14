@@ -1,10 +1,10 @@
 import React from 'react'
-import CustomFirebaseFileInput from './custom-components/FirebaseFileInput'
+import FirebaseCroppie from './custom-components/FirebaseCroppie'
 import './styles.sass'
 
 const StudioApp = () => {
   return (
-    <CustomFirebaseFileInput />
+    <FirebaseCroppie />
   )
 }
 

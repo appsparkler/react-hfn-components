@@ -12,18 +12,20 @@ function handleFileLoaded({setSelectedFile}, evt) {
   setSelectedFile(result)
 }
 
-function handleChange({setSelectedFile}, evt) {
+function handleChange({setSelectedFile, setFile, setUploaded}, evt) {
   evt.preventDefault()
   evt.stopPropagation()
+  setUploaded(false)
   const {files} = evt.target
-  const photo = files.item(0)
-  if (photo) {
+  const file = files.item(0)
+  if (file) {
     const reader = new FileReader()
     reader.addEventListener(
         'load',
         handleFileLoaded.bind(null, {setSelectedFile}),
     )
-    reader.readAsDataURL(photo)
+    reader.readAsDataURL(file)
+    setFile(file)
   }
 }
 
@@ -60,16 +62,16 @@ async function handleDone({props, task}) {
   const {
     fullPath,
     contentType,
-    name,
     size,
     timeCreated,
+    customMetadata,
     updated,
   } = task.snapshot.metadata
   const payload = {
     downloadURL,
     fullPath,
     contentType,
-    fileName: name,
+    fileName: customMetadata.fileName,
     size,
     timeCreated,
     updated,
@@ -85,7 +87,10 @@ async function uploadPhoto({value: props}, evt) {
   props.setIsUploading(true)
   props.setUploaded(false)
   const {storageRef, file2Upload} = props
-  const task = storageRef.put(file2Upload)
+  const fileName = props.file.name
+  const task = storageRef.put(file2Upload, {
+    customMetadata: {fileName},
+  })
   task.on(
       'state_changed',
       handleStateChange.bind(null, {props}),
@@ -153,16 +158,16 @@ const FirebaseCroppieContextProvider = ({children, ...props}) => {
   const [isUploading, setIsUploading] = React.useState(false)
   const [downloadURL, setDownloadURL] = React.useState('')
   const [progress, setProgress] = React.useState(0)
+  const [file, setFile] = React.useState(null)
   // REF
   const photoPreviewRef = React.useRef()
   const croppieRef = React.useRef()
   const value = {
     // PROPS
-    croppieConfig,
     ...props,
+    croppieConfig,
     // REFS
     photoPreviewRef, croppieRef,
-
     // STATES
     downloadURL, setDownloadURL,
     uploaded, setUploaded,
@@ -172,11 +177,8 @@ const FirebaseCroppieContextProvider = ({children, ...props}) => {
     croppie, setCroppie,
     exceedsMaxBytes, setExceedsMaxBytes,
     file2Upload, setFile2Upload,
-
-    // methods
-    handleChange: handleChange.bind(null, {setSelectedFile}),
+    file, setFile,
   }
-  value.uploadPhoto = uploadPhoto.bind(null, {value})
   React.useEffect(componentDidMount.bind(null, {value}), [])
   React.useEffect(
       selectedFileDidChange.bind(null, {value}),
@@ -187,7 +189,19 @@ const FirebaseCroppieContextProvider = ({children, ...props}) => {
       [croppie],
   )
   return (
-    <FirebaseCroppieContext.Provider value={value}>
+    <FirebaseCroppieContext.Provider value={{
+      selectedFile, downloadURL,
+      croppieRef, photoPreviewRef,
+      exceedsMaxBytes,
+      isUploading, progress, uploaded,
+      // methods
+      handleChange: handleChange.bind(null, {
+        setSelectedFile,
+        setFile,
+        setUploaded,
+      }),
+      uploadPhoto: uploadPhoto.bind(null, {value}),
+    }}>
       {children}
     </FirebaseCroppieContext.Provider>
   )

@@ -1,4 +1,5 @@
 import React from 'react'
+
 async function verifyFile({props, hooks}) {
   try {
     hooks.setIsVerifying(true)
