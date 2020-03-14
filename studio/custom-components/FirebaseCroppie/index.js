@@ -14,7 +14,9 @@ const CroppieCustomComponents = ({...context}) => {
         <FileInput {...context}/>
       </div>
       <div className="row">
-        <div className={`${context.uploaded ? 'psudo-hide': undefined} col-xs-12`}>
+        <div className={
+          `${context.uploaded ? 'psudo-hide': undefined} col-xs-12`}
+        >
           {context?.selectedFile && <CroppieInput {...context} />}
         </div>
       </div>
