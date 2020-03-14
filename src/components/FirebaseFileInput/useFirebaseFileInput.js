@@ -39,7 +39,7 @@ async function handleDone({props, states, uploadTask, verifyFile, file}) {
 async function upload({props, states, verifyFile}, evt) {
   const file = evt.target.files.item(0)
   states.setIsUploading(true)
-  states.setProgress(20)
+  states.setProgress(0)
   const uploadTask = props.storageRef.put(file, {
     customMetadata: {
       fileName: file.name,
