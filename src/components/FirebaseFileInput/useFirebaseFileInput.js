@@ -1,6 +1,7 @@
 import React from 'react'
 import useFirebaseFileLink
   from '@react-hfn-components/FirebaseFileLink/useFileLink'
+import useFileResetter from './useFileResetter'
 
 function handleChange({props, states}, snapshot) {
   const {setProgress} = states
@@ -53,15 +54,6 @@ async function upload({props, states, verifyFile}, evt) {
   )
 }
 
-function resetInputFiled({props, states}) {
-  const {setType} = states
-  setType('')
-}
-
-function typeDidChange({props, states}) {
-  states.setType('file')
-}
-
 function validateFileSize({props, states}, evt) {
   const {maxBytes} = props
   const {setMaxBytesExceeded} = states
@@ -69,7 +61,7 @@ function validateFileSize({props, states}, evt) {
   if (!file) return false
   if (file.size > maxBytes) {
     setMaxBytesExceeded(true)
-    resetInputFiled({props, states})
+    states.resetInputField()
     return false
   } else {
     setMaxBytesExceeded(null)
@@ -92,19 +84,19 @@ export default (props) => {
   const [maxBytesExceeded, setMaxBytesExceeded] = React.useState(false)
   const [isUploading, setIsUploading] = React.useState(false)
   const [progress, setProgress] = React.useState(0)
-  const [type, setType] = React.useState('file')
+  // const [type, setType] = React.useState('file')
   const [uploadError, setUploadError] = React.useState(null)
   const [uploaded, setUploaded] = React.useState(false)
   const {file, isVerifying, verifyFile} = useFirebaseFileLink({storageRef})
+  const {type, resetInputField} = useFileResetter()
   const states = {
     maxBytesExceeded, setMaxBytesExceeded,
-    type, setType,
+    type, resetInputField,
     isUploading, setIsUploading,
     progress, setProgress,
     uploadError, setUploadError,
     uploaded, setUploaded,
   }
-  React.useEffect(typeDidChange.bind(null, {props, states, verifyFile}), [type])
   return {
     // useFileLink
     file, isVerifying, verifyFile,
@@ -118,21 +110,6 @@ export default (props) => {
     isUploading,
     uploaded,
     progress,
-
-    // ...states,
-    // file, setFile,
-    // isVerifying, setIsVerifying,
-    // progress,
-    // type, label, disabled, required, name,
-    // progress, isUploading, uploaded,
-    // maxBytes, maxBytesError,
-    // isVerifying, file,
-    // handleInput,
-    // maxBytesExceeded,
-    // maxBytesExceeded,
-    // isUploading,
-    // type,
-    // uploaded,
 
     type,
     handleInput: handleInput.bind(null, {props, states, verifyFile}),
