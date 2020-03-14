@@ -1,14 +1,13 @@
 const {resolve} = require('path')
-console.log('building...')
-module.exports = ({mode, minimize}) => ({
-  mode,
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const {CleanWebpackPlugin} = require('clean-webpack-plugin')
+process.env.NODE_ENV = 'production'
+module.exports = {
   entry: './src/index',
-  optimization: {
-    minimize,
-  },
+  mode: 'production',
   output: {
     path: resolve('dist'),
-    filename: `react-hfn-components${minimize ? '.min' : ''}.js`,
+    filename: `react-hfn-components.min.js`,
     library: 'ReactHFNComponents',
     libraryTarget: 'umd',
   },
@@ -16,16 +15,53 @@ module.exports = ({mode, minimize}) => ({
     rules: [
       {
         test: /\.js$/,
-        use: {
-          loader: require.resolve('babel-loader'),
-          options: {
-            cacheDirectory: true,
-            envName: mode,
-          },
-        },
+        loader: 'babel-loader',
+        include: [
+          resolve('src'),
+          resolve('studio'),
+        ],
+      },
+      {
+        test: /\.(scss|sass)$/,
+        include: [resolve('src'), resolve('studio')],
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'sass-loader',
+        ],
+      },
+      {
+        test: /\.css$/,
+        include: [resolve('src'), resolve('node_modules')],
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+        ],
       },
     ],
   },
+  resolve: {
+    alias: {
+      '@appsparkler/react-hfn-components': resolve('src'),
+      '@react-hfn-components': resolve('src/components'),
+      '@react-hfn-hooks': resolve('src/hooks'),
+      '@react-hfn-contexts': resolve('src/contexts'),
+      '@react-hfn-hooks': resolve('src/hooks'),
+      '@react-hfn-contexts': resolve('src/contexts'),
+      '@react-hfn-singletons': resolve('src/singletons'),
+    },
+    extensions: ['.sass', '.js', '.jsx', '.json'],
+    modules: [
+      resolve('node_modules'),
+      resolve('./'),
+    ],
+  },
+  plugins: [
+    new CleanWebpackPlugin(),
+    new MiniCssExtractPlugin({
+      filename: 'styles.css',
+    }),
+  ],
   externals: {
     react: {
       root: 'React',
@@ -34,4 +70,4 @@ module.exports = ({mode, minimize}) => ({
       amd: 'react',
     },
   },
-})
+}
