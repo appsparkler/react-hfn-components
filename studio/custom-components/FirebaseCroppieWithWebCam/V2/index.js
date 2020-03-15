@@ -3,6 +3,7 @@ import FileInput from './FileInput'
 import WebCamInput from './WebCamInput'
 import MediaSourceForm from './MediaSourceForm'
 import Croppie from './Croppie'
+import UploadButton from './UploadButton'
 import useMediaSourceForm from './useMediaSourceForm'
 import useFirebaseCroppieWithWebcam from './useFirebaseCroppieWithWebcam'
 import 'croppie/croppie.css'
@@ -47,17 +48,26 @@ const FirebaseCroppieWithWebCam = () => {
 
       {(mediaSource === 'file') && (
         <div className="row">
+
           <div className="col-8">
             {mediaSource && dataURL && <Croppie
               dataURL={dataURL}
               onCroppieUpdate={setCroppedDataURL}
             />}
           </div>
+
           <div className="col-4">
             {croppedDataURL && (
-              <img className="img-thumbnail" src={croppedDataURL} />
+              <div className>
+                <img
+                  className="img-thumbnail rounded-0"
+                  src={croppedDataURL}
+                />
+                <UploadButton croppedDataURL={croppedDataURL}/>
+              </div>
             )}
           </div>
+
         </div>
       )}
 
