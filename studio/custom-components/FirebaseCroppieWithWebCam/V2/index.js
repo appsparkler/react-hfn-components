@@ -25,8 +25,25 @@ const FirebaseCroppieWithWebCam = () => {
       )}
       {(mediaSource === 'webcam') && (
         <div className="row">
-          <div className="col-4"><WebCamInput /></div>
           <div className="col-4">
+            <WebCamInput onDataURL={setDataURL} />
+          </div>
+          <div className="col-6">
+            {mediaSource && dataURL && <Croppie
+              dataURL={dataURL}
+              onCroppieUpdate={setCroppedDataURL}
+            />}
+          </div>
+          <div className="col-2">
+            {croppedDataURL && (
+              <img className="img-thumbnail" src={croppedDataURL} />
+            )}
+          </div>
+        </div>
+      )}
+      {(mediaSource === 'file') && (
+        <div className="row">
+          <div className="col-8">
             {mediaSource && dataURL && <Croppie
               dataURL={dataURL}
               onCroppieUpdate={setCroppedDataURL}
@@ -39,20 +56,6 @@ const FirebaseCroppieWithWebCam = () => {
           </div>
         </div>
       )}
-
-      <div className="row">
-        <div className="col-8">
-          {mediaSource && dataURL && <Croppie
-            dataURL={dataURL}
-            onCroppieUpdate={setCroppedDataURL}
-          />}
-        </div>
-        <div className="col-4">
-          {croppedDataURL && (
-            <img className="img-thumbnail" src={croppedDataURL} />
-          )}
-        </div>
-      </div>
     </div>
   )
 }

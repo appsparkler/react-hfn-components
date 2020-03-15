@@ -1,12 +1,12 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import useWebCam from './useWebCam'
 
-const WebCamInput = ({}) => {
+const WebCamInput = ({onDataURL}) => {
   const {
     videoRef,
-    dataURL,
     clickPhoto,
-  } = useWebCam()
+  } = useWebCam({onDataURL})
   return (
     <div>
       <div className="img-thumbnail rounded-0">
@@ -29,20 +29,12 @@ const WebCamInput = ({}) => {
   )
 }
 
+WebCamInput.propTypes = {
+  onDataURL: PropTypes.func.isRequired,
+}
+
+WebCamInput.defaultProps = {
+  onDataURL: () => {},
+}
+
 export default WebCamInput
-
-
-/* <div className="row">
-  <div className="col-6">
-
-  </div>
-  {dataURL && (
-    <div className="col-6">
-      <pre
-        className="pre-scrollable"
-      >
-        <code style={{whiteSpace: 'normal'}}>
-          {dataURL}
-        </code>
-      </pre>
-    </div>)}*/

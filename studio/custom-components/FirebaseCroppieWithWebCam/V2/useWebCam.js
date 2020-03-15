@@ -21,7 +21,7 @@ function componentDidMount({videoRef}) {
   startVideoStream({videoRef})
 }
 
-function clickPhoto({videoRef, setDataURL}, evt) {
+function clickPhoto({videoRef, onDataURL}, evt) {
   evt.stopPropagation()
   const canvas = document.createElement('canvas')
   const canvasContext = canvas.getContext('2d')
@@ -34,18 +34,17 @@ function clickPhoto({videoRef, setDataURL}, evt) {
       canvas.height,
   )
   const dataURL = canvas.toDataURL()
-  setDataURL(dataURL)
+  onDataURL(dataURL)
 }
 
-export default () => {
+export default ({onDataURL}) => {
   const videoRef = React.useRef()
-  const [dataURL, setDataURL] = React.useState(null)
+  // const [dataURL, setDataURL] = React.useState(null)
   React.useEffect(componentDidMount.bind(null,
       {videoRef}), [],
   )
   return {
     videoRef,
-    dataURL,
-    clickPhoto: clickPhoto.bind(null, {videoRef, setDataURL}),
+    clickPhoto: clickPhoto.bind(null, {videoRef, onDataURL}),
   }
 }
