@@ -9,16 +9,27 @@ const WebCamInput = ({}) => {
     buttonRef,
   } = useWebCam()
   return (
-    <div className="camera">
-      <video id="video"
-        ref={videoRef}
-        style={{outline: '12px slateBlue solid'}}
-      >
-        Video stream not available.
-      </video>
+    <div>
+      <div className="col-6">
+        <div className="img-thumbnail rounded-0">
+          <video className="w-100"
+            ref={videoRef}
+          >
+            Video stream not available.
+          </video>
+        </div>
+        <div className="mt-2">
+          <button className="btn btn-block btn-primary rounded-0">
+          Take photo
+          </button>
+        </div>
+      </div>
+
+      {/*
       <button id="startbutton" ref={buttonRef}>
         Take photo
       </button>
+      */}
 
       <div className="position-fixed" style={{left: '10000px'}}>
         {

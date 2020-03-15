@@ -1,6 +1,44 @@
 import React from 'react'
 
-function componentDidMount({videoRef, canvasRef, photoRef, buttonRef}) {
+function startVideoStream({videoRef}) {
+  const video = videoRef.current
+  navigator
+      .mediaDevices
+      .getUserMedia({video: true, audio: false})
+      .then(function(stream) {
+        video.srcObject = stream
+        video.play()
+      })
+      .catch(function(err) {
+        console.log('An error occurred: ' + err)
+      })
+      /*
+  video.addEventListener('canplay', function(ev) {
+     if (!streaming) {
+      debugger
+      height = video.videoHeight / (video.videoWidth/width)
+
+      // Firefox currently has a bug where the height can't be read from
+      // the video, so we will make assumptions if this happens.
+
+      if (isNaN(height)) {
+        height = width / (4/3)
+      }
+
+      video.setAttribute('width', width)
+      video.setAttribute('height', height)
+      // canvas.setAttribute('width', width)
+      // canvas.setAttribute('height', height)
+      streaming = true
+    }
+  }, false)
+  */
+}
+
+function componentDidMount({
+  videoRef, canvasRef, photoRef, buttonRef,
+}) {
+  startVideoStream({videoRef})
   // The width and height of the captured photo. We will set the
   // width to the value defined here, but the height will be
   // calculated based on the aspect ratio of the input stream.
@@ -26,8 +64,9 @@ function componentDidMount({videoRef, canvasRef, photoRef, buttonRef}) {
     canvas = canvasRef.current
     photo = photoRef.current
     startbutton = buttonRef.current
-
-    navigator.mediaDevices.getUserMedia({video: true, audio: false})
+    navigator
+        .mediaDevices
+        .getUserMedia({video: true, audio: false})
         .then(function(stream) {
           video.srcObject = stream
           video.play()
@@ -97,7 +136,7 @@ function componentDidMount({videoRef, canvasRef, photoRef, buttonRef}) {
 
   // Set up our event listener to run the startup process
   // once loading is complete.
-  startup()
+  // startup()
 }
 
 export default () => {
