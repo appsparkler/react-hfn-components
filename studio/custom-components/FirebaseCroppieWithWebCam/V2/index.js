@@ -6,11 +6,8 @@ import Croppie from './Croppie'
 import useMediaSourceForm from './useMediaSourceForm'
 import 'croppie/croppie.css'
 
-function handleDataURL(dataURL) {
-  debugger
-}
-
 const FirebaseCroppieWithWebCam = () => {
+  const [dataURL, setDataURL] = React.useState(null)
   const {
     handleMediaSourceChange, mediaSource,
   } = useMediaSourceForm()
@@ -20,10 +17,10 @@ const FirebaseCroppieWithWebCam = () => {
         handleMediaSourceChange={handleMediaSourceChange}
       />
       {(mediaSource === 'file') && (
-        <FileInput onDataURL={handleDataURL} />
+        <FileInput onDataURL={setDataURL} />
       )}
       {(mediaSource === 'webcam') && <WebCamInput />}
-      {mediaSource && <Croppie />}
+      {mediaSource && dataURL && <Croppie dataURL={dataURL} />}
     </div>
   )
 }
