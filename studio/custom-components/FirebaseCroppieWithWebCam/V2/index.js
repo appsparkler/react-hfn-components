@@ -1,42 +1,16 @@
 import React from 'react'
 import FileInput from './FileInput'
 import WebCamInput from './WebCamInput'
-
-function handleMediaSourceChange({setMediaSource}, evt) {
-  const mediaSource = evt.target.value
-  setMediaSource(mediaSource)
-}
+import MediaSourceForm from './MediaSourceForm'
+import useMediaSourceForm from './useMediaSourceForm'
 
 const FirebaseCroppieWithWebCam = () => {
-  const [mediaSource, setMediaSource] = React.useState(null)
+  const {
+    handleMediaSourceChange, mediaSource,
+  } = useMediaSourceForm()
   return (
     <div>
-      <form>
-        <div className="form-check form-check-inline">
-          <input
-            className="form-check-input"
-            name="mediaSource"
-            type="radio"
-            value="file"
-            onChange={handleMediaSourceChange.bind(null, {setMediaSource})}
-          />
-          <label className="form-check-label">
-            Upload File
-          </label>
-        </div>
-        <div className="form-check form-check-inline">
-          <input
-            className="form-check-input"
-            name="mediaSource"
-            type="radio"
-            value="webcam"
-            onChange={handleMediaSourceChange.bind(null, {setMediaSource})}
-          />
-          <label className="form-check-label" >
-            Webcam
-          </label>
-        </div>
-      </form>
+      <MediaSourceForm handleMediaSourceChange={handleMediaSourceChange}/>
       {(mediaSource === 'file') && <FileInput />}
       {(mediaSource === 'webcam') && <WebCamInput />}
     </div>
