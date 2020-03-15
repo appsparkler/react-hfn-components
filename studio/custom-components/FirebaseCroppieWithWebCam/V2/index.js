@@ -4,10 +4,11 @@ import WebCamInput from './WebCamInput'
 import MediaSourceForm from './MediaSourceForm'
 import Croppie from './Croppie'
 import useMediaSourceForm from './useMediaSourceForm'
+import useFirebaseCroppieWithWebcam from './useFirebaseCroppieWithWebcam'
 import 'croppie/croppie.css'
 
 const FirebaseCroppieWithWebCam = () => {
-  const [dataURL, setDataURL] = React.useState(null)
+  const {dataURL, setDataURL} = useFirebaseCroppieWithWebcam()
   const {
     handleMediaSourceChange, mediaSource,
   } = useMediaSourceForm()

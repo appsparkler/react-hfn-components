@@ -13,7 +13,9 @@ function componentDidMount({croppieRef, dataURL}) {
 
 export default ({dataURL}) => {
   const croppieRef = React.useRef()
-  React.useEffect(componentDidMount.bind(null, {croppieRef, dataURL}), [])
+  React.useEffect(componentDidMount.bind(null, {
+    croppieRef, dataURL,
+  }), [])
   return {
     croppieRef,
   }
