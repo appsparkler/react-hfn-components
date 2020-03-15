@@ -1,8 +1,5 @@
-import React from 'react'
-
-function handleFileLoaded({setDataURL, onDataURL}, evt) {
+function handleFileLoaded({onDataURL}, evt) {
   const dataURL = evt.target.result
-  setDataURL(dataURL)
   onDataURL(dataURL)
 }
 
@@ -17,16 +14,14 @@ function handleChange({
     const reader = new FileReader()
     reader.addEventListener(
         'load',
-        handleFileLoaded.bind(null, {setDataURL, onDataURL}),
+        handleFileLoaded.bind(null, {onDataURL}),
     )
     reader.readAsDataURL(file)
   }
 }
 
 export default ({onDataURL}) => {
-  const [dataURL, setDataURL] = React.useState()
   return {
-    dataURL,
-    handleChange: handleChange.bind(null, {setDataURL, onDataURL}),
+    handleChange: handleChange.bind(null, {onDataURL}),
   }
 }

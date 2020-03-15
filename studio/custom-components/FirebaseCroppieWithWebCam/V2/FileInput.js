@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import useFileInput from './useFileInput'
 
 const FileInput = ({onDataURL}) => {
-  const {handleChange, dataURL} = useFileInput({onDataURL})
+  const {handleChange} = useFileInput({onDataURL})
   return (
     <div>
       <div className="input-group mb-3">
@@ -26,13 +26,6 @@ const FileInput = ({onDataURL}) => {
           </label>
         </div>
       </div>
-      {dataURL && (
-        <pre className="pre-scrollable">
-          <code style={{whiteSpace: 'normal'}}>
-            {dataURL}
-          </code>
-        </pre>
-      )}
     </div>
   )
 }
