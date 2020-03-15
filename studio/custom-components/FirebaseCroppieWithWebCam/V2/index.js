@@ -6,9 +6,11 @@ import Croppie from './Croppie'
 import UploadButton from './UploadButton'
 import useMediaSourceForm from './useMediaSourceForm'
 import useFirebaseCroppieWithWebcam from './useFirebaseCroppieWithWebcam'
+import config from './config'
 import 'croppie/croppie.css'
 
 const FirebaseCroppieWithWebCam = () => {
+  const {storageRef, maxBytes} = config
   const {
     dataURL, setDataURL,
     croppedDataURL, setCroppedDataURL,
@@ -42,7 +44,11 @@ const FirebaseCroppieWithWebCam = () => {
             {croppedDataURL && (
               <div>
                 <img className="img-thumbnail" src={croppedDataURL} />
-                <UploadButton croppedDataURL={croppedDataURL} />
+                <UploadButton
+                  croppedDataURL={croppedDataURL}
+                  storageRef={storageRef}
+                  maxBytes={maxBytes}
+                />
               </div>
             )}
           </div>
@@ -66,7 +72,11 @@ const FirebaseCroppieWithWebCam = () => {
                   className="img-thumbnail rounded-0"
                   src={croppedDataURL}
                 />
-                <UploadButton croppedDataURL={croppedDataURL}/>
+                <UploadButton
+                  croppedDataURL={croppedDataURL}
+                  storageRef={storageRef}
+                  maxBytes={maxBytes}
+                />
               </div>
             )}
           </div>
