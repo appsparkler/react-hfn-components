@@ -30,9 +30,7 @@ UploadButtton.propTypes = {
 
 UploadButtton.defaultProps = {
   maxBytes: 5 * 1024 * 1024,
-  onProgress: (progress) => {
-    debugger
-  },
+  onProgress: (progress) => {},
 }
 
 export default UploadButtton
