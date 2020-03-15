@@ -39,14 +39,12 @@ function clickPhoto({videoRef, setDataURL}, evt) {
 
 export default () => {
   const videoRef = React.useRef()
-  const buttonRef = React.useRef()
   const [dataURL, setDataURL] = React.useState(null)
   React.useEffect(componentDidMount.bind(null,
       {videoRef}), [],
   )
   return {
     videoRef,
-    buttonRef,
     dataURL,
     clickPhoto: clickPhoto.bind(null, {videoRef, setDataURL}),
   }

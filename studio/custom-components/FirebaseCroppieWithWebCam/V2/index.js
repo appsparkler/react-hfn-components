@@ -10,7 +10,8 @@ const FirebaseCroppieWithWebCam = () => {
   } = useMediaSourceForm()
   return (
     <div>
-      <MediaSourceForm handleMediaSourceChange={handleMediaSourceChange}
+      <MediaSourceForm
+        handleMediaSourceChange={handleMediaSourceChange}
       />
       {(mediaSource === 'file') && <FileInput />}
       {(mediaSource === 'webcam') && <WebCamInput />}
