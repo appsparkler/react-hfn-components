@@ -20,8 +20,8 @@ const FirebaseCroppieWithWebCam = () => {
             value="file"
             onChange={handleMediaSourceChange.bind(null, {setMediaSource})}
           />
-          <label className="form-check-label" htmlFor="inlineRadio1">
-          Upload File
+          <label className="form-check-label">
+            Upload File
           </label>
         </div>
         <div className="form-check form-check-inline">
@@ -32,8 +32,8 @@ const FirebaseCroppieWithWebCam = () => {
             value="webcam"
             onChange={handleMediaSourceChange.bind(null, {setMediaSource})}
           />
-          <label className="form-check-label" htmlFor="inlineRadio2">
-          Webcam
+          <label className="form-check-label" >
+            Webcam
           </label>
         </div>
       </form>
