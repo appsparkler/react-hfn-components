@@ -1,7 +1,14 @@
 import React from 'react'
-import CustomCroppie from './custom-components/FirebaseCroppieWithWebCam'
+import CustomCroppie from './custom-components/FirebaseCroppieWithWebCam/V2'
 import './styles.sass'
 
+const StudioApp = () => {
+  return (
+    <div className="container">
+      <CustomCroppie />
+    </div>
+  )
+}
 
 function componentDidMount({videoRef, canvasRef, photoRef, buttonRef}) {
   // The width and height of the captured photo. We will set the
@@ -102,7 +109,7 @@ function componentDidMount({videoRef, canvasRef, photoRef, buttonRef}) {
   // once loading is complete.
   startup()
 }
-
+/*
 const StudioApp = () => {
   const videoRef = React.useRef()
   const canvasRef = React.useRef()
@@ -146,5 +153,5 @@ const StudioApp = () => {
     </div>
   )
 }
-
+*/
 export default StudioApp
