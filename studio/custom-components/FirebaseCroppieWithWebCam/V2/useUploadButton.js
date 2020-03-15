@@ -1,8 +1,20 @@
 // import React from 'react'
 import {dataURL2Blob} from './utils'
 
+function onStateChange({onProgress}, snapshot) {
+
+}
+
+function onError() {
+
+}
+
+function onDone() {
+
+}
+
 const handleClick = ({
-  croppedDataURL, storageRef, onStateChange, onError, onDone,
+  croppedDataURL, storageRef, onProgress,
 }, evt) => {
   debugger
   const blob = dataURL2Blob(croppedDataURL)
@@ -10,18 +22,18 @@ const handleClick = ({
   const uploadTask = storageRef.put(file)
   uploadTask.on(
       'state_changed',
-      onStateChange,
+      onStateChange.bind(null, {onProgress}),
       onError,
       onDone,
   )
 }
 
 export default ({
-  croppedDataURL, storageRef, onStateChange, onError, onDone,
+  croppedDataURL, storageRef, onProgress,
 }) => {
   return {
     handleClick: handleClick.bind(null, {
-      croppedDataURL, storageRef, onStateChange, onError, onDone,
+      croppedDataURL, storageRef, onProgress,
     }),
   }
 }
