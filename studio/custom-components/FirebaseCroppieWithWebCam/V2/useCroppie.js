@@ -17,13 +17,32 @@ function dataURLDidChange({
   }
 }
 
+async function handleCroppieUpdates({croppie, setCroppedDataURL}) {
+  const croppedDataURL = await croppie.result()
+  setCroppedDataURL(croppedDataURL)
+}
+
+function croppieDidChange({croppie, setCroppedDataURL}) {
+  if (croppie) {
+    croppie.element.addEventListener(
+        'update',
+        handleCroppieUpdates.bind(null, {croppie, setCroppedDataURL}),
+    )
+  }
+}
+
 export default ({dataURL, croppieConfig}) => {
   const croppieRef = React.useRef()
   const [croppie, setCroppie] = React.useState()
+  const [croppedDataURL, setCroppedDataURL] = React.useState()
   React.useEffect(dataURLDidChange.bind(null, {
     croppie, dataURL, croppieRef, setCroppie, croppieConfig,
   }), [dataURL])
+  React.useEffect(croppieDidChange.bind(null, {
+    croppie, setCroppedDataURL,
+  }), [croppie])
   return {
     croppieRef,
+    croppedDataURL,
   }
 }
