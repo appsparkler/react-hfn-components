@@ -2,21 +2,24 @@
 import {dataURL2Blob} from './utils'
 
 function onStateChange({onProgress}, snapshot) {
-
+  const {status, totalBytes, bytesTransferred} = snapshot
+  if (totalBytes && status === 'running') {
+    const progress = (bytesTransferred/totalBytes) * 100
+    onProgress(progress)
+  }
 }
 
 function onError() {
 
 }
 
-function onDone() {
-
+function onDone({onProgress}) {
+  onProgress(100)
 }
 
 const handleClick = ({
   croppedDataURL, storageRef, onProgress,
 }, evt) => {
-  debugger
   const blob = dataURL2Blob(croppedDataURL)
   const file = new File([blob], 'pic')
   const uploadTask = storageRef.put(file)
@@ -24,7 +27,7 @@ const handleClick = ({
       'state_changed',
       onStateChange.bind(null, {onProgress}),
       onError,
-      onDone,
+      onDone.bind(null, {onProgress}),
   )
 }
 
@@ -37,21 +40,3 @@ export default ({
     }),
   }
 }
-
-
-/*
-
-function handleStateChange({ onStateChange, onError, onDone}, snapshot) {
-  if (snapshot.totalBytes) {
-    setProgress((snapshot.bytesTransferred/snapshot.totalBytes) * 100)
-  }
-}
-
-function handleError() {
-  debugger
-}
-
-function handleDone() {
-  debugger
-}
-*/

@@ -4,6 +4,7 @@ import WebCamInput from './WebCamInput'
 import MediaSourceForm from './MediaSourceForm'
 import Croppie from './Croppie'
 import UploadButton from './UploadButton'
+import ProgressBar from './ProgressBar'
 import useMediaSourceForm from './useMediaSourceForm'
 import useFirebaseCroppieWithWebcam from './useFirebaseCroppieWithWebcam'
 import config from './config'
@@ -14,6 +15,7 @@ const FirebaseCroppieWithWebCam = () => {
   const {
     dataURL, setDataURL,
     croppedDataURL, setCroppedDataURL,
+    progress, setProgress,
   } = useFirebaseCroppieWithWebcam()
   const {
     handleMediaSourceChange, mediaSource,
@@ -44,11 +46,17 @@ const FirebaseCroppieWithWebCam = () => {
             {croppedDataURL && (
               <div>
                 <img className="img-thumbnail" src={croppedDataURL} />
-                <UploadButton
-                  croppedDataURL={croppedDataURL}
-                  storageRef={storageRef}
-                  maxBytes={maxBytes}
-                />
+                <div className="mt-2">
+                  <UploadButton
+                    croppedDataURL={croppedDataURL}
+                    storageRef={storageRef}
+                    maxBytes={maxBytes}
+                    onProgress={setProgress}
+                  />
+                </div>
+                <div className="mt-2">
+                  <ProgressBar progress={progress} />
+                </div>
               </div>
             )}
           </div>
@@ -72,15 +80,20 @@ const FirebaseCroppieWithWebCam = () => {
                   className="img-thumbnail rounded-0"
                   src={croppedDataURL}
                 />
-                <UploadButton
-                  croppedDataURL={croppedDataURL}
-                  storageRef={storageRef}
-                  maxBytes={maxBytes}
-                />
+                <div className="mt-2">
+                  <UploadButton
+                    croppedDataURL={croppedDataURL}
+                    storageRef={storageRef}
+                    maxBytes={maxBytes}
+                    onProgress={setProgress}
+                  />
+                </div>
+                <div className="mt-2">
+                  <ProgressBar progress={progress} />
+                </div>
               </div>
             )}
           </div>
-
         </div>
       )}
 
