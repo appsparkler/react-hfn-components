@@ -8,7 +8,10 @@ import useFirebaseCroppieWithWebcam from './useFirebaseCroppieWithWebcam'
 import 'croppie/croppie.css'
 
 const FirebaseCroppieWithWebCam = () => {
-  const {dataURL, setDataURL} = useFirebaseCroppieWithWebcam()
+  const {
+    dataURL, setDataURL,
+    croppedDataURL, setCroppedDataURL,
+  } = useFirebaseCroppieWithWebcam()
   const {
     handleMediaSourceChange, mediaSource,
   } = useMediaSourceForm()
@@ -21,7 +24,15 @@ const FirebaseCroppieWithWebCam = () => {
         <FileInput onDataURL={setDataURL} />
       )}
       {(mediaSource === 'webcam') && <WebCamInput />}
-      {mediaSource && dataURL && <Croppie dataURL={dataURL} />}
+      {mediaSource && dataURL && <Croppie
+        dataURL={dataURL}
+        onCroppieUpdate={setCroppedDataURL}
+      />}
+      {croppedDataURL && (
+        <div >
+          <img className="img-thumbnail" src={croppedDataURL} />
+        </div>
+      )}
     </div>
   )
 }
