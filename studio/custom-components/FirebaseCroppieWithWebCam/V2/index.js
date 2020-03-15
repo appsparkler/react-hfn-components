@@ -14,15 +14,18 @@ const FirebaseCroppieWithWebCam = () => {
   } = useFirebaseCroppieWithWebcam()
   const {
     handleMediaSourceChange, mediaSource,
-  } = useMediaSourceForm()
+  } = useMediaSourceForm({setCroppedDataURL, setDataURL})
   return (
     <div>
+
       <MediaSourceForm
         handleMediaSourceChange={handleMediaSourceChange}
       />
+
       {(mediaSource === 'file') && (
         <FileInput onDataURL={setDataURL} />
       )}
+
       {(mediaSource === 'webcam') && (
         <div className="row">
           <div className="col-4">
@@ -41,6 +44,7 @@ const FirebaseCroppieWithWebCam = () => {
           </div>
         </div>
       )}
+
       {(mediaSource === 'file') && (
         <div className="row">
           <div className="col-8">
@@ -56,6 +60,7 @@ const FirebaseCroppieWithWebCam = () => {
           </div>
         </div>
       )}
+
     </div>
   )
 }
