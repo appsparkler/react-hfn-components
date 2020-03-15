@@ -40,7 +40,10 @@ const FirebaseCroppieWithWebCam = () => {
           </div>
           <div className="col-2">
             {croppedDataURL && (
-              <img className="img-thumbnail" src={croppedDataURL} />
+              <div>
+                <img className="img-thumbnail" src={croppedDataURL} />
+                <UploadButton croppedDataURL={croppedDataURL} />
+              </div>
             )}
           </div>
         </div>
