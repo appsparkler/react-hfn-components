@@ -139,6 +139,10 @@ function componentDidMount({
   // startup()
 }
 
+function clickPhoto() {
+  alert('ready to click photo!')
+}
+
 export default () => {
   const videoRef = React.useRef()
   const canvasRef = React.useRef()
@@ -155,5 +159,6 @@ export default () => {
     canvasRef,
     photoRef,
     buttonRef,
+    clickPhoto,
   }
 }

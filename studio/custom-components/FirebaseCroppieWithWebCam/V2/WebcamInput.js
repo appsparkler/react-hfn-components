@@ -6,7 +6,8 @@ const WebCamInput = ({}) => {
     videoRef,
     canvasRef,
     photoRef,
-    buttonRef,
+    // buttonRef,
+    clickPhoto,
   } = useWebCam()
   return (
     <div>
@@ -19,7 +20,11 @@ const WebCamInput = ({}) => {
           </video>
         </div>
         <div className="mt-2">
-          <button className="btn btn-block btn-primary rounded-0">
+          <button
+            className="btn btn-block btn-primary rounded-0"
+            type="button"
+            onClick={clickPhoto}
+          >
           Take photo
           </button>
         </div>
