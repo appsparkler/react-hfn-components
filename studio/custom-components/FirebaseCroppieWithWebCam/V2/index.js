@@ -2,6 +2,7 @@ import React from 'react'
 import FileInput from './FileInput'
 import WebCamInput from './WebCamInput'
 import MediaSourceForm from './MediaSourceForm'
+import Croppie from './Croppie'
 import useMediaSourceForm from './useMediaSourceForm'
 
 const FirebaseCroppieWithWebCam = () => {
@@ -15,6 +16,7 @@ const FirebaseCroppieWithWebCam = () => {
       />
       {(mediaSource === 'file') && <FileInput />}
       {(mediaSource === 'webcam') && <WebCamInput />}
+      {mediaSource && <Croppie />}
     </div>
   )
 }
