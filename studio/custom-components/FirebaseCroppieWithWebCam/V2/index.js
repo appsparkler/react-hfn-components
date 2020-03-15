@@ -4,6 +4,7 @@ import WebCamInput from './WebCamInput'
 import MediaSourceForm from './MediaSourceForm'
 import Croppie from './Croppie'
 import useMediaSourceForm from './useMediaSourceForm'
+import 'croppie/croppie.css'
 
 const FirebaseCroppieWithWebCam = () => {
   const {
