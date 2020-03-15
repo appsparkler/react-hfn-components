@@ -1,12 +1,13 @@
 import React from 'react'
 
-function handleFileLoaded({setDataURL}, evt) {
+function handleFileLoaded({setDataURL, onDataURL}, evt) {
   const dataURL = evt.target.result
   setDataURL(dataURL)
+  onDataURL(dataURL)
 }
 
 function handleChange({
-  setDataURL,
+  setDataURL, onDataURL,
 }, evt) {
   evt.preventDefault()
   evt.stopPropagation()
@@ -16,16 +17,16 @@ function handleChange({
     const reader = new FileReader()
     reader.addEventListener(
         'load',
-        handleFileLoaded.bind(null, {setDataURL}),
+        handleFileLoaded.bind(null, {setDataURL, onDataURL}),
     )
     reader.readAsDataURL(file)
   }
 }
 
-export default () => {
+export default ({onDataURL}) => {
   const [dataURL, setDataURL] = React.useState()
   return {
     dataURL,
-    handleChange: handleChange.bind(null, {setDataURL}),
+    handleChange: handleChange.bind(null, {setDataURL, onDataURL}),
   }
 }

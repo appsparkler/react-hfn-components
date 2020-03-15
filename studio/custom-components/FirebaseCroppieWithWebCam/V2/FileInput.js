@@ -1,8 +1,9 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import useFileInput from './useFileInput'
 
-const FileInput = ({}) => {
-  const {handleChange, dataURL} = useFileInput()
+const FileInput = ({onDataURL}) => {
+  const {handleChange, dataURL} = useFileInput({onDataURL})
   return (
     <div>
       <div className="input-group mb-3">
@@ -34,6 +35,14 @@ const FileInput = ({}) => {
       )}
     </div>
   )
+}
+
+FileInput.propTypes = {
+  onDataURL: PropTypes.func.isRequired,
+}
+
+FileInput.defaultProps = {
+  onDataURL: () => {},
 }
 
 export default FileInput
