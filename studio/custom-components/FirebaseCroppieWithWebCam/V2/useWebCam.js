@@ -139,8 +139,20 @@ function componentDidMount({
   // startup()
 }
 
-function clickPhoto() {
-  alert('ready to click photo!')
+function clickPhoto({videoRef, setDataURL}, evt) {
+  evt.stopPropagation()
+  const canvas = document.createElement('canvas')
+  const canvasContext = canvas.getContext('2d')
+  canvas.width = videoRef.current.videoWidth * 1
+  canvas.height = videoRef.current.videoHeight * 1
+  canvas.style.display = 'none'
+  canvasContext.drawImage(
+      videoRef.current, 0, 0,
+      canvas.width,
+      canvas.height,
+  )
+  const dataURL = canvas.toDataURL()
+  setDataURL(dataURL)
 }
 
 export default () => {
@@ -148,6 +160,7 @@ export default () => {
   const canvasRef = React.useRef()
   const photoRef = React.useRef()
   const buttonRef = React.useRef()
+  const [dataURL, setDataURL] = React.useState(null)
   React.useEffect(componentDidMount.bind(null, {
     videoRef,
     canvasRef,
@@ -156,9 +169,8 @@ export default () => {
   } ), [])
   return {
     videoRef,
-    canvasRef,
-    photoRef,
     buttonRef,
-    clickPhoto,
+    dataURL,
+    clickPhoto: clickPhoto.bind(null, {videoRef, setDataURL}),
   }
 }

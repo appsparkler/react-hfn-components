@@ -4,19 +4,17 @@ import useWebCam from './useWebCam'
 const WebCamInput = ({}) => {
   const {
     videoRef,
-    canvasRef,
-    photoRef,
-    // buttonRef,
+    dataURL,
     clickPhoto,
   } = useWebCam()
   return (
-    <div>
+    <div className="row">
       <div className="col-6">
         <div className="img-thumbnail rounded-0">
           <video className="w-100"
             ref={videoRef}
           >
-            Video stream not available.
+          Video stream not available.
           </video>
         </div>
         <div className="mt-2">
@@ -25,34 +23,20 @@ const WebCamInput = ({}) => {
             type="button"
             onClick={clickPhoto}
           >
-          Take photo
+            Take photo
           </button>
         </div>
       </div>
-
-      {/*
-      <button id="startbutton" ref={buttonRef}>
-        Take photo
-      </button>
-      */}
-
-      <div className="position-fixed" style={{left: '10000px'}}>
-        {
-          <canvas id="canvas"
-            ref={canvasRef}
-            style={{outline: '20px midnightBlue solid'}}
+      {dataURL && (
+        <div className="col-6">
+          <pre
+            className="pre-scrollable"
           >
-          </canvas>
-        }
-
-        <div className="output">
-          <h3>IMAGE...</h3>
-          <img
-            id="photo"
-            alt="The screen capture will appear in this box."
-            ref={photoRef}/>
-        </div>
-      </div>
+            <code style={{whiteSpace: 'normal'}}>
+              {dataURL}
+            </code>
+          </pre>
+        </div>)}
     </div>
   )
 }
