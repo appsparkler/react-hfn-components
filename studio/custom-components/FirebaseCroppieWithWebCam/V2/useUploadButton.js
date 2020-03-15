@@ -13,13 +13,15 @@ function onError() {
 
 }
 
-function onDone({onProgress}) {
-  onProgress(100)
+function onDoneCallback({onProgress, onDone}) {
+  onProgress(0)
+  onDone(true)
 }
 
 const handleClick = ({
-  croppedDataURL, storageRef, onProgress,
+  croppedDataURL, storageRef, onProgress, onDone,
 }, evt) => {
+  debugger
   const blob = dataURL2Blob(croppedDataURL)
   const file = new File([blob], 'pic')
   const uploadTask = storageRef.put(file)
@@ -27,16 +29,16 @@ const handleClick = ({
       'state_changed',
       onStateChange.bind(null, {onProgress}),
       onError,
-      onDone.bind(null, {onProgress}),
+      onDoneCallback.bind(null, {onProgress, onDone}),
   )
 }
 
 export default ({
-  croppedDataURL, storageRef, onProgress,
+  croppedDataURL, storageRef, onProgress, onDone, onClick,
 }) => {
   return {
     handleClick: handleClick.bind(null, {
-      croppedDataURL, storageRef, onProgress,
+      croppedDataURL, storageRef, onProgress, onDone, onClick,
     }),
   }
 }

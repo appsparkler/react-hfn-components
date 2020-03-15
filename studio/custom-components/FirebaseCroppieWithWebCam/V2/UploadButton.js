@@ -3,10 +3,12 @@ import PropTypes from 'prop-types'
 import useUploadButton from './useUploadButton'
 
 const UploadButtton = ({
-  croppedDataURL, storageRef, maxBytes, onProgress,
+  croppedDataURL, storageRef, maxBytes,
+  onProgress, onDone, onClick,
 }) => {
   const {handleClick} = useUploadButton({
-    croppedDataURL, storageRef, maxBytes, onProgress,
+    croppedDataURL, storageRef, maxBytes,
+    onProgress, onDone, onClick,
   })
   return (
     <div>
@@ -26,11 +28,15 @@ UploadButtton.propTypes = {
   storageRef: PropTypes.object.isRequired,
   maxBytes: PropTypes.number,
   onProgress: PropTypes.func,
+  onDone: PropTypes.func,
+  onClick: PropTypes.func,
 }
 
 UploadButtton.defaultProps = {
   maxBytes: 5 * 1024 * 1024,
   onProgress: (progress) => {},
+  onDone: () => {},
+  onClick: () => {},
 }
 
 export default UploadButtton
