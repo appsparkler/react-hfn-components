@@ -11,7 +11,7 @@ const ProgressBar = ({progress}) => (
       aria-valuemin="0"
       aria-valuemax="100"
     >
-      {progress}
+      {progress}%
     </div>
   </div>
 )

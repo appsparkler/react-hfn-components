@@ -15,7 +15,7 @@ const UploadButtton = ({
         onClick={handleClick}
         className="btn btn-block btn-primary rounded-0"
       >
-          Upload Photo
+          Upload
       </button>
     </div>
   )
