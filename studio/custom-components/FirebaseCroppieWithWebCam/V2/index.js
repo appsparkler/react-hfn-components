@@ -25,7 +25,7 @@ const FirebaseCroppieWithWebCam = () => {
   return (
     <div>
 
-      <FirebasePhoto />
+      <FirebasePhoto storageRef={storageRef} />
 
       <MediaSourceForm
         onMediaSourceChange={handleMediaSourceChange}

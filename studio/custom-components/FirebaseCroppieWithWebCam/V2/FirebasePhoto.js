@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {connectFirebaseFileLink} from '@appsparkler/react-hfn-components'
-import config from './config'
+import useFirebasePhoto from './useFirebasePhoto'
 
-const FirebasePhoto = ({file}) => {
+const FirebasePhoto = ({storageRef}) => {
+  const {file} = useFirebasePhoto({storageRef})
   return (
     <div className="row">
       {file && file.downloadURL && (
@@ -14,9 +14,7 @@ const FirebasePhoto = ({file}) => {
 }
 
 FirebasePhoto.propTypes = {
-  file: PropTypes.object.isRequired,
+  storageRef: PropTypes.object.isRequired,
 }
 
-export default connectFirebaseFileLink(FirebasePhoto, {
-  storageRef: config.storageRef,
-})
+export default FirebasePhoto
