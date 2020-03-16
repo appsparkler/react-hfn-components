@@ -17,13 +17,14 @@ const FirebaseCroppieWithWebCam = () => {
     dataURL, setDataURL,
     croppedDataURL, setCroppedDataURL,
     progress,
-    uploaded,
-    handleMediaSourceChange,
-    mediaSource, isUploading,
+    uploaded
+    , isUploading,
     handleUploadProgress, handleUploadDone, handleUploadStart,
   } = useFirebaseCroppieWithWebcam()
   //
-  const {mediaSources} = React.useContext(Context)
+  const {
+    mediaSource, mediaSources, handleMediaSourceChange,
+  } = React.useContext(Context)
   //
   return (
     <div>
