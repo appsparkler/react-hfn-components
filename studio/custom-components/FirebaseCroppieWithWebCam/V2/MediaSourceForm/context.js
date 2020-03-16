@@ -18,3 +18,15 @@ Provider.propTypes = {
 }
 
 export default Provider
+
+export const connectMediaSourceForm = (Component, config) => () => {
+  const ComponentWithContext = () => {
+    const context = React.useContext(MediaSourceContext)
+    return (<Component {...context} />)
+  }
+  return (<Provider {...config}>
+    {Component ? <ComponentWithContext /> : (
+      <pre>Please add a custom component</pre>
+    )}
+  </Provider>)
+}
