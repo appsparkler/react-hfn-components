@@ -5,6 +5,7 @@ import MediaSourceForm from './MediaSourceForm'
 import Croppie from './Croppie'
 import UploadButton from './UploadButton'
 import ProgressBar from './ProgressBar'
+import FirebasePhoto from './FirebasePhoto'
 import useFirebaseCroppieWithWebcam from './useFirebaseCroppieWithWebcam'
 import config from './config'
 import 'croppie/croppie.css'
@@ -23,6 +24,8 @@ const FirebaseCroppieWithWebCam = () => {
 
   return (
     <div>
+
+      <FirebasePhoto />
 
       <MediaSourceForm
         onMediaSourceChange={handleMediaSourceChange}

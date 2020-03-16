@@ -14,7 +14,6 @@ function onError() {
 }
 
 function onDoneCallback({onProgress, onDone}) {
-  onProgress(0)
   onDone(true)
 }
 
