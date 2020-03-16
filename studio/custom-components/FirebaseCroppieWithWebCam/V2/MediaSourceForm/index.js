@@ -1,11 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import useMediaSourceForm from './useMediaSourceForm'
+import connectMediaSourceForm from './context'
+// import useMediaSourceForm from './useMediaSourceForm'
 
-const MediaSourceForm = ({onMediaSourceChange, mediaSources}) => {
-  const {
-    handleMediaSourceChange,
-  } = useMediaSourceForm({onMediaSourceChange})
+const MediaSourceForm = ({
+  handleMediaSourceChange,
+  mediaSources,
+  mediaSource,
+  resetMediaSource,
+}) => {
   return (
     <form>
       {
@@ -20,6 +23,7 @@ const MediaSourceForm = ({onMediaSourceChange, mediaSources}) => {
               type="radio"
               value={item.value}
               onChange={handleMediaSourceChange}
+              checked={item.value === mediaSource}
             />
             <label className="form-check-label">
               {item.label || item.value}
@@ -32,12 +36,14 @@ const MediaSourceForm = ({onMediaSourceChange, mediaSources}) => {
 }
 
 MediaSourceForm.propTypes = {
-  onMediaSourceChange: PropTypes.func.isRequired,
+  handleMediaSourceChange: PropTypes.func.isRequired,
   mediaSources: PropTypes.array.isRequired,
+  mediaSource: PropTypes.string,
+  resetMediaSource: PropTypes.func,
 }
 
 MediaSourceForm.defaultProps = {
   onMediaSourceChange: () => {},
 }
 
-export default MediaSourceForm
+export default connectMediaSourceForm(MediaSourceForm)

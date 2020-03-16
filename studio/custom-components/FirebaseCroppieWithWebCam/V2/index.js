@@ -24,19 +24,23 @@ const FirebaseCroppieWithWebCam = () => {
   //
   const {
     mediaSource, mediaSources, handleMediaSourceChange,
+    resetMediaSource,
   } = React.useContext(Context)
   //
   return (
     <div>
-      {!isUploading && <FirebasePhoto storageRef={storageRef} />}
-      {isUploading && <span className="small">Uploading...</span>}
+      {/* !isUploading && <FirebasePhoto storageRef={storageRef} />}
+      {isUploading && <span className="small">Uploading...</span>*/}
 
       <MediaSourceForm
         onMediaSourceChange={handleMediaSourceChange}
         mediaSources={mediaSources}
+        selectedMediaSource={mediaSource}
       />
 
-      {(mediaSource === 'file') && !uploaded && (
+      <button onClick={resetMediaSource}>Reset Media Source</button>
+
+      {(mediaSource === 'file') && (
         <div>
           <div className="row">
             <FileInput onDataURL={setDataURL} />
@@ -84,7 +88,7 @@ const FirebaseCroppieWithWebCam = () => {
         </div>
       )}
 
-      {(mediaSource === 'webcam') && !uploaded && (
+      {(mediaSource === 'webcam') && (
         <div className="row">
           <div className="col-4">
             <WebCamInput onDataURL={setDataURL} />
