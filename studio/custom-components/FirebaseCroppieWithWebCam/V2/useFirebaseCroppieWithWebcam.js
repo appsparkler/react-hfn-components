@@ -16,10 +16,12 @@ function handleMediaSourceChange({
 function handleUploadProgress({setIsUploading}) {
   setIsUploading(true)
 }
+
 function handleUploadDone({setIsUploading, setUploaded}) {
   setIsUploading(false)
   setUploaded(true)
 }
+
 export default () => {
   const [dataURL, setDataURL] = React.useState(null)
   const [croppedDataURL, setCroppedDataURL] = React.useState(null)
@@ -28,12 +30,14 @@ export default () => {
   const [mediaSource, setMediaSource] = React.useState(null)
   const [isUploading, setIsUploading] = React.useState(null)
   return {
+    // properties
     dataURL, setDataURL,
     croppedDataURL, setCroppedDataURL,
     progress, setProgress,
     uploaded, setUploaded,
     mediaSource,
     isUploading,
+    // methods
     handleUploadButtonClick: handleUploadButtonClick.bind(null, {
       setUploaded,
     }),
