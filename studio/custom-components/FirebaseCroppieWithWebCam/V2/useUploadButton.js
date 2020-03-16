@@ -18,9 +18,9 @@ function onDoneCallback({onProgress, onDone}) {
 }
 
 const handleClick = ({
-  croppedDataURL, storageRef, onProgress, onDone, onClick,
+  croppedDataURL, storageRef, onProgress, onDone, onStart,
 }, evt) => {
-  onClick()
+  onStart()
   const blob = dataURL2Blob(croppedDataURL)
   const file = new File([blob], 'pic')
   const uploadTask = storageRef.put(file)
@@ -33,11 +33,11 @@ const handleClick = ({
 }
 
 export default ({
-  croppedDataURL, storageRef, onProgress, onDone, onClick,
+  croppedDataURL, storageRef, onProgress, onDone, onStart,
 }) => {
   return {
     handleClick: handleClick.bind(null, {
-      croppedDataURL, storageRef, onProgress, onDone, onClick,
+      croppedDataURL, storageRef, onProgress, onDone, onStart,
     }),
   }
 }

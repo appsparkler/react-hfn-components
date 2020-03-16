@@ -1,9 +1,5 @@
 import React from 'react'
 
-function handleUploadButtonClick() {
-
-}
-
 function handleMediaSourceChange({
   setUploaded, setMediaSource, setDataURL, setCroppedDataURL,
 }, mediaSource) {
@@ -22,6 +18,11 @@ function handleUploadDone({setIsUploading, setUploaded}) {
   setUploaded(true)
 }
 
+function handleUploadStart({setIsUploading, setUploaded}) {
+  setIsUploading(true)
+  setUploaded(false)
+}
+
 export default () => {
   const [dataURL, setDataURL] = React.useState(null)
   const [croppedDataURL, setCroppedDataURL] = React.useState(null)
@@ -38,9 +39,6 @@ export default () => {
     mediaSource,
     isUploading,
     // methods
-    handleUploadButtonClick: handleUploadButtonClick.bind(null, {
-      setUploaded,
-    }),
     handleMediaSourceChange: handleMediaSourceChange.bind(null, {
       setUploaded,
       setMediaSource,
@@ -51,6 +49,9 @@ export default () => {
       setIsUploading,
     }),
     handleUploadDone: handleUploadDone.bind(null, {
+      setIsUploading, setUploaded,
+    }),
+    handleUploadStart: handleUploadStart.bind(null, {
       setIsUploading, setUploaded,
     }),
   }

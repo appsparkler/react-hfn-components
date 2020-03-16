@@ -15,12 +15,11 @@ const FirebaseCroppieWithWebCam = () => {
   const {
     dataURL, setDataURL,
     croppedDataURL, setCroppedDataURL,
-    progress, setProgress,
-    uploaded, setUploaded,
-    handleUploadButtonClick,
+    progress,
+    uploaded,
     handleMediaSourceChange,
     mediaSource, isUploading,
-    handleUploadProgress, handleUploadDone,
+    handleUploadProgress, handleUploadDone, handleUploadStart,
   } = useFirebaseCroppieWithWebcam()
 
   return (
@@ -57,9 +56,9 @@ const FirebaseCroppieWithWebCam = () => {
                     croppedDataURL={croppedDataURL}
                     storageRef={storageRef}
                     maxBytes={maxBytes}
+                    onStart={handleUploadStart}
                     onProgress={handleUploadProgress}
                     onDone={handleUploadDone}
-                    onClick={handleUploadButtonClick}
                   />
                 </div>
                 <div className="mt-2">
@@ -102,7 +101,7 @@ const FirebaseCroppieWithWebCam = () => {
                     maxBytes={maxBytes}
                     onProgress={handleUploadProgress}
                     onDone={handleUploadDone}
-                    onClick={handleUploadButtonClick}
+                    onStart={handleUploadStart}
                   />
                 </div>
                 <div className="mt-2">
