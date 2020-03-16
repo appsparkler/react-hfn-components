@@ -6,7 +6,7 @@ const UploadButtton = ({
   croppedDataURL, storageRef, maxBytes,
   onProgress, onDone, onStart,
 }) => {
-  const {handleClick} = useUploadButton({
+  const {handleClick, isUploading} = useUploadButton({
     croppedDataURL, storageRef, maxBytes,
     onProgress, onDone, onStart,
   })
@@ -16,6 +16,7 @@ const UploadButtton = ({
         type="button"
         onClick={handleClick}
         className="btn btn-block btn-primary rounded-0"
+        disabled={isUploading}
       >
           Upload
       </button>
