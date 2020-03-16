@@ -5,7 +5,6 @@ import MediaSourceForm from './MediaSourceForm'
 import Croppie from './Croppie'
 import UploadButton from './UploadButton'
 import ProgressBar from './ProgressBar'
-import useMediaSourceForm from './useMediaSourceForm'
 import useFirebaseCroppieWithWebcam from './useFirebaseCroppieWithWebcam'
 import config from './config'
 import 'croppie/croppie.css'
@@ -18,15 +17,15 @@ const FirebaseCroppieWithWebCam = () => {
     progress, setProgress,
     uploaded, setUploaded,
     handleUploadButtonClick,
+    handleMediaSourceChange,
+    mediaSource,
   } = useFirebaseCroppieWithWebcam()
-  const {
-    handleMediaSourceChange, mediaSource,
-  } = useMediaSourceForm({setCroppedDataURL, setDataURL})
+
   return (
     <div>
 
       <MediaSourceForm
-        handleMediaSourceChange={handleMediaSourceChange}
+        onMediaSourceChange={handleMediaSourceChange}
       />
 
       {(mediaSource === 'file') && (
@@ -62,6 +61,11 @@ const FirebaseCroppieWithWebCam = () => {
                   {!uploaded && (
                     <ProgressBar progress={progress} />
                   )}
+                  {uploaded && (
+                    <div className="alert alert-success overflow-hidden">
+                      Uploaded...
+                    </div>
+                  )}
                 </div>
               </div>
             )}
@@ -81,7 +85,7 @@ const FirebaseCroppieWithWebCam = () => {
 
           <div className="col-4">
             {croppedDataURL && (
-              <div className>
+              <div>
                 <img
                   className="img-thumbnail rounded-0"
                   src={croppedDataURL}
@@ -92,11 +96,19 @@ const FirebaseCroppieWithWebCam = () => {
                     storageRef={storageRef}
                     maxBytes={maxBytes}
                     onProgress={setProgress}
+                    onDone={setUploaded}
                     onClick={handleUploadButtonClick}
                   />
                 </div>
                 <div className="mt-2">
-                  <ProgressBar progress={progress} />
+                  {!uploaded && (
+                    <ProgressBar progress={progress} />
+                  )}
+                  {uploaded && (
+                    <div className="alert alert-success overflow-hidden">
+                      Uploaded...
+                    </div>
+                  )}
                 </div>
               </div>
             )}

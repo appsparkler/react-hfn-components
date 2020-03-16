@@ -1,20 +1,14 @@
-import React from 'react'
-
 function handleMediaSourceChange({
-  setMediaSource, setDataURL, setCroppedDataURL,
+  setMediaSource, onMediaSourceChange,
 }, evt) {
   const mediaSource = evt.target.value
-  setMediaSource(mediaSource)
-  setDataURL(null)
-  setCroppedDataURL(null)
+  onMediaSourceChange(mediaSource)
   evt.stopPropagation()
 }
 
-export default ({setDataURL, setCroppedDataURL}) => {
-  const [mediaSource, setMediaSource] = React.useState(null)
+export default ({onMediaSourceChange}) => {
   return {
     handleMediaSourceChange: handleMediaSourceChange
-        .bind(null, {setMediaSource, setDataURL, setCroppedDataURL}),
-    mediaSource,
+        .bind(null, {onMediaSourceChange}),
   }
 }

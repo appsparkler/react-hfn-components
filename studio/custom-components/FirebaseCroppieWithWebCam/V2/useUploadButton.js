@@ -19,9 +19,9 @@ function onDoneCallback({onProgress, onDone}) {
 }
 
 const handleClick = ({
-  croppedDataURL, storageRef, onProgress, onDone,
+  croppedDataURL, storageRef, onProgress, onDone, onClick,
 }, evt) => {
-  debugger
+  onClick()
   const blob = dataURL2Blob(croppedDataURL)
   const file = new File([blob], 'pic')
   const uploadTask = storageRef.put(file)

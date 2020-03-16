@@ -1,7 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import useMediaSourceForm from './useMediaSourceForm'
 
-const MediaSourceForm = ({handleMediaSourceChange}) => {
+const MediaSourceForm = ({onMediaSourceChange}) => {
+  const {
+    handleMediaSourceChange,
+  } = useMediaSourceForm({onMediaSourceChange})
   return (
     <form>
       <div className="form-check form-check-inline">
@@ -33,7 +37,11 @@ const MediaSourceForm = ({handleMediaSourceChange}) => {
 }
 
 MediaSourceForm.propTypes = {
-  handleMediaSourceChange: PropTypes.func.isRequired,
+  onMediaSourceChange: PropTypes.func.isRequired,
+}
+
+MediaSourceForm.defaultProps = {
+  onMediaSourceChange: () => {},
 }
 
 export default MediaSourceForm
