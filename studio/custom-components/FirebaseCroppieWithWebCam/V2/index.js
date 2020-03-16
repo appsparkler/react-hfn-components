@@ -28,7 +28,6 @@ const FirebaseCroppieWithWebCam = () => {
   //
   return (
     <div>
-
       {!isUploading && <FirebasePhoto storageRef={storageRef} />}
       {isUploading && <span className="small">Uploading...</span>}
 
