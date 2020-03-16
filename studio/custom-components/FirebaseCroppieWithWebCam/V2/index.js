@@ -7,6 +7,7 @@ import UploadButton from './UploadButton'
 import ProgressBar from './ProgressBar'
 import FirebasePhoto from './FirebasePhoto'
 import useFirebaseCroppieWithWebcam from './useFirebaseCroppieWithWebcam'
+import {Context} from './context'
 import config from './config'
 import 'croppie/croppie.css'
 
@@ -21,7 +22,9 @@ const FirebaseCroppieWithWebCam = () => {
     mediaSource, isUploading,
     handleUploadProgress, handleUploadDone, handleUploadStart,
   } = useFirebaseCroppieWithWebcam()
-
+  //
+  const {mediaSources} = React.useContext(Context)
+  //
   return (
     <div>
 
@@ -30,10 +33,7 @@ const FirebaseCroppieWithWebCam = () => {
 
       <MediaSourceForm
         onMediaSourceChange={handleMediaSourceChange}
-        mediaSources={[
-          {value: 'file', label: 'Upload File'},
-          {value: 'webcam', label: 'Use Webcam'},
-        ]}
+        mediaSources={mediaSources}
       />
 
       {(mediaSource === 'file') && !uploaded && (
