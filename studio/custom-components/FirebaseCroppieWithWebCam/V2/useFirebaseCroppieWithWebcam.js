@@ -13,9 +13,10 @@ function handleUploadProgress({setIsUploading}) {
   setIsUploading(true)
 }
 
-function handleUploadDone({setIsUploading, setUploaded}) {
+function handleUploadDone({setIsUploading, setUploaded, setMediaSource}) {
   setIsUploading(false)
   setUploaded(true)
+  setMediaSource(null)
 }
 
 function handleUploadStart({setIsUploading, setUploaded}) {
@@ -49,7 +50,7 @@ export default () => {
       setIsUploading,
     }),
     handleUploadDone: handleUploadDone.bind(null, {
-      setIsUploading, setUploaded,
+      setIsUploading, setUploaded, setMediaSource,
     }),
     handleUploadStart: handleUploadStart.bind(null, {
       setIsUploading, setUploaded,

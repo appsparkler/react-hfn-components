@@ -30,13 +30,61 @@ const FirebaseCroppieWithWebCam = () => {
 
       <MediaSourceForm
         onMediaSourceChange={handleMediaSourceChange}
+        mediaSources={[
+          {value: 'file', label: 'Upload File'},
+          {value: 'webcam', label: 'Use Webcam'},
+        ]}
       />
 
-      {(mediaSource === 'file') && (
-        <FileInput onDataURL={setDataURL} />
+      {(mediaSource === 'file') && !uploaded && (
+        <div>
+          <div className="row">
+            <FileInput onDataURL={setDataURL} />
+          </div>
+          <div className="row">
+
+            <div className="col-8">
+              {mediaSource && dataURL && <Croppie
+                dataURL={dataURL}
+                onCroppieUpdate={setCroppedDataURL}
+              />}
+            </div>
+
+            <div className="col-4">
+              {croppedDataURL && (
+                <div>
+                  <img
+                    className="img-thumbnail rounded-0"
+                    src={croppedDataURL}
+                  />
+                  <div className="mt-2">
+                    <UploadButton
+                      croppedDataURL={croppedDataURL}
+                      storageRef={storageRef}
+                      maxBytes={maxBytes}
+                      onProgress={handleUploadProgress}
+                      onDone={handleUploadDone}
+                      onStart={handleUploadStart}
+                    />
+                  </div>
+                  <div className="mt-2">
+                    {!uploaded && (
+                      <ProgressBar progress={progress} />
+                    )}
+                    {uploaded && (
+                      <div className="alert alert-success overflow-hidden">
+                        Uploaded...
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
       )}
 
-      {(mediaSource === 'webcam') && (
+      {(mediaSource === 'webcam') && !uploaded && (
         <div className="row">
           <div className="col-4">
             <WebCamInput onDataURL={setDataURL} />
@@ -59,49 +107,6 @@ const FirebaseCroppieWithWebCam = () => {
                     onStart={handleUploadStart}
                     onProgress={handleUploadProgress}
                     onDone={handleUploadDone}
-                  />
-                </div>
-                <div className="mt-2">
-                  {!uploaded && (
-                    <ProgressBar progress={progress} />
-                  )}
-                  {uploaded && (
-                    <div className="alert alert-success overflow-hidden">
-                      Uploaded...
-                    </div>
-                  )}
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
-      )}
-
-      {(mediaSource === 'file') && (
-        <div className="row">
-
-          <div className="col-8">
-            {mediaSource && dataURL && <Croppie
-              dataURL={dataURL}
-              onCroppieUpdate={setCroppedDataURL}
-            />}
-          </div>
-
-          <div className="col-4">
-            {croppedDataURL && (
-              <div>
-                <img
-                  className="img-thumbnail rounded-0"
-                  src={croppedDataURL}
-                />
-                <div className="mt-2">
-                  <UploadButton
-                    croppedDataURL={croppedDataURL}
-                    storageRef={storageRef}
-                    maxBytes={maxBytes}
-                    onProgress={handleUploadProgress}
-                    onDone={handleUploadDone}
-                    onStart={handleUploadStart}
                   />
                 </div>
                 <div className="mt-2">
