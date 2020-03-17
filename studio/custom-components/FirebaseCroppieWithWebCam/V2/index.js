@@ -28,6 +28,7 @@ const FirebaseCroppieWithWebCam = () => {
       {/* !isUploading && <FirebasePhoto storageRef={storageRef} />}
       {isUploading && <span className="small">Uploading...</span>*/}
       <MediaSourceForm {...mediaSourceFormProps}/>
+      {mediaSourceFormProps.value}
     </div>
   )
 }
