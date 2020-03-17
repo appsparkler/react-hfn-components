@@ -6,6 +6,7 @@ import connectFirebaseSuperCroppie from './connectFirebaseSuperCroppie'
 const FirebaseSuperCroppie = ({
   file, isVerifying,
   handleChange, // pass to file-input on-change-handler
+  croppieRef, // the croppie element ref
 }) => {
   const mediaSource = 'file'
   return (
@@ -42,6 +43,12 @@ const FirebaseSuperCroppie = ({
           </div>
         )}
       </div>
+
+      <div className="row">
+        <div className="col-6">
+          <div ref={croppieRef}></div>
+        </div>
+      </div>
     </div>
   )
 }
@@ -52,6 +59,8 @@ FirebaseSuperCroppie.propTypes = {
 
   // pass this to the file-inputs onChange handler
   handleChange: PropTypes.func.isRequired,
+
+  croppieRef: PropTypes.any,
 }
 
 export default connectFirebaseSuperCroppie({
