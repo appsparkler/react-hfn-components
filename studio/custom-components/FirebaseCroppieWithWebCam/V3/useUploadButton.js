@@ -26,6 +26,7 @@ const handleClick = ({
   if (evt.target.disabled) return
   setIsUploading(true)
   setUploaded(false)
+  setProgress(0)
   const blob = dataURL2Blob(croppedDataURL)
   const file = new File([blob], 'pic')
   const uploadTask = storageRef.put(file)

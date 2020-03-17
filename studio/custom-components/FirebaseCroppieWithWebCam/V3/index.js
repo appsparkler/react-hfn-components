@@ -66,6 +66,7 @@ const FirebaseSuperCroppie = ({
             >
               Upload
             </button>
+            <pre>{progress}%</pre>
           </div>
         </div>
       </div>
