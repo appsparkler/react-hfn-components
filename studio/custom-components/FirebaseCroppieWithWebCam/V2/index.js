@@ -1,32 +1,37 @@
 import React from 'react'
-import FileInput from './FileInput'
-import WebCamInput from './WebCamInput'
+// import FileInput from './FileInput'
+// import WebCamInput from './WebCamInput'
 import MediaSourceForm from './MediaSourceForm'
-import Croppie from './Croppie'
-import UploadButton from './UploadButton'
-import ProgressBar from './ProgressBar'
-import FirebasePhoto from './FirebasePhoto'
-import useFirebaseCroppieWithWebcam from './useFirebaseCroppieWithWebcam'
-import {Context} from './context'
-import config from './config'
+// import Croppie from './Croppie'
+// import UploadButton from './UploadButton'
+// import ProgressBar from './ProgressBar'
+// import FirebasePhoto from './FirebasePhoto'
+// import useFirebaseCroppieWithWebcam from './useFirebaseCroppieWithWebcam'
+// import {Context} from './context'
+// import config from './config'
 import 'croppie/croppie.css'
 
 const FirebaseCroppieWithWebCam = () => {
-  const {storageRef, maxBytes} = config
-  const {
-    dataURL, setDataURL,
-    croppedDataURL, setCroppedDataURL,
-    progress,
-    uploaded,
-    handleUploadProgress, handleUploadDone, handleUploadStart,
-  } = useFirebaseCroppieWithWebcam()
+  // const {storageRef, maxBytes} = config
+  // const {
+  // dataURL, setDataURL,
+  // croppedDataURL, setCroppedDataURL,
+  // progress,
+  // uploaded,
+  // handleUploadProgress, handleUploadDone, handleUploadStart,
+  // } = useFirebaseCroppieWithWebcam()
   //
   return (
     <div>
       {/* !isUploading && <FirebasePhoto storageRef={storageRef} />}
       {isUploading && <span className="small">Uploading...</span>*/}
-
       <MediaSourceForm />
+    </div>
+  )
+}
+
+export default FirebaseCroppieWithWebCam
+/*
 
       <button onClick={resetMediaSource}>Reset Media Source</button>
 
@@ -118,9 +123,4 @@ const FirebaseCroppieWithWebCam = () => {
           </div>
         </div>
       )}
-
-    </div>
-  )
-}
-
-export default FirebaseCroppieWithWebCam
+*/

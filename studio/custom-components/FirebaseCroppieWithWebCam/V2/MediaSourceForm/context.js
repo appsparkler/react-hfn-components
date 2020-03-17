@@ -4,8 +4,8 @@ import useContextProvider from './useContextProvider'
 
 export const MediaSourceContext = React.createContext()
 
-const Provider = ({children}) => {
-  const value= useContextProvider()
+const Provider = ({children, ...props}) => {
+  const value= useContextProvider({props})
   return (
     <MediaSourceContext.Provider value={value}>
       {children}

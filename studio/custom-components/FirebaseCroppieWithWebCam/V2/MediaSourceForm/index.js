@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import connectMediaSourceForm from './context'
-// import useMediaSourceForm from './useMediaSourceForm'
+import {connectMediaSourceForm} from './context'
 
 const MediaSourceForm = ({
   handleMediaSourceChange,
@@ -31,6 +30,8 @@ const MediaSourceForm = ({
           </div>)
         })
       }
+      <button type="button" onClick={resetMediaSource}>Reset</button>
+      <pre>{mediaSource}</pre>
     </form>
   )
 }
@@ -46,4 +47,4 @@ MediaSourceForm.defaultProps = {
   onMediaSourceChange: () => {},
 }
 
-export default connectMediaSourceForm(MediaSourceForm)
+export default connectMediaSourceForm(MediaSourceForm, {})

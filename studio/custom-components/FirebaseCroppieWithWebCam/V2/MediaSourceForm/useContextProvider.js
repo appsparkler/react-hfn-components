@@ -2,8 +2,8 @@ import React from 'react'
 
 function handleMediaSourceChange({
   setMediaSource,
-}, mediaSource) {
-  setMediaSource(mediaSource)
+}, evt) {
+  setMediaSource(evt.target.value)
 }
 
 function resetMediaSource({setMediaSource}) {
@@ -17,11 +17,10 @@ export default () => {
   ]
   const [mediaSource, setMediaSource] = React.useState(null)
   return {
-    // properties
     mediaSources,
+    mediaSource,
     handleMediaSourceChange: handleMediaSourceChange
         .bind(null, {setMediaSource}),
-    mediaSource,
     resetMediaSource: resetMediaSource.bind(null, {setMediaSource}),
   }
 }
