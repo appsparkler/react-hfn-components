@@ -1,17 +1,28 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const connectorFactory = ({Component, config, Context, ContextProvider}) => {
-  debugger
+function getComponentWithContext({Component, Context}) {
   const ComponentWithContext = () => {
     const ctx = React.useContext(Context)
     return (<Component {...ctx} />)
   }
-  return (<ContextProvider {...config}>
-    {Component ? <ComponentWithContext /> : (
-      <pre>Please add a custom component</pre>
-    )}
-  </ContextProvider>)
+  return ComponentWithContext
+}
+
+const connectorFactory = ({
+  Component, config, Context, ContextProvider,
+}) => () => {
+  return function ConnectedComponent() {
+    const ComponentWithContext = getComponentWithContext({Component, Context})
+
+    return (
+      <ContextProvider {...config}>
+        {Component ? <ComponentWithContext /> : (
+        <pre>Please add a custom component</pre>
+      )}
+      </ContextProvider>
+    )
+  }
 }
 
 connectorFactory.propTypes = {

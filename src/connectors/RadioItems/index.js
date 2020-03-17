@@ -1,13 +1,48 @@
+import React from 'react'
+import PropTypes from 'prop-types'
 import RadioItemsContextProvider, {RadioItemsContext} from './context'
-import connector from './connector'
 
-const connectRadioItems = (Component, config) => {
-  return connector({
-    Component,
-    config,
-    Context: RadioItemsContext,
-    ContextProvider: RadioItemsContextProvider,
-  })
+const getComponentWithContext = ({Context, Component}) => () =>{
+  const context = React.useContext(Context)
+  return (<Component {...context} />)
 }
 
-export default connectRadioItems
+const ConnectedComponent = ({
+  ComponentWithContext,
+  Provider,
+  Component,
+  config,
+}) => (<Provider {...config}>
+  {Component ? <ComponentWithContext /> : (
+    <pre>Please add a custom component</pre>
+  )}
+</Provider>)
+
+ConnectedComponent.propTypes = {
+  ComponentWithContext: PropTypes.func.isRequired,
+  Provider: PropTypes.func.isRequired,
+  Component: PropTypes.func.isRequired,
+  config: PropTypes.object.isRequired,
+}
+
+const connect = ({
+  Context,
+  Provider,
+}, Component, config,
+) => () => {
+  const ComponentWithContext = getComponentWithContext({
+    Context, Component,
+  })
+  return (<ConnectedComponent
+    {...{
+      ComponentWithContext,
+      Provider,
+      Component,
+      config,
+    }}
+  />)
+}
+
+export default connect.bind(null, {
+  Context: RadioItemsContext, Provider: RadioItemsContextProvider,
+})
