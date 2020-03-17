@@ -25,15 +25,3 @@ RadioItemsContextProvider.propTypes = {
 }
 
 export default RadioItemsContextProvider
-//
-// export const connectRadioItems = (Component, config) => () => {
-//   const ComponentWithContext = () => {
-//     const context = React.useContext(RadioItemsContext)
-//     return (<Component {...context} />)
-//   }
-//   return (<RadioItemsContextProvider {...config}>
-//     {Component ? <ComponentWithContext /> : (
-//       <pre>Please add a custom component</pre>
-//     )}
-//   </RadioItemsContextProvider>)
-// }
