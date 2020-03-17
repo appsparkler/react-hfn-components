@@ -7,6 +7,7 @@ const FirebaseSuperCroppie = ({
   file, isVerifying,
   handleChange, // pass to file-input on-change-handler
   croppieRef, // the croppie element ref
+  croppedDataURL, // the cropped-image preview url for img-src
 }) => {
   const mediaSource = 'file'
   return (
@@ -44,9 +45,15 @@ const FirebaseSuperCroppie = ({
         )}
       </div>
 
-      <div className="row">
-        <div className="col-6">
+      <div className={`row ${croppedDataURL ? '': 'invisible'}`}>
+        <div className="col-9">
           <div ref={croppieRef}></div>
+        </div>
+        <div className="col-3 text-center">
+          {croppedDataURL && <img
+            className="img-thumbnail rounded-0"
+            src={croppedDataURL}
+          />}
         </div>
       </div>
     </div>
@@ -61,6 +68,7 @@ FirebaseSuperCroppie.propTypes = {
   handleChange: PropTypes.func.isRequired,
 
   croppieRef: PropTypes.any,
+  croppedDataURL: PropTypes.string,
 }
 
 export default connectFirebaseSuperCroppie({
