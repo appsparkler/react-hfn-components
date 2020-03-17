@@ -15,11 +15,18 @@ const Provider = ({children, name, items}) => {
 
 Provider.propTypes = {
   children: PropTypes.any,
+  name: PropTypes.string.isRequired,
+  items: PropTypes.arrayOf(
+      PropTypes.shape({
+        name: PropTypes.string,
+        value: PropTypes.string,
+      }).isRequired,
+  ),
 }
 
 export default Provider
 
-export const connectMediaSourceForm = (Component, config) => () => {
+export const connectRadioItems = (Component, config) => () => {
   const ComponentWithContext = () => {
     const context = React.useContext(MediaSourceContext)
     return (<Component {...context} />)

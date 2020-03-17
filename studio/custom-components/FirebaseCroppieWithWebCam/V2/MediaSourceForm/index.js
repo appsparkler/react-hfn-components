@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {connectMediaSourceForm} from './context'
+import {connectRadioItems} from './context'
 
 const MediaSourceForm = ({
   handleChange,
@@ -47,7 +47,7 @@ MediaSourceForm.defaultProps = {
   onMediaSourceChange: () => {},
 }
 
-export default connectMediaSourceForm(MediaSourceForm, {
+export default connectRadioItems(MediaSourceForm, {
   name: 'mediaSource',
   items: [
     {value: 'file', label: 'Upload File'},

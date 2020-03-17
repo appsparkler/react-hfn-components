@@ -15,8 +15,7 @@ export default ({name, items}) => {
   return {
     value,
     name, items,
-    handleChange: handleChange
-        .bind(null, {setValue}),
+    handleChange: handleChange.bind(null, {setValue}),
     resetValue: resetValue.bind(null, {setValue}),
   }
 }
