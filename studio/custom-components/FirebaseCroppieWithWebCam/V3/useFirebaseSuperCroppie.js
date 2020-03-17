@@ -1,8 +1,9 @@
 import useFileFromStorageRef from './useFileFromStorageRef'
 
 export default ({storageRef}) => {
-  const {file} = useFileFromStorageRef({storageRef})
+  const {file, isVerifying} = useFileFromStorageRef({storageRef})
   return {
     file,
+    isVerifying,
   }
 }
