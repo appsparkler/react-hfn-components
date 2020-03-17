@@ -2,18 +2,18 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import useContextProvider from './useContextProvider'
 
-export const MediaSourceContext = React.createContext()
+export const RadioItemsContext = React.createContext()
 
-const Provider = ({children, name, items}) => {
+const RadioItemsContextProvider = ({children, name, items}) => {
   const value= useContextProvider({name, items})
   return (
-    <MediaSourceContext.Provider value={value}>
+    <RadioItemsContext.Provider value={value}>
       {children}
-    </MediaSourceContext.Provider>
+    </RadioItemsContext.Provider>
   )
 }
 
-Provider.propTypes = {
+RadioItemsContextProvider.propTypes = {
   children: PropTypes.any,
   name: PropTypes.string.isRequired,
   items: PropTypes.arrayOf(
@@ -24,16 +24,16 @@ Provider.propTypes = {
   ),
 }
 
-export default Provider
+export default RadioItemsContextProvider
 
 export const connectRadioItems = (Component, config) => () => {
   const ComponentWithContext = () => {
-    const context = React.useContext(MediaSourceContext)
+    const context = React.useContext(RadioItemsContext)
     return (<Component {...context} />)
   }
-  return (<Provider {...config}>
+  return (<RadioItemsContextProvider {...config}>
     {Component ? <ComponentWithContext /> : (
       <pre>Please add a custom component</pre>
     )}
-  </Provider>)
+  </RadioItemsContextProvider>)
 }
