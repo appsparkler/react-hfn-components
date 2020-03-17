@@ -34,7 +34,6 @@ function clickPhoto({videoRef, setDataURL}, evt) {
       canvas.height,
   )
   const dataURL = canvas.toDataURL()
-  debugger
   setDataURL(dataURL)
 }
 

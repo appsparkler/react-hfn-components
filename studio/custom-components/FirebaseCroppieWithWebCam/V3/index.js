@@ -60,9 +60,9 @@ const FirebaseSuperCroppie = ({
               Video stream not available.
               </video>
             </div>
-            <div className="col-6">
+            <div>
               <button
-                className="btn btn-block btn-primary rounded-0"
+                className="btn btn-block btn-primary rounded-0 mt-2"
                 type="button"
                 onClick={clickPhoto}
               >
@@ -73,7 +73,7 @@ const FirebaseSuperCroppie = ({
         )}
       </div>
 
-      <div className={`row ${croppedDataURL ? '': 'invisible'}`}>
+      <div className={`row mt-2 ${croppedDataURL ? '': 'invisible'}`}>
         <div className="col-9">
           <div ref={croppieRef}></div>
         </div>
@@ -113,6 +113,9 @@ FirebaseSuperCroppie.propTypes = {
   uploaded: PropTypes.bool.isRequired,
   isUploading: PropTypes.bool.isRequired,
   progress: PropTypes.number.isRequired,
+
+  videoRef: PropTypes.any.isRequired,
+  clickPhoto: PropTypes.func.isRequired,
 }
 
 export default connectFirebaseSuperCroppie({
