@@ -8,6 +8,7 @@ const FirebaseSuperCroppie = ({
   handleChange, // pass to file-input on-change-handler
   croppieRef, // the croppie element ref
   croppedDataURL, // the cropped-image preview url for img-src
+  handleClick,
 }) => {
   const mediaSource = 'file'
   return (
@@ -55,7 +56,10 @@ const FirebaseSuperCroppie = ({
             src={croppedDataURL}
           />}
           <div className="mt-2">
-            <button className="btn btn-primary btn-block rounded-0">
+            <button
+              className="btn btn-primary btn-block rounded-0"
+              onClick={handleClick}
+            >
               Upload
             </button>
           </div>
