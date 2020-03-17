@@ -1,39 +1,41 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-function getComponentWithContext({Component, Context}) {
-  const ComponentWithContext = () => {
-    const ctx = React.useContext(Context)
-    return (<Component {...ctx} />)
-  }
-  return ComponentWithContext
+const getComponentWithContext = ({Context, Component}) => () =>{
+  const context = React.useContext(Context)
+  return (<Component {...context} />)
 }
 
-const connectorFactory = ({
-  Component, config, Context, ContextProvider,
-}) => () => {
-  return function ConnectedComponent() {
-    const ComponentWithContext = getComponentWithContext({Component, Context})
+const ConnectedComponent = ({
+  ComponentWithContext,
+  Provider,
+  Component,
+  config,
+}) => (<Provider {...config}>
+  {Component ? <ComponentWithContext /> : (
+    <pre>Please add a custom component</pre>
+  )}
+</Provider>)
 
-    return (
-      <ContextProvider {...config}>
-        {Component ? <ComponentWithContext /> : (
-        <pre>Please add a custom component</pre>
-      )}
-      </ContextProvider>
-    )
-  }
-}
-
-connectorFactory.propTypes = {
+ConnectedComponent.propTypes = {
+  ComponentWithContext: PropTypes.func.isRequired,
+  Provider: PropTypes.func.isRequired,
   Component: PropTypes.func.isRequired,
-  Context: PropTypes.object.isRequired,
-  ContextProvider: PropTypes.func.isRequired,
-  config: PropTypes.object,
+  config: PropTypes.object.isRequired,
 }
 
-connectorFactory.defaultProps = {
-  config: {},
+const connector = ({Context, Provider}) => ({Component, config}) => () => {
+  const ComponentWithContext = getComponentWithContext({
+    Context, Component,
+  })
+  return (<ConnectedComponent
+    {...{
+      ComponentWithContext,
+      Provider,
+      Component,
+      config,
+    }}
+  />)
 }
 
-export default connectorFactory
+export default connector
