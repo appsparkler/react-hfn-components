@@ -45,5 +45,6 @@ export default ({dataURL, croppieConfig}) => {
   return {
     croppieRef,
     croppedDataURL,
+    setCroppedDataURL,
   }
 }
