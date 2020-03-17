@@ -20,7 +20,7 @@ const FirebaseSuperCroppie = ({
         {!file.downloadURL && isVerifying && <span>Is Verifying...</span>}
       </div>
 
-      <div className="row">
+      <div className="row mt-2">
         {mediaSource === 'file' && (
           <div className="input-group mb-3">
             <div className="input-group-prepend">
@@ -54,6 +54,11 @@ const FirebaseSuperCroppie = ({
             className="img-thumbnail rounded-0"
             src={croppedDataURL}
           />}
+          <div className="mt-2">
+            <button className="btn btn-primary btn-block rounded-0">
+              Upload
+            </button>
+          </div>
         </div>
       </div>
     </div>
