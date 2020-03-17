@@ -8,13 +8,20 @@ export default ({storageRef, croppieConfig}) => {
   const {file, isVerifying} = useFileFromStorageRef({storageRef})
   const {handleChange, dataURL} = useFileInput()
   const {croppieRef, croppedDataURL} = useCroppie({dataURL, croppieConfig})
-  const {handleClick} = useUploadButton({storageRef, croppieRef})
+  const {
+    handleClick,
+    isUploading,
+    uploaded,
+    progress,
+  } = useUploadButton({storageRef, croppieRef})
   return {
     file,
     isVerifying,
     handleChange,
     croppieRef,
     croppedDataURL,
-    handleClick,
+    handleClick, isUploading,
+    uploaded,
+    progress,
   }
 }

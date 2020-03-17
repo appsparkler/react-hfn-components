@@ -1,11 +1,11 @@
 import React from 'react'
 import {dataURL2Blob} from './utils'
 
-function onStateChange({onProgress}, snapshot) {
+function onStateChange({setProgress}, snapshot) {
   const {status, totalBytes, bytesTransferred} = snapshot
   if (totalBytes && status === 'running') {
     const progress = (bytesTransferred/totalBytes) * 100
-    onProgress(progress)
+    setProgress(progress)
   }
 }
 
@@ -13,37 +13,42 @@ function onError() {
 
 }
 
-function onDoneCallback({onProgress, onDone, setIsUploading}) {
-  onDone(true)
+function onDoneCallback({setProgress, setUploaded, setIsUploading}) {
+  setUploaded(true)
   setIsUploading(false)
+  setProgress(100)
 }
 
 const handleClick = ({
-  setIsUploading, croppedDataURL,
-  storageRef, onProgress, onDone, onStart,
+  croppedDataURL, storageRef,
+  setProgress, setUploaded, setIsUploading,
 }, evt) => {
-  onStart()
   setIsUploading(true)
+  setUploaded(false)
   const blob = dataURL2Blob(croppedDataURL)
   const file = new File([blob], 'pic')
   const uploadTask = storageRef.put(file)
   uploadTask.on(
       'state_changed',
-      onStateChange.bind(null, {onProgress}),
+      onStateChange.bind(null, {setProgress}),
       onError,
-      onDoneCallback.bind(null, {onProgress, onDone, setIsUploading}),
+      onDoneCallback.bind(null, {setProgress, setUploaded, setIsUploading}),
   )
 }
 
 export default ({
-  croppedDataURL, storageRef, onProgress, onDone, onStart,
+  croppedDataURL, storageRef,
 }) => {
-  const [isUploading, setIsUploading] = React.useState()
+  const [isUploading, setIsUploading] = React.useState(false)
+  const [progress, setProgress] = React.useState(0)
+  const [uploaded, setUploaded] = React.useState(false)
   return {
     handleClick: handleClick.bind(null, {
-      setIsUploading, croppedDataURL,
-      storageRef, onProgress, onDone, onStart,
+      croppedDataURL, storageRef,
+      setProgress, setUploaded, setIsUploading,
     }),
     isUploading,
+    uploaded,
+    progress,
   }
 }

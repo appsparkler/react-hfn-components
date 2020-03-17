@@ -8,7 +8,7 @@ const FirebaseSuperCroppie = ({
   handleChange, // pass to file-input on-change-handler
   croppieRef, // the croppie element ref
   croppedDataURL, // the cropped-image preview url for img-src
-  handleClick,
+  handleClick, isUploading, uploaded, progress,
 }) => {
   const mediaSource = 'file'
   return (
@@ -78,6 +78,11 @@ FirebaseSuperCroppie.propTypes = {
 
   croppieRef: PropTypes.any,
   croppedDataURL: PropTypes.string,
+
+  handleClick: PropTypes.func.isRequired,
+  uploaded: PropTypes.bool.isRequired,
+  isUploading: PropTypes.bool.isRequired,
+  progress: PropTypes.number.isRequired,
 }
 
 export default connectFirebaseSuperCroppie({
