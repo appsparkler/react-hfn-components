@@ -4,11 +4,11 @@ import config from './config'
 import connectFirebaseSuperCroppie from './connectFirebaseSuperCroppie'
 
 const FirebaseSuperCroppie = ({
-  file, isVerifying,
+  file, isVerifying, // uploaded file
   handleChange, // pass to file-input on-change-handler
   croppieRef, // the croppie element ref
   croppedDataURL, // the cropped-image preview url for img-src
-  handleClick, isUploading, uploaded, progress,
+  handleClick, isUploading, uploaded, progress, // upload functionality
 }) => {
   const mediaSource = 'file'
   return (
