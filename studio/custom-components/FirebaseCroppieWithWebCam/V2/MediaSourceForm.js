@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import connectRadioItems from '@react-hfn-connectors/RadioItems'
+// import connectRadioItems from '@react-hfn-connectors/RadioItems'
 
 const MediaSourceForm = ({
   handleChange,
@@ -47,13 +47,4 @@ MediaSourceForm.defaultProps = {
   onMediaSourceChange: () => {},
 }
 
-export default connectRadioItems({
-  Component: MediaSourceForm,
-  config: {
-    name: 'mediaSource',
-    items: [
-      {value: 'file', label: 'Upload File'},
-      {value: 'webcam', label: 'Webcam'},
-    ],
-  },
-})
+export default MediaSourceForm

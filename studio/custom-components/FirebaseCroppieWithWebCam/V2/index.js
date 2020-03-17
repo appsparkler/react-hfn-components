@@ -1,4 +1,5 @@
 import React from 'react'
+import useFirebaseCroppieWithWebcam from './useFirebaseCroppieWithWebcam'
 // import FileInput from './FileInput'
 // import WebCamInput from './WebCamInput'
 import MediaSourceForm from './MediaSourceForm'
@@ -12,6 +13,7 @@ import MediaSourceForm from './MediaSourceForm'
 import 'croppie/croppie.css'
 
 const FirebaseCroppieWithWebCam = () => {
+  const mediaSourceFormProps = useFirebaseCroppieWithWebcam()
   // const {storageRef, maxBytes} = config
   // const {
   // dataURL, setDataURL,
@@ -25,7 +27,7 @@ const FirebaseCroppieWithWebCam = () => {
     <div>
       {/* !isUploading && <FirebasePhoto storageRef={storageRef} />}
       {isUploading && <span className="small">Uploading...</span>*/}
-      <MediaSourceForm />
+      <MediaSourceForm {...mediaSourceFormProps}/>
     </div>
   )
 }

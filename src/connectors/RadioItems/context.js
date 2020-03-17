@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import useContextProvider from './useContextProvider'
+import useContextProvider from './use'
 
 export const RadioItemsContext = React.createContext()
 
