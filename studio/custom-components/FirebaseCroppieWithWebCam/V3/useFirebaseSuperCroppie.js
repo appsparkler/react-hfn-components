@@ -1,7 +1,7 @@
-import React from 'react'
+import useFileFromStorageRef from './useFileFromStorageRef'
 
-export default () => {
-  const file = {}
+export default ({storageRef}) => {
+  const {file} = useFileFromStorageRef({storageRef})
   return {
     file,
   }

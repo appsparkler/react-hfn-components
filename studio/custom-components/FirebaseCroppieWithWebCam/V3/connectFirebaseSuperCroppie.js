@@ -5,8 +5,8 @@ import useFirebaseSuperCroppie from './useFirebaseSuperCroppie'
 
 const FirebaseSuperCroppieContext = React.createContext()
 
-const FirebaseSuperCroppieContextProvider = ({children}) => {
-  const value = useFirebaseSuperCroppie()
+const FirebaseSuperCroppieContextProvider = ({children, storageRef}) => {
+  const value = useFirebaseSuperCroppie({storageRef})
   return (
     <FirebaseSuperCroppieContext.Provider value={value}>
       {children}
@@ -16,6 +16,7 @@ const FirebaseSuperCroppieContextProvider = ({children}) => {
 
 FirebaseSuperCroppieContextProvider.propTypes = {
   children: PropTypes.any,
+  storageRef: PropTypes.object,
 }
 
 export default connector({
