@@ -1,26 +1,22 @@
 import React from 'react'
 
-function handleMediaSourceChange({
-  setMediaSource,
+function handleChange({
+  setValue,
 }, evt) {
-  setMediaSource(evt.target.value)
+  setValue(evt.target.value)
 }
 
-function resetMediaSource({setMediaSource}) {
-  setMediaSource(null)
+function resetValue({setValue}) {
+  setValue(null)
 }
 
-export default () => {
-  const mediaSources = [
-    {value: 'file', label: 'Upload File'},
-    {value: 'webcam', label: 'Webcam'},
-  ]
-  const [mediaSource, setMediaSource] = React.useState(null)
+export default ({name, items}) => {
+  const [value, setValue] = React.useState(null)
   return {
-    mediaSources,
-    mediaSource,
-    handleMediaSourceChange: handleMediaSourceChange
-        .bind(null, {setMediaSource}),
-    resetMediaSource: resetMediaSource.bind(null, {setMediaSource}),
+    value,
+    name, items,
+    handleChange: handleChange
+        .bind(null, {setValue}),
+    resetValue: resetValue.bind(null, {setValue}),
   }
 }

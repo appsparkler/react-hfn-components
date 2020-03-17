@@ -3,15 +3,15 @@ import PropTypes from 'prop-types'
 import {connectMediaSourceForm} from './context'
 
 const MediaSourceForm = ({
-  handleMediaSourceChange,
-  mediaSources,
-  mediaSource,
-  resetMediaSource,
+  handleChange,
+  items,
+  value,
+  resetValue,
 }) => {
   return (
     <form>
       {
-        mediaSources.map((item, idx) => {
+        items.map((item, idx) => {
           return (<div
             className="form-check form-check-inline"
             key={idx}
@@ -21,8 +21,8 @@ const MediaSourceForm = ({
               name="mediaSource"
               type="radio"
               value={item.value}
-              onChange={handleMediaSourceChange}
-              checked={item.value === mediaSource}
+              onChange={handleChange}
+              checked={item.value === value}
             />
             <label className="form-check-label">
               {item.label || item.value}
@@ -30,21 +30,27 @@ const MediaSourceForm = ({
           </div>)
         })
       }
-      <button type="button" onClick={resetMediaSource}>Reset</button>
-      <pre>{mediaSource}</pre>
+      <button type="button" onClick={resetValue}>Reset</button>
+      <pre>{value}</pre>
     </form>
   )
 }
 
 MediaSourceForm.propTypes = {
-  handleMediaSourceChange: PropTypes.func.isRequired,
-  mediaSources: PropTypes.array.isRequired,
-  mediaSource: PropTypes.string,
-  resetMediaSource: PropTypes.func,
+  handleChange: PropTypes.func.isRequired,
+  items: PropTypes.array.isRequired,
+  value: PropTypes.string,
+  resetValue: PropTypes.func,
 }
 
 MediaSourceForm.defaultProps = {
   onMediaSourceChange: () => {},
 }
 
-export default connectMediaSourceForm(MediaSourceForm, {})
+export default connectMediaSourceForm(MediaSourceForm, {
+  name: 'mediaSource',
+  items: [
+    {value: 'file', label: 'Upload File'},
+    {value: 'webcam', label: 'Webcam'},
+  ],
+})
