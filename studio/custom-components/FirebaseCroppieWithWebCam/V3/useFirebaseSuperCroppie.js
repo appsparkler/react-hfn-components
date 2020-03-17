@@ -3,6 +3,7 @@ import useFileFromStorageRef from './useFileFromStorageRef'
 import useFileInput from './useFileInput'
 import useCroppie from './useCroppie'
 import useUploadButton from './useUploadButton'
+import useWebCam from './useWebCam'
 
 function uploadedDidChange({setCroppedDataURL, uploaded}) {
   if (uploaded === true) setCroppedDataURL(null)
@@ -12,7 +13,12 @@ function dataURLDidChange() {
 }
 export default ({storageRef, croppieConfig}) => {
   const {file, isVerifying} = useFileFromStorageRef({storageRef})
-  const {handleChange, dataURL} = useFileInput()
+  const [dataURL, setDataURL] = React.useState()
+  const {handleChange} = useFileInput({dataURL, setDataURL})
+  const {
+    videoRef,
+    clickPhoto,
+  } = useWebCam({dataURL, setDataURL})
   const {
     croppieRef,
     croppedDataURL,
@@ -37,5 +43,7 @@ export default ({storageRef, croppieConfig}) => {
     handleClick, isUploading,
     uploaded,
     progress,
+    videoRef,
+    clickPhoto,
   }
 }

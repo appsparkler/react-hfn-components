@@ -9,8 +9,9 @@ const FirebaseSuperCroppie = ({
   croppieRef, // the croppie element ref
   croppedDataURL, // the cropped-image preview url for img-src
   handleClick, isUploading, uploaded, progress, // upload functionality
+  videoRef, clickPhoto,
 }) => {
-  const mediaSource = 'file'
+  const mediaSource = 'webcam'
   return (
     <div className="container mt-2">
       <div className="row">
@@ -49,6 +50,29 @@ const FirebaseSuperCroppie = ({
         )}
       </div>
 
+      <div className="row mt-2">
+        {mediaSource === 'webcam' && (
+          <div className="col-6">
+            <div className="img-thumbnail rounded-0">
+              <video className="w-100"
+                ref={videoRef}
+              >
+              Video stream not available.
+              </video>
+            </div>
+            <div className="col-6">
+              <button
+                className="btn btn-block btn-primary rounded-0"
+                type="button"
+                onClick={clickPhoto}
+              >
+                Take photo
+              </button>
+            </div>
+          </div>
+        )}
+      </div>
+
       <div className={`row ${croppedDataURL ? '': 'invisible'}`}>
         <div className="col-9">
           <div ref={croppieRef}></div>
@@ -70,6 +94,7 @@ const FirebaseSuperCroppie = ({
           </div>
         </div>
       </div>
+
     </div>
   )
 }

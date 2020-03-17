@@ -1,5 +1,3 @@
-import React from 'react'
-
 function handleFileLoaded({setDataURL}, evt) {
   const dataURL = evt.target.result
   setDataURL(dataURL)
@@ -22,8 +20,7 @@ function handleChange({
   }
 }
 
-export default () => {
-  const [dataURL, setDataURL] = React.useState()
+export default ({dataURL, setDataURL}) => {
   return {
     handleChange: handleChange.bind(null, {setDataURL}),
     dataURL,
