@@ -25,11 +25,7 @@ ConnectedComponent.propTypes = {
   config: PropTypes.object.isRequired,
 }
 
-const connect = ({
-  Context,
-  Provider,
-}, Component, config,
-) => () => {
+const connect = ({Context, Provider}) => ({Component, config}) => () => {
   const ComponentWithContext = getComponentWithContext({
     Context, Component,
   })
@@ -43,6 +39,6 @@ const connect = ({
   />)
 }
 
-export default connect.bind(null, {
+export default connect({
   Context: RadioItemsContext, Provider: RadioItemsContextProvider,
 })

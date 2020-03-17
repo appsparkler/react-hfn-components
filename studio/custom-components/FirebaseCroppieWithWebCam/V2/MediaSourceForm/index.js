@@ -47,10 +47,13 @@ MediaSourceForm.defaultProps = {
   onMediaSourceChange: () => {},
 }
 
-export default connectRadioItems(MediaSourceForm, {
-  name: 'mediaSource',
-  items: [
-    {value: 'file', label: 'Upload File'},
-    {value: 'webcam', label: 'Webcam'},
-  ],
+export default connectRadioItems({
+  Component: MediaSourceForm,
+  config: {
+    name: 'mediaSource',
+    items: [
+      {value: 'file', label: 'Upload File'},
+      {value: 'webcam', label: 'Webcam'},
+    ],
+  },
 })
