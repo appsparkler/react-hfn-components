@@ -13,7 +13,7 @@ export default ({storageRef, croppieConfig}) => {
     isUploading,
     uploaded,
     progress,
-  } = useUploadButton({storageRef, croppieRef})
+  } = useUploadButton({croppedDataURL, storageRef})
   return {
     file,
     isVerifying,

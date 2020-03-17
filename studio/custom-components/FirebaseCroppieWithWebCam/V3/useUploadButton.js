@@ -23,6 +23,7 @@ const handleClick = ({
   croppedDataURL, storageRef,
   setProgress, setUploaded, setIsUploading,
 }, evt) => {
+  if (evt.target.disabled) return
   setIsUploading(true)
   setUploaded(false)
   const blob = dataURL2Blob(croppedDataURL)

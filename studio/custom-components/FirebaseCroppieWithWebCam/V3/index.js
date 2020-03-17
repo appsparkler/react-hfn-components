@@ -14,9 +14,12 @@ const FirebaseSuperCroppie = ({
   return (
     <div className="container mt-2">
       <div className="row">
-        {file.downloadURL && <img className="img-thumbnail rounded-0"
-          src={file.downloadURL}
-        />}
+        {file.downloadURL && !isUploading && (
+          <img className="img-thumbnail rounded-0"
+            src={file.downloadURL}
+          />
+        )}
+        {isUploading && <span>Is Uploading...</span>}
         {!file.downloadURL && !isVerifying && <span>No File Uploaded</span>}
         {!file.downloadURL && isVerifying && <span>Is Verifying...</span>}
       </div>
@@ -59,6 +62,7 @@ const FirebaseSuperCroppie = ({
             <button
               className="btn btn-primary btn-block rounded-0"
               onClick={handleClick}
+              disabled={isUploading}
             >
               Upload
             </button>
