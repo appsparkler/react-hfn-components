@@ -4,7 +4,8 @@ import config from './config'
 import connectFirebaseSuperCroppie from './connectFirebaseSuperCroppie'
 
 const FirebaseSuperCroppie = ({
-  file, isVerifying, handleChange,
+  file, isVerifying,
+  handleChange, // pass to file-input on-change-handler
 }) => {
   const mediaSource = 'file'
   return (
@@ -48,6 +49,8 @@ const FirebaseSuperCroppie = ({
 FirebaseSuperCroppie.propTypes = {
   file: PropTypes.object.isRequired,
   isVerifying: PropTypes.bool.isRequired,
+
+  // pass this to the file-inputs onChange handler
   handleChange: PropTypes.func.isRequired,
 }
 
