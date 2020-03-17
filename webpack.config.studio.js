@@ -45,7 +45,7 @@ module.exports = {
       '@appsparkler/react-hfn-components': resolve('src'),
       '@react-hfn-components': resolve('src/components'),
       '@react-hfn-studio': resolve('studio'),
-      '@react-hfn-connectors': resolve('connectors'),
+      '@react-hfn-connectors': resolve('src/connectors'),
     },
     extensions: ['.sass', '.js', '.jsx', '.json'],
     modules: [

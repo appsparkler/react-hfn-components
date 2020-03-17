@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {connectRadioItems} from './context'
+import connectRadioItems from '@react-hfn-connectors/RadioItems'
 
 const MediaSourceForm = ({
   handleChange,

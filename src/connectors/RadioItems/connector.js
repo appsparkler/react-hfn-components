@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const connectorFactory = ({Component, config, Context, ContextProvider}) => {
+  debugger
   const ComponentWithContext = () => {
     const ctx = React.useContext(Context)
     return (<Component {...ctx} />)
