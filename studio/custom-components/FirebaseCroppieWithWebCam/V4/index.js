@@ -15,12 +15,18 @@ const FirebaseSuperCroppie = ({
         <div className="col-3">
           <ProfilePhoto file={file} isVerifying={isVerifying} />
         </div>
-        <div className="col-8 flex-end">
+        <div className="col-5 flex-end">
           <MediaSourceForm
             mediaSource={mediaSource}
             handleMediaSourceChange={handleMediaSourceChange}
           />
         </div>
+        {mediaSource === 'file' && (
+          <div>Upload File...</div>
+        )}
+        {mediaSource === 'webcam' && (
+          <div>Use Webcam...</div>
+        )}
       </div>
     </div>
   )
