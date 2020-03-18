@@ -20,7 +20,6 @@ const FirebaseSuperCroppie = ({
             mediaSource={mediaSource}
             handleMediaSourceChange={handleMediaSourceChange}
           />
-          {mediaSource}
         </div>
       </div>
     </div>
