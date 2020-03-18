@@ -109,6 +109,8 @@ FirebaseSuperCroppie.propTypes = {
   croppieRef: PropTypes.any,
   croppedDataURL: PropTypes.string,
 
+  photoButtonRef: PropTypes.any,
+
   handleClick: PropTypes.func.isRequired,
   uploaded: PropTypes.bool.isRequired,
   isUploading: PropTypes.bool.isRequired,
