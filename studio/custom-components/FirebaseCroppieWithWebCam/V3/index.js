@@ -9,7 +9,7 @@ const FirebaseSuperCroppie = ({
   croppieRef, // the croppie element ref
   croppedDataURL, // the cropped-image preview url for img-src
   handleClick, isUploading, uploaded, progress, // upload functionality
-  videoRef, clickPhoto,
+  videoRef, clickPhoto, photoButtonRef,
 }) => {
   const mediaSource = 'webcam'
   return (
@@ -64,7 +64,7 @@ const FirebaseSuperCroppie = ({
               <button
                 className="btn btn-block btn-primary rounded-0 mt-2"
                 type="button"
-                onClick={clickPhoto}
+                ref={photoButtonRef}
               >
                 Take photo
               </button>

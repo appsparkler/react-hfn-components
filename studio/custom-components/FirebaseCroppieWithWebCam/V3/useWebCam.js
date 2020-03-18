@@ -17,8 +17,11 @@ function startVideoStream({videoRef}) {
       })
 }
 
-function componentDidMount({videoRef}) {
+function componentDidMount({videoRef, photoButtonRef, setDataURL}) {
   startVideoStream({videoRef})
+  const handleClick = clickPhoto.bind(null, {setDataURL, videoRef})
+  photoButtonRef.current.addEventListener('click', handleClick)
+  return () => photoButtonRef.current.removeEventListener('click', handleClick)
 }
 
 function clickPhoto({videoRef, setDataURL}, evt) {
@@ -39,11 +42,12 @@ function clickPhoto({videoRef, setDataURL}, evt) {
 
 export default ({dataURL, setDataURL}) => {
   const videoRef = React.useRef()
+  const photoButtonRef = React.useRef()
   React.useEffect(componentDidMount.bind(null,
-      {videoRef}), [],
-  )
+      {videoRef, photoButtonRef, setDataURL},
+  ), [])
   return {
     videoRef,
-    clickPhoto: clickPhoto.bind(null, {videoRef, setDataURL}),
+    photoButtonRef,
   }
 }

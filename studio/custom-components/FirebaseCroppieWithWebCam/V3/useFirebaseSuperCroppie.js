@@ -26,6 +26,7 @@ export default ({storageRef, croppieConfig}) => {
   const {
     videoRef,
     clickPhoto,
+    photoButtonRef,
   } = useWebCam({dataURL, setDataURL})
   const {
     croppieRef,
@@ -54,7 +55,7 @@ export default ({storageRef, croppieConfig}) => {
     handleClick, isUploading,
     uploaded,
     progress,
-    videoRef,
+    videoRef, photoButtonRef,
     clickPhoto,
   }
 }
