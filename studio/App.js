@@ -1,5 +1,5 @@
 import React from 'react'
-import CustomCroppie from './custom-components/FirebaseCroppieWithWebCam/V3'
+import CustomCroppie from './custom-components/FirebaseCroppieWithWebCam/V4'
 import './styles.sass'
 
 const StudioApp = () => {
