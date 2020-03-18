@@ -1,5 +1,3 @@
-import React from 'react'
-
 async function verifyFile({
   storageRef, setFile, setIsVerifying,
 }) {
@@ -22,17 +20,7 @@ async function verifyFile({
   }
 }
 
-function componentDidMount({
-  storageRef, setFile, setIsVerifying,
-}) {
-  verifyFile({storageRef, setFile, setIsVerifying})
-}
-
 export default ({storageRef, setFile, setIsVerifying}) => {
-  React.useEffect(componentDidMount.bind(null, {
-    storageRef,
-    setFile, setIsVerifying,
-  }), [])
   return {
     verifyFile: verifyFile.bind(null, {storageRef, setFile, setIsVerifying}),
   }
