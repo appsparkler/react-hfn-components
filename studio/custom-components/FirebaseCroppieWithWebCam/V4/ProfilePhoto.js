@@ -9,7 +9,12 @@ const ProfilePhoto = ({file, isVerifying}) => (
         src={file.downloadURL}
       />
     )}
-    {isVerifying && <span>is Verifying...</span>}
+    {isVerifying && (
+      <span>is Verifying...</span>
+    )}
+    {!file && !isVerifying && (
+      <span>No Profile Pic</span>
+    )}
   </div>
 )
 
