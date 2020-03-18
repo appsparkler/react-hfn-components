@@ -2,12 +2,15 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import config from './config'
 import connectFirebaseSuperCroppie from './connectFirebaseSuperCroppie'
+//
 import ProfilePhoto from './ProfilePhoto'
 import MediaSourceForm from './MediaSourceForm'
+import FileInput from './FileInput'
 
 const FirebaseSuperCroppie = ({
   file, isVerifying,
   mediaSource, handleMediaSourceChange,
+  handleFileInputChange,
 }) => {
   return (
     <div className="container mt-2">
@@ -22,7 +25,9 @@ const FirebaseSuperCroppie = ({
           />
         </div>
         {mediaSource === 'file' && (
-          <div>Upload File...</div>
+          <div className="col-4">
+            <FileInput onChange={handleFileInputChange} />
+          </div>
         )}
         {mediaSource === 'webcam' && (
           <div>Use Webcam...</div>

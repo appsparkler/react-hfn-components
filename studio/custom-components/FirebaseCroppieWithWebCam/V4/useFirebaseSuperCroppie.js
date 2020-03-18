@@ -1,6 +1,7 @@
 import React from 'react'
 import useFileFromStorageRef from './useFileFromStorageRef'
 import useMediaSourceForm from './useMediaSourceForm'
+import useFileInput from './useFileInput'
 
 function componentDidMount({verifyFile}) {
   verifyFile()
@@ -18,6 +19,8 @@ export default ({storageRef, croppieConfig}) => {
   const {resetMediaSource, handleMediaSourceChange} = useMediaSourceForm({
     setMediaSource,
   })
+  const {handleFileInputChange} = useFileInput({setDataURL})
+  //
   React.useEffect(componentDidMount.bind(null, {
     verifyFile,
   }), [])
@@ -26,5 +29,6 @@ export default ({storageRef, croppieConfig}) => {
     isVerifying,
     mediaSource,
     handleMediaSourceChange,
+    handleFileInputChange,
   }
 }
