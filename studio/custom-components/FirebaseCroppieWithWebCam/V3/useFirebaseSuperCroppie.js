@@ -43,9 +43,6 @@ export default ({storageRef, croppieConfig}) => {
     setCroppedDataURL, uploaded, verifyFile,
   }), [uploaded])
   React.useEffect(dataURLDidChange.bind(null, {setCroppedDataURL}), [dataURL])
-  // React.useEffect(uploadedDidChange.bind(null, {
-  //   uploaded, verifyFile, setIsVerifying,
-  // }), [uploaded])
   return {
     file,
     isVerifying,
