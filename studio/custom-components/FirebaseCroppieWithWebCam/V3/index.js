@@ -9,7 +9,7 @@ const FirebaseSuperCroppie = ({
   croppieRef, // the croppie element ref
   croppedDataURL, // the cropped-image preview url for img-src
   handleClick, isUploading, uploaded, progress, // upload functionality
-  videoRef, clickPhoto, photoButtonRef,
+  videoRef, photoButtonRef,
 }) => {
   const mediaSource = 'webcam'
   return (
@@ -117,7 +117,6 @@ FirebaseSuperCroppie.propTypes = {
   progress: PropTypes.number.isRequired,
 
   videoRef: PropTypes.any.isRequired,
-  clickPhoto: PropTypes.func.isRequired,
 }
 
 export default connectFirebaseSuperCroppie({
