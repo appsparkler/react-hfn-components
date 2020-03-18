@@ -17,8 +17,10 @@ const FirebaseSuperCroppie = ({
         </div>
         <div className="col-8 flex-end">
           <MediaSourceForm
+            mediaSource={mediaSource}
             handleMediaSourceChange={handleMediaSourceChange}
           />
+          {mediaSource}
         </div>
       </div>
     </div>

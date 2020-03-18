@@ -10,6 +10,7 @@ const MediaSourceForm = ({mediaSource, handleMediaSourceChange}) => (
         type="radio"
         value="file"
         onChange={handleMediaSourceChange}
+        checked={mediaSource === 'file'}
       />
       <label className="form-check-label">
         Upload From file
@@ -22,6 +23,7 @@ const MediaSourceForm = ({mediaSource, handleMediaSourceChange}) => (
         name="mediaSource"
         value="webcam"
         onChange={handleMediaSourceChange}
+        checked={mediaSource === 'webcam'}
       />
       <label className="form-check-label" htmlFor="inlineRadio2">
         Use Webcam
