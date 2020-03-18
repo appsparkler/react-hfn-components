@@ -7,6 +7,10 @@ function componentDidMount({verifyFile}) {
   verifyFile()
 }
 
+function dataURLDidChange() {
+  debugger
+}
+
 export default ({storageRef, croppieConfig}) => {
   const [file, setFile] = React.useState(null)
   const [isVerifying, setIsVerifying] = React.useState(false)
@@ -24,6 +28,7 @@ export default ({storageRef, croppieConfig}) => {
   React.useEffect(componentDidMount.bind(null, {
     verifyFile,
   }), [])
+  React.useEffect(dataURLDidChange.bind(null, {}), [dataURL])
   return {
     file,
     isVerifying,
