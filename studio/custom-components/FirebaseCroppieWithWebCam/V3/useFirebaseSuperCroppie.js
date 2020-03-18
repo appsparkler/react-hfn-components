@@ -5,14 +5,22 @@ import useCroppie from './useCroppie'
 import useUploadButton from './useUploadButton'
 import useWebCam from './useWebCam'
 
-function uploadedDidChange({setCroppedDataURL, uploaded}) {
-  if (uploaded === true) setCroppedDataURL(null)
+function uploadedDidChange({
+  setCroppedDataURL, uploaded, verifyFile,
+}) {
+  if (uploaded === true) {
+    setCroppedDataURL(null)
+    verifyFile()
+  }
 }
 function dataURLDidChange() {
 
 }
 export default ({storageRef, croppieConfig}) => {
-  const {file, isVerifying} = useFileFromStorageRef({storageRef})
+  const [isVerifying, setIsVerifying] = React.useState(false)
+  const {file, verifyFile} = useFileFromStorageRef({
+    storageRef, isVerifying, setIsVerifying,
+  })
   const [dataURL, setDataURL] = React.useState()
   const {handleChange} = useFileInput({dataURL, setDataURL})
   const {
@@ -31,9 +39,12 @@ export default ({storageRef, croppieConfig}) => {
     progress,
   } = useUploadButton({croppedDataURL, storageRef})
   React.useEffect(uploadedDidChange.bind(null, {
-    setCroppedDataURL, uploaded,
+    setCroppedDataURL, uploaded, verifyFile,
   }), [uploaded])
-  React.useEffect(dataURLDidChange.bind({setCroppedDataURL}), [dataURL])
+  React.useEffect(dataURLDidChange.bind(null, {setCroppedDataURL}), [dataURL])
+  // React.useEffect(uploadedDidChange.bind(null, {
+  //   uploaded, verifyFile, setIsVerifying,
+  // }), [uploaded])
   return {
     file,
     isVerifying,

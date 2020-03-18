@@ -15,14 +15,14 @@ const FirebaseSuperCroppie = ({
   return (
     <div className="container mt-2">
       <div className="row">
-        {file.downloadURL && !isUploading && (
+        {file.downloadURL && !isUploading && !isVerifying && (
           <img className="img-thumbnail rounded-0"
             src={file.downloadURL}
           />
         )}
         {isUploading && <span>Is Uploading...</span>}
         {!file.downloadURL && !isVerifying && <span>No File Uploaded</span>}
-        {!file.downloadURL && isVerifying && <span>Is Verifying...</span>}
+        {isVerifying && <span>Is Verifying...</span>}
       </div>
 
       <div className="row mt-2">

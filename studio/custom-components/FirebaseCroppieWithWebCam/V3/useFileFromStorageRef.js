@@ -4,6 +4,7 @@ async function verifyFile({
   storageRef, setFile, setIsVerifying,
 }) {
   try {
+    setIsVerifying(true)
     const downloadURL = await storageRef.getDownloadURL()
     const metadata = await storageRef.getMetadata()
     const file = {
@@ -24,12 +25,10 @@ async function verifyFile({
 function componentDidMount({
   storageRef, setFile, setIsVerifying,
 }) {
-  setIsVerifying(true)
   verifyFile({storageRef, setFile, setIsVerifying})
 }
 
-export default ({storageRef}) => {
-  const [isVerifying, setIsVerifying] = React.useState(false)
+export default ({storageRef, isVerifying, setIsVerifying}) => {
   const [file, setFile] = React.useState({})
   React.useEffect(componentDidMount.bind(null, {
     storageRef,
@@ -38,5 +37,6 @@ export default ({storageRef}) => {
   return {
     isVerifying,
     file,
+    verifyFile: verifyFile.bind(null, {storageRef, setFile, setIsVerifying}),
   }
 }
