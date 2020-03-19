@@ -39,15 +39,23 @@ function clickPhoto({videoRef, setDataURL}, evt) {
   const dataURL = canvas.toDataURL()
   setDataURL(dataURL)
 }
+function startVideo() {
 
-export default ({dataURL, setDataURL}) => {
+}
+
+function stopVideo() {
+
+}
+export default ({setDataURL}) => {
   const videoRef = React.useRef()
   const photoButtonRef = React.useRef()
   React.useEffect(componentDidMount.bind(null,
-      {videoRef, photoButtonRef, setDataURL},
+      {videoRef, photoButtonRef},
   ), [])
   return {
     videoRef,
+    startVideo,
+    stopVideo,
     photoButtonRef,
   }
 }
