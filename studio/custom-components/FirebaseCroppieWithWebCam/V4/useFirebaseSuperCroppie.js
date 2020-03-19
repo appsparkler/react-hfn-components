@@ -80,12 +80,9 @@ export default ({storageRef, croppieConfig}) => {
   }), [croppie])
   //
   return {
-    file,
-    isVerifying,
-    mediaSource,
-    handleMediaSourceChange,
-    handleFileInputChange,
-    dataURL,
+    file, isVerifying,
+    mediaSource, handleMediaSourceChange,
+    handleFileInputChange, dataURL,
     croppieRef, croppedDataURL,
     handleUploadButtonClick, isUploading, progress, uploaded,
     resetMediaSource,
