@@ -3,6 +3,7 @@ import useFileFromStorageRef from './useFileFromStorageRef'
 import useMediaSourceForm from './useMediaSourceForm'
 import useFileInput from './useFileInput'
 import useCroppie from './useCroppie'
+import useUploadButton from './useUploadButton'
 
 function componentDidMount({verifyFile}) {
   verifyFile()
@@ -42,6 +43,9 @@ export default ({storageRef, croppieConfig}) => {
   const [dataURL, setDataURL] = React.useState(null)
   const [croppie, setCroppie] = React.useState(null)
   const [croppedDataURL, setCroppedDataURL] = React.useState(null)
+  const [isUploading, setIsUploading] = React.useState(false)
+  const [uploaded, setUploaded] = React.useState(false)
+  const [progress, setProgress] = React.useState(0)
   //
   const croppieRef = React.useRef()
   //
@@ -54,6 +58,12 @@ export default ({storageRef, croppieConfig}) => {
   const {handleFileInputChange} = useFileInput({setDataURL})
   const {setupCroppie} = useCroppie({
     setCroppie, croppieRef, croppieConfig, setCroppedDataURL,
+  })
+  const {
+    handleUploadButtonClick,
+  } = useUploadButton({
+    croppedDataURL, storageRef, setIsUploading,
+    setProgress, setUploaded,
   })
   //
   React.useEffect(componentDidMount.bind(null, {
@@ -76,9 +86,8 @@ export default ({storageRef, croppieConfig}) => {
     handleMediaSourceChange,
     handleFileInputChange,
     dataURL,
-    croppieRef,
-
-    croppedDataURL,
+    croppieRef, croppedDataURL,
+    handleUploadButtonClick, isUploading, progress, uploaded,
     resetMediaSource,
   }
 }
