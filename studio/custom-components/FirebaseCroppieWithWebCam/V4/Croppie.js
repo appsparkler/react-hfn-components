@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 const Croppie = ({croppedDataURL, croppieRef}) => (
   <div className="row">
-    <div className="col-4">
+    <div className="col-8">
       <div ref={croppieRef}></div>
     </div>
     {croppedDataURL && <div className="col-4">

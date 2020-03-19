@@ -12,9 +12,9 @@ const FirebaseSuperCroppie = ({
   file, isVerifying,
   mediaSource, handleMediaSourceChange,
   handleFileInputChange, dataURL,
-  croppieRef,
+  croppieRef, croppedDataURL,
 
-  resetMediaSource, croppedDataURL,
+  resetMediaSource,
 }) => {
   return (
     <div className="container mt-2">
@@ -60,6 +60,12 @@ FirebaseSuperCroppie.propTypes = {
 
   mediaSource: PropTypes.string,
   handleMediaSourceChange: PropTypes.func.isRequired,
+
+  handleFileInputChange: PropTypes.func.isRequired,
+  dataURL: PropTypes.string,
+
+  croppieRef: PropTypes.shape({current: PropTypes.instanceOf(Element)}),
+
 }
 
 export default connectFirebaseSuperCroppie({
