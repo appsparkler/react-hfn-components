@@ -43,7 +43,11 @@ const FirebaseSuperCroppie = ({
       />}
       <div className="row">
 
-        <button className="btn btn-primary" onClick={resetMediaSource}>Reset Media Source</button>
+        <button
+          className="btn btn-primary"
+          onClick={resetMediaSource}>
+            Reset Media Source
+        </button>
         <pre>{croppedDataURL && croppedDataURL}</pre>
       </div>
     </div>
