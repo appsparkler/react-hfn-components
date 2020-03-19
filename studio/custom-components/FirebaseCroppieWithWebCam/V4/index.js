@@ -18,7 +18,8 @@ const FirebaseSuperCroppie = ({
 }) => {
   return (
     <div className="container mt-2">
-      <div className="row">
+      <div className="btn btn-primary btn-lg">Upload</div>
+      {/* <div className="row">
         <div className="col-3">
           <ProfilePhoto file={file} isVerifying={isVerifying} />
         </div>
@@ -48,7 +49,7 @@ const FirebaseSuperCroppie = ({
           onClick={resetMediaSource}>
             Reset Media Source
         </button>
-      </div>
+      </div>*/}
     </div>
   )
 }
