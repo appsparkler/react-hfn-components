@@ -10,7 +10,10 @@ import FileInput from './FileInput'
 const FirebaseSuperCroppie = ({
   file, isVerifying,
   mediaSource, handleMediaSourceChange,
-  handleFileInputChange,
+  handleFileInputChange, dataURL,
+  croppieRef,
+
+  resetMediaSource,
 }) => {
   return (
     <div className="container mt-2">
@@ -33,6 +36,14 @@ const FirebaseSuperCroppie = ({
           <div>Use Webcam...</div>
         )}
       </div>
+      {mediaSource && (
+        <div className="row">
+          <div className="col-4">
+            <div ref={croppieRef}></div>
+          </div>
+        </div>
+      )}
+      <div className="row"><button className="btn btn-primary" onClick={resetMediaSource}>Reset Media Source</button></div>
     </div>
   )
 }
