@@ -13,7 +13,7 @@ const FirebaseSuperCroppie = ({
   handleFileInputChange, dataURL,
   croppieRef,
 
-  resetMediaSource,
+  resetMediaSource, croppedDataURL,
 }) => {
   return (
     <div className="container mt-2">
@@ -43,7 +43,11 @@ const FirebaseSuperCroppie = ({
           </div>
         </div>
       )}
-      <div className="row"><button className="btn btn-primary" onClick={resetMediaSource}>Reset Media Source</button></div>
+      <div className="row">
+
+        <button className="btn btn-primary" onClick={resetMediaSource}>Reset Media Source</button>
+        <pre>{croppedDataURL && croppedDataURL}</pre>
+      </div>
     </div>
   )
 }

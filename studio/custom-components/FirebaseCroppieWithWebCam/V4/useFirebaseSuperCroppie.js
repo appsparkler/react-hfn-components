@@ -38,6 +38,7 @@ export default ({storageRef, croppieConfig}) => {
   const [mediaSource, setMediaSource] = React.useState(null)
   const [dataURL, setDataURL] = React.useState(null)
   const [croppie, setCroppie] = React.useState(null)
+  const [croppedDataURL, setCroppedDataURL] = React.useState(null)
   //
   const croppieRef = React.useRef()
   //
@@ -48,7 +49,9 @@ export default ({storageRef, croppieConfig}) => {
     setMediaSource,
   })
   const {handleFileInputChange} = useFileInput({setDataURL})
-  const {setupCroppie} = useCroppie({setCroppie, croppieRef, croppieConfig})
+  const {setupCroppie} = useCroppie({
+    setCroppie, croppieRef, croppieConfig, setCroppedDataURL,
+  })
   //
   React.useEffect(componentDidMount.bind(null, {
     verifyFile,
@@ -72,7 +75,7 @@ export default ({storageRef, croppieConfig}) => {
     dataURL,
     croppieRef,
 
-
+    croppedDataURL,
     resetMediaSource,
   }
 }
