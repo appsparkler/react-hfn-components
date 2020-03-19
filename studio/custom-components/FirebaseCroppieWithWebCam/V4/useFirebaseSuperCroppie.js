@@ -26,6 +26,22 @@ function dataURLDidChange({setupCroppie, croppie, dataURL}) {
   }
 }
 
+function uploadedDidChange({
+  uploaded,
+  setCroppedDataURL, setDataURL,
+  setMediaSource, setProgress, setUploaded,
+  verifyFile,
+}) {
+  if (uploaded) {
+    setProgress(0)
+    setUploaded(false)
+    setCroppedDataURL(null)
+    setDataURL(null)
+    setMediaSource(null)
+    verifyFile()
+  }
+}
+
 function mediaSourceDidChange({
   mediaSource, setDataURL, setCroppie, setCroppedDataURL,
 }) {
@@ -78,6 +94,10 @@ export default ({storageRef, croppieConfig}) => {
   React.useEffect(croppieDidChange.bind(null, {
     croppie, dataURL,
   }), [croppie])
+  React.useEffect(uploadedDidChange.bind(null, {
+    uploaded, setCroppedDataURL, setDataURL, setMediaSource,
+    setProgress, verifyFile, setUploaded,
+  }), [uploaded])
   //
   return {
     file, isVerifying,

@@ -15,7 +15,6 @@ function onError() {
 function onDoneCallback({setProgress, setUploaded, setIsUploading}) {
   setUploaded(true)
   setIsUploading(false)
-  setProgress(100)
 }
 
 function handleClick({

@@ -40,15 +40,22 @@ const FirebaseSuperCroppie = ({
         )}
       </div>
       {mediaSource && (
-        <div>
+        <div className="row mt-2">
           <Croppie
             croppedDataURL={croppedDataURL}
             croppieRef={croppieRef}
           />
-          <UploadButton
-            onClick={handleUploadButtonClick}
-            disabled={isUploading}
-          />
+          {croppedDataURL && (
+            <div className="mt-2">
+              <UploadButton
+                onClick={handleUploadButtonClick}
+                disabled={isUploading}
+              />
+              <pre>{progress}%</pre>
+              <pre>{isUploading && 'is uploading...'}</pre>
+              <pre>{uploaded && 'uploaded!'}</pre>
+            </div>
+          )}
         </div>
       )}
 
