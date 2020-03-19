@@ -7,18 +7,24 @@ import useUploadButton from './useUploadButton'
 import './styles.sass'
 
 const StudioApp = () => {
-  const [isVerifying, setIsVerifying] = React.useState(false)
+  const [isUploading, setIsUploading] = React.useState(false)
+  const [uploaded, setUploaded] = React.useState(false)
+  const [progress, setProgress] = React.useState(0)
   const {
     handleUploadButtonClick,
   } = useUploadButton({
-    croppedDataURL, storageRef, setIsVerifying,
+    croppedDataURL, storageRef, setIsUploading,
+    setProgress, setUploaded,
   })
   return (
     <div className="container mt-5">
       <UploadButton
         onClick={handleUploadButtonClick}
-        disabled={isVerifying}
+        disabled={isUploading}
       />
+      <pre>{progress}%</pre>
+      <pre>{uploaded && 'uploaded!'}</pre>
+      <pre>{isUploading && 'is uploading...'}</pre>
     </div>
   )
 }
