@@ -6,6 +6,7 @@ import connectFirebaseSuperCroppie from './connectFirebaseSuperCroppie'
 import ProfilePhoto from './ProfilePhoto'
 import MediaSourceForm from './MediaSourceForm'
 import FileInput from './FileInput'
+import Croppie from './Croppie'
 
 const FirebaseSuperCroppie = ({
   file, isVerifying,
@@ -36,13 +37,10 @@ const FirebaseSuperCroppie = ({
           <div>Use Webcam...</div>
         )}
       </div>
-      {mediaSource && (
-        <div className="row">
-          <div className="col-4">
-            <div ref={croppieRef}></div>
-          </div>
-        </div>
-      )}
+      {mediaSource && <Croppie
+        croppedDataURL={croppedDataURL}
+        croppieRef={croppieRef}
+      />}
       <div className="row">
 
         <button className="btn btn-primary" onClick={resetMediaSource}>Reset Media Source</button>

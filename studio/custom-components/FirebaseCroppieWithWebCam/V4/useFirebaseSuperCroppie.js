@@ -25,10 +25,13 @@ function dataURLDidChange({setupCroppie, croppie, dataURL}) {
   }
 }
 
-function mediaSourceDidChange({mediaSource, setDataURL, setCroppie}) {
+function mediaSourceDidChange({
+  mediaSource, setDataURL, setCroppie, setCroppedDataURL,
+}) {
   if (!mediaSource) {
     setDataURL(null)
     setCroppie(null)
+    setCroppedDataURL(null)
   }
 }
 
@@ -57,7 +60,7 @@ export default ({storageRef, croppieConfig}) => {
     verifyFile,
   }), [])
   React.useEffect(mediaSourceDidChange.bind(null, {
-    mediaSource, setDataURL, setCroppie,
+    mediaSource, setDataURL, setCroppie, setCroppedDataURL,
   }), [mediaSource])
   React.useEffect(dataURLDidChange.bind(null, {
     setupCroppie, croppie, dataURL,
