@@ -41,14 +41,13 @@ const FirebaseSuperCroppie = ({
         croppedDataURL={croppedDataURL}
         croppieRef={croppieRef}
       />}
-      <div className="row">
 
+      <div className="row">
         <button
           className="btn btn-primary"
           onClick={resetMediaSource}>
             Reset Media Source
         </button>
-        <pre>{croppedDataURL && croppedDataURL}</pre>
       </div>
     </div>
   )
@@ -65,7 +64,7 @@ FirebaseSuperCroppie.propTypes = {
   dataURL: PropTypes.string,
 
   croppieRef: PropTypes.shape({current: PropTypes.instanceOf(Element)}),
-
+  croppedDataURL: PropTypes.string,
 }
 
 export default connectFirebaseSuperCroppie({
