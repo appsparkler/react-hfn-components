@@ -7,7 +7,9 @@ function showVideoDidChange({showVideo, startVideo}) {
 
 const WebcamInput = ({videoRef, startVideo, clickPhoto}) => {
   const [showVideo, setShowVideo] = React.useState(true)
-  React.useEffect(showVideoDidChange.bind(null, {showVideo, startVideo}), [showVideo])
+  React.useEffect(showVideoDidChange.bind(null, {
+    showVideo, startVideo,
+  }), [showVideo])
   return (
     <div>
       <button className="btn btn-primary"
@@ -36,6 +38,7 @@ WebcamInput.propTypes = {
     current: PropTypes.instanceOf(Element),
   }).isRequired,
   startVideo: PropTypes.func.isRequired,
+  clickPhoto: PropTypes.func.isRequired,
 }
 
 export default WebcamInput

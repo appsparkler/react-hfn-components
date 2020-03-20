@@ -1,10 +1,5 @@
 import React from 'react'
 
-function componentDidMount({videoRef}) {
-  if (!videoRef.current) return
-  videoRef.current.innerHTML = `<h1>Hello World</h1>`
-}
-
 function startVideo({videoRef}) {
   const video = videoRef.current
   navigator
@@ -38,7 +33,6 @@ function clickPhoto({videoRef, setDataURL}, evt) {
 export default () => {
   const videoRef = React.useRef()
   const [dataURL, setDataURL] = React.useState(null)
-  React.useEffect(componentDidMount.bind(null, {videoRef}), [])
   return {
     videoRef,
     startVideo: startVideo.bind(null, {videoRef}),
