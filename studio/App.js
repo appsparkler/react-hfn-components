@@ -5,10 +5,19 @@ import useWebcamInput from './wip/useWebcamInput'
 import './styles'
 
 const StudioApp = () => {
-  const {videoRef} = useWebcamInput()
+  const {videoRef, startVideo, clickPhoto, dataURL} = useWebcamInput()
   return (
     <div className="container mt-5">
-      <WebcamInput videoRef={videoRef} />
+      <WebcamInput
+        videoRef={videoRef}
+        startVideo={startVideo}
+        clickPhoto={clickPhoto}
+      />
+      {dataURL && (
+        <div>
+          <img className="img-thumbnail rounded-0" src={dataURL} />
+        </div>
+      )}
     </div>
   )
 }
