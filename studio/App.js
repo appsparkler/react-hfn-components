@@ -1,12 +1,13 @@
 import React from 'react'
-import FirebaseFileInput from './custom-components/FirebaseFileInput'
+import FirebaseCroppieWithWebCam
+  from './custom-components/FirebaseCroppieWithWebCam/variant-1'
 import config from './config'
 import './styles'
 
 const StudioApp = () => {
   return (
     <div className="container mt-5">
-      <FirebaseFileInput {...config} />
+      <FirebaseCroppieWithWebCam {...config} />
     </div>)
 }
 
