@@ -3,7 +3,7 @@ function handleFileLoaded({setDataURL}, evt) {
   setDataURL(dataURL)
 }
 
-function convertFile2DataURL({setDataURL, file}) {
+async function convertFile2DataURL({setDataURL, file}) {
   const reader = new FileReader()
   reader.addEventListener(
       'load',

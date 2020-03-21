@@ -1,10 +1,11 @@
 import React from 'react'
 import useFileFromStorageRef from './useFileFromStorageRef'
 import useMediaSourceForm from './useMediaSourceForm'
-import useFileInput2DataURL from './useFileInput2DataURL'
 import useCroppie from './useCroppie'
 import useUploadButton from './useUploadButton'
 import useWebcamInput from './useWebcamInput'
+import useFileInput from './useFileInput'
+import useFileToDataURL from './useFileToDataURL'
 
 function componentDidMount({verifyFile}) {
   verifyFile()
@@ -64,6 +65,18 @@ function handleLoad({file, setImgIsLoading}) {
   if (file && file.downloadURL) return setImgIsLoading(false)
 }
 
+function selectedFileDidChange({
+  selectedFile, setSelectedFile, setDataURL,
+}) {
+  if (selectedFile) {
+    const {convertFile2DataURL} = useFileToDataURL({
+      file: selectedFile,
+      setDataURL,
+    })
+    convertFile2DataURL()
+  }
+}
+
 export default ({storageRef, croppieConfig}) => {
   const [imgIsLoading, setImgIsLoading] = React.useState(false)
   const [file, setFile] = React.useState(null)
@@ -75,6 +88,7 @@ export default ({storageRef, croppieConfig}) => {
   const [isUploading, setIsUploading] = React.useState(false)
   const [uploaded, setUploaded] = React.useState(false)
   const [progress, setProgress] = React.useState(0)
+  const [selectedFile, setSelectedFile] = React.useState(null)
   //
   const croppieRef = React.useRef()
   const webcamRef = React.useRef()
@@ -85,7 +99,10 @@ export default ({storageRef, croppieConfig}) => {
   const {resetMediaSource, handleMediaSourceChange} = useMediaSourceForm({
     valueSetter: setMediaSource,
   })
-  const {handleFileInputChange} = useFileInput2DataURL({setDataURL})
+  // const {handleFileInputChange} = useFileInput2DataURL({setDataURL})
+  const {handleFileInputChange} = useFileInput({
+    setFile: setSelectedFile,
+  })
   const {setupCroppie} = useCroppie({
     setCroppie, croppieRef, croppieConfig, setCroppedDataURL,
   })
@@ -99,6 +116,9 @@ export default ({storageRef, croppieConfig}) => {
     webcamRef, setDataURL,
   })
   //
+  React.useEffect(selectedFileDidChange.bind(null,
+      {setDataURL, selectedFile},
+  ), [selectedFile])
   React.useEffect(componentDidMount.bind(null, {
     verifyFile,
   }), [])
