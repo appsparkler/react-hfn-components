@@ -1,6 +1,5 @@
 function handleMediaSourceChange({valueSetter}, evt) {
   evt.stopPropagation()
-  evt.preventDefault()
   const mediaSource = evt.target.value
   valueSetter(mediaSource)
 }
