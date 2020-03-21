@@ -10,22 +10,28 @@ const FirebaseFileInput = ({storageRef}) => {
     uploaded,
     progress,
     handleUploadButtonClick,
+    firebaseFile,
   } = useFirebaseFileInput({storageRef})
   return (
-    <div>
-      <input type="file" onChange={handleFileInputChange} />
-      <button
-        type="button"
-        className="btn btn-primary rounded-0"
-        disabled={isUploading}
-        onClick={handleUploadButtonClick}
-      >
+    <div className="row">
+      <div className="col-12">
+        {firebaseFile && firebaseFile.downloadURL && 'file is available'}
+      </div>
+      <div className="col-12">
+        <input type="file" onChange={handleFileInputChange} />
+        <button
+          type="button"
+          className="btn btn-primary rounded-0"
+          disabled={isUploading}
+          onClick={handleUploadButtonClick}
+        >
           Upload File
-      </button>
-      <pre>{isUploading && `${progress}%`}</pre>
-      <pre>{isUploading && '...is uploading'}</pre>
-      <pre>{uploaded && 'uploaded!'}</pre>
-      <pre>{error && error.message}</pre>
+        </button>
+        <pre>{isUploading && `${progress}%`}</pre>
+        <pre>{isUploading && '...is uploading'}</pre>
+        <pre>{uploaded && 'uploaded!'}</pre>
+        <pre>{error && error.message}</pre>
+      </div>
     </div>
   )
 }
