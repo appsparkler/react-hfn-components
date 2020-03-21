@@ -24,7 +24,12 @@ function handleClick({
   setIsUploading(true)
   setUploaded(false)
   setProgress(0)
-  const uploadTask = storageRef.put(file)
+  debugger
+  const uploadTask = storageRef.put(file, {
+    customMetadata: {
+      fileName: file.name,
+    },
+  })
   uploadTask.on(
       'state_changed',
       onStateChange.bind(null, {setProgress}),

@@ -15,7 +15,11 @@ const FirebaseFileInput = ({storageRef}) => {
   return (
     <div className="row">
       <div className="col-12">
-        {firebaseFile && firebaseFile.downloadURL && 'file is available'}
+        {firebaseFile?.downloadURL && (
+          <a href={firebaseFile.downloadURL}>
+            {firebaseFile.fileName || 'file'}
+          </a>
+        )}
       </div>
       <div className="col-12">
         <input type="file" onChange={handleFileInputChange} />
