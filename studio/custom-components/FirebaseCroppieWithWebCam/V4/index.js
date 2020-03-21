@@ -102,6 +102,9 @@ FirebaseSuperCroppie.propTypes = {
   isUploading: PropTypes.bool.isRequired,
   progress: PropTypes.number.isRequired,
   uploaded: PropTypes.bool.isRequired,
+
+  // TEMPORARY
+  resetMediaSource: PropTypes.func,
 }
 
 export default connectFirebaseSuperCroppie({
