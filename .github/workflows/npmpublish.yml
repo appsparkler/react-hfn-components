@@ -15,8 +15,9 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
+      - run: yarn
       - run: yarn build
-      - run: yarn build-publish
+      # - run: yarn build:publish
 
   publish-npm:
     needs: build
