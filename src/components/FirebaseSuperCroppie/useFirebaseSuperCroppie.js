@@ -1,11 +1,11 @@
 import React from 'react'
-import useFileFromStorageRef from './useFileFromStorageRef'
-import useMediaSourceForm from './useMediaSourceForm'
-import useCroppie from './useCroppie'
-import useUploadButton from './useUploadButton'
-import useWebcamInput from './useWebcamInput'
-import useFileInput from './useFileInput'
-import useFileToDataURL from './useFileToDataURL'
+import useFileFromStorageRef from '@react-hfn-hooks/useFileFromStorageRef'
+import useMediaSourceForm from '@react-hfn-hooks/useMediaSourceForm'
+import useCroppie from '@react-hfn-hooks/useCroppie'
+import useUploadButton from '@react-hfn-hooks/useUploadButton'
+import useWebcamInput from '@react-hfn-hooks/useWebcamInput'
+import useFileInput from '@react-hfn-hooks/useFileInput'
+import useFileToDataURL from '@react-hfn-hooks/useFileToDataURL'
 
 function componentDidMount({verifyFile}) {
   verifyFile()
