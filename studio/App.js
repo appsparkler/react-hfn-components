@@ -1,5 +1,5 @@
 import React from 'react'
-import FirebaseFileInput from './FirebaseFileInput'
+import FirebaseFileInput from './custom-components/FirebaseFileInput'
 import config from './config'
 import './styles'
 

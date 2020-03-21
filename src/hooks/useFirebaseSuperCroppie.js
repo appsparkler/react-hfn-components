@@ -1,7 +1,7 @@
 import React from 'react'
 import useFileFromStorageRef from './useFileFromStorageRef'
 import useMediaSourceForm from './useMediaSourceForm'
-import useFileInput from './useFileInput'
+import useFileInput2DataURL from './useFileInput2DataURL'
 import useCroppie from './useCroppie'
 import useUploadButton from './useUploadButton'
 import useWebcamInput from './useWebcamInput'
@@ -85,7 +85,7 @@ export default ({storageRef, croppieConfig}) => {
   const {resetMediaSource, handleMediaSourceChange} = useMediaSourceForm({
     valueSetter: setMediaSource,
   })
-  const {handleFileInputChange} = useFileInput({setDataURL})
+  const {handleFileInputChange} = useFileInput2DataURL({setDataURL})
   const {setupCroppie} = useCroppie({
     setCroppie, croppieRef, croppieConfig, setCroppedDataURL,
   })
