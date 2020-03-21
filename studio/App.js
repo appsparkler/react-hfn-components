@@ -1,13 +1,13 @@
 import React from 'react'
-import FirebaseSuperCroppie
-  from '@react-hfn-components/FirebaseSuperCroppie'
+import FirebaseFileLink
+  from '@react-hfn-components/FirebaseFileLink'
 import config from './config'
 import './styles'
 
 const StudioApp = () => {
   return (
     <div className="container mt-5">
-      <FirebaseSuperCroppie {...config} />
+      <FirebaseFileLink {...config} />
     </div>)
 }
 
