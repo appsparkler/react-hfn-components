@@ -6,8 +6,8 @@ function onStateChange({setProgress}, snapshot) {
   }
 }
 
-function onError() {
-  debugger
+function onError({setError}) {
+  setError(new Error('Did not upload!'))
 }
 
 function onDoneCallback({setProgress, setUploaded, setIsUploading}) {
@@ -28,7 +28,7 @@ function handleClick({
   uploadTask.on(
       'state_changed',
       onStateChange.bind(null, {setProgress}),
-      onError,
+      onError.bind(null, {setError}),
       onDoneCallback.bind(null, {
         setProgress, setUploaded, setIsUploading,
       }),
