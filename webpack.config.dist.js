@@ -45,10 +45,11 @@ module.exports = {
       '@appsparkler/react-hfn-components': resolve('src'),
       '@react-hfn-components': resolve('src/components'),
       '@react-hfn-hooks': resolve('src/hooks'),
-      '@react-hfn-contexts': resolve('src/contexts'),
-      '@react-hfn-hooks': resolve('src/hooks'),
-      '@react-hfn-contexts': resolve('src/contexts'),
-      '@react-hfn-singletons': resolve('src/singletons'),
+      '@react-hfn-utils': resolve('src/utils'),
+      // '@react-hfn-contexts': resolve('src/contexts'),
+      // '@react-hfn-hooks': resolve('src/hooks'),
+      // '@react-hfn-contexts': resolve('src/contexts'),
+      // '@react-hfn-singletons': resolve('src/singletons'),
     },
     extensions: ['.sass', '.js', '.jsx', '.json'],
     modules: [
@@ -63,11 +64,8 @@ module.exports = {
     }),
   ],
   externals: {
-    react: {
-      root: 'React',
-      commonjs2: 'react',
-      commonjs: 'react',
-      amd: 'react',
-    },
+    'react': 'React',
+    'props-types': 'PropTypes',
+    'croppie': 'Croppie',
   },
 }
