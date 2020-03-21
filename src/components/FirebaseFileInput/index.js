@@ -10,12 +10,14 @@ const FirebaseFileInput = ({storageRef}) => {
     uploaded,
     progress,
     handleUploadButtonClick,
+    isVerifying,
     firebaseFile,
   } = useFirebaseFileInput({storageRef})
   return (
     <div className="row">
       <div className="col-12">
-        {firebaseFile?.downloadURL && (
+        {isVerifying && '...isVerifying'}
+        {!isVerifying && firebaseFile?.downloadURL && (
           <a href={firebaseFile.downloadURL}>
             {firebaseFile.fileName || 'file'}
           </a>
