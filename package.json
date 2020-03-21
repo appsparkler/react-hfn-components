@@ -21,6 +21,7 @@
     "storybook": "start-storybook",
     "start": "webpack-dev-server --config webpack.config.studio.js",
     "build": "webpack -p --config webpack.config.dist.js; bundlesize",
+    "lint": "eslint src",
     "test": "jest test",
     "bundlesize": "bundlesize",
     "build:publish": "yarn build; yarn publish",

@@ -21,5 +21,10 @@ module.exports = {
     'require-jsdoc': 0,
     'prefer-rest-params': [0, "never"],
     'no-undef': 2
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
   }
 }
