@@ -1,11 +1,13 @@
 import React from 'react'
-import ImageVariant1 from './custom-components/Image/variant-1'
+import FirebaseCroppieWithWebCam
+  from './custom-components/FirebaseCroppieWithWebCam/variant-1'
+import config from './config'
 import './styles'
 
 const StudioApp = () => {
   return (
     <div className="container mt-5">
-      <ImageVariant1 src="https://loremflickr.com/120/120" />
+      <FirebaseCroppieWithWebCam {...config} />
     </div>)
 }
 
