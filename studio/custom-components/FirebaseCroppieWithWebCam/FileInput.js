@@ -1,28 +1,28 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const FileInput = (props) => {
-  const {handleChange} = props
-  return (
-    <div className="FileInput">
-      <div className="form-group">
-        <label>
-          <span className="label-text">Upload Photo</span>
-          <span className="required-asterix"> *</span>
-          <br />
-          <input
-            type="file"
-            className="form-control"
-            onChange={ handleChange }
-          />
-        </label>
-      </div>
+const FileInput = ({onChange}) => (
+  <div className="input-group mb-3">
+    <div className="input-group-prepend">
+      <span className="input-group-text">
+        Upload
+      </span>
     </div>
-  )
-}
+    <div className="custom-file">
+      <input
+        type="file"
+        className="custom-file-input"
+        onChange={onChange}
+      />
+      <label className="custom-file-label">
+        Choose file
+      </label>
+    </div>
+  </div>
+)
 
 FileInput.propTypes = {
-  handleChange: PropTypes.func,
+  onChange: PropTypes.func.isRequired,
 }
 
 export default FileInput

@@ -1,14 +1,14 @@
-function handleMediaSourceChange({setMediaSource}, evt) {
+function handleMediaSourceChange({valueSetter}, evt) {
   evt.stopPropagation()
-  // evt.preventDefault()
+  evt.preventDefault()
   const mediaSource = evt.target.value
-  setMediaSource(mediaSource)
+  valueSetter(mediaSource)
 }
 
-export default ({setMediaSource, mediaSourceRef}) => {
+export default ({valueSetter}) => {
   return {
-    resetMediaSource: () => setMediaSource(null),
+    revalueSetter: () => valueSetter(null),
     handleMediaSourceChange: handleMediaSourceChange
-        .bind(null, {setMediaSource}),
+        .bind(null, {valueSetter}),
   }
 }

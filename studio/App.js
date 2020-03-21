@@ -1,10 +1,11 @@
 import React from 'react'
 import FirebaseSuperCroppie
-  from 'studio/custom-components/FirebaseCroppieWithWebCam/V4'
+  from './custom-components/FirebaseCroppieWithWebCam/variant-1'
+import config from './config'
 import './styles'
 
 const StudioApp = () => {
-  return (<FirebaseSuperCroppie />)
+  return (<FirebaseSuperCroppie {...config} />)
 }
 
 export default StudioApp

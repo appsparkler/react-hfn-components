@@ -21,14 +21,6 @@ function setupCroppie({
   )
 }
 
-/**
- * Returns the sum of a and b.
- * @param {Object} croppieRef
- * @param {Object} croppieConfig
- * @param {Function} setCroppie
- * @param {Function} setCroppieDataURL
- * @return {Promise} Promise object represents the sum of a and b
- */
 export default ({
   croppieRef, croppieConfig, setCroppie, setCroppedDataURL,
 }) => {

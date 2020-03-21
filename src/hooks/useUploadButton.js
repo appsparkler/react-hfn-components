@@ -1,4 +1,4 @@
-import {dataURL2Blob} from './utils'
+import {dataURL2Blob} from '@react-hfn-utils'
 
 function onStateChange({setProgress}, snapshot) {
   const {state, totalBytes, bytesTransferred} = snapshot

@@ -73,7 +73,7 @@ export default ({storageRef, croppieConfig}) => {
     setFile, setIsVerifying, storageRef,
   })
   const {resetMediaSource, handleMediaSourceChange} = useMediaSourceForm({
-    setMediaSource,
+    valueSetter: setMediaSource,
   })
   const {handleFileInputChange} = useFileInput({setDataURL})
   const {setupCroppie} = useCroppie({

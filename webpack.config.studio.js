@@ -41,6 +41,7 @@ module.exports = {
     alias: {
       '@appsparkler/react-hfn-components': resolve('src'),
       '@react-hfn-hooks': resolve('src/hooks'),
+      '@react-hfn-utils': resolve('src/utils'),
       '@react-hfn-components': resolve('src/components'),
       '@react-hfn-studio': resolve('studio'),
       '@react-hfn-connectors': resolve('src/connectors'),
