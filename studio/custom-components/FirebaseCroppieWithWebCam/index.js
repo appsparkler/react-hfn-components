@@ -13,11 +13,19 @@ const FirebaseSuperCroppie = ({
   croppieRef, croppedDataURL,
   handleUploadButtonClick, isUploading, progress, uploaded,
   webcamRef, clickPhoto,
+  imgIsLoading, handleLoad,
 }) => (
   <div className="container mt-2">
     <div className="row">
       <div className="col-3">
-        <ProfilePhoto file={file} isVerifying={isVerifying} />
+        {file && (
+          <ProfilePhoto
+            imgIsLoading={imgIsLoading}
+            file={file}
+            isVerifying={isVerifying}
+            onLoad={handleLoad}
+          />
+        )}
       </div>
       <div className="col-5 flex-end">
         <MediaSourceForm
@@ -88,6 +96,9 @@ FirebaseSuperCroppie.propTypes = {
   isUploading: PropTypes.bool.isRequired,
   progress: PropTypes.number.isRequired,
   uploaded: PropTypes.bool.isRequired,
+
+  imgIsLoading: PropTypes.bool.isRequired,
+  handleLoad: PropTypes.func.isRequired,
 }
 
 export default FirebaseSuperCroppie

@@ -55,7 +55,17 @@ function mediaSourceDidChange({
   }
 }
 
+function fileDidChange({file, setImgIsLoading}) {
+  if (file && file.downloadURL) return setImgIsLoading(true)
+  setImgIsLoading(false)
+}
+
+function handleLoad({file, setImgIsLoading}) {
+  if (file && file.downloadURL) return setImgIsLoading(false)
+}
+
 export default ({storageRef, croppieConfig}) => {
+  const [imgIsLoading, setImgIsLoading] = React.useState(false)
   const [file, setFile] = React.useState(null)
   const [isVerifying, setIsVerifying] = React.useState(false)
   const [mediaSource, setMediaSource] = React.useState(null)
@@ -106,6 +116,9 @@ export default ({storageRef, croppieConfig}) => {
     uploaded, setCroppedDataURL, setDataURL, setMediaSource,
     setProgress, verifyFile, setUploaded,
   }), [uploaded])
+  React.useEffect(fileDidChange.bind(null, {
+    setImgIsLoading, file,
+  }), [file])
   //
   return {
     file, isVerifying,
@@ -115,5 +128,8 @@ export default ({storageRef, croppieConfig}) => {
     croppieRef, croppedDataURL,
     handleUploadButtonClick, isUploading, progress, uploaded,
     resetMediaSource,
+    imgIsLoading,
+
+    handleLoad: handleLoad.bind(null, {file, setImgIsLoading}),
   }
 }
