@@ -5,9 +5,6 @@ module.exports = {
     include: ['./src'],
     includePattern: '.js$',
     excludePattern: '(node_modules/|docs)',
-    // 'includePattern': '.+\\.js(doc|x)?$',
-    // 'includePattern': '**/*.js',
-    // 'excludePattern': '(^|\\/|\\\\)_',
   },
   'sourceType': 'module',
   'tags': {
