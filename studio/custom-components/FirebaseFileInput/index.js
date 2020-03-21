@@ -2,7 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const FirebaseFileInput = ({storageRef}) => (
-  <div></div>
+  <div>
+    <input type="file" />
+  </div>
 )
 
 FirebaseFileInput.propTypes = {
