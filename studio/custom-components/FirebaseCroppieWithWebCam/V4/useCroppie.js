@@ -21,7 +21,9 @@ function setupCroppie({
   )
 }
 
-export default ({croppieRef, croppieConfig, setCroppie, setCroppedDataURL}) => {
+export default ({
+  croppieRef, croppieConfig, setCroppie, setCroppedDataURL,
+}) => {
   return {
     setupCroppie: setupCroppie.bind(null, {
       croppieRef, setCroppie, croppieConfig, setCroppedDataURL,
