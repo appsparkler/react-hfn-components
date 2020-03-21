@@ -2,10 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const ProfilePhoto = ({
-  file, isVerifying, imgIsLoading, onLoad,
+  file, imgIsLoading, onLoad,
 }) => (
   <div>
-    {file && !isVerifying && (
+    {imgIsLoading && 'is loading...'}
+    {(
       <img
         className="img-thumbnail rounded-0"
         hidden={imgIsLoading}
@@ -13,18 +14,11 @@ const ProfilePhoto = ({
         onLoad={onLoad}
       />
     )}
-    {isVerifying && (
-      <span>is Verifying...</span>
-    )}
-    {!file && !isVerifying && (
-      <span>No Profile Pic</span>
-    )}
   </div>
 )
 
 ProfilePhoto.propTypes = {
   file: PropTypes.object.isRequired,
-  isVerifying: PropTypes.bool.isRequired,
   imgIsLoading: PropTypes.bool.isRequired,
   onLoad: PropTypes.func.isRequired,
 }

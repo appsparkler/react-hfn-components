@@ -18,11 +18,11 @@ const FirebaseSuperCroppie = ({
   <div className="container mt-2">
     <div className="row">
       <div className="col-3">
-        {file && (
+        {isVerifying && '...isVerifying'}
+        {!isVerifying && file && (
           <ProfilePhoto
             imgIsLoading={imgIsLoading}
             file={file}
-            isVerifying={isVerifying}
             onLoad={handleLoad}
           />
         )}
