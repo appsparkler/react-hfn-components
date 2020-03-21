@@ -22,10 +22,13 @@ function setupCroppie({
 }
 
 /**
-* Hook for setting up a Croppie.
-For more on Croppie visit https://foliotek.github.io/Croppie/.
-* @return {function} setupCroppie  which has `setupCroppie method`
-*/
+ * Returns the sum of a and b.
+ * @param {Object} croppieRef
+ * @param {Object} croppieConfig
+ * @param {Function} setCroppie
+ * @param {Function} setCroppieDataURL
+ * @return {Promise} Promise object represents the sum of a and b
+ */
 export default ({
   croppieRef, croppieConfig, setCroppie, setCroppedDataURL,
 }) => {
