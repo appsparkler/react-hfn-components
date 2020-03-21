@@ -1,2 +1,2 @@
-export useFirebaseSuperCroppie  from '@react-hfn-hooks/useFirebaseSuperCroppie' //eslint-disable-line
+export useFirebaseSuperCroppie  from '@react-hfn-components/useFirebaseSuperCroppie/useFirebaseSuperCroppie' //eslint-disable-line
 export useFirebaseFileInput from '@react-hfn-components/FirebaseFileInput/useFirebaseFileInput' //eslint-disable-line
