@@ -1,16 +1,19 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import useImage from '@react-hfn-hooks/useImage'
 
+function handleLoad({setImgLoaded}) {
+  setImgLoaded(true)
+}
 const Image1 = ({src}) => {
-  const {isLoading, loaded} = useImage({src})
+  const [imgLoaded, setImgLoaded] = React.useState(false)
   return (
     <div>
-      <button className="btn btn-primary rounded-0">
-        Load Image
-      </button>
-      {isLoading && '...isLoading'}
-      {loaded && <img src={src} className="img-thumbnail" />}
+      {!imgLoaded && '...is loading'}
+      {<img src={src}
+        className="img-thumbnail "
+        hidden={!imgLoaded}
+        onLoad={handleLoad.bind(null, {setImgLoaded})}
+      />}
     </div>
   )
 }

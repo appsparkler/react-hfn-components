@@ -1,8 +1,9 @@
-async function startLoading({src, setIsLoading, setLoaded}) {
+async function loadSrc({src, setIsLoading, setLoaded}) {
   try {
     setLoaded(false)
     setIsLoading(true)
-    await fetch(src)
+    const imgData = await fetch(src)
+    await fetch(imgData.url)
     setIsLoading(false)
     setLoaded(true)
     debugger
@@ -14,7 +15,7 @@ async function startLoading({src, setIsLoading, setLoaded}) {
 
 export default ({src, setIsLoading, setLoaded}) => {
   return {
-    startLoading: startLoading.bind(null, {
+    loadSrc: loadSrc.bind(null, {
       src, setIsLoading, setLoaded,
     }),
   }
