@@ -33,7 +33,8 @@ const FirebaseFileInput = ({storageRef}) => {
         >
           Upload File
         </button>
-        <pre>{isUploading && `${progress}%`}</pre>
+        <br />
+        {isUploading && <progress value={progress} min="0" max="100" />}
         <pre>{isUploading && '...is uploading'}</pre>
         <pre>{uploaded && 'uploaded!'}</pre>
         <pre>{error && error.message}</pre>
