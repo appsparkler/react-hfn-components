@@ -21,6 +21,19 @@ function setupCroppie({
   )
 }
 
+
+/**
+ * @typedef {Object} UseCroppieReturnObject
+ * @property {function} setupCroppie - Setsup the Croppie on the element on
+ croppieRef.current element (croppieRef is a React.useRef()
+ passed to the function)
+ */
+
+/**
+* Hook for setting up a Croppie.
+For more on Croppie visit https://foliotek.github.io/Croppie/.
+* @return {UseCroppieReturnObject}
+*/
 export default ({
   croppieRef, croppieConfig, setCroppie, setCroppedDataURL,
 }) => {
