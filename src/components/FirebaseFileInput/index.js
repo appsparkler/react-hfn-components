@@ -1,19 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import useFileInput from '@react-hfn-hooks/useFileInput'
-import useFileUploadButton from '@react-hfn-hooks/useFileUploadButton'
+import useFirebaseFileInput from './useFirebaseFileInput'
 
 const FirebaseFileInput = ({storageRef}) => {
-  const [file, setFile] = React.useState(null)
-  const [isUploading, setIsUploading] = React.useState(false)
-  const [error, setError] = React.useState(null)
-  const [uploaded, setUploaded] = React.useState(false)
-  const [progress, setProgress] = React.useState(0)
-  const {handleFileInputChange} = useFileInput({setFile})
-  const {handleUploadButtonClick} = useFileUploadButton({
-    storageRef, file,
-    setIsUploading, setProgress, setUploaded, setError,
-  })
+  const {
+    handleFileInputChange,
+    isUploading,
+    error,
+    uploaded,
+    progress,
+    handleUploadButtonClick,
+  } = useFirebaseFileInput({storageRef})
   return (
     <div>
       <input type="file" onChange={handleFileInputChange} />
