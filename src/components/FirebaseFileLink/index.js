@@ -7,7 +7,8 @@ const FirebaseFileLink = ({storageRef}) => {
   return (
     <div className="row">
       {isVerifying && '...isVerifying'}
-      {file && <a href={file?.downloadURL}>{file?.name}</a>}
+      {file && JSON.stringify(file)}
+      {file && <a href={file?.downloadURL}>{file?.fileName}</a>}
     </div>
   )
 }
