@@ -1,12 +1,27 @@
 import React from 'react'
 import WebcamInput from './wip'
+import PropTypes from 'prop-types'
 import useWebcamInput from './wip/useWebcamInput'
 import './styles'
 
-function showVideoDidChange({showVideo, startVideo, videoRef}) {
+function showVideoDidChange({
+  showVideo, startVideo, videoRef, setDataURL,
+}) {
   if (showVideo === true && videoRef.current) {
     startVideo()
+    setDataURL(null)
   }
+}
+
+const ShowHideText = ({showVideo}) => (
+  <>
+    <span>{showVideo && 'Hide '}</span>
+    <span>{!showVideo && 'Show '}</span>
+  </>
+)
+
+ShowHideText.propTypes = {
+  showVideo: PropTypes.bool.isRequired,
 }
 
 const StudioApp = () => {
@@ -15,7 +30,7 @@ const StudioApp = () => {
   const [showVideo, setShowVideo] = React.useState(false)
   const {clickPhoto, startVideo} = useWebcamInput({videoRef, setDataURL})
   React.useEffect(showVideoDidChange.bind(null, {
-    showVideo, startVideo, videoRef,
+    showVideo, startVideo, videoRef, setDataURL,
   }), [showVideo])
   return (
     <div className="container mt-5">
@@ -25,7 +40,8 @@ const StudioApp = () => {
             onClick={() => {
               setShowVideo(!showVideo)
             }}>
-            Toggle Cam
+            <ShowHideText showVideo={showVideo}/>
+            Cam
           </button>
         </div>
         <div className="col-5">
