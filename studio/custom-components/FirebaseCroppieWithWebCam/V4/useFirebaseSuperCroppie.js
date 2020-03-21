@@ -33,14 +33,13 @@ function uploadedDidChange({
   setMediaSource, setProgress, setUploaded,
   verifyFile,
 }) {
-  if (uploaded) {
-    setProgress(0)
-    setUploaded(false)
-    setCroppedDataURL(null)
-    setDataURL(null)
-    setMediaSource(null)
-    verifyFile()
-  }
+  if (!uploaded) return
+  setProgress(0)
+  setUploaded(false)
+  setCroppedDataURL(null)
+  setDataURL(null)
+  setMediaSource(null)
+  verifyFile()
 }
 
 function mediaSourceDidChange({
@@ -66,9 +65,6 @@ export default ({storageRef, croppieConfig}) => {
   const [isUploading, setIsUploading] = React.useState(false)
   const [uploaded, setUploaded] = React.useState(false)
   const [progress, setProgress] = React.useState(0)
-  const {clickPhoto, startVideo} = useWebcamInput({
-    webcamRef, setDataURL,
-  })
   //
   const croppieRef = React.useRef()
   const webcamRef = React.useRef()
@@ -88,6 +84,9 @@ export default ({storageRef, croppieConfig}) => {
   } = useUploadButton({
     croppedDataURL, storageRef, setIsUploading,
     setProgress, setUploaded,
+  })
+  const {clickPhoto, startVideo} = useWebcamInput({
+    webcamRef, setDataURL,
   })
   //
   React.useEffect(componentDidMount.bind(null, {
