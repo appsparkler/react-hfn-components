@@ -1,5 +1,3 @@
-import React from 'react'
-
 function startVideo({videoRef}) {
   const video = videoRef.current
   navigator
@@ -30,13 +28,9 @@ function clickPhoto({videoRef, setDataURL}, evt) {
   setDataURL(dataURL)
 }
 
-export default () => {
-  const videoRef = React.useRef()
-  const [dataURL, setDataURL] = React.useState(null)
+export default ({videoRef, setDataURL}) => {
   return {
-    videoRef,
     startVideo: startVideo.bind(null, {videoRef}),
     clickPhoto: clickPhoto.bind(null, {videoRef, setDataURL}),
-    dataURL,
   }
 }
