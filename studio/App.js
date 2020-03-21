@@ -1,11 +1,9 @@
 import React from 'react'
-import FirebaseSuperCroppie
-  from './custom-components/FirebaseCroppieWithWebCam/variant-1'
-import config from './config'
+import ImageVariant1 from './custom-components/Image/variant-1'
 import './styles'
 
 const StudioApp = () => {
-  return (<FirebaseSuperCroppie {...config} />)
+  return (<ImageVariant1 src="https://loremflickr.com/640/360" />)
 }
 
 export default StudioApp
