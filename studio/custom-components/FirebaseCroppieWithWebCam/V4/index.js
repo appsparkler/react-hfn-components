@@ -16,7 +16,6 @@ const FirebaseSuperCroppie = ({
   croppieRef, croppedDataURL,
   handleUploadButtonClick, isUploading, progress, uploaded,
   webcamRef, clickPhoto,
-  resetMediaSource,
 }) => {
   return (
     <div className="container mt-2">
@@ -70,14 +69,6 @@ const FirebaseSuperCroppie = ({
           )}
         </div>
       )}
-
-      <div className="row">
-        <button
-          className="btn btn-primary"
-          onClick={resetMediaSource}>
-          Reset Media Source
-        </button>
-      </div>
     </div>
   )
 }
@@ -102,9 +93,6 @@ FirebaseSuperCroppie.propTypes = {
   isUploading: PropTypes.bool.isRequired,
   progress: PropTypes.number.isRequired,
   uploaded: PropTypes.bool.isRequired,
-
-  // TEMPORARY
-  resetMediaSource: PropTypes.func,
 }
 
 export default connectFirebaseSuperCroppie({
