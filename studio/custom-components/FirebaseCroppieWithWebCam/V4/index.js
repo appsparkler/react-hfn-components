@@ -15,7 +15,7 @@ const FirebaseSuperCroppie = ({
   handleFileInputChange, dataURL,
   croppieRef, croppedDataURL,
   handleUploadButtonClick, isUploading, progress, uploaded,
-
+  webcamRef, clickPhoto,
   resetMediaSource,
 }) => {
   return (
@@ -36,7 +36,19 @@ const FirebaseSuperCroppie = ({
           </div>
         )}
         {mediaSource === 'webcam' && (
-          <div>Use Webcam...</div>
+          <div className="col-4">
+            <div>
+              <video
+                className="w-100"
+                ref={webcamRef}></video>
+              <button
+                className="btn btn-success rounded-0"
+                onClick={clickPhoto}
+              >
+                Click!
+              </button>
+            </div>
+          </div>
         )}
       </div>
       {mediaSource && (
@@ -79,6 +91,9 @@ FirebaseSuperCroppie.propTypes = {
 
   handleFileInputChange: PropTypes.func.isRequired,
   dataURL: PropTypes.string,
+
+  webcamRef: PropTypes.any.isRequired,
+  clickPhoto: PropTypes.func.isRequired,
 
   croppieRef: PropTypes.shape({current: PropTypes.instanceOf(Element)}),
   croppedDataURL: PropTypes.string,

@@ -4,6 +4,7 @@ import useMediaSourceForm from './useMediaSourceForm'
 import useFileInput from './useFileInput'
 import useCroppie from './useCroppie'
 import useUploadButton from './useUploadButton'
+import useWebcamInput from './useWebcamInput'
 
 function componentDidMount({verifyFile}) {
   verifyFile()
@@ -62,8 +63,12 @@ export default ({storageRef, croppieConfig}) => {
   const [isUploading, setIsUploading] = React.useState(false)
   const [uploaded, setUploaded] = React.useState(false)
   const [progress, setProgress] = React.useState(0)
+  const {clickPhoto, startVideo} = useWebcamInput({
+    webcamRef, setDataURL,
+  })
   //
   const croppieRef = React.useRef()
+  const webcamRef = React.useRef()
   //
   const {verifyFile} = useFileFromStorageRef({
     setFile, setIsVerifying, storageRef,
@@ -103,6 +108,7 @@ export default ({storageRef, croppieConfig}) => {
     file, isVerifying,
     mediaSource, handleMediaSourceChange,
     handleFileInputChange, dataURL,
+    webcamRef, clickPhoto,
     croppieRef, croppedDataURL,
     handleUploadButtonClick, isUploading, progress, uploaded,
     resetMediaSource,
