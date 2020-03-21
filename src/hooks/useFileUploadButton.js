@@ -19,7 +19,8 @@ function handleClick({
   storageRef, file, setIsUploading, setProgress, setUploaded, setError,
 }, evt) {
   if (evt.target.disabled) return false
-  if (!file) setError(new Error('No File Selected'))
+  if (!file) return setError(new Error('No File Selected'))
+  setError(null)
   setIsUploading(true)
   setUploaded(false)
   setProgress(0)

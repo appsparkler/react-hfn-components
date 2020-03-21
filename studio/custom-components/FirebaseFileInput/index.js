@@ -6,11 +6,13 @@ import useFileUploadButton from '@react-hfn-hooks/useFileUploadButton'
 const FirebaseFileInput = ({storageRef}) => {
   const [file, setFile] = React.useState(null)
   const [isUploading, setIsUploading] = React.useState(false)
+  const [error, setError] = React.useState(null)
   const [uploaded, setUploaded] = React.useState(false)
   const [progress, setProgress] = React.useState(0)
   const {handleFileInputChange} = useFileInput({setFile})
   const {handleUploadButtonClick} = useFileUploadButton({
-    storageRef, file, setIsUploading, setProgress, setUploaded,
+    storageRef, file,
+    setIsUploading, setProgress, setUploaded, setError,
   })
   return (
     <div>
@@ -26,6 +28,7 @@ const FirebaseFileInput = ({storageRef}) => {
       <pre>{isUploading && `${progress}%`}</pre>
       <pre>{isUploading && '...is uploading'}</pre>
       <pre>{uploaded && 'uploaded!'}</pre>
+      <pre>{error && error.message}</pre>
     </div>
   )
 }
