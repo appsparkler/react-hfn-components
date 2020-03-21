@@ -1,6 +1,6 @@
 import React from 'react'
 import FirebaseCroppieWithWebCam
-  from './custom-components/FirebaseCroppieWithWebCam/variant-1'
+  from '@react-hfn-components/FirebaseFileInput'
 import config from './config'
 import './styles'
 
