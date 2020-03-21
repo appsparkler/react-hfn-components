@@ -66,7 +66,14 @@ const FirebaseSuperCroppie = ({
               onClick={handleUploadButtonClick}
               disabled={isUploading}
             />
-            <pre>{progress}%</pre>
+            <pre>{isUploading && (
+              <progress
+                min="0"
+                max="100"
+                value={progress || 5}
+              />
+            )}
+            </pre>
             <pre>{isUploading && 'is uploading...'}</pre>
             <pre>{uploaded && 'uploaded!'}</pre>
           </div>
