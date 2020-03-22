@@ -1,6 +1,7 @@
 function handleFileInputChange({
   setFile,
 }, evt) {
+  if (evt.target.disabled) return
   evt.preventDefault()
   evt.stopPropagation()
   const {files} = evt.target

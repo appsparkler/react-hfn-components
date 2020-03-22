@@ -21,6 +21,11 @@ export default function uploadFile({
   setProgress, setError, setIsUploading,
   setUploaded,
 }) {
+  if (!file) return setError(new Error('No File Selected'))
+  setError(null)
+  setIsUploading(true)
+  setUploaded(false)
+  setProgress(0)
   const uploadTask = storageRef.put(file, {
     customMetadata: {
       fileName: file.name,
