@@ -9,8 +9,19 @@ on:
       - master
 
 jobs:
-  install-build-lint-publish:
-    name: 'Install, build, lint and publish package'
+  install-build-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - run: yarn
+      - run: yarn lint
+      - run: yarn build
+
+  publish-npm:
+    needs: install-build-lint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -18,42 +29,7 @@ jobs:
         with:
           node-version: 12
           registry-url: https://registry.npmjs.org/
-      - name: 'Install Dependencies...'
-        run: yarn
-      - name: 'Lint source code...'
-        run: yarn lint
-      - name: 'Build...'
-        run: yarn build
-      - name: 'Publish npm package..'
-        run: yarn publish --access public
+      - run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
           GITHUB_TOKEN: ${{secres.gh_token}}
-
-  # publish-npm:
-  #   needs: install-build-lint
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v2
-  #     - uses: actions/setup-node@v1
-  #       with:
-  #         node-version: 12
-  #         registry-url: https://registry.npmjs.org/
-  #     - run: npm publish --access public
-
-
-  # publish-gpr:
-  #   needs: build
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v2
-  #     - uses: actions/setup-node@v1
-  #       with:
-  #         node-version: 12
-  #         registry-url: https://npm.pkg.github.com/
-  #         scope: '@appsparkler'
-  #     - run: npm ci
-  #     - run: npm publish
-  #       env:
-  #         NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
-  # GITHUB TOKEN : 23aafd31e2f367e190987f2a900983a08fa9fdfd
