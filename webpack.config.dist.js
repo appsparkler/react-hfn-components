@@ -46,10 +46,6 @@ module.exports = {
       '@react-hfn-components': resolve('src/components'),
       '@react-hfn-hooks': resolve('src/hooks'),
       '@react-hfn-utils': resolve('src/utils'),
-      // '@react-hfn-contexts': resolve('src/contexts'),
-      // '@react-hfn-hooks': resolve('src/hooks'),
-      // '@react-hfn-contexts': resolve('src/contexts'),
-      // '@react-hfn-singletons': resolve('src/singletons'),
     },
     extensions: ['.sass', '.js', '.jsx', '.json'],
     modules: [
@@ -64,8 +60,8 @@ module.exports = {
     }),
   ],
   externals: {
-    'react': 'React',
-    'props-types': 'PropTypes',
+    'react': 'react',
+    'props-types': 'prop-types',
     'croppie': 'Croppie',
   },
 }
