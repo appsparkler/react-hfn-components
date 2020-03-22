@@ -3,9 +3,6 @@
   "version": "0.0.16",
   "license": "MIT",
   "main": "./dist/react-hfn-components.min.js",
-  "directories": [
-    "dist"
-  ],
   "files": [
     "dist"
   ],
