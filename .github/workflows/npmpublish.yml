@@ -9,7 +9,8 @@ on:
       - master
 
 jobs:
-  install-build-lint:
+  install-build-lint-publish:
+    name: Install, lint, build and publish npm package
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -19,9 +20,15 @@ jobs:
           registry-url: https://registry.npmjs.org/
       - name: Install dependencies
         run: yarn
-      - run: yarn lint
-      - run: yarn build
-      - run: yarn publish
+      - name: Lint source code
+        run: yarn lint
+      - name: Build...
+        run: yarn build
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+          GITHUB_TOKEN: ${{secrets.gh_token}}
+      - name: Publish NPM packages
+        run: yarn publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
           GITHUB_TOKEN: ${{secrets.gh_token}}
