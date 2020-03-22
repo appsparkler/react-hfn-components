@@ -13,7 +13,7 @@ const FirebaseFileInput = ({
   isVerifying,
   firebaseFile,
 }) => (
-  <Stack horizontal>
+  <Stack horizontal tokens={{padding: 100}}>
     <div className="ms-Grid-row">
       <div className="ms-Grid-col ms-sm6 ms-md4 ms-lg2">
         <FirebaseFileLink
