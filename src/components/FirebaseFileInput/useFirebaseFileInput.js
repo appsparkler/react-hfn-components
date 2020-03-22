@@ -13,12 +13,13 @@ function uploadedDidChange({verifyFile, uploaded}) {
 
 export default ({storageRef}) => {
   const [firebaseFile, setFirebaseFile] = React.useState(null)
-  const [file, setFile] = React.useState(null)
-  const [isUploading, setIsUploading] = React.useState(false)
   const [error, setError] = React.useState(null)
+  const [file, setFile] = React.useState(null)
+  const [isVerifying, setIsVerifying] = React.useState(false)
   const [uploaded, setUploaded] = React.useState(false)
+  const [isUploading, setIsUploading] = React.useState(false)
   const [progress, setProgress] = React.useState(0)
-  const [isVerifying, setIsVerifying] = React.useState(0)
+  //
   const {handleFileInputChange} = useFileInput({setFile})
   const {handleUploadButtonClick} = useFileUploadButton({
     storageRef, file,

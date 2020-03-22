@@ -9,7 +9,7 @@ import {
 
 const FirebaseFileLink = ({file, isVerifying, isUploading}) => (
   <Stack tokens={{childrenGap: 20, maxWidth: 250}}>
-    {isVerifying && (
+    {isVerifying && !isUploading && (
       <div>
         <Spinner label="verifying" size={SpinnerSize.large} />
       </div>)
