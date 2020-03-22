@@ -18,6 +18,7 @@ const FileUploadButton = ({file, isUploading, isVerifying, onChange}) => (
     />
     <input type='file'
       style={inputStyles}
+      disabled={isUploading || isVerifying}
       onChange={onChange}
     />
   </div>
