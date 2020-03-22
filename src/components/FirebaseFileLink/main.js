@@ -9,12 +9,17 @@ import {
 
 const FirebaseFileLink = ({file, isVerifying, isUploading}) => (
   <Stack tokens={{childrenGap: 20, maxWidth: 250}}>
-    {isVerifying && !isUploading && (
+    {isUploading && (
       <div>
-        <Spinner label="verifying" size={SpinnerSize.large} />
+        <Spinner label="Uploading..." size={SpinnerSize.large} />
       </div>)
     }
-    {file && file.downloadURL && (
+    {isVerifying && (
+      <div>
+        <Spinner label="Verifying..." size={SpinnerSize.large} />
+      </div>)
+    }
+    {file && !isVerifying && !isUploading && file.downloadURL && (
       <div>
         <Link href={file.downloadURL}>{file.fileName}</Link>
       </div>
