@@ -1,3 +1,4 @@
+
 function onStateChange({setProgress}, snapshot) {
   const {state, totalBytes, bytesTransferred} = snapshot
   if (totalBytes && state === 'running') {
@@ -15,15 +16,11 @@ function onDoneCallback({setProgress, setUploaded, setIsUploading}) {
   setIsUploading(false)
 }
 
-function handleClick({
-  storageRef, file, setIsUploading, setProgress, setUploaded, setError,
-}, evt) {
-  if (evt.target.disabled) return false
-  if (!file) return setError(new Error('No File Selected'))
-  setError(null)
-  setIsUploading(true)
-  setUploaded(false)
-  setProgress(0)
+function uploadFile({
+  file, storageRef,
+  setProgress, setError, setIsUploading,
+  setUploaded,
+}) {
   const uploadTask = storageRef.put(file, {
     customMetadata: {
       fileName: file.name,
@@ -40,14 +37,13 @@ function handleClick({
 }
 
 export default ({
-  storageRef, file,
-  setIsUploading, setProgress, setUploaded, setError,
+  file, storageRef, setProgress, setError, setIsUploading,
+  setUploaded,
 }) => {
   return {
-    handleUploadButtonClick: handleClick.bind(null, {
-      storageRef, file,
-      setIsUploading, setProgress, setUploaded,
-      setError,
+    uploadFile: uploadFile.bind(null, {
+      file, storageRef, setProgress, setError, setIsUploading,
+      setUploaded,
     }),
   }
 }
