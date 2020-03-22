@@ -2,6 +2,7 @@ import React from 'react'
 import useFileInput from '@react-hfn-hooks/useFileInput'
 import useFileUploadButton from '@react-hfn-hooks/useFileUploadButton'
 import useFileFromStorageRef from '@react-hfn-hooks/useFileFromStorageRef'
+import uploadFile from '@react-hfn-hooks/uploadFile'
 
 function componentDidMount({verifyFile}) {
   verifyFile()
@@ -11,8 +12,18 @@ function uploadedDidChange({verifyFile, uploaded}) {
   if (uploaded) verifyFile()
 }
 
-function fileDidChange({}) {
-  debugger
+function fileDidChange({
+  file, storageRef,
+  setProgress, setError, setIsUploading,
+  setUploaded,
+}) {
+  if (file) {
+    uploadFile({
+      file, storageRef,
+      setProgress, setError, setIsUploading,
+      setUploaded,
+    })
+  }
 }
 
 export default ({storageRef}) => {
@@ -42,7 +53,9 @@ export default ({storageRef}) => {
     verifyFile, uploaded,
   }), [uploaded])
   React.useEffect(fileDidChange.bind(null, {
-
+    file, storageRef,
+    setProgress, setError, setIsUploading,
+    setUploaded,
   }), [file])
   //
   return {

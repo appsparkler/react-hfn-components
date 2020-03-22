@@ -16,7 +16,7 @@ function onDoneCallback({setProgress, setUploaded, setIsUploading}) {
   setIsUploading(false)
 }
 
-function uploadFile({
+export default function uploadFile({
   file, storageRef,
   setProgress, setError, setIsUploading,
   setUploaded,
@@ -34,16 +34,4 @@ function uploadFile({
         setProgress, setUploaded, setIsUploading,
       }),
   )
-}
-
-export default ({
-  file, storageRef, setProgress, setError, setIsUploading,
-  setUploaded,
-}) => {
-  return {
-    uploadFile: uploadFile.bind(null, {
-      file, storageRef, setProgress, setError, setIsUploading,
-      setUploaded,
-    }),
-  }
 }
