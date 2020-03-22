@@ -30,7 +30,7 @@ const FirebaseFileInput = ({
           isVerifying={isVerifying}
           onChange={handleFileInputChange}
         />
-        {isUploading && <ProgressIndicator percentComplete={progress} />}
+        {isUploading && <ProgressIndicator percentComplete={(progress/100)} />}
       </div>
     </div>
     {/* <div className="row">
