@@ -8,7 +8,7 @@ const inputStyles = {
   bottom: 0, top: 0,
   opacity: 0,
 }
-const FileUploadButton = ({file, isUploading, isVerifying}) => (
+const FileUploadButton = ({file, isUploading, isVerifying, onChange}) => (
   <div style={{position: 'relative'}}>
     <DefaultButton
       primary={!!file}
@@ -16,7 +16,10 @@ const FileUploadButton = ({file, isUploading, isVerifying}) => (
       disabled={isUploading || isVerifying}
       text={file ? 'Re-upload File': 'Upload File'}
     />
-    <input type='file' style={inputStyles} />
+    <input type='file'
+      style={inputStyles}
+      onChange={onChange}
+    />
   </div>
 )
 
@@ -24,6 +27,7 @@ FileUploadButton.propTypes = {
   file: PropTypes.object,
   isUploading: PropTypes.bool.isRequired,
   isVerifying: PropTypes.bool.isRequired,
+  onChange: PropTypes.func.isRequired,
 }
 
 export default FileUploadButton

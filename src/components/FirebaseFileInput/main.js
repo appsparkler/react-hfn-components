@@ -28,6 +28,7 @@ const FirebaseFileInput = ({
           file={firebaseFile}
           isUploading={isUploading}
           isVerifying={isVerifying}
+          onChange={handleFileInputChange}
         />
       </div>
     </div>

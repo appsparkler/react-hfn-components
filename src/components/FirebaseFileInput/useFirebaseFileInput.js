@@ -11,6 +11,10 @@ function uploadedDidChange({verifyFile, uploaded}) {
   if (uploaded) verifyFile()
 }
 
+function fileDidChange({}) {
+  debugger
+}
+
 export default ({storageRef}) => {
   const [firebaseFile, setFirebaseFile] = React.useState(null)
   const [error, setError] = React.useState(null)
@@ -37,6 +41,9 @@ export default ({storageRef}) => {
   React.useEffect(uploadedDidChange.bind(null, {
     verifyFile, uploaded,
   }), [uploaded])
+  React.useEffect(fileDidChange.bind(null, {
+
+  }), [file])
   //
   return {
     handleFileInputChange,
