@@ -9,21 +9,27 @@ on:
       - master
 
 jobs:
-  install-build-lint:
+  install-build-lint-publish:
+    name: 'Install, build, lint and publish package'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
           node-version: 12
-      - run: yarn
-      - run: yarn lint
-      - run: yarn build
-      - run: yarn publish --access public
+          registry-url: https://registry.npmjs.org/
+      - name: 'Install Dependencies...'
+        run: yarn
+      - name: 'Lint source code...'
+         run: yarn lint
+      - name: 'Build...'
+        run: yarn build
+      - name: 'Publish npm package..'
+        run: yarn publish --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
 
-          
+
   # publish-npm:
   #   needs: install-build-lint
   #   runs-on: ubuntu-latest
