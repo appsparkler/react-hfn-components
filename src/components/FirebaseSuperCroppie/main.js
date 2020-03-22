@@ -5,6 +5,7 @@ import MediaSourceForm from './MediaSourceForm'
 import FileInput from './FileInput'
 import Croppie from './Croppie'
 import UploadButton from './UploadButton'
+import {Stack} from 'office-ui-fabric-react'
 
 const FirebaseSuperCroppie = ({
   file, isVerifying,
@@ -15,12 +16,12 @@ const FirebaseSuperCroppie = ({
   webcamRef, clickPhoto,
   imgIsLoading, handleLoad,
 }) => (
-  <div className="container mt-2">
-    <div className="row">
-      <div className="col-3">
-        {isVerifying && '...isVerifying'}
-        {!isVerifying && file && (
+  <Stack horizontal tokens={{padding: 20}}>
+    <div className="ms-Grid-col ms-sm12">
+      <div className="ms-Grid-col ms-sm6 ms-md6 ms-lg4">
+        {(
           <ProfilePhoto
+            isVerifying={isVerifying}
             imgIsLoading={imgIsLoading}
             file={file}
             onLoad={handleLoad}
@@ -80,7 +81,7 @@ const FirebaseSuperCroppie = ({
         )}
       </div>
     )}
-  </div>
+  </Stack>
 )
 
 FirebaseSuperCroppie.propTypes = {
