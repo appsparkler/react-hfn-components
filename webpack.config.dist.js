@@ -60,8 +60,23 @@ module.exports = {
     }),
   ],
   externals: {
-    'react': 'react',
-    'props-types': 'prop-types',
-    'croppie': 'Croppie',
+    'react': {
+      root: 'React',
+      commonjs2: 'react',
+      commonjs: 'react',
+      amd: 'react',
+    },
+    'react-dom': {
+      root: 'ReactDOM',
+      commonjs2: 'react-dom',
+      commonjs: 'react-dom',
+      amd: 'react-dom',
+    },
+    'croppie': {
+      root: 'Croppie',
+      commonjs2: 'croppie',
+      commonjs: 'croppie',
+      amd: 'croppie',
+    },
   },
 }
