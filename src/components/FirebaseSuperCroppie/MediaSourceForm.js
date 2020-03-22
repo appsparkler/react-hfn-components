@@ -1,33 +1,21 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import {ChoiceGroup} from 'office-ui-fabric-react'
 
+
+const options = [
+  {key: 'file', text: 'Upload from file', iconProps: {iconName: 'Upload'}},
+  {key: 'webcam', text: 'Use webcam', iconProps: {iconName: 'Webcam2'}},
+]
 const MediaSourceForm = ({mediaSource, handleMediaSourceChange}) => (
   <form>
     <div className="form-check form-check-inline">
-      <input
-        name="mediaSource"
-        className="form-check-input"
-        type="radio"
-        value="file"
+      <ChoiceGroup
+        label="Choose Source"
+        options={options}
+        selectedKey={mediaSource}
         onChange={handleMediaSourceChange}
-        checked={mediaSource === 'file'}
       />
-      <label className="form-check-label">
-        Upload From file
-      </label>
-    </div>
-    <div className="form-check form-check-inline">
-      <input
-        className="form-check-input"
-        type="radio"
-        name="mediaSource"
-        value="webcam"
-        onChange={handleMediaSourceChange}
-        checked={mediaSource === 'webcam'}
-      />
-      <label className="form-check-label" htmlFor="inlineRadio2">
-        Use Webcam
-      </label>
     </div>
   </form>
 )

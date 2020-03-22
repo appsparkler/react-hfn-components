@@ -1,6 +1,6 @@
-function handleMediaSourceChange({valueSetter}, evt) {
+function handleMediaSourceChange({valueSetter}, evt, option) {
   evt.stopPropagation()
-  const mediaSource = evt.target.value
+  const mediaSource = option.key
   valueSetter(mediaSource)
 }
 
