@@ -1,5 +1,6 @@
 import React from 'react'
-import {Spinner, SpinnerSize} from 'office-ui-fabric-react'
+import FirebaseFileLink from '@react-hfn-components/FirebaseFileLink'
+import config from './config'
 import './styles'
 
 const StudioApp = () => {
@@ -7,9 +8,8 @@ const StudioApp = () => {
     <div className="ms-Grid" dir="ltr">
       <div className="ms-Grid-row">
         <div className="ms-Grid-col ms-sm6 ms-md4 ms-lg2">
-          <span><Spinner size={SpinnerSize.large} /></span>
+          <FirebaseFileLink {...config} />
         </div>
-        <div className="ms-Grid-col ms-sm6 ms-md8 ms-lg10">B</div>
       </div>
     </div>
   )
