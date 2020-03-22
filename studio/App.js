@@ -1,5 +1,5 @@
 import React from 'react'
-import FirebaseFileLink from '@react-hfn-components/FirebaseFileLink'
+import FirebaseFileInput from '@react-hfn-components/FirebaseFileInput'
 import config from './config'
 import './styles'
 
@@ -8,7 +8,7 @@ const StudioApp = () => {
     <div className="ms-Grid" dir="ltr">
       <div className="ms-Grid-row">
         <div className="ms-Grid-col ms-sm6 ms-md4 ms-lg2">
-          <FirebaseFileLink {...config} />
+          <FirebaseFileInput {...config} />
         </div>
       </div>
     </div>
