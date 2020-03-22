@@ -1,17 +1,23 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import {Image, Spinner, SpinnerSize} from 'office-ui-fabric-react'
 
 const ProfilePhoto = ({
   file, imgIsLoading, onLoad,
 }) => (
   <div>
-    {imgIsLoading && 'is loading...'}
+    {imgIsLoading && (
+      <div>
+        <Spinner label="Loading..." size={SpinnerSize.large} />
+      </div>)
+    }
     {(
-      <img
+      <Image
         className="img-thumbnail rounded-0"
         hidden={imgIsLoading}
         src={file.downloadURL}
         onLoad={onLoad}
+        width={140}
       />
     )}
   </div>
