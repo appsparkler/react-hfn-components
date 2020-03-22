@@ -3,9 +3,10 @@
 
 name: Node.js Package
 
-on: push
-  branches:
-    - master
+on:
+  push:
+    branches:
+      - master
 
 jobs:
   build:
@@ -18,7 +19,6 @@ jobs:
       - run: yarn lint
       - run: yarn
       - run: yarn build
-      # - run: yarn build:publish
 
   publish-npm:
     needs: build
@@ -29,8 +29,6 @@ jobs:
         with:
           node-version: 12
           registry-url: https://registry.npmjs.org/
-      # - run: npm ci
-      # - run: yarn build
       - run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
