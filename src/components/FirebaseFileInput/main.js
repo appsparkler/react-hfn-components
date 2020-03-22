@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import FirebaseFileLink from '@react-hfn-components/FirebaseFileLink/main'
 import {Stack} from 'office-ui-fabric-react'
+import FileUploadButton from './FileUploadButton'
 
 const FirebaseFileInput = ({
   handleFileInputChange,
@@ -20,6 +21,13 @@ const FirebaseFileInput = ({
           isVerifying={isVerifying}
           isUploading={isUploading}
           file={firebaseFile}
+        />
+      </div>
+      <div className="ms-Grid-col ms-sm6 ms-md4 ms-lg10">
+        <FileUploadButton
+          file={firebaseFile}
+          isUploading={isUploading}
+          isVerifying={isVerifying}
         />
       </div>
     </div>
