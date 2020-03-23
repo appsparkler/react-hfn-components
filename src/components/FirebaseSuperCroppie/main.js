@@ -74,13 +74,6 @@ const FirebaseSuperCroppie = ({
             croppedDataURL={croppedDataURL}
             croppieRef={croppieRef}
           />
-        </div>
-        <div className="ms-Grid-col ms-sm6 ms-lg6">
-
-          <Croppie
-            croppedDataURL={croppedDataURL}
-            croppieRef={croppieRef}
-          />
           {croppedDataURL && (
             <>
               <UploadButton
@@ -100,11 +93,6 @@ const FirebaseSuperCroppie = ({
             </>
           )}
         </div>
-        {croppedDataURL && (
-          <div className="ms-Grid-col ms-sm6 ms-lg6">
-
-          </div>
-        )}
       </div>
     )}
   </Stack>
