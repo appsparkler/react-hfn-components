@@ -2,9 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import ProfilePhoto from './ProfilePhoto'
 import MediaSourceForm from './MediaSourceForm'
-import FileInput from './FileInput'
+// import FileInput from './FileInput'
 import Croppie from './Croppie'
 import UploadButton from './UploadButton'
+import FileInputButton
+  from '@react-hfn-components/FirebaseFileInput/FileUploadButton'
 import {Stack} from 'office-ui-fabric-react'
 
 const FirebaseSuperCroppie = ({
@@ -37,7 +39,12 @@ const FirebaseSuperCroppie = ({
       </div>
       {mediaSource === 'file' && (
         <div className="ms-Grid-col ms-sm6 ms-md6 ms-lg4">
-          <FileInput onChange={handleFileInputChange} />
+          <FileInputButton
+            file={file}
+            isUploading={isUploading}
+            isVerifying={isVerifying}
+            onChange={handleFileInputChange}
+          />
         </div>
       )}
       {mediaSource === 'webcam' && (

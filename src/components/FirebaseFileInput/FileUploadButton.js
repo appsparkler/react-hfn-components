@@ -8,6 +8,7 @@ const inputStyles = {
   bottom: 0, top: 0,
   opacity: 0,
 }
+
 const FileUploadButton = ({file, isUploading, isVerifying, onChange}) => (
   <div style={{position: 'relative'}}>
     <DefaultButton
