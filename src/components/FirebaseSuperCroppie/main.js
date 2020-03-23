@@ -7,7 +7,12 @@ import Croppie from './Croppie'
 import UploadButton from './UploadButton'
 import FileInputButton
   from '@react-hfn-components/FirebaseFileInput/FileUploadButton'
-import {Stack, ProgressIndicator, DefaultButton} from 'office-ui-fabric-react'
+import {
+  Stack,
+  ProgressIndicator,
+  DefaultButton,
+  Spinner, SpinnerSize,
+} from 'office-ui-fabric-react'
 
 const FirebaseSuperCroppie = ({
   file, isVerifying,
@@ -61,6 +66,7 @@ const FirebaseSuperCroppie = ({
         </div>
       )}
     </div>
+    <hr />
     {mediaSource && (
       <div className="ms-Grid-col ms-sm12">
         <div className="ms-Grid-col ms-sm6 ms-lg6">
@@ -81,7 +87,9 @@ const FirebaseSuperCroppie = ({
                 <ProgressIndicator percentComplete={(progress/100)} />
               )}
               </pre>
-              <pre>{isUploading && 'is uploading...'}</pre>
+              {isUploading && (
+                <Spinner size={SpinnerSize.lg} label="Uploading..." />
+              )}
               <pre>{uploaded && 'uploaded!'}</pre>
             </>
           )}

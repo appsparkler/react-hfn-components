@@ -1,16 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import {DefaultButton} from 'office-ui-fabric-react'
 
 const UploadButton = ({onClick, disabled}) => {
   return (
     <div className="UploadButton">
-      <button
-        className="btn btn-primary btn-lg btn-block"
+      <DefaultButton
         onClick={onClick}
         disabled={disabled}
-      >
-          Upload Photo
-      </button>
+        primary
+        text="Upload Photo"
+      />
     </div>
   )
 }
