@@ -29,22 +29,22 @@ const FirebaseSuperCroppie = ({
           />
         )}
       </div>
-      <div className="col-5 flex-end">
+      <div className="ms-Grid-col ms-sm6 ms-md6 ms-lg4">
         <MediaSourceForm
           mediaSource={mediaSource}
           handleMediaSourceChange={handleMediaSourceChange}
         />
       </div>
       {mediaSource === 'file' && (
-        <div className="col-4">
+        <div className="ms-Grid-col ms-sm6 ms-md6 ms-lg4">
           <FileInput onChange={handleFileInputChange} />
         </div>
       )}
       {mediaSource === 'webcam' && (
-        <div className="col-4">
+        <div className="ms-Grid-col ms-sm6 ms-md6 ms-lg4">
           <div>
             <video
-              className="w-100"
+              style={{width: '100%'}}
               ref={webcamRef}></video>
             <button
               className="btn btn-success rounded-0"
