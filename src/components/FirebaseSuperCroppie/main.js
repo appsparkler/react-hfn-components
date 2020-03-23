@@ -63,7 +63,6 @@ const FirebaseSuperCroppie = ({
         </div>
       )}
     </div>
-
     {mediaSource && (
       <div className="ms-Grid-col ms-sm12">
         <div className="ms-Grid-col ms-sm6 ms-lg6">
