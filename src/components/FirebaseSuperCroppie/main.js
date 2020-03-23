@@ -20,7 +20,6 @@ const FirebaseSuperCroppie = ({
 }) => (
   <Stack tokens={{padding: 20}}>
     <div className="ms-Grid-col ms-sm12">
-
       <div className="ms-Grid-col ms-sm6 ms-md6 ms-lg4">
         {(
           <ProfilePhoto
