@@ -2,10 +2,17 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import ProfilePhoto from './ProfilePhoto'
 import MediaSourceForm from './MediaSourceForm'
-import FileInput from './FileInput'
+// import FileInput from './FileInput'
 import Croppie from './Croppie'
 import UploadButton from './UploadButton'
-import {Stack} from 'office-ui-fabric-react'
+import FileInputButton
+  from '@react-hfn-components/FirebaseFileInput/FileUploadButton'
+import {
+  Stack,
+  ProgressIndicator,
+  DefaultButton,
+  Spinner, SpinnerSize,
+} from 'office-ui-fabric-react'
 
 const FirebaseSuperCroppie = ({
   file, isVerifying,
@@ -16,10 +23,9 @@ const FirebaseSuperCroppie = ({
   webcamRef, clickPhoto,
   imgIsLoading, handleLoad,
 }) => (
-  <Stack horizontal tokens={{padding: 20}}>
+  <Stack tokens={{padding: 20}}>
     <div className="ms-Grid-col ms-sm12">
-
-      <div className="ms-Grid-col ms-sm6 ms-md6 ms-lg4">
+      <div className="ms-Grid-col ms-sm6 ms-md6 ms-lg2">
         {(
           <ProfilePhoto
             isVerifying={isVerifying}
@@ -29,58 +35,65 @@ const FirebaseSuperCroppie = ({
           />
         )}
       </div>
-      <div className="col-5 flex-end">
+      <div className="ms-Grid-col ms-sm6 ms-md6 ms-lg3">
         <MediaSourceForm
           mediaSource={mediaSource}
           handleMediaSourceChange={handleMediaSourceChange}
         />
       </div>
       {mediaSource === 'file' && (
-        <div className="col-4">
-          <FileInput onChange={handleFileInputChange} />
+        <div className="ms-Grid-col ms-sm6 ms-md6 ms-lg4">
+          <FileInputButton
+            file={file}
+            isUploading={isUploading}
+            isVerifying={isVerifying}
+            onChange={handleFileInputChange}
+          />
         </div>
       )}
       {mediaSource === 'webcam' && (
-        <div className="col-4">
+        <div className="ms-Grid-col ms-sm6 ms-md6 ms-lg4">
           <div>
             <video
-              className="w-100"
+              style={{width: '100%'}}
               ref={webcamRef}></video>
-            <button
-              className="btn btn-success rounded-0"
+            <DefaultButton
+              primary
+              text="Click Photo"
               onClick={clickPhoto}
-            >
-              Click!
-            </button>
+            />
           </div>
         </div>
       )}
     </div>
-
+    <hr />
     {mediaSource && (
-      <div className="row mt-2">
-        <Croppie
-          croppedDataURL={croppedDataURL}
-          croppieRef={croppieRef}
-        />
-        {croppedDataURL && (
-          <div className="mt-2">
-            <UploadButton
-              onClick={handleUploadButtonClick}
-              disabled={isUploading}
-            />
-            <pre>{isUploading && (
-              <progress
-                min="0"
-                max="100"
-                value={progress || 5}
+      <div className="ms-Grid-col ms-sm12">
+        <div className="ms-Grid-col ms-sm6 ms-lg6">
+          <div ref={croppieRef}></div>
+        </div>
+        <div className="ms-Grid-col ms-sm6 ms-lg6">
+          <Croppie
+            croppedDataURL={croppedDataURL}
+            croppieRef={croppieRef}
+          />
+          {croppedDataURL && (
+            <>
+              <UploadButton
+                onClick={handleUploadButtonClick}
+                disabled={isUploading}
               />
-            )}
-            </pre>
-            <pre>{isUploading && 'is uploading...'}</pre>
-            <pre>{uploaded && 'uploaded!'}</pre>
-          </div>
-        )}
+              <pre>{isUploading && (
+                <ProgressIndicator percentComplete={(progress/100)} />
+              )}
+              </pre>
+              {isUploading && (
+                <Spinner size={SpinnerSize.lg} label="Uploading..." />
+              )}
+              <pre>{uploaded && 'uploaded!'}</pre>
+            </>
+          )}
+        </div>
       </div>
     )}
   </Stack>
