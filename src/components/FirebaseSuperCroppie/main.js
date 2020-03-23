@@ -7,7 +7,7 @@ import Croppie from './Croppie'
 import UploadButton from './UploadButton'
 import FileInputButton
   from '@react-hfn-components/FirebaseFileInput/FileUploadButton'
-import {Stack} from 'office-ui-fabric-react'
+import {Stack, ProgressIndicator} from 'office-ui-fabric-react'
 
 const FirebaseSuperCroppie = ({
   file, isVerifying,
@@ -79,11 +79,7 @@ const FirebaseSuperCroppie = ({
                 disabled={isUploading}
               />
               <pre>{isUploading && (
-                <progress
-                  min="0"
-                  max="100"
-                  value={progress || 5}
-                />
+                <ProgressIndicator percentComplete={(progress/100)} />
               )}
               </pre>
               <pre>{isUploading && 'is uploading...'}</pre>
