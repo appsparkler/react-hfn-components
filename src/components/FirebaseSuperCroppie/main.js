@@ -7,7 +7,7 @@ import Croppie from './Croppie'
 import UploadButton from './UploadButton'
 import FileInputButton
   from '@react-hfn-components/FirebaseFileInput/FileUploadButton'
-import {Stack, ProgressIndicator} from 'office-ui-fabric-react'
+import {Stack, ProgressIndicator, DefaultButton} from 'office-ui-fabric-react'
 
 const FirebaseSuperCroppie = ({
   file, isVerifying,
@@ -20,7 +20,7 @@ const FirebaseSuperCroppie = ({
 }) => (
   <Stack tokens={{padding: 20}}>
     <div className="ms-Grid-col ms-sm12">
-      <div className="ms-Grid-col ms-sm6 ms-md6 ms-lg4">
+      <div className="ms-Grid-col ms-sm6 ms-md6 ms-lg2">
         {(
           <ProfilePhoto
             isVerifying={isVerifying}
@@ -30,7 +30,7 @@ const FirebaseSuperCroppie = ({
           />
         )}
       </div>
-      <div className="ms-Grid-col ms-sm6 ms-md6 ms-lg4">
+      <div className="ms-Grid-col ms-sm6 ms-md6 ms-lg3">
         <MediaSourceForm
           mediaSource={mediaSource}
           handleMediaSourceChange={handleMediaSourceChange}
@@ -52,12 +52,11 @@ const FirebaseSuperCroppie = ({
             <video
               style={{width: '100%'}}
               ref={webcamRef}></video>
-            <button
-              className="btn btn-success rounded-0"
+            <DefaultButton
+              primary
+              text="Click Photo"
               onClick={clickPhoto}
-            >
-              Click!
-            </button>
+            />
           </div>
         </div>
       )}
