@@ -18,7 +18,7 @@ const FirebaseSuperCroppie = ({
   webcamRef, clickPhoto,
   imgIsLoading, handleLoad,
 }) => (
-  <Stack horizontal tokens={{padding: 20}}>
+  <Stack tokens={{padding: 20}}>
     <div className="ms-Grid-col ms-sm12">
 
       <div className="ms-Grid-col ms-sm6 ms-md6 ms-lg4">
@@ -65,27 +65,44 @@ const FirebaseSuperCroppie = ({
     </div>
 
     {mediaSource && (
-      <div className="row mt-2">
-        <Croppie
-          croppedDataURL={croppedDataURL}
-          croppieRef={croppieRef}
-        />
-        {croppedDataURL && (
-          <div className="mt-2">
-            <UploadButton
-              onClick={handleUploadButtonClick}
-              disabled={isUploading}
-            />
-            <pre>{isUploading && (
-              <progress
-                min="0"
-                max="100"
-                value={progress || 5}
+      <div className="ms-Grid-col ms-sm12">
+        <div className="ms-Grid-col ms-sm6 ms-lg6">
+          <div ref={croppieRef}></div>
+        </div>
+        <div className="ms-Grid-col ms-sm6 ms-lg6">
+          <Croppie
+            croppedDataURL={croppedDataURL}
+            croppieRef={croppieRef}
+          />
+        </div>
+        <div className="ms-Grid-col ms-sm6 ms-lg6">
+
+          <Croppie
+            croppedDataURL={croppedDataURL}
+            croppieRef={croppieRef}
+          />
+          {croppedDataURL && (
+            <>
+              <UploadButton
+                onClick={handleUploadButtonClick}
+                disabled={isUploading}
               />
-            )}
-            </pre>
-            <pre>{isUploading && 'is uploading...'}</pre>
-            <pre>{uploaded && 'uploaded!'}</pre>
+              <pre>{isUploading && (
+                <progress
+                  min="0"
+                  max="100"
+                  value={progress || 5}
+                />
+              )}
+              </pre>
+              <pre>{isUploading && 'is uploading...'}</pre>
+              <pre>{uploaded && 'uploaded!'}</pre>
+            </>
+          )}
+        </div>
+        {croppedDataURL && (
+          <div className="ms-Grid-col ms-sm6 ms-lg6">
+
           </div>
         )}
       </div>
