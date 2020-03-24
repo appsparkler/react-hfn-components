@@ -1,12 +1,12 @@
 import React from 'react'
-import FirebaseFileLink from '@react-hfn-components/FirebaseFileLink'
+import FirebaseSuperCroppie from '@react-hfn-components/FirebaseSuperCroppie'
 import config from './config'
 import './styles'
 
 const StudioApp = () => {
   return (
     <div className="ms-Grid" dir="ltr">
-      <FirebaseFileLink {...config} />
+      <FirebaseSuperCroppie {...config} />
     </div>
   )
 }
