@@ -1,12 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import FirebaseFileLink from './hoc'
+import HOCFirebaseFileInput from './hoc'
 import useFirebaseFileInput from './useFirebaseFileInput'
 
 const FirebaseFileInput = ({storageRef}) => {
   const config = useFirebaseFileInput({storageRef})
   return (
-    <FirebaseFileLink {...config} />
+    <HOCFirebaseFileInput {...config} />
   )
 }
 
