@@ -2,8 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import ProfilePhoto from './ProfilePhoto'
 import MediaSourceForm from './MediaSourceForm'
-// import FileInput from './FileInput'
-import Croppie from './Croppie'
 import UploadButton from './UploadButton'
 import FileInputButton
   from '@react-hfn-components/FirebaseFileInput/FileUploadButton'
@@ -73,12 +71,9 @@ const FirebaseSuperCroppie = ({
           <div ref={croppieRef}></div>
         </div>
         <div className="ms-Grid-col ms-sm6 ms-lg6">
-          <Croppie
-            croppedDataURL={croppedDataURL}
-            croppieRef={croppieRef}
-          />
           {croppedDataURL && (
             <>
+              <img src={croppedDataURL} />
               <UploadButton
                 onClick={handleUploadButtonClick}
                 disabled={isUploading}
