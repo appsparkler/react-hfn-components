@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import FirebaseFileLink from '@react-hfn-components/FirebaseFileLink/main'
+import FirebaseFileLink from '@react-hfn-components/FirebaseFileLink/hoc'
 import {Stack, ProgressIndicator} from 'office-ui-fabric-react'
 import FileInputButton from '@react-hfn-hoc/FileInputButton'
 
