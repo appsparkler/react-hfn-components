@@ -26,6 +26,11 @@ function fileDidChange({
   }
 }
 
+function firebaseFileDidChange({setBtnText, firebaseFile}) {
+  if (firebaseFile) setBtnText('Edit File')
+  else setBtnText('UploadFile')
+}
+
 export default ({storageRef}) => {
   const [firebaseFile, setFirebaseFile] = React.useState(null)
   const [error, setError] = React.useState(null)
@@ -34,6 +39,7 @@ export default ({storageRef}) => {
   const [uploaded, setUploaded] = React.useState(false)
   const [isUploading, setIsUploading] = React.useState(false)
   const [progress, setProgress] = React.useState(0)
+  const [btnText, setBtnText] = React.useState('')
   //
   const {handleFileInputChange} = useFileInput({setFile})
   const {handleUploadButtonClick} = useFileUploadButton({
@@ -52,6 +58,9 @@ export default ({storageRef}) => {
   React.useEffect(uploadedDidChange.bind(null, {
     verifyFile, uploaded,
   }), [uploaded])
+  React.useEffect(firebaseFileDidChange.bind(null, {
+    setBtnText, firebaseFile,
+  }), [firebaseFile])
   React.useEffect(fileDidChange.bind(null, {
     file, storageRef,
     setProgress, setError, setIsUploading,
@@ -67,5 +76,6 @@ export default ({storageRef}) => {
     handleUploadButtonClick,
     isVerifying,
     firebaseFile,
+    btnText,
   }
 }
