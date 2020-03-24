@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import useFirebaseFileLink from './useFirebaseFileLink'
-import FirebaseFileLink from './main'
+import FirebaseFileLink from './hoc'
 
 const UsedFirebaseFileLink = ({storageRef}) => {
   const config = useFirebaseFileLink({storageRef})
