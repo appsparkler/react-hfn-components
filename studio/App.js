@@ -1,5 +1,6 @@
 import React from 'react'
-import FirebaseSuperCroppie from '@react-hfn-components/FirebaseSuperCroppie'
+import FirebaseSuperCroppie
+  from '@react-hfn-components/FirebaseSuperCroppie'
 import config from './config'
 import './styles'
 

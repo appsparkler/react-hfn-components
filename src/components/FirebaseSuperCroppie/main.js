@@ -3,8 +3,7 @@ import PropTypes from 'prop-types'
 import ProfilePhoto from './ProfilePhoto'
 import MediaSourceForm from './MediaSourceForm'
 import UploadButton from './UploadButton'
-import FileInputButton
-  from '@react-hfn-components/FirebaseFileInput/FileUploadButton'
+import FileInputButton from '@react-hfn-hoc/FileInputButton'
 import {
   Stack,
   ProgressIndicator,
@@ -42,10 +41,11 @@ const FirebaseSuperCroppie = ({
       {mediaSource === 'file' && (
         <div className="ms-Grid-col ms-sm6 ms-md6 ms-lg4">
           <FileInputButton
-            file={file}
-            isUploading={isUploading}
-            isVerifying={isVerifying}
+            primary={!!file}
+            secondary={!file}
+            disabled={isUploading || isVerifying || imgIsLoading}
             onChange={handleFileInputChange}
+            text={file ? 'Edit Photo': 'Upload Photo'}
           />
         </div>
       )}
@@ -70,7 +70,7 @@ const FirebaseSuperCroppie = ({
         <div className="ms-Grid-col ms-sm6 ms-lg6">
           <div ref={croppieRef}></div>
         </div>
-        <div className="ms-Grid-col ms-sm6 ms-lg6">
+        <div className="ms-Grid-col ms-sm3 ms-lg3">
           {croppedDataURL && (
             <>
               <img src={croppedDataURL} />

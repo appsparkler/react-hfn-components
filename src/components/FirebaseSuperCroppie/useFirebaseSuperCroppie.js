@@ -99,7 +99,6 @@ export default ({storageRef, croppieConfig}) => {
   const {resetMediaSource, handleMediaSourceChange} = useMediaSourceForm({
     valueSetter: setMediaSource,
   })
-  // const {handleFileInputChange} = useFileInput2DataURL({setDataURL})
   const {handleFileInputChange} = useFileInput({
     setFile: setSelectedFile,
   })
