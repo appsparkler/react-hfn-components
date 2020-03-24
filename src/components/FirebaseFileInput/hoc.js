@@ -1,7 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import FirebaseFileLink from '@react-hfn-hoc/FirebaseFileLink'
-import {Stack, ProgressIndicator} from 'office-ui-fabric-react'
+import {
+  Stack,
+  ProgressIndicator,
+  MessageBar,
+} from 'office-ui-fabric-react'
 import FileInputButton from '@react-hfn-hoc/FileInputButton'
 
 const FirebaseFileInput = ({
@@ -18,11 +22,16 @@ const FirebaseFileInput = ({
   <Stack horizontal tokens={{padding: 20}}>
     <div className="ms-Grid-col ms-sm12">
       <div className="ms-Grid-col ms-sm6 ms-md6 ms-lg4">
-        <FirebaseFileLink
-          isVerifying={isVerifying}
-          isUploading={isUploading}
-          file={firebaseFile}
-        />
+        {firebaseFile &&
+          <FirebaseFileLink
+            isVerifying={isVerifying}
+            isUploading={isUploading}
+            file={firebaseFile}
+          />
+        }
+        {!firebaseFile && <MessageBar>
+          No file uploaded.
+        </MessageBar>}
       </div>
       <div className="ms-Grid-col ms-sm6 ms-md6 ms-lg4">
         <FileInputButton
