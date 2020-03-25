@@ -4,6 +4,8 @@ const webpack = require('webpack')
 process.env.NODE_ENV = 'development'
 const dotenv = require('dotenv')
 
+console.log(require('./.webpack-config/module/studio'))
+
 module.exports = {
   mode: 'development',
   entry: './studio/index.js',
