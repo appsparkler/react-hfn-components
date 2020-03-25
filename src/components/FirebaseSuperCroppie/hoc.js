@@ -20,38 +20,38 @@ const FirebaseSuperCroppie = ({
   webcamRef, clickPhoto,
   imgIsLoading, handleLoad,
 }) => (
-  <>
-    <div className="ms-Grid-row">
-      <div className="ms-Grid-col ms-sm4">
-        {isVerifying && (
-          <Spinner label="Verifying..." size={SpinnerSize.large} />
-        )}
-        {imgIsLoading && (
-          <Spinner label="Loading..." size={SpinnerSize.large} />
-        )}
-        {!isVerifying && !file && (
-          <MessageBar>No photo uploaded.</MessageBar>
-        )}
-        {!isVerifying && file && file.downloadURL && (
-          <Image
-            src={file.downloadURL}
-            imageFit={ImageFit.contain}
-            height={130}
-            onLoad={handleLoad}
-          />
-        )}
-      </div>
-      <div className="ms-Grid-col ms-sm8">
-        <MediaSourceForm
-          mediaSource={mediaSource}
-          handleMediaSourceChange={handleMediaSourceChange}
+  <div className="ms-Grid-row">
+
+    {/* Profile handleUploadButtonClick*/}
+    <div className="ms-Grid-col ms-sm4 ms-lg2">
+      {isVerifying && (
+        <Spinner label="Verifying..." size={SpinnerSize.large} />
+      )}
+      {imgIsLoading && (
+        <Spinner label="Loading..." size={SpinnerSize.large} />
+      )}
+      {!isVerifying && !file && (
+        <MessageBar>No photo uploaded.</MessageBar>
+      )}
+      {!isVerifying && file && file.downloadURL && (
+        <Image
+          src={file.downloadURL}
+          imageFit={ImageFit.contain}
+          height={130}
+          onLoad={handleLoad}
         />
-      </div>
+      )}
     </div>
 
-    {mediaSource === 'file' && (
-      <div className="ms-Grid-row">
-        <div className="ms-Grid-col ms-col12">
+    {/* Media Source Choice Box & File Input Button*/}
+    <div className="ms-Grid-col ms-sm8 ms-lg4">
+      <MediaSourceForm
+        mediaSource={mediaSource}
+        handleMediaSourceChange={handleMediaSourceChange}
+      />
+      {/* File Input*/}
+      {mediaSource === 'file' && (
+        <div className="ms-Grid-col ms-sm12">
           <FileInputButton
             primary={!!file}
             secondary={!file}
@@ -60,12 +60,16 @@ const FirebaseSuperCroppie = ({
             text={file ? 'Edit Photo': 'Upload Photo'}
           />
         </div>
-      </div>
-    )}
+      )}
+    </div>
 
+
+    {/* WebCam Video*/}
     {mediaSource === 'webcam' && (
-      <div className="ms-Grid-row">
-        <div className="ms-Grid-col col-sm12">
+      <div className="ms-Grid-col ms-sm12 ms-lg6"
+        styles={{root: {marginBottom: '10px'}}}
+      >
+        <div className="ms-Grid-col ms-lg5">
           <video
             style={{width: '100%'}}
             ref={webcamRef}></video>
@@ -78,38 +82,36 @@ const FirebaseSuperCroppie = ({
       </div>
     )}
 
+    {/* Image Croppie With Preview Modal Button & Upload Button*/}
     {mediaSource && (
-      <div className="ms-Grid-row">
-        <div className="ms-Grid-col ms-sm12">
-          <div ref={croppieRef}></div>
-        </div>
-        <div className="ms-Grid-col ms-sm6">
-          {croppedDataURL && (
-            <div>
-              <Image
-                src={croppedDataURL}
-                imageFit={ImageFit.center}
-                width={200}
-              />
-              <Stack horizontal tokens={{childrenGap: '20'}}>
+      <div className="ms-Grid-col ms-sm12 ms-lg12">
+        <div ref={croppieRef}></div>
+        {croppedDataURL && (
+          <div>
+            <Stack
+              horizontal
+              tokens={{childrenGap: '20'}}
+              horizontalAlign="center"
+            >
+              <Stack veritical>
                 <UploadButton
                   onClick={handleUploadButtonClick}
                   disabled={isUploading}
                 />
-                {croppedDataURL && <PreviewModal imgSrc={croppedDataURL} />}
+                {isUploading && (
+                  <div>
+                    <ProgressIndicator percentComplete={(progress/100)} />
+                    <Spinner size={SpinnerSize.lg} label="Uploading..." />
+                  </div>
+                )}
               </Stack>
-              {isUploading && (
-                <div>
-                  <ProgressIndicator percentComplete={(progress/100)} />
-                  <Spinner size={SpinnerSize.lg} label="Uploading..." />
-                </div>
-              )}
-            </div>
-          )}
-        </div>
+              <PreviewModal imgSrc={croppedDataURL} />
+            </Stack>
+          </div>
+        )}
       </div>
     )}
-  </>
+  </div>
 )
 
 FirebaseSuperCroppie.propTypes = {
