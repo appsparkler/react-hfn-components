@@ -1,6 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {Image, Spinner, SpinnerSize} from 'office-ui-fabric-react'
+import {
+  Image,
+  Spinner,
+  SpinnerSize,
+  MessageBar,
+} from 'office-ui-fabric-react'
 
 const ProfilePhoto = ({
   file, imgIsLoading, onLoad, isVerifying,
@@ -24,6 +29,9 @@ const ProfilePhoto = ({
         onLoad={onLoad}
         width={140}
       />
+    )}
+    {!file && !isVerifying && (
+      <MessageBar>No Photo uploaded!</MessageBar>
     )}
   </div>
 )
