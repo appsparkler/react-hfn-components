@@ -32,7 +32,7 @@ const FirebaseSuperCroppie = ({
         {!isVerifying && !file && (
           <MessageBar>No photo uploaded.</MessageBar>
         )}
-        {file && file.downloadURL && (
+        {!isVerifying && file && file.downloadURL && (
           <Image
             src={file.downloadURL}
             imageFit={ImageFit.contain}
@@ -78,22 +78,6 @@ const FirebaseSuperCroppie = ({
       </div>
     )}
 
-    <div className="ms-Grid-col ms-sm12">
-      <div className="ms-Grid-col ms-sm6 ms-md6 ms-lg3">
-      </div>
-      {mediaSource === 'file' && (
-        <div className="ms-Grid-col ms-sm6 ms-md6 ms-lg4">
-          <FileInputButton
-            primary={!!file}
-            secondary={!file}
-            disabled={isUploading || isVerifying || imgIsLoading}
-            onChange={handleFileInputChange}
-            text={file ? 'Edit Photo': 'Upload Photo'}
-          />
-        </div>
-      )}
-    </div>
-
     {mediaSource && (
       <div className="ms-Grid-row">
         <div className="ms-Grid-col ms-sm12">
@@ -125,34 +109,6 @@ const FirebaseSuperCroppie = ({
         </div>
       </div>
     )}
-
-
-    {/* mediaSource && (
-      <div className="ms-Grid-col ms-sm12">
-        <div className="ms-Grid-col ms-sm6 ms-lg6">
-          <div ref={croppieRef}></div>
-        </div>
-        <div className="ms-Grid-col ms-sm3 ms-lg3">
-          {croppedDataURL && (
-            <>
-              <img src={croppedDataURL} />
-              <UploadButton
-                onClick={handleUploadButtonClick}
-                disabled={isUploading}
-              />
-              <pre>{isUploading && (
-                <ProgressIndicator percentComplete={(progress/100)} />
-              )}
-              </pre>
-              {isUploading && (
-                <Spinner size={SpinnerSize.lg} label="Uploading..." />
-              )}
-              <pre>{uploaded && 'uploaded!'}</pre>
-            </>
-          )}
-        </div>
-      </div>
-    )*/}
   </>
 )
 
