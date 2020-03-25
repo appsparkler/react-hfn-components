@@ -6,6 +6,7 @@ import {
 } from 'office-ui-fabric-react'
 
 const theme = getTheme()
+
 const iconButtonStyles = mergeStyleSets({
   root: {
     color: theme.palette.themePrimary,
