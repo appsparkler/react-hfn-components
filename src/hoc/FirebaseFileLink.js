@@ -7,9 +7,9 @@ import {
   Link,
   MessageBar,
 } from 'office-ui-fabric-react'
-
+//  tokens={{childrenGap: 20, maxWidth: 250}}
 const FirebaseFileLink = ({file, isVerifying, isUploading}) => (
-  <Stack tokens={{childrenGap: 20, maxWidth: 250}}>
+  <Stack>
     {isUploading && (
       <div>
         <Spinner label="Uploading..." size={SpinnerSize.large} />
