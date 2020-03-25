@@ -41,7 +41,7 @@ const FirebaseSuperCroppie = ({
           />
         )}
       </div>
-      <div className="ms-Grid-col ms-sm7">
+      <div className="ms-Grid-col ms-sm8">
         <MediaSourceForm
           mediaSource={mediaSource}
           handleMediaSourceChange={handleMediaSourceChange}
