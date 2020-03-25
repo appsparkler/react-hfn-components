@@ -25,7 +25,8 @@
     "build:publish": "yarn build; yarn publish",
     "docs-clean": "rimraf docs",
     "docs-build": "jsdoc -c ./jsdoc.config.js -r -d ./docs",
-    "docs-serve": "yarn docs-clean; yarn docs-build; yarn serve docs"
+    "docs-serve": "yarn docs-clean; yarn docs-build; yarn serve docs",
+    "buildStudio": "yarn webpack --config webpack.config.dist-studio.js"
   },
   "peerDependencies": {
     "prop-types": "^15.7.2",
