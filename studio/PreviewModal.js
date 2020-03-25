@@ -1,16 +1,22 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {
-  DefaultButton, Modal, Image, ImageFit, IconButton, getTheme,
+  DefaultButton, Modal, Image, ImageFit, IconButton,
+  getTheme, mergeStyleSets,
 } from 'office-ui-fabric-react'
 import usePreviewModal from './usePreviewModal'
+
 const theme = getTheme()
-const iconButtonStyles = {
-  color: theme.palette.themePrimary,
-  marginLeft: 'auto',
-  marginTop: '4px',
-  marginRight: '2px',
-}
+const iconButtonStyles = mergeStyleSets({
+  root: {
+    color: theme.palette.themePrimary,
+    marginLeft: 'auto',
+    marginTop: '4px',
+    marginRight: '2px',
+    display: 'block',
+  },
+})
+
 const HOC = ({
   imgSrc, openModal, closeModal, isOpen,
 }) => (
@@ -23,12 +29,13 @@ const HOC = ({
     <Modal
       isOpen={isOpen}
     >
-      <IconButton
-        styles={iconButtonStyles}
-        iconProps={{iconName: 'Cancel'}}
-        ariaLabel="Close popup modal"
-        onClick={closeModal}
-      />
+      <div>
+        <IconButton
+          styles={iconButtonStyles}
+          iconProps={{iconName: 'Cancel'}}
+          onClick={closeModal}
+        />
+      </div>
       <Image
         src={imgSrc}
         imageFit={ImageFit.contain}
