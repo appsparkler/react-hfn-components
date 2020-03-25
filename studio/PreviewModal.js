@@ -1,10 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {
-  DefaultButton, Modal, Image,
+  DefaultButton, Modal, Image, ImageFit,
 } from 'office-ui-fabric-react'
+import usePreviewModal from './usePreviewModal'
 
-const PreviewModal = ({
+const HOC = ({
   imgSrc, openModal, isOpen,
 }) => (
   <div>
@@ -16,15 +17,28 @@ const PreviewModal = ({
     <Modal
       isOpen={isOpen}
     >
-      <Image src={imgSrc} />
+      <Image
+        src={imgSrc}
+        imageFit={ImageFit.contain}
+        height={300}
+      />
     </Modal>
   </div>
 )
 
+HOC.propTypes = {
+  imgSrc: PropTypes.string.isRequired,
+  openModal: PropTypes.func.isRequired,
+  isOpen: PropTypes.bool.isRequired,
+}
+
+const PreviewModal = ({imgSrc}) => {
+  const config = usePreviewModal({imgSrc})
+  return (<HOC {...config} />)
+}
+
 PreviewModal.propTypes = {
   imgSrc: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired,
-  isOpen: PropTypes.bool.isRequired,
 }
 
 export default PreviewModal

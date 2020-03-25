@@ -10,7 +10,7 @@ const StudioApp = () => {
     <div className="ms-Grid" dir="ltr">
       <Stack horizontal tokens={{childrenGap: '20'}}>
         <DefaultButton primary text="Upload" />
-        <PreviewModal imgSrc="http://placekitten/120/80" />
+        <PreviewModal imgSrc="http://placekitten.com/120/80" />
       </Stack>
       {/* <FirebaseSuperCroppie {...config} />*/}
     </div>
