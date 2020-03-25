@@ -42,6 +42,7 @@ HOC.propTypes = {
   imgSrc: PropTypes.string.isRequired,
   openModal: PropTypes.func.isRequired,
   isOpen: PropTypes.bool.isRequired,
+  closeModal: PropTypes.func.isRequired,
 }
 
 const PreviewModal = ({imgSrc}) => {

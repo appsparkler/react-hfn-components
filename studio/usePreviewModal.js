@@ -5,7 +5,7 @@ export default ({imgSrc}) => {
   return {
     isOpen,
     openModal: () => setIsOpen(true),
-    imgSrc,
     closeModal: () => setIsOpen(false),
+    imgSrc,
   }
 }
