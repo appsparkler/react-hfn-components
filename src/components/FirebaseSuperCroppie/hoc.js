@@ -5,10 +5,9 @@ import MediaSourceForm from './MediaSourceForm'
 import UploadButton from './UploadButton'
 import FileInputButton from '@react-hfn-hoc/FileInputButton'
 import {
-  Stack,
   ProgressIndicator,
   DefaultButton,
-  Spinner, SpinnerSize,
+  Spinner, SpinnerSize, Image, ImageFit,
 } from 'office-ui-fabric-react'
 
 const FirebaseSuperCroppie = ({
@@ -20,9 +19,27 @@ const FirebaseSuperCroppie = ({
   webcamRef, clickPhoto,
   imgIsLoading, handleLoad,
 }) => (
-  <Stack tokens={{padding: 20}}>
-    <div className="ms-Grid-col ms-sm12">
-      <div className="ms-Grid-col ms-sm6 ms-md6 ms-lg2">
+  <>
+    <div className="ms-Grid-row">
+      <div className="ms-Grid-col ms-sm3">
+        {file && file.downloadURL && (
+          <Image
+            src={file.downloadURL}
+            imageFit={ImageFit.contain}
+            height={130}
+          />
+        )}
+      </div>
+      <div className="ms-Grid-col ms-sm8">
+        <MediaSourceForm
+          mediaSource={mediaSource}
+          handleMediaSourceChange={handleMediaSourceChange}
+        />
+      </div>
+    </div>
+    <div className="ms-Grid-row">
+      <div className="ms-Grid-col ms-sm5">
+
         {(
           <ProfilePhoto
             isVerifying={isVerifying}
@@ -32,11 +49,16 @@ const FirebaseSuperCroppie = ({
           />
         )}
       </div>
-      <div className="ms-Grid-col ms-sm6 ms-md6 ms-lg3">
+      <div className="ms-Grid-col ms-sm7">
         <MediaSourceForm
           mediaSource={mediaSource}
           handleMediaSourceChange={handleMediaSourceChange}
         />
+      </div>
+    </div>
+
+    <div className="ms-Grid-col ms-sm12">
+      <div className="ms-Grid-col ms-sm6 ms-md6 ms-lg3">
       </div>
       {mediaSource === 'file' && (
         <div className="ms-Grid-col ms-sm6 ms-md6 ms-lg4">
@@ -64,7 +86,6 @@ const FirebaseSuperCroppie = ({
         </div>
       )}
     </div>
-    <hr />
     {mediaSource && (
       <div className="ms-Grid-col ms-sm12">
         <div className="ms-Grid-col ms-sm6 ms-lg6">
@@ -91,7 +112,7 @@ const FirebaseSuperCroppie = ({
         </div>
       </div>
     )}
-  </Stack>
+  </>
 )
 
 FirebaseSuperCroppie.propTypes = {

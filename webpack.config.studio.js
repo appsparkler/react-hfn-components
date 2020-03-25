@@ -62,6 +62,7 @@ module.exports = {
   ],
   devServer: {
     stats: 'minimal',
+    watchContentBase: true,
     hot: true,
     writeToDisk: true,
   },

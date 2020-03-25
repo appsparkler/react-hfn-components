@@ -27,7 +27,6 @@ const ProfilePhoto = ({
         hidden={imgIsLoading}
         src={file.downloadURL}
         onLoad={onLoad}
-        width={140}
       />
     )}
     {!file && !isVerifying && (
@@ -41,6 +40,7 @@ ProfilePhoto.propTypes = {
   imgIsLoading: PropTypes.bool.isRequired,
   onLoad: PropTypes.func.isRequired,
   isVerifying: PropTypes.bool.isRequired,
+  width: PropTypes.number,
 }
 
 export default ProfilePhoto
