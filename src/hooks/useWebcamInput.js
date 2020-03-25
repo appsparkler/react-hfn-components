@@ -1,15 +1,13 @@
-function startVideo({webcamRef}) {
-  const video = webcamRef.current
-  navigator
-      .mediaDevices
-      .getUserMedia({video: true, audio: false})
-      .then(function(stream) {
-        video.srcObject = stream
-        video.play()
-      })
-      .catch(function(err) {
-        console.log('An error occurred: ' + err)
-      })
+async function startVideo({webcamRef}) {
+  try {
+    const video = webcamRef.current
+    const stream = await navigator.mediaDevices
+        .getUserMedia({video: true, audio: false})
+    video.srcObject = stream
+    video.play()
+  } catch (e) {
+    console.error(e)
+  }
 }
 
 function clickPhoto({webcamRef, setDataURL}, evt) {

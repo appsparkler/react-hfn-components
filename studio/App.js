@@ -9,6 +9,7 @@ const StudioApp = () => {
   return (
     <div className="ms-Grid" dir="ltr">
       <h3>Firebase File Link</h3>
+      <input type="file" accept="image/*" capture="camera" />
       <FirebaseFileLink {...config} />
       <h3>Firebase File Input</h3>
       <FirebaseFileInput {...config} />
