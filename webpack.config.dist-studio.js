@@ -2,7 +2,7 @@ const {resolve} = require('path')
 const HTMLPlugin = require('html-webpack-plugin')
 const webpack = require('webpack')
 process.env.NODE_ENV = 'production'
-// const dotenv = require('dotenv')
+const dotenv = require('dotenv')
 const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 
 module.exports = {
@@ -17,7 +17,8 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new webpack.DefinePlugin({
-      'process.env': JSON.stringify(process.env),
+      // 'process.env': JSON.stringify(process.env),
+      'process.env': JSON.stringify(dotenv.config().parsed),
     }),
     new HTMLPlugin({
       template: resolve('studio/index.ejs'),
