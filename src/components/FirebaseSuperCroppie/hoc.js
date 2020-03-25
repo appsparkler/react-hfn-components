@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import MediaSourceForm from './MediaSourceForm'
 import UploadButton from './UploadButton'
 import FileInputButton from '@react-hfn-hoc/FileInputButton'
-import PreviewModal from './PreviewModal'
+import PreviewModal from '@react-hfn-components/PreviewModal'
 import {
   ProgressIndicator,
   DefaultButton,
@@ -107,12 +107,12 @@ const FirebaseSuperCroppie = ({
                 imageFit={ImageFit.center}
                 width={200}
               />
-              <Stack horizontal tokens={{padding: '20'}}>
+              <Stack horizontal tokens={{childrenGap: '20'}}>
                 <UploadButton
                   onClick={handleUploadButtonClick}
                   disabled={isUploading}
                 />
-                <PreviewModal src={croppedDataURL} />
+                {croppedDataURL && <PreviewModal imgSrc={croppedDataURL} />}
               </Stack>
               {isUploading && (
                 <div>

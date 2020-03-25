@@ -17,7 +17,7 @@ const iconButtonStyles = mergeStyleSets({
   },
 })
 
-const HOC = ({
+const HOCPreviewModal = ({
   imgSrc, openModal, closeModal, isOpen,
 }) => (
   <div>
@@ -45,9 +45,11 @@ const HOC = ({
   </div>
 )
 
-HOC.propTypes = {
+HOCPreviewModal.propTypes = {
   imgSrc: PropTypes.string.isRequired,
   openModal: PropTypes.func.isRequired,
   isOpen: PropTypes.bool.isRequired,
   closeModal: PropTypes.func.isRequired,
 }
+
+export default HOCPreviewModal
