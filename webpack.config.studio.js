@@ -4,14 +4,12 @@ const webpack = require('webpack')
 process.env.NODE_ENV = 'development'
 const dotenv = require('dotenv')
 
-console.log(require('./.webpack-config/module/studio'))
-
 module.exports = {
   mode: 'development',
   entry: './studio/index.js',
   devtool: 'inline-source-map',
   module: require('./.webpack-config/module/studio'),
-  resolve: require('./webpack-config/resolve/studio'),
+  resolve: require('./.webpack-config/resolve/studio'),
   plugins: [
     new webpack.DefinePlugin({
       'process.env': JSON.stringify(dotenv.config().parsed),

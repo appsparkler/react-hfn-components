@@ -14,4 +14,4 @@ module.exports = {
       resolve('node_modules'),
       resolve('./'),
     ],
-  },
+  }
