@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import ProfilePhoto from './ProfilePhoto'
+// import ProfilePhoto from './ProfilePhoto'
 import MediaSourceForm from './MediaSourceForm'
 import UploadButton from './UploadButton'
 import FileInputButton from '@react-hfn-hoc/FileInputButton'
@@ -8,6 +8,7 @@ import {
   ProgressIndicator,
   DefaultButton,
   Spinner, SpinnerSize, Image, ImageFit,
+  MessageBar,
 } from 'office-ui-fabric-react'
 
 const FirebaseSuperCroppie = ({
@@ -21,30 +22,21 @@ const FirebaseSuperCroppie = ({
 }) => (
   <>
     <div className="ms-Grid-row">
-      <div className="ms-Grid-col ms-sm3">
+      <div className="ms-Grid-col ms-sm4">
+        {isVerifying && (
+          <Spinner label="Verifying..." size={SpinnerSize.large} />
+        )}
+        {imgIsLoading && (
+          <Spinner label="Loading..." size={SpinnerSize.large} />
+        )}
+        {!isVerifying && !file && (
+          <MessageBar>No photo uploaded.</MessageBar>
+        )}
         {file && file.downloadURL && (
           <Image
             src={file.downloadURL}
             imageFit={ImageFit.contain}
             height={130}
-          />
-        )}
-      </div>
-      <div className="ms-Grid-col ms-sm8">
-        <MediaSourceForm
-          mediaSource={mediaSource}
-          handleMediaSourceChange={handleMediaSourceChange}
-        />
-      </div>
-    </div>
-    <div className="ms-Grid-row">
-      <div className="ms-Grid-col ms-sm5">
-
-        {(
-          <ProfilePhoto
-            isVerifying={isVerifying}
-            imgIsLoading={imgIsLoading}
-            file={file}
             onLoad={handleLoad}
           />
         )}
