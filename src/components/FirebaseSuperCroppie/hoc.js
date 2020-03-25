@@ -1,14 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-// import ProfilePhoto from './ProfilePhoto'
 import MediaSourceForm from './MediaSourceForm'
 import UploadButton from './UploadButton'
 import FileInputButton from '@react-hfn-hoc/FileInputButton'
+import PreviewModal from './PreviewModal'
 import {
   ProgressIndicator,
   DefaultButton,
   Spinner, SpinnerSize, Image, ImageFit,
-  MessageBar,
+  MessageBar, Stack,
 } from 'office-ui-fabric-react'
 
 const FirebaseSuperCroppie = ({
@@ -49,6 +49,35 @@ const FirebaseSuperCroppie = ({
       </div>
     </div>
 
+    {mediaSource === 'file' && (
+      <div className="ms-Grid-row">
+        <div className="ms-Grid-col ms-col12">
+          <FileInputButton
+            primary={!!file}
+            secondary={!file}
+            disabled={isUploading || isVerifying || imgIsLoading}
+            onChange={handleFileInputChange}
+            text={file ? 'Edit Photo': 'Upload Photo'}
+          />
+        </div>
+      </div>
+    )}
+
+    {mediaSource === 'webcam' && (
+      <div className="ms-Grid-row">
+        <div className="ms-Grid-col col-sm12">
+          <video
+            style={{width: '100%'}}
+            ref={webcamRef}></video>
+          <DefaultButton
+            primary
+            text="Click Photo"
+            onClick={clickPhoto}
+          />
+        </div>
+      </div>
+    )}
+
     <div className="ms-Grid-col ms-sm12">
       <div className="ms-Grid-col ms-sm6 ms-md6 ms-lg3">
       </div>
@@ -63,22 +92,42 @@ const FirebaseSuperCroppie = ({
           />
         </div>
       )}
-      {mediaSource === 'webcam' && (
-        <div className="ms-Grid-col ms-sm6 ms-md6 ms-lg4">
-          <div>
-            <video
-              style={{width: '100%'}}
-              ref={webcamRef}></video>
-            <DefaultButton
-              primary
-              text="Click Photo"
-              onClick={clickPhoto}
-            />
-          </div>
-        </div>
-      )}
     </div>
+
     {mediaSource && (
+      <div className="ms-Grid-row">
+        <div className="ms-Grid-col ms-sm12">
+          <div ref={croppieRef}></div>
+        </div>
+        <div className="ms-Grid-col ms-sm6">
+          {croppedDataURL && (
+            <div>
+              <Image
+                src={croppedDataURL}
+                imageFit={ImageFit.center}
+                width={200}
+              />
+              <Stack horizontal tokens={{padding: '20'}}>
+                <UploadButton
+                  onClick={handleUploadButtonClick}
+                  disabled={isUploading}
+                />
+                <PreviewModal src={croppedDataURL} />
+              </Stack>
+              {isUploading && (
+                <div>
+                  <ProgressIndicator percentComplete={(progress/100)} />
+                  <Spinner size={SpinnerSize.lg} label="Uploading..." />
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+      </div>
+    )}
+
+
+    {/* mediaSource && (
       <div className="ms-Grid-col ms-sm12">
         <div className="ms-Grid-col ms-sm6 ms-lg6">
           <div ref={croppieRef}></div>
@@ -103,7 +152,7 @@ const FirebaseSuperCroppie = ({
           )}
         </div>
       </div>
-    )}
+    )*/}
   </>
 )
 
