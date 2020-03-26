@@ -81,6 +81,7 @@
     "webpack-dev-server": "^3.10.2"
   },
   "dependencies": {
-    "croppie": "^2.6.4"
+    "croppie": "^2.6.4",
+    "express": "^4.17.1"
   }
 }
