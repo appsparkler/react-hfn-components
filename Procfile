@@ -1,1 +1,1 @@
-web: yarn heroku-postbuild; node index.js
+web: node index.js
