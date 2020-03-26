@@ -1,1 +1,1 @@
-build-studio: yarn build heroku-postbuild
+web: yarn build heroku-postbuild
