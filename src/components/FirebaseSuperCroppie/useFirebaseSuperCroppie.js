@@ -92,6 +92,7 @@ export default ({storageRef, croppieConfig}) => {
   //
   const croppieRef = React.useRef()
   const webcamRef = React.useRef()
+  const fileInputRef = React.useRef()
   //
   const {verifyFile} = useFileFromStorageRef({
     setFile, setIsVerifying, storageRef,
@@ -148,6 +149,7 @@ export default ({storageRef, croppieConfig}) => {
     handleUploadButtonClick, isUploading, progress, uploaded,
     resetMediaSource,
     imgIsLoading,
+    fileInputRef,
 
     handleLoad: handleLoad.bind(null, {file, setImgIsLoading}),
   }

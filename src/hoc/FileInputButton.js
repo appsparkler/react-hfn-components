@@ -2,13 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {DefaultButton} from 'office-ui-fabric-react'
 
-// const inputWrapperStyles = {
-//   position: 'absolute',
-//   left: 0, right: 0,
-//   bottom: 0, top: 0,
-//   opacity: 0,
-// }
-
 const inputStyles = {
   position: 'absolute',
   left: 0, right: 0,
