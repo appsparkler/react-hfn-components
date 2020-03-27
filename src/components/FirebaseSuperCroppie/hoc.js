@@ -18,10 +18,9 @@ const FirebaseSuperCroppie = ({
   croppieRef, croppedDataURL,
   handleUploadButtonClick, isUploading, progress, uploaded,
   webcamRef, clickPhoto,
-  imgIsLoading, handleLoad,
+  imgIsLoading, handleLoad, isWebcamAvailable,
 }) => (
   <div className="ms-Grid-row">
-
     {/* Profile handleUploadButtonClick*/}
     <div className="ms-Grid-col ms-sm4 ms-lg2">
       {isVerifying && (
@@ -115,6 +114,7 @@ const FirebaseSuperCroppie = ({
 )
 
 FirebaseSuperCroppie.propTypes = {
+  isWebcamAvailable: PropTypes.bool.isRequired,
   file: PropTypes.object,
   isVerifying: PropTypes.bool.isRequired,
 

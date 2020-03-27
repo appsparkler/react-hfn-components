@@ -7,8 +7,13 @@ import useWebcamInput from '@react-hfn-hooks/useWebcamInput'
 import useFileInput from '@react-hfn-hooks/useFileInput'
 import useFileToDataURL from '@react-hfn-hooks/useFileToDataURL'
 
-function componentDidMount({verifyFile}) {
+function checkWebcamAvailability({setIsWebcamAvailable}) {
+  if (navigator?.mediaDevices?.getUserMedia) setIsWebcamAvailable(true)
+}
+
+function componentDidMount({verifyFile, setIsWebcamAvailable}) {
   verifyFile()
+  checkWebcamAvailability({setIsWebcamAvailable})
 }
 
 function croppieDidChange({croppie, dataURL}) {
@@ -89,6 +94,7 @@ export default ({storageRef, croppieConfig}) => {
   const [uploaded, setUploaded] = React.useState(false)
   const [progress, setProgress] = React.useState(0)
   const [selectedFile, setSelectedFile] = React.useState(null)
+  const [isWebcamAvailable, setIsWebcamAvailable] = React.useState(false)
   //
   const croppieRef = React.useRef()
   const webcamRef = React.useRef()
@@ -120,7 +126,7 @@ export default ({storageRef, croppieConfig}) => {
       {setDataURL, selectedFile},
   ), [selectedFile])
   React.useEffect(componentDidMount.bind(null, {
-    verifyFile,
+    verifyFile, setIsWebcamAvailable,
   }), [])
   React.useEffect(mediaSourceDidChange.bind(null, {
     mediaSource, setDataURL, setCroppie, setCroppedDataURL,
@@ -149,6 +155,7 @@ export default ({storageRef, croppieConfig}) => {
     handleUploadButtonClick, isUploading, progress, uploaded,
     resetMediaSource,
     imgIsLoading,
+    isWebcamAvailable,
     fileInputRef,
 
     handleLoad: handleLoad.bind(null, {file, setImgIsLoading}),
