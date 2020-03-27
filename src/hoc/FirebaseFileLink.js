@@ -5,10 +5,11 @@ import {
   Spinner,
   SpinnerSize,
   Link,
+  MessageBar,
 } from 'office-ui-fabric-react'
 
 const FirebaseFileLink = ({file, isVerifying, isUploading}) => (
-  <Stack tokens={{childrenGap: 20, maxWidth: 250}}>
+  <Stack>
     {isUploading && (
       <div>
         <Spinner label="Uploading..." size={SpinnerSize.large} />
@@ -23,6 +24,9 @@ const FirebaseFileLink = ({file, isVerifying, isUploading}) => (
       <div>
         <Link href={file.downloadURL}>{file.fileName}</Link>
       </div>
+    )}
+    {!file && !isVerifying && !isUploading && (
+      <MessageBar>File not uploaded...</MessageBar>
     )}
   </Stack>
 )

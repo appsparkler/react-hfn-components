@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import useFirebaseSuperCroppie from './useFirebaseSuperCroppie'
-import FirebaseSuperCroppie from './main'
+import FirebaseSuperCroppie from './hoc'
 
 const UseFirebaseSuperCroppie= ({storageRef, croppieConfig}) => {
   const value = useFirebaseSuperCroppie({storageRef, croppieConfig})

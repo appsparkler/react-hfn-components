@@ -7,6 +7,7 @@ const options = [
   {key: 'file', text: 'Upload from file', iconProps: {iconName: 'Upload'}},
   {key: 'webcam', text: 'Use webcam', iconProps: {iconName: 'Webcam2'}},
 ]
+
 const MediaSourceForm = ({mediaSource, handleMediaSourceChange}) => (
   <form>
     <div className="form-check form-check-inline">

@@ -1,17 +1,17 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import FirebaseFileInput from './main'
+import HOCFirebaseFileInput from './hoc'
 import useFirebaseFileInput from './useFirebaseFileInput'
 
-const UsedFirebaseFileInput = ({storageRef}) => {
+const FirebaseFileInput = ({storageRef}) => {
   const config = useFirebaseFileInput({storageRef})
   return (
-    <FirebaseFileInput {...config} />
+    <HOCFirebaseFileInput {...config} />
   )
 }
 
-UsedFirebaseFileInput.propTypes = {
+FirebaseFileInput.propTypes = {
   storageRef: PropTypes.object.isRequired,
 }
 
-export default UsedFirebaseFileInput
+export default FirebaseFileInput

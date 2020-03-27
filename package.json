@@ -1,6 +1,6 @@
 {
   "name": "@appsparkler/react-hfn-components",
-  "version": "0.0.28",
+  "version": "0.0.37",
   "license": "MIT",
   "main": "./dist/react-hfn-components.min.js",
   "files": [
@@ -9,7 +9,7 @@
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged; bundlesize; eslint src;",
-      "post-merge": "(git-branch-is master && yarn version --patch || echo 'branch is not master')"
+      "post-merge": "(git-branch-is master && yarn heroku-postbuild && yarn version --patch || echo 'branch is not master')"
     }
   },
   "lint-staged": {
@@ -25,7 +25,8 @@
     "build:publish": "yarn build; yarn publish",
     "docs-clean": "rimraf docs",
     "docs-build": "jsdoc -c ./jsdoc.config.js -r -d ./docs",
-    "docs-serve": "yarn docs-clean; yarn docs-build; yarn serve docs"
+    "docs-serve": "yarn docs-clean; yarn docs-build; yarn serve docs",
+    "heroku-postbuild": "yarn webpack --config webpack.config.dist-studio.js"
   },
   "peerDependencies": {
     "prop-types": "^15.7.2",
@@ -79,6 +80,7 @@
     "webpack-dev-server": "^3.10.2"
   },
   "dependencies": {
-    "croppie": "^2.6.4"
+    "croppie": "^2.6.4",
+    "express": "^4.17.1"
   }
 }
