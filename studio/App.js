@@ -6,8 +6,14 @@ import {
   Image,
 } from 'office-ui-fabric-react'
 
+function srcDidChange({setIsLoading}) {
+  setIsLoading(true)
+}
+
+
 const ProfilePhoto = ({height, width, src}) => {
   const [isLoading, setIsLoading] = React.useState(true)
+  React.useEffect(srcDidChange.bind(null, {setIsLoading}), [src])
   return (
     <Shimmer
       width={width}
@@ -19,8 +25,9 @@ const ProfilePhoto = ({height, width, src}) => {
       <Image
         src={src}
         width={width}
-        shouldStartVisible={true}
-        onLoad={() => setIsLoading(false)}
+        onLoad={() => {
+          setIsLoading(false)
+        }}
       />
     </Shimmer>
   )
@@ -38,15 +45,25 @@ ProfilePhoto.defaultProps = {
   src: 'http://placekitten.com/180/180',
 }
 
-
+function handleSubmit({setImgSrc}, evt) {
+  evt.preventDefault()
+  const imgSrc = evt?.target?.children?.imgSrc?.value
+  if (imgSrc) setImgSrc(imgSrc)
+}
 const StudioApp = () => {
+  const [imgSrc, setImgSrc] = React.useState()
+  const MemoReactPhoto = React.memo(ProfilePhoto)
   return (
     <div className="ms-Grid" dir="ltr">
-      <ProfilePhoto
+      <MemoReactPhoto
         height={180}
         width={180}
-        src="http://placekitten.com/200/200"
+        src={imgSrc}
       />
+      <form onSubmit={handleSubmit.bind(null, {setImgSrc})}>
+        <input type="text" name="imgSrc" />
+        <input type="submit" value="Submit" />
+      </form>
     </div>
   )
 }
