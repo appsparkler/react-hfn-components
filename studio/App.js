@@ -1,20 +1,26 @@
 import React from 'react'
-import FirebaseFileLink from '@react-hfn-components/FirebaseFileLink'
-import FirebaseFileInput from '@react-hfn-components/FirebaseFileInput'
-import FirebaseSuperCroppie from '@react-hfn-components/FirebaseSuperCroppie'
-import config from './config'
 import './styles'
+import {Image, Stack} from 'office-ui-fabric-react'
 
 const StudioApp = () => {
+  const [isLoading, setIsLoading] = React.useState(true)
   return (
     <div className="ms-Grid" dir="ltr">
-      <h3>Firebase File Link</h3>
-      <input type="file" accept="image/*" capture="camera" />
-      <FirebaseFileLink {...config} />
-      <h3>Firebase File Input</h3>
-      <FirebaseFileInput {...config} />
-      <h3>Firebase Super Croppie</h3>
-      <FirebaseSuperCroppie {...config} />
+      <Stack>
+        <Image
+          src="http://placekitten.com/1900/520"
+          width={400}
+          onLoad={() => setIsLoading(false)}
+          hidden={isLoading}
+        />
+        {isLoading && <div styles={{
+          position: 'absolute',
+          left: 0, right: 0,
+          top: 0, bottom: 0,
+        }}>
+          Is Loading
+        </div>}
+      </Stack>
     </div>
   )
 }
