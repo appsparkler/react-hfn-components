@@ -8,10 +8,11 @@ const options = [
   {key: 'webcam', text: 'Use webcam', iconProps: {iconName: 'Webcam2'}},
 ]
 
-const MediaSourceForm = ({mediaSource, handleMediaSourceChange}) => (
+const MediaSourceForm = ({disabled, mediaSource, handleMediaSourceChange}) => (
   <form>
     <div className="form-check form-check-inline">
       <ChoiceGroup
+        disabled={disabled}
         label="Choose Source"
         options={options}
         selectedKey={mediaSource}
@@ -24,6 +25,7 @@ const MediaSourceForm = ({mediaSource, handleMediaSourceChange}) => (
 MediaSourceForm.propTypes = {
   mediaSource: PropTypes.string,
   handleMediaSourceChange: PropTypes.func.isRequired,
+  disabled: PropTypes.bool.isRequired,
 }
 
 export default MediaSourceForm

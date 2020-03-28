@@ -45,6 +45,7 @@ const FirebaseSuperCroppie = ({
     {/* Media Source Choice Box & File Input Button*/}
     <div className="ms-Grid-col ms-sm8 ms-lg4">
       <MediaSourceForm
+        disabled={isVerifying || isUploading}
         mediaSource={mediaSource}
         handleMediaSourceChange={handleMediaSourceChange}
       />
