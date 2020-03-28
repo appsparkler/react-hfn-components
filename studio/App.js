@@ -5,7 +5,10 @@ import './styles'
 const StudioApp = () => {
   return (
     <div className="ms-Grid" dir="ltr">
-      <MemoMediaSourceForm/>
+      <MemoMediaSourceForm
+        mediaSource={'webcam'}
+        disabled
+      />
     </div>
   )
 }
