@@ -18,7 +18,7 @@ const FirebaseSuperCroppie = ({
   croppieRef, croppedDataURL,
   handleUploadButtonClick, isUploading, progress, uploaded,
   webcamRef, clickPhoto,
-  imgIsLoading, handleLoad, isWebcamAvailable,
+  imgIsLoading, handleLoad, isWebcamAvailable, fileInputRef,
 }) => (
   <div className="ms-Grid-row">
     {/* Profile handleUploadButtonClick*/}
@@ -57,6 +57,7 @@ const FirebaseSuperCroppie = ({
             disabled={isUploading || isVerifying || imgIsLoading}
             onChange={handleFileInputChange}
             text={file ? 'Edit Photo': 'Upload Photo'}
+            fileInputRef={fileInputRef}
           />
         </div>
       )}
@@ -137,6 +138,9 @@ FirebaseSuperCroppie.propTypes = {
 
   imgIsLoading: PropTypes.bool.isRequired,
   handleLoad: PropTypes.func.isRequired,
+  fileInputRef: PropTypes.shape({
+    current: PropTypes.any,
+  }),
 }
 
 export default FirebaseSuperCroppie

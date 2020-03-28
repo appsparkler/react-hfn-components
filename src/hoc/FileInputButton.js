@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {DefaultButton} from 'office-ui-fabric-react'
+import {
+  DefaultButton,
+} from 'office-ui-fabric-react'
 
 const inputStyles = {
   position: 'absolute',
@@ -11,7 +13,7 @@ const inputStyles = {
 }
 
 const FileInputButton = ({
-  primary, secondary, onChange, disabled, text,
+  primary, secondary, onChange, disabled, text, fileInputRef,
 }) => (
   <div >
     <DefaultButton
@@ -25,6 +27,7 @@ const FileInputButton = ({
         style={inputStyles}
         disabled={disabled}
         onChange={onChange}
+        ref={fileInputRef}
       />
     </DefaultButton>
   </div>
@@ -37,6 +40,9 @@ FileInputButton.propTypes = {
   primary: PropTypes.bool,
   secondary: PropTypes.bool,
   disabled: PropTypes.bool,
+  fileInputRef: PropTypes.shape({
+    current: PropTypes.any,
+  }),
 }
 
 export default FileInputButton

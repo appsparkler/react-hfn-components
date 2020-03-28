@@ -49,7 +49,7 @@ function uploadedDidChange({
 }
 
 function mediaSourceDidChange({
-  mediaSource, setDataURL, setCroppie, setCroppedDataURL,
+  mediaSource, setDataURL, setCroppie, setCroppedDataURL, fileInputRef,
   startVideo,
 }) {
   if (!mediaSource) {
@@ -58,6 +58,8 @@ function mediaSourceDidChange({
     setCroppedDataURL(null)
   } else if (mediaSource === 'webcam') {
     startVideo()
+  } else if (mediaSource === 'file') {
+    fileInputRef.current.click()
   }
 }
 
@@ -130,7 +132,7 @@ export default ({storageRef, croppieConfig}) => {
   }), [])
   React.useEffect(mediaSourceDidChange.bind(null, {
     mediaSource, setDataURL, setCroppie, setCroppedDataURL,
-    startVideo,
+    startVideo, fileInputRef,
   }), [mediaSource])
   React.useEffect(dataURLDidChange.bind(null, {
     setupCroppie, croppie, dataURL,
