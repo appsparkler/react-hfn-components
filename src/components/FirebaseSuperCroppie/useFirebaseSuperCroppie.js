@@ -15,8 +15,12 @@ function checkWebcamAvailability({setIsWebcamAvailable}) {
   })
 }
 
-function checkForMobileDevice({setIsMobileDevice}) {
-  isMobileDevice({valueSetter: setIsMobileDevice})
+function checkForMobileDevice({
+  setIsMobileDevice,
+}) {
+  isMobileDevice({
+    valueSetter: setIsMobileDevice,
+  })
 }
 
 function componentDidMount({
@@ -27,7 +31,9 @@ function componentDidMount({
   checkForMobileDevice({setIsMobileDevice})
 }
 
-function croppieDidChange({croppie, dataURL}) {
+function croppieDidChange({
+  croppie, dataURL,
+}) {
   if (!dataURL) return
   croppie.bind({
     url: dataURL,
@@ -61,7 +67,7 @@ function uploadedDidChange({
 
 function mediaSourceDidChange({
   mediaSource, setDataURL, setCroppie, setCroppedDataURL, fileInputRef,
-  startVideo, isMobileDevice,
+  startVideo,
 }) {
   if (!mediaSource) {
     setDataURL(null)
@@ -69,7 +75,7 @@ function mediaSourceDidChange({
     setCroppedDataURL(null)
   } else if (mediaSource === 'webcam' && !isMobileDevice) {
     startVideo()
-  } else if (mediaSource==='webcam' && isMobileDevice) {
+  } else if (mediaSource === 'webcam' && isMobileDevice) {
     fileInputRef.current.click()
   } else if (mediaSource === 'file') {
     fileInputRef.current.click()
@@ -147,7 +153,7 @@ export default ({storageRef, croppieConfig}) => {
   }), [])
   React.useEffect(mediaSourceDidChange.bind(null, {
     mediaSource, setDataURL, setCroppie, setCroppedDataURL,
-    startVideo, fileInputRef, isMobileDevice,
+    startVideo, fileInputRef,
   }), [mediaSource])
   React.useEffect(dataURLDidChange.bind(null, {
     setupCroppie, croppie, dataURL,

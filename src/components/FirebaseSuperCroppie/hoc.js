@@ -6,7 +6,7 @@ import ProfilePhoto from './ProfilePhoto'
 import FileInput from './FileInput'
 import WebcamVideo from './WebcamVideo'
 import {
-  Stack, Layer,
+  Stack,
   // Image,
   // ProgressIndicator,
   // DefaultButton,
@@ -20,8 +20,9 @@ const FirebaseSuperCroppie = ({
   handleFileInputChange, dataURL,
   croppieRef, croppedDataURL,
   handleUploadButtonClick, isUploading, progress, uploaded,
-  webcamRef, clickPhoto, isMobileDevice,
+  webcamRef, clickPhoto,
   imgIsLoading, handleLoad, isWebcamAvailable, fileInputRef,
+  isMobileDevice,
 }) => (
   <Stack
     horizontalAlign="center"
@@ -29,12 +30,6 @@ const FirebaseSuperCroppie = ({
     gap="20"
     wrap
   >
-    <Layer>
-      {!isWebcamAvailable && 'Webcam is unavailable'}
-      {isWebcamAvailable && 'Webcam is available'}
-      {isMobileDevice && ',Is Mobile Device'}
-      {!isMobileDevice && ',Not a Mobile Device'}
-    </Layer>
     <ProfilePhoto
       imgIsLoading={imgIsLoading}
       isVerifying={isVerifying}
@@ -60,8 +55,7 @@ const FirebaseSuperCroppie = ({
         isUploading={isUploading}
         isVerifying={isVerifying}
         imgIsLoading={imgIsLoading}
-        capture="camera"
-        accept="image/*"
+        accept="image/*;capture=camera"
       />
     )}
     {mediaSource === 'file' && (

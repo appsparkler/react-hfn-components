@@ -14,7 +14,7 @@ const inputStyles = {
 
 const FileInputButton = ({
   primary, secondary, onChange, disabled, text, fileInputRef,
-  accept, capture,
+  accept,
 }) => (
   <div >
     <DefaultButton
@@ -30,7 +30,6 @@ const FileInputButton = ({
         onChange={onChange}
         ref={fileInputRef}
         accept={accept}
-        capture={capture}
       />
     </DefaultButton>
   </div>
@@ -47,7 +46,6 @@ FileInputButton.propTypes = {
     current: PropTypes.any,
   }),
   accept: PropTypes.string,
-  capture: PropTypes.string,
 }
 
 export default FileInputButton
