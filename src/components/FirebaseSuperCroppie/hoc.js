@@ -5,6 +5,7 @@ import MediaSourceForm from './MediaSourceForm'
 // import FileInputButton from '@react-hfn-hoc/FileInputButton'
 // import PreviewModal from '@react-hfn-components/PreviewModal'
 import ProfilePhoto from './ProfilePhoto'
+import WebcamVideo from './WebcamVideo'
 import {
   Stack,
   // Image,
@@ -35,10 +36,18 @@ const FirebaseSuperCroppie = ({
       onLoad={handleLoad}
       file={file}
     />
-    <Stack.Item
-      align="end">
-      <MediaSourceForm />
-    </Stack.Item>
+    <MediaSourceForm
+      disabled={isVerifying || isUploading}
+      mediaSource={mediaSource}
+      handleMediaSourceChange={handleMediaSourceChange}
+    />
+    {mediaSource === 'webcam' && (
+      <WebcamVideo
+        onClick={clickPhoto}
+        webcamRef={webcamRef}
+      />
+    )}
+
   </Stack>
 )
 

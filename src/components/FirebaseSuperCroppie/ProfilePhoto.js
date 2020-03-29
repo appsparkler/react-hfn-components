@@ -6,7 +6,7 @@ import {
 } from 'office-ui-fabric-react'
 
 const ProfilePhoto = ({imgIsLoading, isVerifying, file, onLoad}) => (
-  <Stack.Item>
+  <Stack.Item align="end">
     { isVerifying && (
       <Stack
         verticalAlign="center"

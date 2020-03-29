@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {ChoiceGroup} from 'office-ui-fabric-react'
+import {
+  ChoiceGroup, Stack,
+} from 'office-ui-fabric-react'
 
 
 const options = [
@@ -9,13 +11,16 @@ const options = [
 ]
 
 const MediaSourceForm = ({disabled, mediaSource, handleMediaSourceChange}) => (
-  <ChoiceGroup
-    disabled={disabled}
-    label="Choose Source"
-    options={options}
-    selectedKey={mediaSource}
-    onChange={handleMediaSourceChange}
-  />
+  <Stack.Item
+    align="end">
+    <ChoiceGroup
+      disabled={disabled}
+      label="Choose Source"
+      options={options}
+      selectedKey={mediaSource}
+      onChange={handleMediaSourceChange}
+    />
+  </Stack.Item>
 )
 
 MediaSourceForm.propTypes = {
