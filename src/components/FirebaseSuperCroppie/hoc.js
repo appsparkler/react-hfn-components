@@ -1,17 +1,17 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import MediaSourceForm from './MediaSourceForm'
-// import UploadButton from './UploadButton'
-import FileInputButton from '@react-hfn-hoc/FileInputButton'
-// import PreviewModal from '@react-hfn-components/PreviewModal'
+import UploadButton from './UploadButton'
+import PreviewModal from '@react-hfn-components/PreviewModal'
 import ProfilePhoto from './ProfilePhoto'
+import FileInput from './FileInput'
 import WebcamVideo from './WebcamVideo'
 import {
   Stack,
   // Image,
-  // ProgressIndicator,
+  ProgressIndicator,
   // DefaultButton,
-  // Spinner, SpinnerSize, ImageFit,
+  Spinner, SpinnerSize,
   // MessageBar,
 } from 'office-ui-fabric-react'
 
@@ -47,26 +47,42 @@ const FirebaseSuperCroppie = ({
         webcamRef={webcamRef}
       />
     )}
-
     {mediaSource === 'file' && (
-      <Stack.Item>
-        <div style={{width: '100vw'}}>
-          <Stack horizontalAlign="center">
-            <Stack.Item>
-              <FileInputButton
-                primary={!!file}
-                secondary={!file}
-                disabled={isUploading || isVerifying || imgIsLoading}
-                onChange={handleFileInputChange}
-                text={file ? 'Edit Photo': 'Upload Photo'}
-                fileInputRef={fileInputRef}
+      <FileInput
+        file={file}
+        fileInputRef={fileInputRef}
+        handleFileInputChange={handleFileInputChange}
+        isUploading={isUploading}
+        isVerifying={isVerifying}
+        imgIsLoading={imgIsLoading}
+      />
+    )}
+    <Stack.Item>
+      <div style={{width: '100vw'}} ref={croppieRef}></div>
+      {croppedDataURL && (
+        <div>
+          <Stack
+            horizontal
+            tokens={{childrenGap: '20'}}
+            horizontalAlign="center"
+          >
+            <Stack veritical>
+              <UploadButton
+                onClick={handleUploadButtonClick}
+                disabled={isUploading}
               />
-            </Stack.Item>
+              {isUploading && (
+                <div>
+                  <ProgressIndicator percentComplete={(progress/100)} />
+                  <Spinner size={SpinnerSize.lg} label="Uploading..." />
+                </div>
+              )}
+            </Stack>
+            <PreviewModal imgSrc={croppedDataURL} />
           </Stack>
         </div>
-      </Stack.Item>
-    )}
-
+      )}
+    </Stack.Item>
   </Stack>
 )
 

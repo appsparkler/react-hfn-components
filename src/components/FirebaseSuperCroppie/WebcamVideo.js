@@ -6,7 +6,7 @@ import {
 } from 'office-ui-fabric-react'
 
 const WebcamVideo = ({webcamRef, onClick}) => (
-  <Stack.Item>
+  <Stack.Item align="end">
     <Stack vertical tokens={{childrenGap: 10}}>
       <video
         style={{minWidth: '200px', width: '300px'}}

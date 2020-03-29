@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {
   DefaultButton, Modal, Image, ImageFit, IconButton,
+  Stack,
   getTheme, mergeStyleSets,
 } from 'office-ui-fabric-react'
 
@@ -36,11 +37,14 @@ const HOCPreviewModal = ({
           onClick={closeModal}
         />
       </div>
-      <Image
-        src={imgSrc}
-        imageFit={ImageFit.contain}
-        height={300}
-      />
+      <Stack horizontalAlign="center">
+        <Image
+          src={imgSrc}
+          imageFit={ImageFit.contain}
+          height={180}
+          width={180}
+        />
+      </Stack>
     </Modal>
   </div>
 )
