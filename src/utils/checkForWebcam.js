@@ -5,8 +5,8 @@ export default async function checkForWebcam({valueSetter}) {
           video: true, audio: false,
         })
     if (userMedia) valueSetter(true)
+    else valueSetter(false)
   } catch (e) {
     valueSetter(false)
-    alert(typeof userMedia)
   }
 }
