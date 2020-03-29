@@ -6,7 +6,7 @@ import ProfilePhoto from './ProfilePhoto'
 import FileInput from './FileInput'
 import WebcamVideo from './WebcamVideo'
 import {
-  Stack, Layer,
+  Stack,
   // Image,
   // ProgressIndicator,
   // DefaultButton,
@@ -29,10 +29,6 @@ const FirebaseSuperCroppie = ({
     gap="20"
     wrap
   >
-    <Layer>
-      {!isWebcamAvailable && 'Webcam is unavailable'}
-      {isWebcamAvailable && 'Webcam is available'}
-    </Layer>
     <ProfilePhoto
       imgIsLoading={imgIsLoading}
       isVerifying={isVerifying}
