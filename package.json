@@ -9,7 +9,7 @@
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged; bundlesize; eslint src;",
-      "post-merge": "(git-branch-is master && yarn heroku-postbuild && yarn version --patch || echo 'branch is not master')"
+      "post-merge": "(git-branch-is master && yarn version --patch || echo 'branch is not master')"
     }
   },
   "lint-staged": {
