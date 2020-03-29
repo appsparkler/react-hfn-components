@@ -37,7 +37,7 @@ const HOCPreviewModal = ({
           onClick={closeModal}
         />
       </div>
-      <Stack horizontalAlign="center">
+      <Stack horizontalAlign="center" padding={20}>
         <Image
           src={imgSrc}
           imageFit={ImageFit.contain}

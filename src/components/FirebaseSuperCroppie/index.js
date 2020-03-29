@@ -15,7 +15,7 @@ UseFirebaseSuperCroppie.propTypes = {
 
 UseFirebaseSuperCroppie.defaultProps = {
   croppieConfig: {
-    viewport: {width: 100, height: 100},
+    viewport: {width: 200, height: 200},
     boundary: {width: 300, height: 300},
   },
 }

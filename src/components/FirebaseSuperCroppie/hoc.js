@@ -57,32 +57,38 @@ const FirebaseSuperCroppie = ({
         imgIsLoading={imgIsLoading}
       />
     )}
-    <Stack.Item>
-      <div style={{width: '100vw'}} ref={croppieRef}></div>
-      {croppedDataURL && (
-        <div>
-          <Stack
-            horizontal
-            tokens={{childrenGap: '20'}}
-            horizontalAlign="center"
-          >
-            <Stack veritical>
-              <UploadButton
-                onClick={handleUploadButtonClick}
-                disabled={isUploading}
-              />
-              {isUploading && (
-                <div>
-                  <ProgressIndicator percentComplete={(progress/100)} />
-                  <Spinner size={SpinnerSize.lg} label="Uploading..." />
-                </div>
-              )}
+    {mediaSource && (
+      <Stack.Item>
+        <div style={{width: '100vw'}} ref={croppieRef}></div>
+        {croppedDataURL && (
+          <div>
+            <Stack
+              horizontal
+              tokens={{childrenGap: '20'}}
+              horizontalAlign="center"
+            >
+              <Stack.Item align="start">
+                <Stack veritical>
+                  <UploadButton
+                    onClick={handleUploadButtonClick}
+                    disabled={isUploading}
+                  />
+                  {isUploading && (
+                    <div>
+                      <ProgressIndicator percentComplete={(progress/100)} />
+                      <Spinner size={SpinnerSize.lg} label="Uploading..." />
+                    </div>
+                  )}
+                </Stack>
+              </Stack.Item>
+              <Stack.Item align="start">
+                <PreviewModal imgSrc={croppedDataURL} />
+              </Stack.Item>
             </Stack>
-            <PreviewModal imgSrc={croppedDataURL} />
-          </Stack>
-        </div>
-      )}
-    </Stack.Item>
+          </div>
+        )}
+      </Stack.Item>
+    )}
   </Stack>
 )
 
