@@ -1,6 +1,5 @@
 import React from 'react'
 import {ChoiceGroup} from 'office-ui-fabric-react'
-import './styles'
 
 const options = [
   {key: 'file', text: 'Upload', iconProps: {iconName: 'CloudUpload'}},
@@ -20,7 +19,6 @@ const StudioApp = () => {
           setMediaSource(value)
         }}
       />
-      {mediaSource && mediaSource}
     </div>
   )
 }
