@@ -40,11 +40,14 @@ const FirebaseSuperCroppie = ({
       mediaSource={mediaSource}
       handleMediaSourceChange={handleMediaSourceChange}
     />
-    {mediaSource === 'webcam' && (
+    {mediaSource === 'webcam' && isWebcamAvailable && (
       <WebcamVideo
         onClick={clickPhoto}
         webcamRef={webcamRef}
       />
+    )}
+    {mediaSource === 'webcam' && !isWebcamAvailable && (
+      <input type="file" capture="camera" accept="image/*" />
     )}
     {mediaSource === 'file' && (
       <FileInput

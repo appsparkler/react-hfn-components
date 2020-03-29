@@ -6,9 +6,12 @@ import useUploadButton from '@react-hfn-hooks/useUploadButton'
 import useWebcamInput from '@react-hfn-hooks/useWebcamInput'
 import useFileInput from '@react-hfn-hooks/useFileInput'
 import useFileToDataURL from '@react-hfn-hooks/useFileToDataURL'
+import checkForWebcam from '@react-hfn-utils/checkForWebcam'
 
 function checkWebcamAvailability({setIsWebcamAvailable}) {
-  if (navigator?.mediaDevices?.getUserMedia) setIsWebcamAvailable(true)
+  checkForWebcam({
+    valueSetter: setIsWebcamAvailable,
+  })
 }
 
 function componentDidMount({verifyFile, setIsWebcamAvailable}) {
