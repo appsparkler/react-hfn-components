@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import MediaSourceForm from './MediaSourceForm'
 // import UploadButton from './UploadButton'
-// import FileInputButton from '@react-hfn-hoc/FileInputButton'
+import FileInputButton from '@react-hfn-hoc/FileInputButton'
 // import PreviewModal from '@react-hfn-components/PreviewModal'
 import ProfilePhoto from './ProfilePhoto'
 import WebcamVideo from './WebcamVideo'
@@ -46,6 +46,25 @@ const FirebaseSuperCroppie = ({
         onClick={clickPhoto}
         webcamRef={webcamRef}
       />
+    )}
+
+    {mediaSource === 'file' && (
+      <Stack.Item>
+        <div style={{width: '100vw'}}>
+          <Stack horizontalAlign="center">
+            <Stack.Item>
+              <FileInputButton
+                primary={!!file}
+                secondary={!file}
+                disabled={isUploading || isVerifying || imgIsLoading}
+                onChange={handleFileInputChange}
+                text={file ? 'Edit Photo': 'Upload Photo'}
+                fileInputRef={fileInputRef}
+              />
+            </Stack.Item>
+          </Stack>
+        </div>
+      </Stack.Item>
     )}
 
   </Stack>
