@@ -19,13 +19,14 @@ const iconButtonStyles = mergeStyleSets({
 })
 
 const HOCPreviewModal = ({
-  imgSrc, openModal, closeModal, isOpen,
+  imgSrc, openModal, closeModal, isOpen, disabled,
 }) => (
-  <div>
+  <Stack.Item>
     <DefaultButton
       secondary
       text="Preview"
       onClick={openModal}
+      disabled={disabled}
     />
     <Modal
       isOpen={isOpen}
@@ -46,7 +47,7 @@ const HOCPreviewModal = ({
         />
       </Stack>
     </Modal>
-  </div>
+  </Stack.Item>
 )
 
 HOCPreviewModal.propTypes = {
@@ -54,6 +55,7 @@ HOCPreviewModal.propTypes = {
   openModal: PropTypes.func.isRequired,
   isOpen: PropTypes.bool.isRequired,
   closeModal: PropTypes.func.isRequired,
+  disabled: PropTypes.bool,
 }
 
 export default HOCPreviewModal

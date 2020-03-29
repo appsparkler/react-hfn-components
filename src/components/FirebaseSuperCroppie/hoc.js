@@ -1,17 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import MediaSourceForm from './MediaSourceForm'
-import UploadButton from './UploadButton'
-import PreviewModal from '@react-hfn-components/PreviewModal'
+import CroppieStack from './CroppieStack'
 import ProfilePhoto from './ProfilePhoto'
 import FileInput from './FileInput'
 import WebcamVideo from './WebcamVideo'
 import {
   Stack,
   // Image,
-  ProgressIndicator,
+  // ProgressIndicator,
   // DefaultButton,
-  Spinner, SpinnerSize,
+  // Spinner, SpinnerSize,
   // MessageBar,
 } from 'office-ui-fabric-react'
 
@@ -57,38 +56,13 @@ const FirebaseSuperCroppie = ({
         imgIsLoading={imgIsLoading}
       />
     )}
-    {mediaSource && (
-      <Stack.Item>
-        <div style={{width: '100vw'}} ref={croppieRef}></div>
-        {croppedDataURL && (
-          <div>
-            <Stack
-              horizontal
-              tokens={{childrenGap: '20'}}
-              horizontalAlign="center"
-            >
-              <Stack.Item align="start">
-                <Stack veritical>
-                  <UploadButton
-                    onClick={handleUploadButtonClick}
-                    disabled={isUploading}
-                  />
-                  {isUploading && (
-                    <div>
-                      <ProgressIndicator percentComplete={(progress/100)} />
-                      <Spinner size={SpinnerSize.lg} label="Uploading..." />
-                    </div>
-                  )}
-                </Stack>
-              </Stack.Item>
-              <Stack.Item align="start">
-                <PreviewModal imgSrc={croppedDataURL} />
-              </Stack.Item>
-            </Stack>
-          </div>
-        )}
-      </Stack.Item>
-    )}
+    {mediaSource && <CroppieStack
+      isUploading={isUploading}
+      croppieRef={croppieRef}
+      croppedDataURL={croppedDataURL}
+      handleUploadButtonClick={handleUploadButtonClick}
+      progress={progress}
+    />}
   </Stack>
 )
 

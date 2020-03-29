@@ -4,14 +4,12 @@ import {DefaultButton} from 'office-ui-fabric-react'
 
 const UploadButton = ({onClick, disabled}) => {
   return (
-    <div className="UploadButton">
-      <DefaultButton
-        onClick={onClick}
-        disabled={disabled}
-        primary
-        text="Upload Photo"
-      />
-    </div>
+    <DefaultButton
+      onClick={onClick}
+      disabled={disabled}
+      primary
+      text="Upload Photo"
+    />
   )
 }
 
