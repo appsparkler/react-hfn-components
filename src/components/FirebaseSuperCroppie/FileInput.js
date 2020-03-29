@@ -8,6 +8,7 @@ import FileInputButton from '@react-hfn-hoc/FileInputButton'
 const FileInput = ({
   file, fileInputRef, handleFileInputChange,
   isUploading, isVerifying, imgIsLoading,
+  accept, capture,
 }) => (
   <Stack.Item>
     <div style={{width: '100vw'}}>
@@ -36,6 +37,8 @@ FileInput.propTypes = {
   isUploading: PropTypes.bool.isRequired,
   isVerifying: PropTypes.bool.isRequired,
   imgIsLoading: PropTypes.bool.isRequired,
+  accept: PropTypes.string,
+  capture: PropTypes.string,
 }
 
 export default FileInput

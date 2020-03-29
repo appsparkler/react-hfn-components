@@ -14,9 +14,11 @@ function checkWebcamAvailability({setIsWebcamAvailable}) {
     valueSetter: setIsWebcamAvailable,
   })
 }
+
 function checkForMobileDevice({setIsMobileDevice}) {
   isMobileDevice({valueSetter: setIsMobileDevice})
 }
+
 function componentDidMount({
   verifyFile, setIsWebcamAvailable, setIsMobileDevice,
 }) {
