@@ -7,7 +7,7 @@ import useWebcamInput from '@react-hfn-hooks/useWebcamInput'
 import useFileInput from '@react-hfn-hooks/useFileInput'
 import useFileToDataURL from '@react-hfn-hooks/useFileToDataURL'
 import checkForWebcam from '@react-hfn-utils/checkForWebcam'
-import isMobileDevice from '@react-hfn-utils/isMobileDevice'
+import checkMobileDevice from '@react-hfn-utils/checkMobileDevice'
 
 function checkWebcamAvailability({setIsWebcamAvailable}) {
   checkForWebcam({
@@ -18,7 +18,7 @@ function checkWebcamAvailability({setIsWebcamAvailable}) {
 function checkForMobileDevice({
   setIsMobileDevice,
 }) {
-  isMobileDevice({
+  checkMobileDevice({
     valueSetter: setIsMobileDevice,
   })
 }
@@ -67,7 +67,7 @@ function uploadedDidChange({
 
 function mediaSourceDidChange({
   mediaSource, setDataURL, setCroppie, setCroppedDataURL, fileInputRef,
-  startVideo,
+  startVideo, isMobileDevice,
 }) {
   if (!mediaSource) {
     setDataURL(null)
@@ -152,7 +152,7 @@ export default ({storageRef, croppieConfig}) => {
     verifyFile, setIsWebcamAvailable, setIsMobileDevice,
   }), [])
   React.useEffect(mediaSourceDidChange.bind(null, {
-    mediaSource, setDataURL, setCroppie, setCroppedDataURL,
+    mediaSource, setDataURL, setCroppie, setCroppedDataURL, isMobileDevice,
     startVideo, fileInputRef,
   }), [mediaSource])
   React.useEffect(dataURLDidChange.bind(null, {
