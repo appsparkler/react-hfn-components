@@ -14,9 +14,11 @@ function checkWebcamAvailability({setIsWebcamAvailable}) {
     valueSetter: setIsWebcamAvailable,
   })
 }
+
 function checkForMobileDevice({setIsMobileDevice}) {
   isMobileDevice({valueSetter: setIsMobileDevice})
 }
+
 function componentDidMount({
   verifyFile, setIsWebcamAvailable, setIsMobileDevice,
 }) {
@@ -59,14 +61,16 @@ function uploadedDidChange({
 
 function mediaSourceDidChange({
   mediaSource, setDataURL, setCroppie, setCroppedDataURL, fileInputRef,
-  startVideo,
+  startVideo, isMobileDevice,
 }) {
   if (!mediaSource) {
     setDataURL(null)
     setCroppie(null)
     setCroppedDataURL(null)
-  } else if (mediaSource === 'webcam') {
+  } else if (mediaSource === 'webcam' && !isMobileDevice) {
     startVideo()
+  } else if (mediaSource==='webcam' && isMobileDevice) {
+    fileInputRef.current.click()
   } else if (mediaSource === 'file') {
     fileInputRef.current.click()
   }
@@ -143,7 +147,7 @@ export default ({storageRef, croppieConfig}) => {
   }), [])
   React.useEffect(mediaSourceDidChange.bind(null, {
     mediaSource, setDataURL, setCroppie, setCroppedDataURL,
-    startVideo, fileInputRef,
+    startVideo, fileInputRef, isMobileDevice,
   }), [mediaSource])
   React.useEffect(dataURLDidChange.bind(null, {
     setupCroppie, croppie, dataURL,

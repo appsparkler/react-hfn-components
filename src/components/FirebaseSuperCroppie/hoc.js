@@ -20,7 +20,7 @@ const FirebaseSuperCroppie = ({
   handleFileInputChange, dataURL,
   croppieRef, croppedDataURL,
   handleUploadButtonClick, isUploading, progress, uploaded,
-  webcamRef, clickPhoto,
+  webcamRef, clickPhoto, isMobileDevice,
   imgIsLoading, handleLoad, isWebcamAvailable, fileInputRef,
 }) => (
   <Stack
@@ -32,6 +32,8 @@ const FirebaseSuperCroppie = ({
     <Layer>
       {!isWebcamAvailable && 'Webcam is unavailable'}
       {isWebcamAvailable && 'Webcam is available'}
+      {isMobileDevice && ',Is Mobile Device'}
+      {!isMobileDevice && ',Not a Mobile Device'}
     </Layer>
     <ProfilePhoto
       imgIsLoading={imgIsLoading}
@@ -44,18 +46,22 @@ const FirebaseSuperCroppie = ({
       mediaSource={mediaSource}
       handleMediaSourceChange={handleMediaSourceChange}
     />
-    {mediaSource === 'webcam' && isWebcamAvailable && (
+    {mediaSource === 'webcam' && !isMobileDevice && (
       <WebcamVideo
         onClick={clickPhoto}
         webcamRef={webcamRef}
       />
     )}
-    {mediaSource === 'webcam' && !isWebcamAvailable && (
-      <input
-        type="file"
+    {mediaSource === 'webcam' && isMobileDevice && (
+      <FileInput
+        file={file}
+        fileInputRef={fileInputRef}
+        handleFileInputChange={handleFileInputChange}
+        isUploading={isUploading}
+        isVerifying={isVerifying}
+        imgIsLoading={imgIsLoading}
         capture="camera"
         accept="image/*"
-        onChange={handleFileInputChange}
       />
     )}
     {mediaSource === 'file' && (
@@ -105,6 +111,8 @@ FirebaseSuperCroppie.propTypes = {
   fileInputRef: PropTypes.shape({
     current: PropTypes.any,
   }),
+
+  isMobileDevice: PropTypes.bool,
 }
 
 export default FirebaseSuperCroppie

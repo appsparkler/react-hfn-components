@@ -4,8 +4,7 @@ export default async function checkForWebcam({valueSetter}) {
         .mediaDevices.getUserMedia({
           video: true, audio: false,
         })
-    alert(userMedia.id)
-    valueSetter(true)
+    if (userMedia) valueSetter(true)
   } catch (e) {
     valueSetter(false)
     alert(typeof userMedia)
