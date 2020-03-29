@@ -56,6 +56,7 @@ const FirebaseSuperCroppie = ({
         isVerifying={isVerifying}
         imgIsLoading={imgIsLoading}
         accept="image/*;capture=camera"
+        text="Use Webcam"
       />
     )}
     {mediaSource === 'file' && (
@@ -66,6 +67,7 @@ const FirebaseSuperCroppie = ({
         isUploading={isUploading}
         isVerifying={isVerifying}
         imgIsLoading={imgIsLoading}
+        text={file ? 'Edit Photo': 'Select Photo'}
       />
     )}
     {mediaSource && <CroppieStack
