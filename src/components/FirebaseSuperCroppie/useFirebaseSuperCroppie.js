@@ -15,8 +15,12 @@ function checkWebcamAvailability({setIsWebcamAvailable}) {
   })
 }
 
-function checkForMobileDevice({setIsMobileDevice}) {
-  isMobileDevice({valueSetter: setIsMobileDevice})
+function checkForMobileDevice({
+  setIsMobileDevice,
+}) {
+  isMobileDevice({
+    valueSetter: setIsMobileDevice,
+  })
 }
 
 function componentDidMount({
@@ -27,7 +31,9 @@ function componentDidMount({
   checkForMobileDevice({setIsMobileDevice})
 }
 
-function croppieDidChange({croppie, dataURL}) {
+function croppieDidChange({
+  croppie, dataURL,
+}) {
   if (!dataURL) return
   croppie.bind({
     url: dataURL,
@@ -67,8 +73,10 @@ function mediaSourceDidChange({
     setDataURL(null)
     setCroppie(null)
     setCroppedDataURL(null)
-  } else if (mediaSource === 'webcam') {
+  } else if (mediaSource === 'webcam' && !isMobileDevice) {
     startVideo()
+  } else if (mediaSource === 'webcam' && isMobileDevice) {
+    fileInputRef.current.click()
   } else if (mediaSource === 'file') {
     fileInputRef.current.click()
   }
