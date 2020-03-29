@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-// import MediaSourceForm from './MediaSourceForm'
+import MediaSourceForm from './MediaSourceForm'
 // import UploadButton from './UploadButton'
 // import FileInputButton from '@react-hfn-hoc/FileInputButton'
 // import PreviewModal from '@react-hfn-components/PreviewModal'
@@ -35,6 +35,10 @@ const FirebaseSuperCroppie = ({
       onLoad={handleLoad}
       file={file}
     />
+    <Stack.Item
+      align="end">
+      <MediaSourceForm />
+    </Stack.Item>
   </Stack>
 )
 

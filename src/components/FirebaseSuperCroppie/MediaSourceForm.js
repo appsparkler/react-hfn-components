@@ -9,17 +9,13 @@ const options = [
 ]
 
 const MediaSourceForm = ({disabled, mediaSource, handleMediaSourceChange}) => (
-  <form>
-    <div className="form-check form-check-inline">
-      <ChoiceGroup
-        disabled={disabled}
-        label="Choose Source"
-        options={options}
-        selectedKey={mediaSource}
-        onChange={handleMediaSourceChange}
-      />
-    </div>
-  </form>
+  <ChoiceGroup
+    disabled={disabled}
+    label="Choose Source"
+    options={options}
+    selectedKey={mediaSource}
+    onChange={handleMediaSourceChange}
+  />
 )
 
 MediaSourceForm.propTypes = {
