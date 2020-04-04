@@ -6,12 +6,34 @@ import useUploadButton from '@react-hfn-hooks/useUploadButton'
 import useWebcamInput from '@react-hfn-hooks/useWebcamInput'
 import useFileInput from '@react-hfn-hooks/useFileInput'
 import useFileToDataURL from '@react-hfn-hooks/useFileToDataURL'
+import checkForWebcam from '@react-hfn-utils/checkForWebcam'
+import checkMobileDevice from '@react-hfn-utils/checkMobileDevice'
 
-function componentDidMount({verifyFile}) {
-  verifyFile()
+function checkWebcamAvailability({setIsWebcamAvailable}) {
+  checkForWebcam({
+    valueSetter: setIsWebcamAvailable,
+  })
 }
 
-function croppieDidChange({croppie, dataURL}) {
+function checkForMobileDevice({
+  setIsMobileDevice,
+}) {
+  checkMobileDevice({
+    valueSetter: setIsMobileDevice,
+  })
+}
+
+function componentDidMount({
+  verifyFile, setIsWebcamAvailable, setIsMobileDevice,
+}) {
+  verifyFile()
+  checkWebcamAvailability({setIsWebcamAvailable})
+  checkForMobileDevice({setIsMobileDevice})
+}
+
+function croppieDidChange({
+  croppie, dataURL,
+}) {
   if (!dataURL) return
   croppie.bind({
     url: dataURL,
@@ -44,15 +66,19 @@ function uploadedDidChange({
 }
 
 function mediaSourceDidChange({
-  mediaSource, setDataURL, setCroppie, setCroppedDataURL,
-  startVideo,
+  mediaSource, setDataURL, setCroppie, setCroppedDataURL, fileInputRef,
+  startVideo, isMobileDevice,
 }) {
   if (!mediaSource) {
     setDataURL(null)
     setCroppie(null)
     setCroppedDataURL(null)
-  } else if (mediaSource === 'webcam') {
+  } else if (mediaSource === 'webcam' && !isMobileDevice) {
     startVideo()
+  } else if (mediaSource === 'webcam' && isMobileDevice) {
+    fileInputRef.current.click()
+  } else if (mediaSource === 'file') {
+    fileInputRef.current.click()
   }
 }
 
@@ -89,9 +115,13 @@ export default ({storageRef, croppieConfig}) => {
   const [uploaded, setUploaded] = React.useState(false)
   const [progress, setProgress] = React.useState(0)
   const [selectedFile, setSelectedFile] = React.useState(null)
+  const [isWebcamAvailable, setIsWebcamAvailable] = React.useState(false)
+  const [isMobileDevice, setIsMobileDevice] =
+  React.useState(false)
   //
   const croppieRef = React.useRef()
   const webcamRef = React.useRef()
+  const fileInputRef = React.useRef()
   //
   const {verifyFile} = useFileFromStorageRef({
     setFile, setIsVerifying, storageRef,
@@ -119,11 +149,11 @@ export default ({storageRef, croppieConfig}) => {
       {setDataURL, selectedFile},
   ), [selectedFile])
   React.useEffect(componentDidMount.bind(null, {
-    verifyFile,
+    verifyFile, setIsWebcamAvailable, setIsMobileDevice,
   }), [])
   React.useEffect(mediaSourceDidChange.bind(null, {
-    mediaSource, setDataURL, setCroppie, setCroppedDataURL,
-    startVideo,
+    mediaSource, setDataURL, setCroppie, setCroppedDataURL, isMobileDevice,
+    startVideo, fileInputRef,
   }), [mediaSource])
   React.useEffect(dataURLDidChange.bind(null, {
     setupCroppie, croppie, dataURL,
@@ -148,6 +178,8 @@ export default ({storageRef, croppieConfig}) => {
     handleUploadButtonClick, isUploading, progress, uploaded,
     resetMediaSource,
     imgIsLoading,
+    isWebcamAvailable, isMobileDevice,
+    fileInputRef,
 
     handleLoad: handleLoad.bind(null, {file, setImgIsLoading}),
   }

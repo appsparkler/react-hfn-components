@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {
   DefaultButton, Modal, Image, ImageFit, IconButton,
+  Stack,
   getTheme, mergeStyleSets,
 } from 'office-ui-fabric-react'
 
@@ -18,13 +19,14 @@ const iconButtonStyles = mergeStyleSets({
 })
 
 const HOCPreviewModal = ({
-  imgSrc, openModal, closeModal, isOpen,
+  imgSrc, openModal, closeModal, isOpen, disabled,
 }) => (
-  <div>
+  <Stack.Item>
     <DefaultButton
       secondary
       text="Preview"
       onClick={openModal}
+      disabled={disabled}
     />
     <Modal
       isOpen={isOpen}
@@ -36,13 +38,16 @@ const HOCPreviewModal = ({
           onClick={closeModal}
         />
       </div>
-      <Image
-        src={imgSrc}
-        imageFit={ImageFit.contain}
-        height={300}
-      />
+      <Stack horizontalAlign="center" padding={20}>
+        <Image
+          src={imgSrc}
+          imageFit={ImageFit.contain}
+          height={180}
+          width={180}
+        />
+      </Stack>
     </Modal>
-  </div>
+  </Stack.Item>
 )
 
 HOCPreviewModal.propTypes = {
@@ -50,6 +55,7 @@ HOCPreviewModal.propTypes = {
   openModal: PropTypes.func.isRequired,
   isOpen: PropTypes.bool.isRequired,
   closeModal: PropTypes.func.isRequired,
+  disabled: PropTypes.bool,
 }
 
 export default HOCPreviewModal

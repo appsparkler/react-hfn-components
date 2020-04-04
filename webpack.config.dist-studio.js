@@ -18,6 +18,7 @@ module.exports = {
     new CleanWebpackPlugin(),
     new webpack.DefinePlugin({
       'process.env': JSON.stringify(process.env),
+      // 'process.env': JSON.stringify(dotenv.config().parsed),
     }),
     new HTMLPlugin({
       template: resolve('studio/index.ejs'),

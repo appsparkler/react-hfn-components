@@ -1,11 +1,11 @@
 import React from 'react'
-import FirebaseFileInput from '@react-hfn-components/FirebaseFileInput'
+import FirebaseSuperCroppie from '@react-hfn-components/FirebaseSuperCroppie'
 import config from './config'
 import './styles'
 
 const StudioApp = () => {
   return (
-    <FirebaseFileInput {...config} />
+    <FirebaseSuperCroppie storageRef={config.storageRef} />
   )
 }
 

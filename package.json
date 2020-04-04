@@ -1,6 +1,6 @@
 {
   "name": "@appsparkler/react-hfn-components",
-  "version": "0.0.32",
+  "version": "0.0.44",
   "license": "MIT",
   "main": "./dist/react-hfn-components.min.js",
   "files": [
@@ -80,6 +80,7 @@
     "webpack-dev-server": "^3.10.2"
   },
   "dependencies": {
-    "croppie": "^2.6.4"
+    "croppie": "^2.6.4",
+    "express": "^4.17.1"
   }
 }
