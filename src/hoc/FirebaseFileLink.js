@@ -20,7 +20,8 @@ const FirebaseFileLink = ({
             overflow: 'hidden',
             whiteSpace: 'nowrap',
             textOverflow: 'ellipsis',
-            outline: '1px blue solid',
+            display: 'inline-block',
+            textAlign: 'center',
           }}
         >
           {file.fileName}
