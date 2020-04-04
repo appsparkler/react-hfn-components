@@ -13,15 +13,15 @@ const FirebaseFileLink = ({
 }) => (
   <Stack maxWidth={200} maxHeight={50}>
     <Stack.Item>
-      {!isUploading && file && (
+      {!isUploading && !isVerifying && file && (
         <Link href={file.downloadURL}
           style={{
-            width: '200px',
+            maxWidth: '150px',
             overflow: 'hidden',
             whiteSpace: 'nowrap',
             textOverflow: 'ellipsis',
             display: 'inline-block',
-            textAlign: 'center',
+            textAlign: 'right',
           }}
         >
           {file.fileName}

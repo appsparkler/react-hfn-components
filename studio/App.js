@@ -1,11 +1,11 @@
 import React from 'react'
-import FirebaseFileLink from '@react-hfn-components/FirebaseFileLink'
+import FirebaseFileInput from '@react-hfn-components/FirebaseFileInput'
 import config from './config'
 import './styles'
 
 const StudioApp = () => {
   return (
-    <FirebaseFileLink {...config} />
+    <FirebaseFileInput {...config} />
   )
 }
 

@@ -4,7 +4,6 @@ import FirebaseFileLink from '@react-hfn-hoc/FirebaseFileLink'
 import {
   Stack,
   ProgressIndicator,
-  MessageBar,
 } from 'office-ui-fabric-react'
 import FileInputButton from '@react-hfn-hoc/FileInputButton'
 
@@ -19,31 +18,22 @@ const FirebaseFileInput = ({
   firebaseFile,
   btnText,
 }) => (
-  <Stack horizontal tokens={{padding: 20}}>
-    <div className="ms-Grid-col ms-sm12">
-      <div className="ms-Grid-col ms-sm6 ms-md6 ms-lg4">
-        {firebaseFile &&
-          <FirebaseFileLink
-            isVerifying={isVerifying}
-            isUploading={isUploading}
-            file={firebaseFile}
-          />
-        }
-        {!firebaseFile && <MessageBar>
-          No file uploaded.
-        </MessageBar>}
-      </div>
-      <div className="ms-Grid-col ms-sm6 ms-md6 ms-lg4">
-        <FileInputButton
-          disabled={isVerifying || isUploading}
-          primary={!!firebaseFile}
-          secondary={!firebaseFile}
-          onChange={handleFileInputChange}
-          text={btnText}
-        />
-        {isUploading && <ProgressIndicator percentComplete={(progress/100)} />}
-      </div>
-    </div>
+  <Stack horizontal wrap horizontalAlign="center" gap="10">
+    <FirebaseFileLink
+      isVerifying={isVerifying}
+      isUploading={isUploading}
+      file={firebaseFile}
+    />
+    <Stack.Item align="end">
+      <FileInputButton
+        disabled={isVerifying || isUploading}
+        primary={!!firebaseFile}
+        secondary={!firebaseFile}
+        onChange={handleFileInputChange}
+        text={btnText}
+      />
+      {isUploading && <ProgressIndicator percentComplete={(progress/100)} />}
+    </Stack.Item>
   </Stack>
 )
 
