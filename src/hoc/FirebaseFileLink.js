@@ -8,26 +8,34 @@ import {
   MessageBar,
 } from 'office-ui-fabric-react'
 
-const FirebaseFileLink = ({file, isVerifying, isUploading}) => (
-  <Stack>
-    {isUploading && (
-      <div>
+const FirebaseFileLink = ({
+  file, isVerifying, isUploading,
+}) => (
+  <Stack maxWidth={200} maxHeight={50}>
+    <Stack.Item>
+      {!isUploading && file && (
+        <Link href={file.downloadURL}
+          style={{
+            width: '200px',
+            overflow: 'hidden',
+            whiteSpace: 'nowrap',
+            textOverflow: 'ellipsis',
+            outline: '1px blue solid',
+          }}
+        >
+          {file.fileName}
+        </Link>
+      )}
+      {isUploading && (
         <Spinner label="Uploading..." size={SpinnerSize.large} />
-      </div>)
-    }
-    {isVerifying && (
-      <div>
-        <Spinner label="Verifying..." size={SpinnerSize.large} />
-      </div>)
-    }
-    {file && !isVerifying && !isUploading && file.downloadURL && (
-      <div>
-        <Link href={file.downloadURL}>{file.fileName}</Link>
-      </div>
-    )}
-    {!file && !isVerifying && !isUploading && (
-      <MessageBar>File not uploaded...</MessageBar>
-    )}
+      )}
+      {isVerifying && (
+        <Spinner label="Verifying..." size={SpinnerSize.large} />)
+      }
+      {!file && !isVerifying && !isUploading && (
+        <MessageBar>File not uploaded...</MessageBar>
+      )}
+    </Stack.Item>
   </Stack>
 )
 
