@@ -24,7 +24,7 @@ const FirebaseFileInput = ({
       isUploading={isUploading}
       file={firebaseFile}
     />
-    <Stack.Item align="end">
+    <Stack.Item>
       <FileInputButton
         disabled={isVerifying || isUploading}
         primary={!!firebaseFile}
