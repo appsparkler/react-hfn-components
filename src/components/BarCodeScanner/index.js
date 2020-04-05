@@ -7,20 +7,31 @@ import Video from './Video'
 import CameraChoiceGroup from './CameraChoiceGroup'
 import ScanButton from './ScanButton'
 import ConfirmationLayer from './ConfirmationLayer'
+import useBarCodeScanner from './useBarCodeScanner'
 
-const BarCodeScanner = ({storageRef}) => (
-  <Stack
-    align="center"
-    tokens={{
-      childrenGap: 20, padding: 10,
-    }}
-  >
-    <Video />
-    <CameraChoiceGroup />
-    <ScanButton />
-    <ConfirmationLayer />
-  </Stack>
-)
+const BarCodeScanner = ({storageRef}) => {
+  const {browser, devices} = useBarCodeScanner()
+  return (
+    <Stack
+      align="center"
+      tokens={{
+        childrenGap: 20, padding: 10,
+      }}
+    >
+      <Video />
+      <CameraChoiceGroup
+        options={devices}
+      />
+      <ScanButton />
+      <ConfirmationLayer />
+      <Stack.Item>
+        <code>devices: {devices && JSON.stringify(devices)}</code>
+        <br />
+        <code>browser: {browser}</code>
+      </Stack.Item>
+    </Stack>
+  )
+}
 
 BarCodeScanner.propTypes = {
   storageRef: PropTypes.object.isRequired,
