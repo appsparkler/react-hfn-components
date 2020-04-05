@@ -5,8 +5,8 @@ import {Stack} from 'office-ui-fabric-react'
 const Video = ({videoRef}) => (
   <Stack.Item align="center">
     <div style={{
-      width: '300px', height: '300px',
-      outline: '1px blue solid',
+      width: '300px', height: '200px',
+      outline: '1px lightGray solid',
       display: 'flex',
       justifyContent: 'center',
       flexDirection: 'column',

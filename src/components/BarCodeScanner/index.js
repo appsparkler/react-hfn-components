@@ -12,7 +12,7 @@ const BarCodeScanner = () => {
   const {
     browser, devices, videoRef,
     startScan, selectedDeviceKey, stopScan,
-    scanResult,
+    scanResult, saveResult, resetResult,
   } = useBarCodeScanner()
   return (
     <Stack
@@ -29,7 +29,13 @@ const BarCodeScanner = () => {
       <ScanButton onStartButtonClick={startScan}
         onStopButtonClick={stopScan}
       />
-      <ConfirmationLayer />
+      {scanResult && (
+        <ConfirmationLayer
+          result={scanResult}
+          saveResult={saveResult}
+          resetResult={resetResult}
+        />
+      )}
       <Stack.Item>
         <code>scanResult: {scanResult && JSON.stringify(scanResult)}</code>
         <br />

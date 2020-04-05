@@ -72,5 +72,7 @@ export default () => {
     stopScan: stopScanning.bind(null, {codeReader}),
     selectedDeviceKey,
     scanResult,
+    saveResult: () => setScanResult(null),
+    resetResult: () => setScanResult(null),
   }
 }
