@@ -27,7 +27,7 @@
     "docs-clean": "rimraf docs",
     "docs-build": "jsdoc -c ./jsdoc.config.js -r -d ./docs",
     "docs-serve": "yarn docs-clean; yarn docs-build; yarn serve docs",
-    "heroku-postbuild": "yarn webpack --config webpack.config.dist-studio.js"
+    "heroku-postbuild": "storybook-build"
   },
   "peerDependencies": {
     "prop-types": "^15.7.2",
