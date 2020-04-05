@@ -7,6 +7,7 @@ const CameraChoiceGroup = ({options}) => (
     <ChoiceGroup
       label="Select Camera"
       options={options}
+      selectedKey={options.length && options[0].key}
     />
   </Stack.Item>
 )
