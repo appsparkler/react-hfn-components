@@ -1,31 +1,37 @@
-import * as ZXing from '@zxing/library'
+import * as ZXing from '@zxing/library/umd/index.min'
 import adapter from 'webrtc-adapter'
 
+export const stopScanning = ({codeReader}) => {
+  codeReader.reset()
+}
 
-export const startScanning = ({video, selectedDeviceKey}) => {
-  const codeReader = new ZXing.BrowserMultiFormatReader()
+export const getCodeReader = () => {
+  return new ZXing.BrowserMultiFormatReader()
+}
+
+export const handleScanError = (err) => {
+  if (err && !(err instanceof ZXing.NotFoundException)) {
+    console.error(err)
+    // document.getElementById('result').textContent = err
+  }
+}
+
+export const startScanning = ({
+  video, selectedDeviceKey, handleResult, codeReader,
+}) => {
   codeReader
       .decodeFromVideoDevice(
           selectedDeviceKey,
           video,
-          (result, err) => {
-            if (result) {
-              console.log(result)
-              document.getElementById('result').textContent = result.text
-            }
-            if (err && !(err instanceof ZXing.NotFoundException)) {
-              console.error(err)
-              document.getElementById('result').textContent = err
-            }
-          })
+          handleResult,
+      )
 
   console.log(`S
   tarted continous decode from camera with id ${selectedDeviceKey}`)
 }
 
-export const getVideoInputDevices = async () => {
+export const getVideoInputDevices = async (codeReader) => {
   try {
-    const codeReader = new ZXing.BrowserMultiFormatReader()
     const videoInputDevices = await codeReader.getVideoInputDevices()
     return videoInputDevices
   } catch (e) {

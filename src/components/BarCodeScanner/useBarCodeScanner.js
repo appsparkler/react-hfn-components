@@ -4,6 +4,9 @@ import {
   getBrowser,
   getVideoInputDevices,
   startScanning,
+  handleScanError,
+  getCodeReader,
+  stopScanning,
 } from './utils'
 
 function handleVideoInputDevices({
@@ -17,11 +20,14 @@ function handleVideoInputDevices({
 }
 
 function componentDidMount({
-  setDevices, setBrowser, setSelectedDevice}) {
+  setDevices, setBrowser, setSelectedDevice,
+  codeReader,
+}) {
   setBrowser(getBrowser())
-  getVideoInputDevices().then(handleVideoInputDevices.bind(null, {
-    setDevices, setSelectedDevice,
-  }))
+  getVideoInputDevices(codeReader)
+      .then(handleVideoInputDevices.bind(null, {
+        setDevices, setSelectedDevice,
+      }))
 }
 
 function devicesDidChange({setSelectedDeviceKey, devices}) {
@@ -29,11 +35,16 @@ function devicesDidChange({setSelectedDeviceKey, devices}) {
   setSelectedDeviceKey(devices[0].key)
 }
 
-// function startScan(evt) {
-//   startScanning()
-// }
+function handleScanResult(result, err) {
+  if (result) {
+    debugger
+  } else if (err) {
+    handleScanError(err)
+  }
+}
 
 export default () => {
+  const codeReader = getCodeReader()
   const [devices, setDevices] = React.useState([])
   const [browser, setBrowser] = React.useState('')
   const [selectedDeviceKey, setSelectedDeviceKey] = React.useState(undefined)
@@ -41,7 +52,7 @@ export default () => {
   const videoRef = React.useRef()
   //
   React.useEffect(componentDidMount.bind(null, {
-    setDevices, setBrowser,
+    setDevices, setBrowser, codeReader,
   }), [])
   React.useEffect(devicesDidChange.bind(null, {
     setSelectedDeviceKey, devices,
@@ -52,9 +63,12 @@ export default () => {
     browser,
     videoRef,
     startScan: startScanning.bind(null, {
+      codeReader,
       video: videoRef.current,
       selectedDeviceKey,
+      handleResult: handleScanResult,
     }),
+    stopScan: stopScanning.bind(null, {codeReader}),
     selectedDeviceKey,
   }
 }

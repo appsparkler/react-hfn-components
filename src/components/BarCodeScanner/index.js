@@ -11,7 +11,7 @@ import useBarCodeScanner from './useBarCodeScanner'
 const BarCodeScanner = () => {
   const {
     browser, devices, videoRef,
-    startScan, selectedDeviceKey,
+    startScan, selectedDeviceKey, stopScan,
   } = useBarCodeScanner()
   return (
     <Stack
@@ -26,6 +26,7 @@ const BarCodeScanner = () => {
         selectedKey={selectedDeviceKey}
       />
       <ScanButton onClick={startScan}/>
+      <ScanButton onClick={stopScan} />
       <ConfirmationLayer />
       <Stack.Item>
         <code>devices: {devices && JSON.stringify(devices)}</code>
