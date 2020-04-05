@@ -12,6 +12,7 @@ const BarCodeScanner = () => {
   const {
     browser, devices, videoRef,
     startScan, selectedDeviceKey, stopScan,
+    scanResult,
   } = useBarCodeScanner()
   return (
     <Stack
@@ -30,6 +31,8 @@ const BarCodeScanner = () => {
       />
       <ConfirmationLayer />
       <Stack.Item>
+        <code>scanResult: {scanResult && JSON.stringify(scanResult)}</code>
+        <br />
         <code>devices: {devices && JSON.stringify(devices)}</code>
         <br />
         <code>browser: {browser}</code>

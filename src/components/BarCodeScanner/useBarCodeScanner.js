@@ -35,9 +35,9 @@ function devicesDidChange({setSelectedDeviceKey, devices}) {
   setSelectedDeviceKey(devices[0].key)
 }
 
-function handleScanResult(result, err) {
+function handleScanResult({setScanResult}, result, err) {
   if (result) {
-    debugger
+    setScanResult(result)
   } else if (err) {
     handleScanError(err)
   }
@@ -48,6 +48,7 @@ export default () => {
   const [devices, setDevices] = React.useState([])
   const [browser, setBrowser] = React.useState('')
   const [selectedDeviceKey, setSelectedDeviceKey] = React.useState(undefined)
+  const [scanResult, setScanResult] = React.useState(null)
   //
   const videoRef = React.useRef()
   //
@@ -66,9 +67,10 @@ export default () => {
       codeReader,
       video: videoRef.current,
       selectedDeviceKey,
-      handleResult: handleScanResult,
+      handleResult: handleScanResult.bind(null, {setScanResult}),
     }),
     stopScan: stopScanning.bind(null, {codeReader}),
     selectedDeviceKey,
+    scanResult,
   }
 }
