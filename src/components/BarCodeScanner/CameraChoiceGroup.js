@@ -14,7 +14,7 @@ const CameraChoiceGroup = ({options, selectedKey}) => (
 
 CameraChoiceGroup.propTypes = {
   options: PropTypes.array,
-  selectedKey: PropTypes.object,
+  selectedKey: PropTypes.string,
 }
 
 export default CameraChoiceGroup

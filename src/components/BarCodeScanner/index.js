@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import {
   Stack,
 } from 'office-ui-fabric-react'
@@ -9,7 +8,7 @@ import ScanButton from './ScanButton'
 import ConfirmationLayer from './ConfirmationLayer'
 import useBarCodeScanner from './useBarCodeScanner'
 
-const BarCodeScanner = ({storageRef}) => {
+const BarCodeScanner = () => {
   const {
     browser, devices, videoRef,
     startScan, selectedDeviceKey,
@@ -39,10 +38,6 @@ const BarCodeScanner = ({storageRef}) => {
       </Stack.Item>
     </Stack>
   )
-}
-
-BarCodeScanner.propTypes = {
-  storageRef: PropTypes.object.isRequired,
 }
 
 export default BarCodeScanner

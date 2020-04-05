@@ -24,7 +24,7 @@ const Video = ({videoRef}) => (
 
 Video.propTypes = {
   videoRef: PropTypes.shape({
-    current: PropTypes.any.isRequired,
+    current: PropTypes.any,
   }),
 }
 

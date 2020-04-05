@@ -3,6 +3,7 @@ import React from 'react'
 import {
   getBrowser,
   getVideoInputDevices,
+  startScanning,
 } from './utils'
 
 function handleVideoInputDevices({
@@ -28,8 +29,9 @@ function devicesDidChange({setSelectedDeviceKey, devices}) {
   setSelectedDeviceKey(devices[0].key)
 }
 
-function startScan(evt) {
-}
+// function startScan(evt) {
+//   startScanning()
+// }
 
 export default () => {
   const [devices, setDevices] = React.useState([])
@@ -49,7 +51,10 @@ export default () => {
     devices,
     browser,
     videoRef,
-    startScan,
+    startScan: startScanning.bind(null, {
+      video: videoRef.current,
+      selectedDeviceKey,
+    }),
     selectedDeviceKey,
   }
 }

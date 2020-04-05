@@ -2,22 +2,25 @@ import * as ZXing from '@zxing/library'
 import adapter from 'webrtc-adapter'
 
 
-export const startScanning = () => {
-  // const codeReader = new ZXing.BrowserMultiFormatReader()
-  // codeReader
-  // .decodeFromVideoDevice(selectedDeviceId, 'video', (result, err) => {
-  //             if (result) {
-  //               console.log(result)
-  //               document.getElementById('result').textContent = result.text
-  //             }
-  //             if (err && !(err instanceof ZXing.NotFoundException)) {
-  //               console.error(err)
-  //               document.getElementById('result').textContent = err
-  //             }
-  //           })
-  //
-  // console.log(`S
-  // tarted continous decode from camera with id ${selectedDeviceId}`)
+export const startScanning = ({video, selectedDeviceKey}) => {
+  const codeReader = new ZXing.BrowserMultiFormatReader()
+  codeReader
+      .decodeFromVideoDevice(
+          selectedDeviceKey,
+          video,
+          (result, err) => {
+            if (result) {
+              console.log(result)
+              document.getElementById('result').textContent = result.text
+            }
+            if (err && !(err instanceof ZXing.NotFoundException)) {
+              console.error(err)
+              document.getElementById('result').textContent = err
+            }
+          })
+
+  console.log(`S
+  tarted continous decode from camera with id ${selectedDeviceKey}`)
 }
 
 export const getVideoInputDevices = async () => {
