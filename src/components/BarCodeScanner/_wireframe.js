@@ -2,6 +2,9 @@ import React from 'react'
 import {
   Stack,
   DefaultButton,
+  ChoiceGroup,
+  MessageBar, MessageBarType, MessageBarButton,
+  Layer,
 } from 'office-ui-fabric-react'
 
 const BarCodeScannerWireframe = ({}) => (
@@ -24,11 +27,32 @@ const BarCodeScannerWireframe = ({}) => (
       </div>
     </Stack.Item>
     <Stack.Item align="center">
+      <ChoiceGroup
+        label="Select Camera"
+        options={[{key: 'A', text: 'Option A'},
+          {key: 'B', text: 'Option B'}]}
+      />
+    </Stack.Item>
+    <Stack.Item align="center">
       <DefaultButton
         secondary
         text="Start Scanning"
       />
     </Stack.Item>
+    <Layer>
+      <MessageBar
+        actions={
+          <div>
+            <MessageBarButton>Yes</MessageBarButton>
+            <MessageBarButton>No</MessageBarButton>
+          </div>
+        }
+        messageBarType={MessageBarType.success}
+        isMultiline={false}
+      >
+          Scanned Output: INAAAE478
+      </MessageBar>
+    </Layer>
   </Stack>
 )
 
