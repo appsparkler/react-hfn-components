@@ -1,4 +1,3 @@
-const {resolve} = require('path')
 const {DefinePlugin} = require('webpack')
 const dotenv = require('dotenv')
 
@@ -8,12 +7,5 @@ module.exports = {
       ...dotenv.config().parse,
     }),
   ],
-  resolve: {
-    modules: [
-      resolve('node_modules'),
-    ],
-    alias: {
-      '@components': resolve('src/components'),
-    },
-  },
+  resolve: require('./.webpack-config/resolve/storybook'),
 }

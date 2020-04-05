@@ -80,7 +80,9 @@
     "webpack-dev-server": "^3.10.2"
   },
   "dependencies": {
+    "@zxing/library": "^0.16.0",
     "croppie": "^2.6.4",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "webrtc-adapter": "^7.5.1"
   }
 }
