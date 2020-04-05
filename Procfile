@@ -1,1 +1,1 @@
-web: serve storybook-static
+web: node index.js
