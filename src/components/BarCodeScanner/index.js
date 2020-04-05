@@ -25,8 +25,9 @@ const BarCodeScanner = () => {
         options={devices}
         selectedKey={selectedDeviceKey}
       />
-      <ScanButton onClick={startScan}/>
-      <ScanButton onClick={stopScan} />
+      <ScanButton onStartButtonClick={startScan}
+        onStopButtonClick={stopScan}
+      />
       <ConfirmationLayer />
       <Stack.Item>
         <code>devices: {devices && JSON.stringify(devices)}</code>

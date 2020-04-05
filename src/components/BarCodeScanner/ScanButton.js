@@ -4,18 +4,26 @@ import {
   Stack, DefaultButton,
 } from 'office-ui-fabric-react'
 
-const ScanButton = ({onClick}) => (
+const ScanButton = ({onStartButtonClick, onStopButtonClick}) => (
   <Stack.Item align="center">
-    <DefaultButton
-      secondary
-      text="Start Scanning"
-      onClick={onClick}
-    />
+    <Stack horizontal tokens={{childrenGap: 10}}>
+      <DefaultButton
+        primary
+        text="Start Scanning"
+        onClick={onStartButtonClick}
+      />
+      <DefaultButton
+        secondary
+        text="Stop/Reset"
+        onClick={onStopButtonClick}
+      />
+    </Stack>
   </Stack.Item>
 )
 
 ScanButton.propTypes = {
-  onClick: PropTypes.func.isRequired,
+  onStartButtonClick: PropTypes.func.isRequired,
+  onStopButtonClick: PropTypes.func.isRequired,
 }
 
 export default ScanButton
