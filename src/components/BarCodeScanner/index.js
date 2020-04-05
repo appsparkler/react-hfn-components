@@ -10,7 +10,7 @@ import useBarCodeScanner from './useBarCodeScanner'
 
 const BarCodeScanner = () => {
   const {
-    browser, devices, videoRef,
+    devices, videoRef,
     startScan, selectedDeviceKey, stopScan,
     scanResult, saveResult, resetResult,
   } = useBarCodeScanner()
@@ -36,17 +36,6 @@ const BarCodeScanner = () => {
           resetResult={resetResult}
         />
       )}
-      <Stack.Item>
-        <code>scanResult: {scanResult && JSON.stringify(scanResult)}</code>
-        <br />
-        <code>devices: {devices && JSON.stringify(devices)}</code>
-        <br />
-        <code>browser: {browser}</code>
-        <br />
-        <code>selectedDeviceKey :
-          {selectedDeviceKey && JSON.stringify(selectedDeviceKey)}
-        </code>
-      </Stack.Item>
     </Stack>
   )
 }

@@ -17,6 +17,7 @@
   },
   "scripts": {
     "storybook": "start-storybook",
+    "build-storybook": "build-storybook",
     "start": "webpack-dev-server --config webpack.config.studio.js",
     "build": "webpack -p --config webpack.config.dist.js; bundlesize",
     "lint": "eslint src",
