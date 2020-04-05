@@ -10,7 +10,10 @@ import ConfirmationLayer from './ConfirmationLayer'
 import useBarCodeScanner from './useBarCodeScanner'
 
 const BarCodeScanner = ({storageRef}) => {
-  const {browser, devices} = useBarCodeScanner()
+  const {
+    browser, devices, videoRef,
+    startScan, selectedDeviceKey,
+  } = useBarCodeScanner()
   return (
     <Stack
       align="center"
@@ -18,16 +21,21 @@ const BarCodeScanner = ({storageRef}) => {
         childrenGap: 20, padding: 10,
       }}
     >
-      <Video />
+      <Video videoRef={videoRef}/>
       <CameraChoiceGroup
         options={devices}
+        selectedKey={selectedDeviceKey}
       />
-      <ScanButton />
+      <ScanButton onClick={startScan}/>
       <ConfirmationLayer />
       <Stack.Item>
         <code>devices: {devices && JSON.stringify(devices)}</code>
         <br />
         <code>browser: {browser}</code>
+        <br />
+        <code>selectedDeviceKey :
+          {selectedDeviceKey && JSON.stringify(selectedDeviceKey)}
+        </code>
       </Stack.Item>
     </Stack>
   )

@@ -2,18 +2,19 @@ import React from 'react'
 import {Stack, ChoiceGroup} from 'office-ui-fabric-react'
 import PropTypes from 'prop-types'
 
-const CameraChoiceGroup = ({options}) => (
+const CameraChoiceGroup = ({options, selectedKey}) => (
   <Stack.Item align="center">
     <ChoiceGroup
       label="Select Camera"
       options={options}
-      selectedKey={options.length && options[0].key}
+      selectedKey={selectedKey}
     />
   </Stack.Item>
 )
 
 CameraChoiceGroup.propTypes = {
-  options: PropTypes.object.isRequired,
+  options: PropTypes.array,
+  selectedKey: PropTypes.object,
 }
 
 export default CameraChoiceGroup
