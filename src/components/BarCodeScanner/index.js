@@ -7,12 +7,15 @@ import CameraChoiceGroup from './CameraChoiceGroup'
 import ScanButton from './ScanButton'
 import ConfirmationLayer from './ConfirmationLayer'
 import useBarCodeScanner from './useBarCodeScanner'
+//
+import DevLogs from './_dev-logs'
 
 const BarCodeScanner = () => {
   const {
     devices, videoRef,
     startScan, selectedDeviceKey, stopScan,
     scanResult, saveResult, resetResult,
+    handleDeviceChange,
   } = useBarCodeScanner()
   return (
     <Stack
@@ -25,6 +28,7 @@ const BarCodeScanner = () => {
       <CameraChoiceGroup
         options={devices}
         selectedKey={selectedDeviceKey}
+        onChange={handleDeviceChange}
       />
       <ScanButton onStartButtonClick={startScan}
         onStopButtonClick={stopScan}
@@ -36,6 +40,11 @@ const BarCodeScanner = () => {
           resetResult={resetResult}
         />
       )}
+      <DevLogs
+        scanResult={scanResult}
+        devices={devices}
+        selectedDeviceKey={selectedDeviceKey}
+      />
     </Stack>
   )
 }
