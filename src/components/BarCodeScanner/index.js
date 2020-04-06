@@ -7,6 +7,8 @@ import CameraChoiceGroup from './CameraChoiceGroup'
 import ScanButton from './ScanButton'
 import ConfirmationLayer from './ConfirmationLayer'
 import useBarCodeScanner from './useBarCodeScanner'
+//
+import DevLogs from './_dev-logs'
 
 const BarCodeScanner = () => {
   const {
@@ -36,6 +38,11 @@ const BarCodeScanner = () => {
           resetResult={resetResult}
         />
       )}
+      <DevLogs
+        scanResult={scanResult}
+        devices={devices}
+        selectedDeviceKey={selectedDeviceKey}
+      />
     </Stack>
   )
 }
