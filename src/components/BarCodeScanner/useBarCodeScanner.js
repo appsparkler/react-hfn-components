@@ -74,5 +74,8 @@ export default () => {
     scanResult,
     saveResult: () => setScanResult(null),
     resetResult: () => setScanResult(null),
+    handleDeviceChange: (evt, selectedOption) => {
+      setSelectedDeviceKey(selectedOption.key)
+    },
   }
 }

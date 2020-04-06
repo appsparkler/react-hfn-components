@@ -15,6 +15,7 @@ const BarCodeScanner = () => {
     devices, videoRef,
     startScan, selectedDeviceKey, stopScan,
     scanResult, saveResult, resetResult,
+    handleDeviceChange,
   } = useBarCodeScanner()
   return (
     <Stack
@@ -27,6 +28,7 @@ const BarCodeScanner = () => {
       <CameraChoiceGroup
         options={devices}
         selectedKey={selectedDeviceKey}
+        onChange={handleDeviceChange}
       />
       <ScanButton onStartButtonClick={startScan}
         onStopButtonClick={stopScan}

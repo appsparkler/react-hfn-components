@@ -19,7 +19,7 @@ const DevLogs = ({
 
 DevLogs.propTypes = {
   scanResult: PropTypes.object,
-  devices: PropTypes.object,
+  devices: PropTypes.array,
   browser: PropTypes.string,
   selectedDeviceKey: PropTypes.string,
 }
