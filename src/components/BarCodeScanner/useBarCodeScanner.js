@@ -43,6 +43,10 @@ function handleScanResult({setScanResult}, result, err) {
   }
 }
 
+function handleDeviceChange({setSelectedDeviceKey}, evt, selectedOption) {
+  setSelectedDeviceKey(selectedOption.key)
+}
+
 export default () => {
   const codeReader = getCodeReader()
   const [devices, setDevices] = React.useState([])
@@ -74,8 +78,6 @@ export default () => {
     scanResult,
     saveResult: () => setScanResult(null),
     resetResult: () => setScanResult(null),
-    handleDeviceChange: (evt, selectedOption) => {
-      setSelectedDeviceKey(selectedOption.key)
-    },
+    handleDeviceChange: handleDeviceChange.bind(null, {setSelectedDeviceKey}),
   }
 }
