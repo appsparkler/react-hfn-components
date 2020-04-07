@@ -19,16 +19,18 @@
     "storybook": "start-storybook",
     "build-storybook": "build-storybook",
     "serve-storybook": "serve storybook-static",
+    "serve-studio": "serve dist-studio",
     "start": "webpack-dev-server --config webpack.config.studio.js",
     "build": "webpack -p --config webpack.config.dist.js; bundlesize",
     "lint": "eslint src",
     "test": "jest test",
     "bundlesize": "bundlesize",
+    "build-studio": "webpack --config webpack.config.dist-studio.js",
     "build:publish": "yarn build; yarn publish",
     "docs-clean": "rimraf docs",
     "docs-build": "jsdoc -c ./jsdoc.config.js -r -d ./docs",
     "docs-serve": "yarn docs-clean; yarn docs-build; yarn serve docs",
-    "heroku-postbuild": "npm i -g serve; build-storybook"
+    "heroku-postbuild": "npm i -g serve; build-studio"
   },
   "peerDependencies": {
     "prop-types": "^15.7.2",

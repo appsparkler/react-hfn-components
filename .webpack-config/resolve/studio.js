@@ -13,5 +13,7 @@ module.exports = {
     modules: [
       resolve('node_modules'),
       resolve('./'),
+      resolve('studio'),
+      resolve('src')
     ],
   }

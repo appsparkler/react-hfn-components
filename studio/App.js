@@ -1,5 +1,5 @@
 import React from 'react'
-import BarCodeScanner from '@react-hfn-components/BarCodeScanner'
+import BarCodeScanner from '../src/components/BarCodeScanner'
 
 export const StudioApp = () => {
   return (
