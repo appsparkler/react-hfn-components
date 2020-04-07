@@ -1,11 +1,9 @@
 import React from 'react'
-import FirebaseFileInput from '@react-hfn-components/FirebaseFileInput'
-import config from './config'
-import './styles'
+import BarCodeScanner from '@react-hfn-components/BarCodeScanner'
 
-const StudioApp = () => {
+export const StudioApp = () => {
   return (
-    <FirebaseFileInput {...config} />
+    <BarCodeScanner />
   )
 }
 
