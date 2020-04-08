@@ -56,13 +56,19 @@ const BarCodeScannerWireframe = ({}) => (
     <Modal isOpen={true}>
       <Stack horizontal horizontalAlign="space-between">
         <Stack.Item align="center">
-          <h1 style={{padding: '10px'}}>Results</h1>
+          <h4 style={{padding: '10px'}}>Results</h4>
         </Stack.Item>
         <Stack.Item align="center" >
           <IconButton
             iconProps={{iconName: 'Cancel'}}
             ariaLabel="Close popup modal"
           />
+        </Stack.Item>
+      </Stack>
+
+      <Stack horizontal horizontalAlign="center">
+        <Stack.Item align="center">
+          <pre>INAAAE478</pre>
         </Stack.Item>
       </Stack>
 
