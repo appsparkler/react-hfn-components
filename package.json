@@ -18,7 +18,7 @@
   "scripts": {
     "storybook": "start-storybook",
     "build-storybook": "build-storybook",
-    "serve-storybook": "serve storybook-static",
+    "serve-storybook": "yarn build-storybook; serve storybook-static",
     "serve-studio": "serve dist-studio",
     "start": "webpack-dev-server --config webpack.config.studio.js",
     "build": "webpack -p --config webpack.config.dist.js; bundlesize",
@@ -30,7 +30,8 @@
     "docs-clean": "rimraf docs",
     "docs-build": "jsdoc -c ./jsdoc.config.js -r -d ./docs",
     "docs-serve": "yarn docs-clean; yarn docs-build; yarn serve docs",
-    "heroku-postbuild": "npm i -g serve; yarn build-studio"
+    "i-g-serve": "npm i -g serve",
+    "heroku-postbuild": "yarn i-g-serve"
   },
   "peerDependencies": {
     "prop-types": "^15.7.2",
