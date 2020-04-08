@@ -3,8 +3,8 @@ import {
   Stack,
   DefaultButton,
   ChoiceGroup,
-  MessageBar, MessageBarType, MessageBarButton,
-  Layer,
+  // MessageBar, MessageBarType, MessageBarButton,Layer,
+  Modal, IconButton,
 } from 'office-ui-fabric-react'
 
 const BarCodeScannerWireframe = ({}) => (
@@ -39,7 +39,7 @@ const BarCodeScannerWireframe = ({}) => (
         text="Start Scanning"
       />
     </Stack.Item>
-    <Layer>
+    {/* <Layer>
       <MessageBar
         actions={
           <div>
@@ -52,7 +52,21 @@ const BarCodeScannerWireframe = ({}) => (
       >
           Scanned Output: INAAAE478
       </MessageBar>
-    </Layer>
+    </Layer>*/}
+    <Modal isOpen={true}>
+      <Stack horizontal horizontalAlign="space-between">
+        <Stack.Item align="center">
+          <h1 style={{padding: '10px'}}>Results</h1>
+        </Stack.Item>
+        <Stack.Item align="center" >
+          <IconButton
+            iconProps={{iconName: 'Cancel'}}
+            ariaLabel="Close popup modal"
+          />
+        </Stack.Item>
+      </Stack>
+
+    </Modal>
   </Stack>
 )
 
