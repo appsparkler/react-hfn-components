@@ -1,7 +1,6 @@
 import React from 'react'
 
 import {
-  getBrowser,
   getVideoInputDevices,
   startScanning,
   handleScanError,
@@ -23,7 +22,6 @@ function componentDidMount({
   setDevices, setBrowser, setSelectedDevice,
   codeReader,
 }) {
-  setBrowser(getBrowser())
   getVideoInputDevices(codeReader)
       .then(handleVideoInputDevices.bind(null, {
         setDevices, setSelectedDevice,
@@ -62,7 +60,7 @@ export default () => {
   React.useEffect(devicesDidChange.bind(null, {
     setSelectedDeviceKey, devices,
   }), [devices])
-
+  //
   return {
     devices,
     browser,
