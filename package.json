@@ -1,6 +1,6 @@
 {
   "name": "@appsparkler/react-hfn-components",
-  "version": "0.0.57",
+  "version": "0.0.58",
   "license": "MIT",
   "main": "./dist/react-hfn-components.min.js",
   "files": [
@@ -31,7 +31,7 @@
     "docs-build": "jsdoc -c ./jsdoc.config.js -r -d ./docs",
     "docs-serve": "yarn docs-clean; yarn docs-build; yarn serve docs",
     "i-g-serve": "npm i -g serve",
-    "heroku-postbuild": "yarn i-g-serve; yarn build-storybook"
+    "heroku-postbuild": "yarn i-g-serve; yarn build-storybook; yarn build-studio"
   },
   "peerDependencies": {
     "prop-types": "^15.7.2",
