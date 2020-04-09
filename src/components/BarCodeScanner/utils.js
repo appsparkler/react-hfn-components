@@ -1,4 +1,4 @@
-import * as ZXing from '@zxing/library/umd/index.min'
+import * as ZXing from '@zxing/library/esm'
 
 export const stopScanning = ({codeReader}) => {
   codeReader.reset()
