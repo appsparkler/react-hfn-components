@@ -20,7 +20,7 @@ function handleVideoInputDevices({
 }
 
 function componentDidMount({
-  setDevices, setBrowser, setSelectedDevice,
+  setDevices, setSelectedDevice,
   codeReader,
 }) {
   getVideoInputDevices(codeReader)
@@ -53,7 +53,6 @@ function handleDeviceChange({setSelectedDeviceKey}, evt, selectedOption) {
 export default () => {
   const codeReader = getCodeReader()
   const [devices, setDevices] = React.useState([])
-  const [browser, setBrowser] = React.useState('')
   const [selectedDeviceKey, setSelectedDeviceKey] = React.useState(undefined)
   const [scanResult, setScanResult] = React.useState(null)
   const [isModalOpen, setIsModalOpen] = React.useState(false)
@@ -61,7 +60,7 @@ export default () => {
   const videoRef = React.useRef()
   //
   React.useEffect(componentDidMount.bind(null, {
-    setDevices, setBrowser, codeReader,
+    setDevices, codeReader,
   }), [])
   React.useEffect(devicesDidChange.bind(null, {
     setSelectedDeviceKey, devices,
@@ -69,7 +68,6 @@ export default () => {
   //
   return {
     devices,
-    browser,
     videoRef,
     isModalOpen,
     selectedDeviceKey,
