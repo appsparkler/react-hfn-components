@@ -5,7 +5,7 @@ import useTheAwesomeBarCodeScanner from './useTheAwesomeBarCodeScanner'
 const MyBarCodeScanner = ({}) => {
   const {
     videoRef,
-    setDevice,
+    selectedDevice, setDevice,
     startScan, stopScan,
     scanResult,
   } = useTheAwesomeBarCodeScanner()
@@ -27,8 +27,12 @@ const MyBarCodeScanner = ({}) => {
       />
       <button
         onClick={startScan}
-      >Start Scanning</button>
+        disabled={!selectedDevice}
+      >
+        Start Scanning
+      </button>
       <button
+        disabled={!selectedDevice}
         onClick={stopScan}>
           Stop Scanning
       </button>
