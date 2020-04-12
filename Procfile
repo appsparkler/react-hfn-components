@@ -1,1 +1,1 @@
-web: yarn serve-studio
+web: yarn serve-storybook
