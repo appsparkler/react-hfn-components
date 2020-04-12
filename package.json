@@ -16,7 +16,7 @@
     "src/**/*.js": "eslint --fix"
   },
   "scripts": {
-    "storybook": "start-storybook",
+    "storybook": "start-storybook -p 8080",
     "build-storybook": "build-storybook",
     "serve-storybook": "serve storybook-static",
     "serve-studio": "serve dist-studio",
