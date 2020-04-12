@@ -35,9 +35,10 @@ function devicesDidChange({setSelectedDeviceKey, devices}) {
 }
 
 function handleScanResult({
-  setScanResult, setIsModalOpen,
+  setScanResult, setIsModalOpen, codeReader,
 }, result, err) {
   if (result) {
+    stopScanning({codeReader})
     setScanResult(result)
     setIsModalOpen(true)
   } else if (err) {
@@ -78,7 +79,7 @@ export default () => {
       video: videoRef.current,
       selectedDeviceKey,
       handleResult: handleScanResult.bind(null, {
-        setScanResult, setIsModalOpen,
+        setScanResult, setIsModalOpen, codeReader,
       }),
     }),
     stopScan: stopScanning.bind(null, {codeReader}),
