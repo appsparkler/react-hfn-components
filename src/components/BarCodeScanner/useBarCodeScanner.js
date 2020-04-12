@@ -1,5 +1,8 @@
 import React from 'react'
 
+// TODO - stop-scanning when selected-device is changed
+// TODO - rename onScan to onNewCodeDetected
+
 import {
   getVideoInputDevices,
   startScanning,
