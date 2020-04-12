@@ -1,6 +1,6 @@
 {
   "name": "@appsparkler/react-hfn-components",
-  "version": "0.0.55",
+  "version": "0.0.64",
   "license": "MIT",
   "main": "./dist/react-hfn-components.min.js",
   "files": [
@@ -18,7 +18,7 @@
   "scripts": {
     "storybook": "start-storybook",
     "build-storybook": "build-storybook",
-    "serve-storybook": "yarn build-storybook; serve storybook-static",
+    "serve-storybook": "serve storybook-static",
     "serve-studio": "serve dist-studio",
     "start": "webpack-dev-server --config webpack.config.studio.js",
     "build": "webpack -p --config webpack.config.dist.js; bundlesize",
@@ -31,7 +31,7 @@
     "docs-build": "jsdoc -c ./jsdoc.config.js -r -d ./docs",
     "docs-serve": "yarn docs-clean; yarn docs-build; yarn serve docs",
     "i-g-serve": "npm i -g serve",
-    "heroku-postbuild": "yarn i-g-serve"
+    "heroku-postbuild": "yarn i-g-serve; yarn build-storybook"
   },
   "peerDependencies": {
     "prop-types": "^15.7.2",

@@ -1,5 +1,4 @@
-import * as ZXing from '@zxing/library/umd/index.min'
-import adapter from 'webrtc-adapter'
+import * as ZXing from '@zxing/library/esm'
 
 export const stopScanning = ({codeReader}) => {
   codeReader.reset()
@@ -39,11 +38,6 @@ export const getVideoInputDevices = async (codeReader) => {
   } finally {
 
   }
-}
-
-export const getBrowser = () => {
-  const browser = adapter.browserDetails.browser
-  return browser
 }
 
 //

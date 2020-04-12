@@ -15,7 +15,8 @@ module.exports = {
       'process.env': JSON.stringify(dotenv.config().parsed),
     }),
     new HTMLPlugin({
-      template: resolve('studio/index.ejs'),
+      // template: resolve('studio/index.ejs'),
+      template: resolve('studio/index.html'),
     }),
   ],
   devServer: {
