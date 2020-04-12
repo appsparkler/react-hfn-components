@@ -13,8 +13,8 @@ const Video = ({videoRef}) => (
       textAlign: 'center',
     }}>
       <video
-        height="300"
-        width="300"
+        height="200"
+        width="200"
         ref={videoRef}
       >
       </video>
