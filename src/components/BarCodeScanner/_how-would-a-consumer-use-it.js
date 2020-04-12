@@ -5,7 +5,7 @@ import useTheAwesomeBarCodeScanner from './useTheAwesomeBarCodeScanner'
 const MyBarCodeScanner = ({}) => {
   const {
     videoRef,
-    selectedDevice, setDevice,
+    devices, selectedDevice, setDevice,
     startScan, stopScan,
     scanResult,
   } = useTheAwesomeBarCodeScanner()
@@ -15,16 +15,19 @@ const MyBarCodeScanner = ({}) => {
   return (
     <div className="MyBarCodeScanner">
       <video ref={videoRef} height="300" width="300" />
-      <input
-        type="radio"
-        name="videoDevice"
-        onChange={setDevice}
-      />
-      <input
-        type="radio"
-        name="videoDevice"
-        onChange={setDevice}
-      />
+      {
+        devices.map((device) => {
+          return ((
+            <input
+              key={device.key}
+              type="radio"
+              name="videoDevice"
+              onChange={setDevice}
+              value={device}
+            />
+          ))
+        })
+      }
       <button
         onClick={startScan}
         disabled={!selectedDevice}
@@ -43,5 +46,6 @@ const MyBarCodeScanner = ({}) => {
 
 MyBarCodeScanner.propTypes = {
 }
+
 
 export default MyBarCodeScanner
