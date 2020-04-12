@@ -5,7 +5,8 @@ import {
 import Video from './Video'
 import CameraChoiceGroup from './CameraChoiceGroup'
 import ScanButton from './ScanButton'
-import ConfirmationLayer from './ConfirmationLayer'
+// import ConfirmationLayer from './ConfirmationLayer'
+import ResultModal from './ResultModal'
 import useBarCodeScanner from './useBarCodeScanner'
 //
 import DevLogs from './_dev-logs'
@@ -14,7 +15,8 @@ const BarCodeScanner = () => {
   const {
     devices, videoRef,
     startScan, selectedDeviceKey, stopScan,
-    scanResult, saveResult, resetResult,
+    scanResult, /* saveResult, resetResult,*/
+    closeModal, isModalOpen,
     handleDeviceChange,
   } = useBarCodeScanner()
   return (
@@ -33,11 +35,18 @@ const BarCodeScanner = () => {
       <ScanButton onStartButtonClick={startScan}
         onStopButtonClick={stopScan}
       />
-      {scanResult && (
+      {/* scanResult && (
         <ConfirmationLayer
           result={scanResult}
           saveResult={saveResult}
           resetResult={resetResult}
+        />
+      )*/}
+      {scanResult && (
+        <ResultModal
+          isOpen={isModalOpen}
+          content={scanResult.text}
+          closeModal={closeModal}
         />
       )}
       <DevLogs

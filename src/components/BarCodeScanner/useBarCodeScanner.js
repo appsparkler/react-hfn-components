@@ -9,7 +9,8 @@ import {
 } from './utils'
 
 function handleVideoInputDevices({
-  setDevices, setSelectedDevice}, videoInputDevices,
+  setDevices, setSelectedDevice,
+}, videoInputDevices,
 ) {
   setDevices(
       videoInputDevices.map((device) => ({
@@ -33,9 +34,12 @@ function devicesDidChange({setSelectedDeviceKey, devices}) {
   setSelectedDeviceKey(devices[0].key)
 }
 
-function handleScanResult({setScanResult}, result, err) {
+function handleScanResult({
+  setScanResult, setIsModalOpen,
+}, result, err) {
   if (result) {
     setScanResult(result)
+    setIsModalOpen(true)
   } else if (err) {
     handleScanError(err)
   }
@@ -51,6 +55,7 @@ export default () => {
   const [browser, setBrowser] = React.useState('')
   const [selectedDeviceKey, setSelectedDeviceKey] = React.useState(undefined)
   const [scanResult, setScanResult] = React.useState(null)
+  const [isModalOpen, setIsModalOpen] = React.useState(false)
   //
   const videoRef = React.useRef()
   //
@@ -65,17 +70,21 @@ export default () => {
     devices,
     browser,
     videoRef,
+    isModalOpen,
+    selectedDeviceKey,
+    scanResult,
     startScan: startScanning.bind(null, {
       codeReader,
       video: videoRef.current,
       selectedDeviceKey,
-      handleResult: handleScanResult.bind(null, {setScanResult}),
+      handleResult: handleScanResult.bind(null, {
+        setScanResult, setIsModalOpen,
+      }),
     }),
     stopScan: stopScanning.bind(null, {codeReader}),
-    selectedDeviceKey,
-    scanResult,
     saveResult: () => setScanResult(null),
     resetResult: () => setScanResult(null),
     handleDeviceChange: handleDeviceChange.bind(null, {setSelectedDeviceKey}),
+    closeModal: () => setIsModalOpen(false),
   }
 }
