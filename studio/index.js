@@ -11,11 +11,11 @@
 // if (module.hot) {
 //   module.hot.accept()
 // }
-/*
 import * as ZXing from '@zxing/library'
 
+
 window.addEventListener('load', function() {
-  let selectedDeviceId
+  let selectedDeviceId = ''
   const codeReader = new ZXing.BrowserMultiFormatReader()
   console.log('ZXing code reader initialized')
   codeReader.getVideoInputDevices()
@@ -38,42 +38,34 @@ window.addEventListener('load', function() {
           sourceSelectPanel.style.display = 'block'
         }
 
-        document.getElementById('startButton').addEventListener(
-            'click',
-            () => {
-              codeReader
-                  .decodeFromVideoDevice(
-                      selectedDeviceId, 'video',
-                      (result, err) => {
-                        if (result) {
-                          console.log(result)
-                          document
-                              .getElementById('result')
-                              .textContent = result.text
-                        }
-                        if (err && !(err instanceof ZXing.NotFoundException)) {
-                          console.error(err)
-                          document.getElementById('result').textContent = err
-                        }
-                      })
-              console
-                  .log(`Started continous
-                decode from camera with id ${selectedDeviceId}`,
-                  )
-            },
-        )
+        document.getElementById('startButton').addEventListener('click', () => {
+          codeReader
+              .decodeFromVideoDevice(
+                  selectedDeviceId, 'video', (result, err) => {
+                    if (result) {
+                      console.log(result)
+                      document
+                          .getElementById('result').textContent = result.text
+                    }
+                    if (err && !(err instanceof ZXing.NotFoundException)) {
+                      console.error(err)
+                      document.getElementById('result').textContent = err
+                    }
+                  })
+          console
+              .log(
+                  `Started continous
+                  decode from camera with id ${selectedDeviceId}`,
+              )
+        })
 
-        document.getElementById('resetButton').addEventListener(
-            'click',
-            () => {
-              codeReader.reset()
-              document.getElementById('result').textContent = ''
-              console.log('Reset.')
-            },
-        )
+        document.getElementById('resetButton').addEventListener('click', () => {
+          codeReader.reset()
+          document.getElementById('result').textContent = ''
+          console.log('Reset.')
+        })
       })
       .catch((err) => {
         console.error(err)
       })
 })
-*/
