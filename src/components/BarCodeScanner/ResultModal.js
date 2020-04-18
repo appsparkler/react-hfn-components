@@ -24,7 +24,7 @@ const ResultModal = ({isOpen, content, closeModal}) => (
           <TextField
             label="Result"
             multiline rows={3}
-            defaultValue={content}
+            value={content}
           />
         </div>
       </Stack.Item>

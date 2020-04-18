@@ -8,16 +8,18 @@ const DevLogs = ({
     <pre>
       {devices.length && <TextField
         label="Devices"
-        defaultValue={JSON.stringify(devices)}
+        autoAdjustHeight
+        value={JSON.stringify(devices)}
       />}
       {selectedDeviceKey && <TextField
         label="Selected Device"
-        defaultValue={JSON.stringify(selectedDeviceKey)}
+        autoAdjustHeight
+        value={JSON.stringify(selectedDeviceKey)}
       />}
       {scanResult && <TextField
         label="Scan Result"
         multiline autoAdjustHeight
-        defaultValue={JSON.stringify(scanResult)}
+        value={JSON.stringify(scanResult)}
       />}
     </pre>
   </Stack.Item>
