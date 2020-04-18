@@ -1,6 +1,6 @@
 {
   "name": "@appsparkler/react-hfn-components",
-  "version": "0.0.70",
+  "version": "0.0.71",
   "license": "MIT",
   "main": "./dist/react-hfn-components.min.js",
   "files": [
