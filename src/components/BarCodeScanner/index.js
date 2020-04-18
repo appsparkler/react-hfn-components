@@ -9,6 +9,7 @@ import ScanButton from './ScanButton'
 // import ConfirmationLayer from './ConfirmationLayer'
 import ResultModal from './ResultModal'
 import useBarCodeScanner from './useBarCodeScanner'
+import useBarCodeScannerUI from './useBarCodeScannerUI'
 //
 import DevLogs from './_dev-logs'
 
@@ -17,9 +18,9 @@ const BarCodeScanner = ({onNewCodeDetected}) => {
     devices, videoRef,
     startScan, selectedDeviceKey, stopScan,
     scanResult, /* saveResult, resetResult,*/
-    closeModal, isModalOpen,
     handleDeviceChange,
   } = useBarCodeScanner({onNewCodeDetected})
+  const {isModalOpen, closeModal} = useBarCodeScannerUI({scanResult})
   return (
     <Stack
       align="center"
@@ -36,13 +37,6 @@ const BarCodeScanner = ({onNewCodeDetected}) => {
       <ScanButton onStartButtonClick={startScan}
         onStopButtonClick={stopScan}
       />
-      {/* scanResult && (
-        <ConfirmationLayer
-          result={scanResult}
-          saveResult={saveResult}
-          resetResult={resetResult}
-        />
-      )*/}
       {scanResult && (
         <ResultModal
           isOpen={isModalOpen}
