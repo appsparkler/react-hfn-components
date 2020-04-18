@@ -11,7 +11,7 @@ const DevLogs = ({
         defaultValue={JSON.stringify(devices)}
       />}
       {selectedDeviceKey && <TextField
-        label="Devices"
+        label="Selected Device"
         defaultValue={JSON.stringify(selectedDeviceKey)}
       />}
       {scanResult && <TextField
