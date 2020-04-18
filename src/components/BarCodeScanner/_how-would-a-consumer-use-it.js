@@ -12,9 +12,6 @@ const MyBarCodeScanner = ({onNewCodeDetected}) => {
     stopScan, // a method to stop the scan
     scanResult, // the scan-result
   } = useTheAwesomeBarCodeScanner({onNewCodeDetected})
-  React.useEffect(() => {
-    // will be triggered whenever scan-result changes
-  }, [scanResult])
   return (
     <div className="MyBarCodeScanner">
       <video ref={videoRef} height="300" width="300" />
