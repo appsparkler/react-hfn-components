@@ -79,5 +79,6 @@ module.exports = {
       commonjs: 'croppie',
       amd: 'croppie',
     },
+    '@zxing/library/esm': '@zxing/library/esm',
   },
 }
