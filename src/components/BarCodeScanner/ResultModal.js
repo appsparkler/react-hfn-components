@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {
   Modal, IconButton, Stack,
+  TextField,
 } from 'office-ui-fabric-react'
 
 const ResultModal = ({isOpen, content, closeModal}) => (
@@ -22,8 +23,12 @@ const ResultModal = ({isOpen, content, closeModal}) => (
     </Stack>
 
     <Stack horizontal horizontalAlign="center">
-      <Stack.Item align="center">
-        <pre>{content}</pre>
+      <Stack.Item>
+        <TextField
+          label="Result"
+          multiline rows={3}
+          defaultValue={content}
+        />
       </Stack.Item>
     </Stack>
 

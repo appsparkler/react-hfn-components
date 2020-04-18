@@ -1,18 +1,24 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {Stack} from 'office-ui-fabric-react'
+import {Stack, TextField} from 'office-ui-fabric-react'
 
 const DevLogs = ({
   scanResult, devices, selectedDeviceKey}) => (
   <Stack.Item>
     <pre>
-      <code>scanResult: {scanResult && JSON.stringify(scanResult)}</code>
-      <br />
-      <code>devices: {devices && JSON.stringify(devices)}</code>
-      <br />
-      <code>selectedDeviceKey :
-        {selectedDeviceKey && JSON.stringify(selectedDeviceKey)}
-      </code>
+      {devices.length && <TextField
+        label="Devices"
+        defaultValue={JSON.stringify(devices)}
+      />}
+      {selectedDeviceKey && <TextField
+        label="Devices"
+        defaultValue={JSON.stringify(selectedDeviceKey)}
+      />}
+      {scanResult && <TextField
+        label="Scan Result"
+        multiline autoAdjustHeight
+        defaultValue={JSON.stringify(scanResult)}
+      />}
     </pre>
   </Stack.Item>
 )
