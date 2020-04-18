@@ -7,13 +7,8 @@ import {
 
 const ResultModal = ({isOpen, content, closeModal}) => (
   <Modal isOpen={isOpen}>
-    <Stack horizontal horizontalAlign="space-between">
-      <Stack.Item align="center">
-        <h4 style={{padding: '10px'}}>
-          Results
-        </h4>
-      </Stack.Item>
-      <Stack.Item align="center" >
+    <Stack horizontal horizontalAlign="end">
+      <Stack.Item>
         <IconButton
           iconProps={{iconName: 'Cancel'}}
           ariaLabel="Close popup modal"
@@ -22,13 +17,16 @@ const ResultModal = ({isOpen, content, closeModal}) => (
       </Stack.Item>
     </Stack>
 
-    <Stack horizontal horizontalAlign="center">
+    <Stack>
       <Stack.Item>
-        <TextField
-          label="Result"
-          multiline rows={3}
-          defaultValue={content}
-        />
+        <div
+          style={{padding: '10px'}}>
+          <TextField
+            label="Result"
+            multiline rows={3}
+            defaultValue={content}
+          />
+        </div>
       </Stack.Item>
     </Stack>
 

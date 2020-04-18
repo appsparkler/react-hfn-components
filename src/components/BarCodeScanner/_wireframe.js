@@ -3,6 +3,7 @@ import {
   Stack,
   DefaultButton,
   ChoiceGroup,
+  TextField,
   // MessageBar, MessageBarType, MessageBarButton,Layer,
   Modal, IconButton,
 } from 'office-ui-fabric-react'
@@ -54,11 +55,8 @@ const BarCodeScannerWireframe = ({}) => (
       </MessageBar>
     </Layer>*/}
     <Modal isOpen={true}>
-      <Stack horizontal horizontalAlign="space-between">
-        <Stack.Item align="center">
-          <h4 style={{padding: '10px'}}>Results</h4>
-        </Stack.Item>
-        <Stack.Item align="center" >
+      <Stack horizontal horizontalAlign="end">
+        <Stack.Item>
           <IconButton
             iconProps={{iconName: 'Cancel'}}
             ariaLabel="Close popup modal"
@@ -66,9 +64,17 @@ const BarCodeScannerWireframe = ({}) => (
         </Stack.Item>
       </Stack>
 
-      <Stack horizontal horizontalAlign="center">
-        <Stack.Item align="center">
-          <pre>INAAAE478</pre>
+      <Stack>
+        <Stack.Item>
+          <div
+            style={{padding: '10px'}}>
+            <TextField
+              label="Result"
+              defaultValue=""
+              multiline={3}
+              autoAdjustHeight
+            />
+          </div>
         </Stack.Item>
       </Stack>
 
