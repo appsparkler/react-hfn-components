@@ -1,24 +1,26 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import {
   Stack,
 } from 'office-ui-fabric-react'
-import Video from './Video'
+import CamVideo from './CamVideo'
 import CameraChoiceGroup from './CameraChoiceGroup'
 import ScanButton from './ScanButton'
 // import ConfirmationLayer from './ConfirmationLayer'
 import ResultModal from './ResultModal'
 import useBarCodeScanner from './useBarCodeScanner'
+import useBarCodeScannerUI from './useBarCodeScannerUI'
 //
 import DevLogs from './_dev-logs'
 
-const BarCodeScanner = () => {
+const BarCodeScanner = ({onNewCodeDetected}) => {
   const {
     devices, videoRef,
     startScan, selectedDeviceKey, stopScan,
     scanResult, /* saveResult, resetResult,*/
-    closeModal, isModalOpen,
     handleDeviceChange,
-  } = useBarCodeScanner()
+  } = useBarCodeScanner({onNewCodeDetected})
+  const {isModalOpen, closeModal} = useBarCodeScannerUI({scanResult})
   return (
     <Stack
       align="center"
@@ -26,7 +28,7 @@ const BarCodeScanner = () => {
         childrenGap: 20, padding: 10,
       }}
     >
-      <Video videoRef={videoRef}/>
+      <CamVideo videoRef={videoRef}/>
       <CameraChoiceGroup
         options={devices}
         selectedKey={selectedDeviceKey}
@@ -35,13 +37,6 @@ const BarCodeScanner = () => {
       <ScanButton onStartButtonClick={startScan}
         onStopButtonClick={stopScan}
       />
-      {/* scanResult && (
-        <ConfirmationLayer
-          result={scanResult}
-          saveResult={saveResult}
-          resetResult={resetResult}
-        />
-      )*/}
       {scanResult && (
         <ResultModal
           isOpen={isModalOpen}
@@ -56,6 +51,14 @@ const BarCodeScanner = () => {
       />
     </Stack>
   )
+}
+
+BarCodeScanner.propTypes = {
+  onNewCodeDetected: PropTypes.func.isRequired,
+}
+
+BarCodeScanner.defaultProps = {
+  onNewCodeDetected: () => {},
 }
 
 export default BarCodeScanner

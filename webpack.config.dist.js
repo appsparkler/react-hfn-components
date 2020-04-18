@@ -46,6 +46,7 @@ module.exports = {
       '@react-hfn-components': resolve('src/components'),
       '@react-hfn-hooks': resolve('src/hooks'),
       '@react-hfn-utils': resolve('src/utils'),
+      '@app': resolve('src'),
     },
     extensions: ['.sass', '.js', '.jsx', '.json'],
     modules: [

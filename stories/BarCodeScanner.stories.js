@@ -13,7 +13,9 @@ export default {
 
 export const Component = () => {
   return (
-    <BarCodeScanner />
+    <BarCodeScanner onNewCodeDetected={(result) => {
+      console.log(result)
+    }} />
   )
 }
 
