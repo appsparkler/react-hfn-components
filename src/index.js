@@ -1,3 +1,3 @@
-export useFirebaseSuperCroppie  from '@react-hfn-components/FirebaseSuperCroppie/useFirebaseSuperCroppie' //eslint-disable-line
-export useFirebaseFileInput from '@react-hfn-components/FirebaseFileInput/useFirebaseFileInput' //eslint-disable-line
-export useFirebaseFileLink from '@react-hfn-components/FirebaseFileLink/useFirebaseFileLink'// eslint-disable-line
+export FirebaseFileInput from './legacy/FirebaseFileInput' // eslint-disable-line
+
+export FirebaseFileLink from './legacy/FirebaseFileLink' //eslint-disable-line
