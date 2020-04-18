@@ -1,23 +1,34 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import {
+  TextField,
+} from 'office-ui-fabric-react'
 import useFirebaseSuperCroppie from './useFirebaseSuperCroppie'
-import FirebaseSuperCroppie from './hoc'
 
-const UseFirebaseSuperCroppie= ({storageRef, croppieConfig}) => {
-  const value = useFirebaseSuperCroppie({storageRef, croppieConfig})
-  return <FirebaseSuperCroppie {...value}/>
+const FirebaseSuperCroppie = ({onUpload}) => {
+  const {
+    browserDetails,
+    videoRef, canvasRef,
+  } = useFirebaseSuperCroppie({onUpload})
+  return (
+    <div>
+      <video ref={videoRef} playsinline autoPlay />
+      <canvas ref={canvasRef} />
+      <TextField
+        multiline
+        autoAdjustHeight
+        value={JSON.stringify(browserDetails)}
+      />
+    </div>
+  )
 }
 
-UseFirebaseSuperCroppie.propTypes = {
-  storageRef: PropTypes.object.isRequired,
-  croppieConfig: PropTypes.object.isRequired,
+FirebaseSuperCroppie.propTypes = {
+  onUpload: PropTypes.func.isRequired,
 }
 
-UseFirebaseSuperCroppie.defaultProps = {
-  croppieConfig: {
-    viewport: {width: 200, height: 200},
-    boundary: {width: 300, height: 300},
-  },
+FirebaseSuperCroppie.defaultProps = {
+  onUpload: () => {},
 }
 
-export default UseFirebaseSuperCroppie
+export default FirebaseSuperCroppie
