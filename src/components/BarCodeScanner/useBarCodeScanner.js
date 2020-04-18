@@ -39,11 +39,13 @@ function devicesDidChange({setSelectedDeviceKey, devices}) {
 
 function handleScanResult({
   setScanResult, setIsModalOpen, codeReader,
+  onNewCodeDetected,
 }, result, err) {
   if (result) {
     stopScanning({codeReader})
     setScanResult(result)
     setIsModalOpen(true)
+    onNewCodeDetected(result)
   } else if (err) {
     handleScanError(err)
   }
@@ -53,7 +55,7 @@ function handleDeviceChange({setSelectedDeviceKey}, evt, selectedOption) {
   setSelectedDeviceKey(selectedOption.key)
 }
 
-export default () => {
+export default ({onNewCodeDetected}) => {
   const codeReader = getCodeReader()
   const [devices, setDevices] = React.useState([])
   const [selectedDeviceKey, setSelectedDeviceKey] = React.useState(undefined)
@@ -81,6 +83,7 @@ export default () => {
       selectedDeviceKey,
       handleResult: handleScanResult.bind(null, {
         setScanResult, setIsModalOpen, codeReader,
+        onNewCodeDetected,
       }),
     }),
     stopScan: stopScanning.bind(null, {codeReader}),

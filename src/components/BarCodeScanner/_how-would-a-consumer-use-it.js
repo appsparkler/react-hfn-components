@@ -1,17 +1,17 @@
 import React from 'react'
-import useTheAwesomeBarCodeScanner from './useTheAwesomeBarCodeScanner'
+import useTheAwesomeBarCodeScanner from '@appsparkler/react-hfn-components'
 // import PropTypes from 'prop-types'
 /*eslint-disable*/
-const MyBarCodeScanner = ({onScan}) => {
+const MyBarCodeScanner = ({onNewCodeDetected}) => {
   const {
     videoRef, // the ref for the video-html-element
     devices, // list of devices to enumarate the input-radio-fields to select a device.
-    selectedDevice, // the selected-recording-device (useful to enable or disable buttons if there are no devices selected)
-    handleChange, // eslint-disable-line This can be passed to the radio-input button which will select the device
+    selectedDevice, // the selected-recording-device
+    handleDeviceChange, // eslint-disable-line This can be passed to the radio-input button which will select the device
     startScan, // a method to start the scan
     stopScan, // a method to stop the scan
     scanResult, // the scan-result
-  } = useTheAwesomeBarCodeScanner({onScan})
+  } = useTheAwesomeBarCodeScanner({onNewCodeDetected})
   React.useEffect(() => {
     // will be triggered whenever scan-result changes
   }, [scanResult])
@@ -48,6 +48,11 @@ const MyBarCodeScanner = ({onScan}) => {
 }
 
 MyBarCodeScanner.propTypes = {
+  onNewCodeDetected: PropTypes.func.isRequired
+}
+
+MyBarCodeScanner.defaultProps = {
+  onNewCodeDetected: () => {}
 }
 
 

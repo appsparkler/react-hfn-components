@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import {
   Stack,
 } from 'office-ui-fabric-react'
@@ -11,14 +12,14 @@ import useBarCodeScanner from './useBarCodeScanner'
 //
 import DevLogs from './_dev-logs'
 
-const BarCodeScanner = () => {
+const BarCodeScanner = ({onNewCodeDetected}) => {
   const {
     devices, videoRef,
     startScan, selectedDeviceKey, stopScan,
     scanResult, /* saveResult, resetResult,*/
     closeModal, isModalOpen,
     handleDeviceChange,
-  } = useBarCodeScanner()
+  } = useBarCodeScanner({onNewCodeDetected})
   return (
     <Stack
       align="center"
@@ -56,6 +57,14 @@ const BarCodeScanner = () => {
       />
     </Stack>
   )
+}
+
+BarCodeScanner.propTypes = {
+  onNewCodeDetected: PropTypes.func.isRequired,
+}
+
+BarCodeScanner.defaultProps = {
+  onNewCodeDetected: () => {},
 }
 
 export default BarCodeScanner
