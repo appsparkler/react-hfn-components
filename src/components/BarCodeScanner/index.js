@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import {
   Stack,
 } from 'office-ui-fabric-react'
-import Video from './Video'
+import CamVideo from './CamVideo'
 import CameraChoiceGroup from './CameraChoiceGroup'
 import ScanButton from './ScanButton'
 // import ConfirmationLayer from './ConfirmationLayer'
@@ -28,7 +28,7 @@ const BarCodeScanner = ({onNewCodeDetected}) => {
         childrenGap: 20, padding: 10,
       }}
     >
-      <Video videoRef={videoRef}/>
+      <CamVideo videoRef={videoRef}/>
       <CameraChoiceGroup
         options={devices}
         selectedKey={selectedDeviceKey}

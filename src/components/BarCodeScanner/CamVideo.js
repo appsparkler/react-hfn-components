@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {Stack} from 'office-ui-fabric-react'
 
-const Video = ({videoRef}) => (
+const CamVideo = ({videoRef}) => (
   <Stack.Item align="center">
     <div style={{
       width: '200px', height: '200px',
@@ -22,10 +22,10 @@ const Video = ({videoRef}) => (
   </Stack.Item>
 )
 
-Video.propTypes = {
+CamVideo.propTypes = {
   videoRef: PropTypes.shape({
     current: PropTypes.any,
   }),
 }
 
-export default Video
+export default CamVideo
