@@ -17,10 +17,10 @@
   },
   "scripts": {
     "storybook": "start-storybook -p 8080",
+    "start": "yarn storybook",
     "build-storybook": "build-storybook",
     "serve-storybook": "serve storybook-static",
     "serve-studio": "serve dist-studio",
-    "start": "webpack-dev-server --config webpack.config.studio.js",
     "build": "webpack -p --config webpack.config.dist.js; bundlesize",
     "lint": "eslint src",
     "test": "jest test",

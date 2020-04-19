@@ -1,25 +1,19 @@
 import * as React from 'react'
-import {Label} from 'office-ui-fabric-react/lib/Label'
 import {
-  Stack,
-  Pivot, PivotItem,
+  Stack, DefaultButton,
+  Pivot, PivotItem, mergeStyleSets,
 } from 'office-ui-fabric-react'
 import ChooseFileButton from './ChooseFileButton'
 
-const labelStyles= {
-  root: {marginTop: 10},
-}
-
 export const UploadPhotoPivots = () => {
   return (
-    <Pivot aria-label="Basic Pivot Example">
+    <Pivot aria-label="Basic Pivot Example" defaultSelectedIndex={1}>
       <PivotItem
         headerText="Upload File"
         headerButtonProps={{
           'data-order': 1,
           'data-title': 'My Files Title',
         }}
-
       >
         <Stack
           vertical
@@ -31,11 +25,26 @@ export const UploadPhotoPivots = () => {
         </Stack>
       </PivotItem>
       <PivotItem headerText="Use Webcam">
-        <Label styles={labelStyles}>Webcam Stream</Label>
-      </PivotItem>
-      <PivotItem headerText="Crop Photo">
-        <Label styles={labelStyles}>Croppie</Label>
+        <Stack horizontalAlign="center" tokens={{
+          childrenGap: 20,
+        }}>
+          <div className={contentStyles.videoPlaceholderStyles}>
+            Video Placeholder
+          </div>
+          <DefaultButton text="Take Snapshot" />
+        </Stack>
       </PivotItem>
     </Pivot>
   )
 }
+
+const contentStyles = mergeStyleSets({
+  videoPlaceholderStyles: {
+    width: '300px',
+    height: '300px',
+    outline: '1px slateBlue solid',
+    textAlign: 'center',
+    paddingTop: '50%',
+    boxSizing: 'border-box',
+  },
+})
