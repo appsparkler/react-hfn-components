@@ -7,7 +7,7 @@ import ChooseFileButton from './ChooseFileButton'
 
 export const UploadPhotoPivots = () => {
   return (
-    <Pivot aria-label="Basic Pivot Example" defaultSelectedIndex={1}>
+    <Pivot aria-label="Basic Pivot Example" defaultSelectedIndex={0}>
       <PivotItem
         headerText="Upload File"
         headerButtonProps={{
@@ -27,11 +27,12 @@ export const UploadPhotoPivots = () => {
       <PivotItem headerText="Use Webcam">
         <Stack horizontalAlign="center" tokens={{
           childrenGap: 20,
+          padding: 10,
         }}>
           <div className={contentStyles.videoPlaceholderStyles}>
-            Video Placeholder
+            Webcam Video Stream Placeholder
           </div>
-          <DefaultButton text="Take Snapshot" />
+          <DefaultButton primary text="Take Snapshot" />
         </Stack>
       </PivotItem>
     </Pivot>
@@ -42,7 +43,7 @@ const contentStyles = mergeStyleSets({
   videoPlaceholderStyles: {
     width: '300px',
     height: '300px',
-    outline: '1px slateBlue solid',
+    outline: '1px slateBlue dashed',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',

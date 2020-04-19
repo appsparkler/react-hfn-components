@@ -9,7 +9,7 @@ const ChooseFileButton = () => {
     <div className={contentStyles.buttonWrapper}>
       <label htmlFor={inputFieldId}
         className={contentStyles.labelStyles}>
-        <DefaultButton text="Choose File" />
+        <DefaultButton primary text="Choose File" />
         <div
           className={contentStyles.defaultButtonStyles}></div>
       </label>

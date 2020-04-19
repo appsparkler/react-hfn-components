@@ -15,7 +15,7 @@ const cancelIcon = {iconName: 'Cancel'}
 export const ModalBasicExample = () => {
   const [
     isModalOpen, {setTrue: showModal, setFalse: hideModal},
-  ] = useBoolean(true)
+  ] = useBoolean(false)
   const titleId = useId('title')
   return (
     <div>
@@ -65,16 +65,6 @@ const contentStyles = mergeStyleSets({
       padding: '12px 12px 14px 24px',
     },
   ],
-  body: {
-    flex: '4 4 auto',
-    padding: '0 24px 24px 24px',
-    overflowY: 'hidden',
-    selectors: {
-      'p': {margin: '14px 0'},
-      'p:first-child': {marginTop: 0},
-      'p:last-child': {marginBottom: 0},
-    },
-  },
 })
 const iconButtonStyles = {
   root: {

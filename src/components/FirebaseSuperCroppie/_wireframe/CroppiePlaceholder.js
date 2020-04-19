@@ -9,7 +9,7 @@ export const CroppiePlaceholder = ({}) => (
       className={contentStyles.croppiePlaceholderStyles}>
       Croppie Placeholder
     </div>
-    <DefaultButton text="Upload Photo" />
+    <DefaultButton primary text="Upload Photo" />
   </Stack>
 )
 
@@ -21,7 +21,7 @@ const contentStyles =mergeStyleSets({
 
   croppiePlaceholderStyles: [
     theme.fonts.medium, {
-      outline: '1px blue solid',
+      outline: '2px blue dashed',
       width: '350px',
       height: '200px',
       display: 'flex',
