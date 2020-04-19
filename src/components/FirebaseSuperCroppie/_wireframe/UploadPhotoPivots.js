@@ -43,8 +43,8 @@ const contentStyles = mergeStyleSets({
     width: '300px',
     height: '300px',
     outline: '1px slateBlue solid',
-    textAlign: 'center',
-    paddingTop: '50%',
-    boxSizing: 'border-box',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 })

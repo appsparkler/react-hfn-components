@@ -4,6 +4,7 @@ import {
 } from 'office-ui-fabric-react'
 import ProfilePhoto from './ProfilePhoto'
 import {ModalBasicExample} from './FabricModal'
+import {CroppiePlaceholder} from './CroppiePlaceholder'
 
 const WireFrame = () => {
   return (
@@ -15,6 +16,7 @@ const WireFrame = () => {
     >
       <ProfilePhoto />
       <ModalBasicExample />
+      <CroppiePlaceholder />
       {/* <Stack.Item align="end">
         <Stack horizontalAlign="center" style={{width: '100vw'}}>
           <video src="https://youtu.be/MLeIBFYY6UY" controls={true}></video>
