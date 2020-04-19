@@ -1,6 +1,9 @@
 import * as React from 'react'
 import {Label} from 'office-ui-fabric-react/lib/Label'
-import {Pivot, PivotItem} from 'office-ui-fabric-react'
+import {
+  Stack,
+  Pivot, PivotItem,
+} from 'office-ui-fabric-react'
 import ChooseFileButton from './ChooseFileButton'
 
 const labelStyles= {
@@ -16,11 +19,22 @@ export const UploadPhotoPivots = () => {
           'data-order': 1,
           'data-title': 'My Files Title',
         }}
+
       >
-        <ChooseFileButton />
+        <Stack
+          vertical
+          verticalAlign="center"
+          horizontalAlign="center"
+          padding={30}
+        >
+          <ChooseFileButton />
+        </Stack>
       </PivotItem>
       <PivotItem headerText="Use Webcam">
-        <Label styles={labelStyles}>Pivot #2</Label>
+        <Label styles={labelStyles}>Webcam Stream</Label>
+      </PivotItem>
+      <PivotItem headerText="Crop Photo">
+        <Label styles={labelStyles}>Croppie</Label>
       </PivotItem>
     </Pivot>
   )

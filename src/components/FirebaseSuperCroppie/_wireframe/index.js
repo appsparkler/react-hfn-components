@@ -15,7 +15,7 @@ const WireFrame = () => {
     >
       <ProfilePhoto />
       <ModalBasicExample />
-      <Stack.Item align="end">
+      {/* <Stack.Item align="end">
         <Stack horizontalAlign="center" style={{width: '100vw'}}>
           <video src="https://youtu.be/MLeIBFYY6UY" controls={true}></video>
         </Stack>
@@ -24,7 +24,7 @@ const WireFrame = () => {
         <Stack horizontalAlign="center" style={{width: '100vw'}}>
           <div>Croppie</div>
         </Stack>
-      </Stack.Item>
+      </Stack.Item>*/}
     </Stack>
   )
 }
