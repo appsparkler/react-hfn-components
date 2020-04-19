@@ -1,4 +1,4 @@
-module.exports = (config) => {
+module.exports = (config, {configType}) => {
   const customWebpackConfig = require('../webpack.config.storybook')
   return {
     ...config,
@@ -13,5 +13,7 @@ module.exports = (config) => {
         ...customWebpackConfig.resolve.modules
       ]
     },
+    mode: 'development',
+    devtool: 'inline-source-map'
   }
 }
