@@ -12,6 +12,9 @@ export const UploadPhotoPivots = (props) => {
     <Pivot aria-label="Basic Pivot Example"
       defaultSelectedIndex={0}
       selectedKey={props.selectedPivotKey}
+      onLinkClick={() => {
+        debugger
+      }}
     >
       <PivotItem
         headerText="Upload File"
@@ -31,7 +34,9 @@ export const UploadPhotoPivots = (props) => {
           />
         </Stack>
       </PivotItem>
-      <PivotItem headerText="Use Webcam">
+      <PivotItem
+        headerText="Use Webcam"
+      >
         <Stack horizontalAlign="center" tokens={{
           childrenGap: 20,
           padding: 10,
