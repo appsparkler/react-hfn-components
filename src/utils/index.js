@@ -1,3 +1,6 @@
+export
+convertFile2DataURL from './convertFileToDataURI' //eslint-disable-line
+
 export function dataURL2Blob(dataURI) {
   // convert base64 to raw binary data held in a string
   // doesn't handle URLEncoded DataURIs -

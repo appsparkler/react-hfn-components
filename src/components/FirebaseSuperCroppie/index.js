@@ -5,8 +5,12 @@ import {
 } from 'office-ui-fabric-react'
 import ProfilePhoto from './ProfilePhoto'
 import PhotoProcessModal from './PhotoProcessModal'
+import useFirebaseSuperCroppie from './useFirebaseSuperCroppie'
+import useEventHandlers from './useEventHandlers'
 
 const FirebaseSuperCroppie = () => {
+  const state = useFirebaseSuperCroppie()
+  const eventHandlers = useEventHandlers({state})
   return (
     <Stack
       horizontalAlign="center"
@@ -14,8 +18,14 @@ const FirebaseSuperCroppie = () => {
       gap="20"
       wrap
     >
-      <ProfilePhoto />
-      <PhotoProcessModal />
+      <ProfilePhoto
+        {...state}
+        {...eventHandlers}
+      />
+      <PhotoProcessModal
+        {...state}
+        {...eventHandlers}
+      />
     </Stack>
   )
 }

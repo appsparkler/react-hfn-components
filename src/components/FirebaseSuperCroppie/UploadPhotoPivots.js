@@ -2,11 +2,12 @@ import * as React from 'react'
 import {
   Stack, DefaultButton,
   Pivot, PivotItem, mergeStyleSets,
-  TextField,
+  Image,
 } from 'office-ui-fabric-react'
 import ChooseFileButton from './ChooseFileButton'
+import PropTypes from 'prop-types'
 
-export const UploadPhotoPivots = () => {
+export const UploadPhotoPivots = (props) => {
   return (
     <Pivot aria-label="Basic Pivot Example" defaultSelectedIndex={0}>
       <PivotItem
@@ -22,7 +23,7 @@ export const UploadPhotoPivots = () => {
           horizontalAlign="center"
           padding={30}
         >
-          <ChooseFileButton />
+          <ChooseFileButton {...props} />
         </Stack>
       </PivotItem>
       <PivotItem headerText="Use Webcam">
@@ -38,11 +39,15 @@ export const UploadPhotoPivots = () => {
       </PivotItem>
       <PivotItem headerText="Data URI">
         <Stack horizontalAlign="center" tokens={{padding: 20}}>
-          <TextField multiline={5} />
+          <Image src={props.dataURI} width={350}/>
         </Stack>
       </PivotItem>
     </Pivot>
   )
+}
+
+UploadPhotoPivots.propTypes = {
+  dataURI: PropTypes.string,
 }
 
 const contentStyles = mergeStyleSets({

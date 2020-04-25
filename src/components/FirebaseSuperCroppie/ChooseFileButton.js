@@ -1,9 +1,10 @@
 import React from 'react'
 import {DefaultButton, mergeStyleSets} from 'office-ui-fabric-react'
 import {useId} from '@uifabric/react-hooks'
+import PropTypes from 'prop-types'
 
 
-const ChooseFileButton = () => {
+const ChooseFileButton = (props) => {
   const inputFieldId = useId('file-input')
   return (
     <div className={contentStyles.buttonWrapper}>
@@ -18,9 +19,14 @@ const ChooseFileButton = () => {
         className={contentStyles.fileInput}
         type="file"
         accept="image/*"
+        onChange={props.onFileInputChange}
       />
     </div>
   )
+}
+
+ChooseFileButton.propTypes = {
+  onFileInputChange: PropTypes.func.isRequired,
 }
 
 export default ChooseFileButton

@@ -12,7 +12,7 @@ import {UploadPhotoPivots} from './UploadPhotoPivots'
 
 const cancelIcon = {iconName: 'Cancel'}
 
-const PhotoProcessModal = () => {
+const PhotoProcessModal = (props) => {
   const [
     isModalOpen, {setTrue: showModal, setFalse: hideModal},
   ] = useBoolean(false)
@@ -37,7 +37,9 @@ const PhotoProcessModal = () => {
           />
         </div>
         <div className={contentStyles.body}>
-          <UploadPhotoPivots />
+          <UploadPhotoPivots
+            {...props}
+          />
         </div>
       </Modal>
     </div>
