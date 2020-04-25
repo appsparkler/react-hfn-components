@@ -2,6 +2,7 @@ import * as React from 'react'
 import {
   Stack, DefaultButton,
   Pivot, PivotItem, mergeStyleSets,
+  TextField,
 } from 'office-ui-fabric-react'
 import ChooseFileButton from './ChooseFileButton'
 
@@ -33,6 +34,11 @@ export const UploadPhotoPivots = () => {
             Webcam Video Stream Placeholder
           </div>
           <DefaultButton primary text="Take Snapshot" />
+        </Stack>
+      </PivotItem>
+      <PivotItem headerText="Data URI">
+        <Stack horizontalAlign="center" tokens={{padding: 20}}>
+          <TextField multiline={5} />
         </Stack>
       </PivotItem>
     </Pivot>
