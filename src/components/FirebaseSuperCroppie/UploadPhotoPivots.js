@@ -9,7 +9,10 @@ import PropTypes from 'prop-types'
 
 export const UploadPhotoPivots = (props) => {
   return (
-    <Pivot aria-label="Basic Pivot Example" defaultSelectedIndex={0}>
+    <Pivot aria-label="Basic Pivot Example"
+      defaultSelectedIndex={0}
+      selectedKey={props.selectedPivotKey}
+    >
       <PivotItem
         headerText="Upload File"
         headerButtonProps={{
@@ -23,7 +26,9 @@ export const UploadPhotoPivots = (props) => {
           horizontalAlign="center"
           padding={30}
         >
-          <ChooseFileButton {...props} />
+          <ChooseFileButton
+            {...props}
+          />
         </Stack>
       </PivotItem>
       <PivotItem headerText="Use Webcam">
@@ -37,7 +42,10 @@ export const UploadPhotoPivots = (props) => {
           <DefaultButton primary text="Take Snapshot" />
         </Stack>
       </PivotItem>
-      <PivotItem headerText="Data URI">
+      <PivotItem
+        headerText="Data URI"
+        itemKey="croppie"
+      >
         <Stack horizontalAlign="center" tokens={{padding: 20}}>
           <Image src={props.dataURI} width={350}/>
         </Stack>
@@ -48,6 +56,7 @@ export const UploadPhotoPivots = (props) => {
 
 UploadPhotoPivots.propTypes = {
   dataURI: PropTypes.string,
+  selectedPivotKey: PropTypes.string,
 }
 
 const contentStyles = mergeStyleSets({
