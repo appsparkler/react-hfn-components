@@ -2,12 +2,13 @@ const {resolve} = require('path')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 process.env.NODE_ENV = 'production'
-module.exports = {
+
+const mainBuild = {
   entry: './src/index',
   mode: 'production',
   output: {
-    path: resolve('dist'),
-    filename: `react-hfn-components.min.js`,
+    path: resolve('dist/react-hfn-components/'),
+    filename: `index.js`,
     library: 'ReactHFNComponents',
     libraryTarget: 'umd',
   },
@@ -82,3 +83,10 @@ module.exports = {
     '@zxing/library/esm': '@zxing/library/esm',
   },
 }
+
+exports.mainBuild = mainBuild
+
+module.exports = [
+  mainBuild,
+  require('./webpack.config.barcode-scanner'),
+]

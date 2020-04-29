@@ -1,8 +1,11 @@
 {
   "files": [
     {
-      "path": "./dist/react-hfn-components.min.js",
-      "maxSize": "16 kB"
+      "path": "./dist/react-hfn-components/index.js",
+      "maxSize": "7 kB"
+    },{
+      "path": "./dist/barcode-scanner/index.js",
+      "maxSize": "4 kB"
     }
   ]
 }
