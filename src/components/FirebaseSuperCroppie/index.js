@@ -1,25 +1,32 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {
-  TextField,
+  Stack,
 } from 'office-ui-fabric-react'
+import ProfilePhoto from './ProfilePhoto'
+import PhotoProcessModal from './PhotoProcessModal'
 import useFirebaseSuperCroppie from './useFirebaseSuperCroppie'
+import useEventHandlers from './useEventHandlers'
 
-const FirebaseSuperCroppie = ({onUpload}) => {
-  const {
-    browserDetails,
-    videoRef, canvasRef,
-  } = useFirebaseSuperCroppie({onUpload})
+const FirebaseSuperCroppie = () => {
+  const state = useFirebaseSuperCroppie()
+  const eventHandlers = useEventHandlers({state})
   return (
-    <div>
-      <video ref={videoRef} playsinline autoPlay />
-      <canvas ref={canvasRef} />
-      <TextField
-        multiline
-        autoAdjustHeight
-        value={JSON.stringify(browserDetails)}
+    <Stack
+      horizontalAlign="center"
+      vertical
+      gap="20"
+      wrap
+    >
+      <ProfilePhoto
+        {...state}
+        {...eventHandlers}
       />
-    </div>
+      <PhotoProcessModal
+        {...state}
+        {...eventHandlers}
+      />
+    </Stack>
   )
 }
 

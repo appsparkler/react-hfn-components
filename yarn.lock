@@ -2522,6 +2522,14 @@
     "@uifabric/styling" "^7.10.21"
     tslib "^1.10.0"
 
+"@uifabric/merge-styles@^7.11.0":
+  version "7.11.0"
+  resolved "https://registry.yarnpkg.com/@uifabric/merge-styles/-/merge-styles-7.11.0.tgz#b330038cf3a5987d782fd3fb28c6d1a15aada87c"
+  integrity sha512-0T7A7TT+/hpUWQojUts1m1zSC1VBzaxDzOb5pZPho50nNhfrRHk3e/9Uhss933GxTG8/QWx/lOkyHbSAK/E2qA==
+  dependencies:
+    "@uifabric/set-version" "^7.0.10"
+    tslib "^1.10.0"
+
 "@uifabric/merge-styles@^7.8.8":
   version "7.8.8"
   resolved "https://registry.yarnpkg.com/@uifabric/merge-styles/-/merge-styles-7.8.8.tgz#b1270aa9a91602ed6ec2e61c1e5878cd9ec46d79"
@@ -2537,6 +2545,22 @@
   dependencies:
     "@uifabric/set-version" "^7.0.7"
     "@uifabric/utilities" "^7.15.1"
+    tslib "^1.10.0"
+
+"@uifabric/react-hooks@^7.1.6":
+  version "7.1.6"
+  resolved "https://registry.yarnpkg.com/@uifabric/react-hooks/-/react-hooks-7.1.6.tgz#801cebf52ab1b705d73e35a65c2006ba7056cf1d"
+  integrity sha512-/oDqmrKKB2cO4whxkkbS5NDkkuxkisC+9AAN7lUl9Qtz+RmaKT84MCSsTJ16D9qC2HZySSV+9xbZsZqQfPo8cw==
+  dependencies:
+    "@uifabric/set-version" "^7.0.10"
+    "@uifabric/utilities" "^7.15.10"
+    tslib "^1.10.0"
+
+"@uifabric/set-version@^7.0.10":
+  version "7.0.10"
+  resolved "https://registry.yarnpkg.com/@uifabric/set-version/-/set-version-7.0.10.tgz#c2dd1de0f0730c9601a65b1ae864fbbde71a450a"
+  integrity sha512-AK7jpLKYYQAQajpbbyKt6lpXRthu+rlDrhAkp3sBt3SOrqPlB3qdR7V8hsCIlNj10f2D5TaP/8X72QqLGF/Ksw==
+  dependencies:
     tslib "^1.10.0"
 
 "@uifabric/set-version@^7.0.7":
@@ -2564,6 +2588,16 @@
   dependencies:
     "@uifabric/merge-styles" "^7.8.8"
     "@uifabric/set-version" "^7.0.7"
+    prop-types "^15.7.2"
+    tslib "^1.10.0"
+
+"@uifabric/utilities@^7.15.10":
+  version "7.15.10"
+  resolved "https://registry.yarnpkg.com/@uifabric/utilities/-/utilities-7.15.10.tgz#69ece2cc9b437ec23b389d52a53b392e4357862e"
+  integrity sha512-BQxYfKjZAbCpfotGg6aZd3C2L507FjqAcp2BB5rjPVDrlHdH9NgAuFd89BsfItpNDJsSVMufCiA2I0wSWQ/ddw==
+  dependencies:
+    "@uifabric/merge-styles" "^7.11.0"
+    "@uifabric/set-version" "^7.0.10"
     prop-types "^15.7.2"
     tslib "^1.10.0"
 
