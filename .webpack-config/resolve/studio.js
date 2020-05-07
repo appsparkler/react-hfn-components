@@ -8,6 +8,7 @@ module.exports = {
       '@react-hfn-components': resolve('src/components'),
       '@react-hfn-hoc': resolve('src/hoc'),
       '@react-hfn-studio': resolve('studio'),
+      '@react-hfn-stories': resolve('stories'),
     },
     extensions: ['.sass', '.js', '.jsx', '.json'],
     modules: [
