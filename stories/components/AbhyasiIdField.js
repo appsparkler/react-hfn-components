@@ -34,7 +34,11 @@ const AbhyasiIdField = ({}) => {
         </Stack>
       </Stack.Item>
       <Stack.Item>
-        <Button secondary text="Submit" onClick={handleSubmit}/>
+        <Button
+          secondary
+          disabled={!abhyasiID}
+          text="Submit" onClick={handleSubmit}
+        />
       </Stack.Item>
     </Stack>
   )
