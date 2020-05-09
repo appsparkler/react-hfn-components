@@ -15,15 +15,28 @@ export const scanEvent = () => {
   )
 }
 
-function mapFirebaseDocsToDataDocs(firebaseDoc) {
-  console.log(firebaseDoc)
+async function mapFirebaseDocsToDataDocs({
+  setDocs,
+}, firebaseDoc) {
+  const doc = await firebaseDoc.ref.get({
+    source: 'cache',
+  })
+  const docData = await doc.data()
+  setDocs((docs) => {
+    return [
+      ...docs,
+      docData,
+    ]
+  })
 }
 
-function handleSnapShot(
-    {setCount, setDocs}, snapshot,
-) {
-  // const docs =
-  snapshot.docs.map(mapFirebaseDocsToDataDocs)
+function handleSnapShot({
+  setCount, setDocs,
+}, snapshot) {
+  setDocs([])
+  snapshot.docs.map(mapFirebaseDocsToDataDocs.bind(null, {
+    setDocs,
+  }))
   setCount(snapshot.size)
 }
 
@@ -41,25 +54,25 @@ function componentDidMount({
   }
 }
 
-
 const cellStylesSm = {width: '10%', textAlign: 'center'}
 const cellStylesLg = {width: '30%', textAlign: 'center'}
 
 const getRows = (docs) => docs.map((doc, idx) => {
   return (
     <tr key={doc.id}>
-      <td style={cellStylesSm}>{idx}</td>
+      <td style={cellStylesSm}>{idx + 1}</td>
       <td style={cellStylesSm}>{doc.id}</td>
-      <td style={cellStylesLg}>{new Date(doc.timestamp).toTimeString()}</td>
+      <td style={cellStylesLg}>
+        {new Date(doc.timestamp).toLocaleDateString()} @ {
+          new Date(doc.timestamp).toLocaleTimeString()
+        }
+      </td>
     </tr>
   )
 })
 export const currentCount = () => {
   const [count, setCount] = React.useState(0)
-  const [docs, setDocs] = React.useState([{
-    id: 'INAAAE478',
-    timestamp: new Date().valueOf(),
-  }])
+  const [docs, setDocs] = React.useState([])
   React.useEffect(componentDidMount.bind(null, {
     setCount, setDocs,
   }))
@@ -72,7 +85,7 @@ export const currentCount = () => {
           <tr>
             <th style={cellStylesSm}>Sr #</th>
             <th style={cellStylesSm}>Abhyasi ID</th>
-            <th style={cellStylesLg}>Sanned Time</th>
+            <th style={cellStylesLg}>Scanned Time</th>
           </tr>
           {getRows(docs)}
         </thead>
