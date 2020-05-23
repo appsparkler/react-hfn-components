@@ -14,33 +14,35 @@ const AbhyasiIdField = ({}) => {
     handleSubmit,
   } = useAbhyasiEntryForm()
   return (
-    <Stack tokens={{childrenGap: 10}}>
-      <Stack.Item>
-        <Stack horizontal tokens={{childrenGap: 20}}
-          verticalAlign="end">
-          <MaskedTextField
-            label="Abhyasi ID"
-            onChange={handleChange}
-            mask={'aa aa aa 999'}
-            value={abhyasiID}
-            iconProps={{iconName: 'QRCode'}}
+    <form>
+      <Stack tokens={{childrenGap: 10}}>
+        <Stack.Item>
+          <Stack horizontal tokens={{childrenGap: 20}}
+            verticalAlign="end">
+            <MaskedTextField
+              label="Abhyasi ID"
+              onChange={handleChange}
+              mask={'aa aa aa 999'}
+              value={abhyasiID}
+              iconProps={{iconName: 'QRCode'}}
+            />
+            <BarCodeScanner
+              onNewCodeDetected={handleNewCodeDetect}
+              openModal={openModal}
+              closeModal={closeModal}
+              isModalOpen={isModalOpen}
+            />
+          </Stack>
+        </Stack.Item>
+        <Stack.Item>
+          <Button
+            secondary
+            disabled={!abhyasiID}
+            text="Submit" onClick={handleSubmit}
           />
-          <BarCodeScanner
-            onNewCodeDetected={handleNewCodeDetect}
-            openModal={openModal}
-            closeModal={closeModal}
-            isModalOpen={isModalOpen}
-          />
-        </Stack>
-      </Stack.Item>
-      <Stack.Item>
-        <Button
-          secondary
-          disabled={!abhyasiID}
-          text="Submit" onClick={handleSubmit}
-        />
-      </Stack.Item>
-    </Stack>
+        </Stack.Item>
+      </Stack>
+    </form>
   )
 }
 
