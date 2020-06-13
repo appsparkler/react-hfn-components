@@ -1,9 +1,11 @@
 import React from 'react'
-import BarCodeScanner from '../src/components/BarCodeScanner'
+import FirebaseSuperCroppie from '@react-hfn-components/FirebaseSuperCroppie'
+import config from './config'
+import './styles'
 
-export const StudioApp = () => {
+const StudioApp = () => {
   return (
-    <BarCodeScanner />
+    <FirebaseSuperCroppie storageRef={config.storageRef} />
   )
 }
 
