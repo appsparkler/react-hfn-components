@@ -2,7 +2,10 @@ async function startVideo({webcamRef}) {
   try {
     const video = webcamRef.current
     const stream = await navigator.mediaDevices
-        .getUserMedia({video: true, audio: false})
+        .getUserMedia({
+          video: true,
+          audio: false,
+        })
     video.srcObject = stream
     video.play()
   } catch (e) {
@@ -26,9 +29,18 @@ function clickPhoto({webcamRef, setDataURL}, evt) {
   setDataURL(dataURL)
 }
 
+function stopVideo({
+  webcamRef,
+}) {
+  if (!webcamRef?.current) return
+  const stopTrack = (track) => track.stop()
+  webcamRef.current.srcObject.getVideoTracks().forEach(stopTrack)
+}
+
 export default ({webcamRef, setDataURL}) => {
   return {
     startVideo: startVideo.bind(null, {webcamRef}),
     clickPhoto: clickPhoto.bind(null, {webcamRef, setDataURL}),
+    stopVideo: stopVideo.bind(null, {webcamRef}),
   }
 }

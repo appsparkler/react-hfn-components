@@ -1,41 +1,23 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {
-  Stack,
-} from 'office-ui-fabric-react'
-import ProfilePhoto from './ProfilePhoto'
-import PhotoProcessModal from './PhotoProcessModal'
 import useFirebaseSuperCroppie from './useFirebaseSuperCroppie'
-import useEventHandlers from './useEventHandlers'
+import FirebaseSuperCroppie from './hoc'
 
-const FirebaseSuperCroppie = () => {
-  const state = useFirebaseSuperCroppie()
-  const eventHandlers = useEventHandlers({state})
-  return (
-    <Stack
-      horizontalAlign="center"
-      vertical
-      gap="20"
-      wrap
-    >
-      <ProfilePhoto
-        {...state}
-        {...eventHandlers}
-      />
-      <PhotoProcessModal
-        {...state}
-        {...eventHandlers}
-      />
-    </Stack>
-  )
+const UseFirebaseSuperCroppie= ({storageRef, croppieConfig}) => {
+  const value = useFirebaseSuperCroppie({storageRef, croppieConfig})
+  return <FirebaseSuperCroppie {...value}/>
 }
 
-FirebaseSuperCroppie.propTypes = {
-  onUpload: PropTypes.func.isRequired,
+UseFirebaseSuperCroppie.propTypes = {
+  storageRef: PropTypes.object.isRequired,
+  croppieConfig: PropTypes.object.isRequired,
 }
 
-FirebaseSuperCroppie.defaultProps = {
-  onUpload: () => {},
+UseFirebaseSuperCroppie.defaultProps = {
+  croppieConfig: {
+    viewport: {width: 200, height: 200},
+    boundary: {width: 300, height: 300},
+  },
 }
 
-export default FirebaseSuperCroppie
+export default UseFirebaseSuperCroppie
