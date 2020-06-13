@@ -3,4 +3,4 @@ export useBarCodeScanner from '@react-hfn-components/BarCodeScanner/useBarCodeSc
 // LEGACY
 export FirebaseFileInput from './legacy/FirebaseFileInput' // eslint-disable-line
 
-export FirebaseFileLink from './legacy/FirebaseFileLink' //eslint-disable-line
+export FirebaseFileLink from './legacy/FirebaseFileLink' //eslint-disable-line 
