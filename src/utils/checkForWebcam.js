@@ -1,11 +1,14 @@
 export default async function checkForWebcam({valueSetter}) {
   try {
-    const userMedia = await navigator
-        .mediaDevices.getUserMedia({
+    const mediaStream = await navigator
+        .mediaDevices
+        .getUserMedia({
           video: true, audio: false,
         })
-    if (userMedia) valueSetter(true)
+    if (mediaStream) valueSetter(true)
     else valueSetter(false)
+    const stopTrack = (track) => track.stop()
+    mediaStream.getVideoTracks().forEach(stopTrack)
   } catch (e) {
     valueSetter(false)
   }
