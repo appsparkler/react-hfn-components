@@ -23,10 +23,14 @@ export const example = () => {
     viewport: {width: 100, height: 100},
     boundary: {width: 200, height: 200},
   }), [])
+  const onUpload = React.useCallback((res) => {
+    alert(res)
+  }, [])
   return (
     <FirebaseSuperCroppie
       storageRef={storageRef}
       croppieConfig={croppieConfig}
+      onUpload={onUpload}
     />
   )
 }

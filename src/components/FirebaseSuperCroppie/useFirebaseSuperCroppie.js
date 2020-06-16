@@ -54,9 +54,10 @@ function uploadedDidChange({
   uploaded,
   setCroppedDataURL, setDataURL,
   setMediaSource, setProgress, setUploaded,
-  verifyFile, stopVideo,
+  verifyFile, stopVideo, onUpload,
 }) {
   if (!uploaded) return
+  onUpload && onUpload(true)
   stopVideo()
   setProgress(0)
   setUploaded(false)
@@ -104,7 +105,7 @@ function selectedFileDidChange({
   }
 }
 
-export default ({storageRef, croppieConfig}) => {
+export default ({storageRef, croppieConfig, onUpload}) => {
   const [imgIsLoading, setImgIsLoading] = React.useState(false)
   const [file, setFile] = React.useState(null)
   const [isVerifying, setIsVerifying] = React.useState(false)
@@ -164,7 +165,7 @@ export default ({storageRef, croppieConfig}) => {
   }), [croppie])
   React.useEffect(uploadedDidChange.bind(null, {
     uploaded, setCroppedDataURL, setDataURL, setMediaSource,
-    setProgress, verifyFile, setUploaded, stopVideo,
+    setProgress, verifyFile, setUploaded, stopVideo, onUpload,
   }), [uploaded])
   React.useEffect(fileDidChange.bind(null, {
     setImgIsLoading, file,

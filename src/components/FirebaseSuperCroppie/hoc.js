@@ -107,7 +107,9 @@ FirebaseSuperCroppie.propTypes = {
 }
 
 FirebaseSuperCroppie.defaultProps = {
-  onUpload: (file) => {},
+  onUpload: (file) => {
+    debugger
+  },
 }
 
 export default FirebaseSuperCroppie
