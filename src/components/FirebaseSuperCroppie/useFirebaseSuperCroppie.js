@@ -8,6 +8,7 @@ import useFileInput from '@react-hfn-hooks/useFileInput'
 import useFileToDataURL from '@react-hfn-hooks/useFileToDataURL'
 import checkForWebcam from '@react-hfn-utils/checkForWebcam'
 import checkMobileDevice from '@react-hfn-utils/checkMobileDevice'
+import useOnUploadHandler from './useOnUploadHandler'
 
 function checkWebcamAvailability({setIsWebcamAvailable}) {
   checkForWebcam({
@@ -54,10 +55,10 @@ function uploadedDidChange({
   uploaded,
   setCroppedDataURL, setDataURL,
   setMediaSource, setProgress, setUploaded,
-  verifyFile, stopVideo, onUpload,
+  verifyFile, stopVideo, onUploadHandler,
 }) {
   if (!uploaded) return
-  onUpload && onUpload(true)
+  onUploadHandler()
   stopVideo()
   setProgress(0)
   setUploaded(false)
@@ -105,7 +106,11 @@ function selectedFileDidChange({
   }
 }
 
-export default ({storageRef, croppieConfig, onUpload}) => {
+export default ({
+  storageRef,
+  croppieConfig,
+  onUpload = () => {},
+}) => {
   const [imgIsLoading, setImgIsLoading] = React.useState(false)
   const [file, setFile] = React.useState(null)
   const [isVerifying, setIsVerifying] = React.useState(false)
@@ -146,7 +151,10 @@ export default ({storageRef, croppieConfig, onUpload}) => {
   const {clickPhoto, startVideo, stopVideo} = useWebcamInput({
     webcamRef, setDataURL,
   })
-  //
+  const {onUploadHandler} = useOnUploadHandler({
+    storageRef, onUpload,
+  })
+
   React.useEffect(selectedFileDidChange.bind(null,
       {setDataURL, selectedFile},
   ), [selectedFile])
@@ -165,7 +173,8 @@ export default ({storageRef, croppieConfig, onUpload}) => {
   }), [croppie])
   React.useEffect(uploadedDidChange.bind(null, {
     uploaded, setCroppedDataURL, setDataURL, setMediaSource,
-    setProgress, verifyFile, setUploaded, stopVideo, onUpload,
+    setProgress, verifyFile, setUploaded, stopVideo,
+    onUploadHandler,
   }), [uploaded])
   React.useEffect(fileDidChange.bind(null, {
     setImgIsLoading, file,
