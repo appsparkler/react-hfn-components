@@ -5,14 +5,7 @@ import CroppieStack from './CroppieStack'
 import ProfilePhoto from './ProfilePhoto'
 import FileInput from './FileInput'
 import WebcamVideo from './WebcamVideo'
-import {
-  Stack,
-  // Image,
-  // ProgressIndicator,
-  // DefaultButton,
-  // Spinner, SpinnerSize,
-  // MessageBar,
-} from 'office-ui-fabric-react'
+import {Stack} from 'office-ui-fabric-react'
 
 const FirebaseSuperCroppie = ({
   file, isVerifying,
@@ -22,7 +15,7 @@ const FirebaseSuperCroppie = ({
   handleUploadButtonClick, isUploading, progress, uploaded,
   webcamRef, clickPhoto,
   imgIsLoading, handleLoad, isWebcamAvailable, fileInputRef,
-  isMobileDevice,
+  isMobileDevice, onUpload,
 }) => (
   <Stack
     horizontalAlign="center"
@@ -110,6 +103,11 @@ FirebaseSuperCroppie.propTypes = {
   }),
 
   isMobileDevice: PropTypes.bool,
+  onUpload: PropTypes.func,
+}
+
+FirebaseSuperCroppie.defaultProps = {
+  onUpload: (file) => {},
 }
 
 export default FirebaseSuperCroppie
