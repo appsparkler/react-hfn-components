@@ -17,7 +17,7 @@ export default {
 export const example = () => {
   const storageRef = React.useMemo(() => firebaseApp
       .storage()
-      .ref('hello-world')
+      .ref('corppie-img')
   , [])
   const croppieConfig = React.useMemo(() => ({
     viewport: {width: 100, height: 100},

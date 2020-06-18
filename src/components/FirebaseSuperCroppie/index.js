@@ -22,4 +22,4 @@ UseFirebaseSuperCroppie.defaultProps = {
   onUpload: (file) => {},
 }
 
-export default UseFirebaseSuperCroppie
+export default React.memo(UseFirebaseSuperCroppie)
