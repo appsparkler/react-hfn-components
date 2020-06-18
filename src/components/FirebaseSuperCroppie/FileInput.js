@@ -42,4 +42,4 @@ FileInput.propTypes = {
   text: PropTypes.string.isRequired,
 }
 
-export default FileInput
+export default React.memo(FileInput)

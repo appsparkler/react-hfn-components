@@ -29,4 +29,4 @@ MediaSourceForm.propTypes = {
   disabled: PropTypes.bool.isRequired,
 }
 
-export default MediaSourceForm
+export default React.memo(MediaSourceForm)

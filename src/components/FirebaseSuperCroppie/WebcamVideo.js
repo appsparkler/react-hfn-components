@@ -27,4 +27,4 @@ WebcamVideo.propTypes = {
   onClick: PropTypes.func.isRequired,
 }
 
-export default WebcamVideo
+export default React.memo(WebcamVideo)

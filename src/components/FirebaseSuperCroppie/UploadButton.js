@@ -18,4 +18,4 @@ UploadButton.propTypes = {
   disabled: PropTypes.bool.isRequired,
 }
 
-export default UploadButton
+export default React.memo(UploadButton)

@@ -55,4 +55,4 @@ ProfilePhoto.propTypes = {
   onLoad: PropTypes.func.isRequired,
 }
 
-export default ProfilePhoto
+export default React.memo(ProfilePhoto)

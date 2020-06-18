@@ -112,4 +112,4 @@ FirebaseSuperCroppie.defaultProps = {
   },
 }
 
-export default FirebaseSuperCroppie
+export default React.memo(FirebaseSuperCroppie)

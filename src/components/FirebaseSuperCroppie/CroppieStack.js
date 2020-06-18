@@ -48,4 +48,4 @@ CroppieStack.propTypes = {
   progress: PropTypes.number,
 }
 
-export default CroppieStack
+export default React.memo(CroppieStack)
